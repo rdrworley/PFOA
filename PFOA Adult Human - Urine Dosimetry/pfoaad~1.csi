@@ -1,0 +1,275 @@
+program 
+
+
+
+
+
+
+
+initial 
+
+
+constant qcc = 15 
+constant qlc = 0.25 
+constant qfc = 0.052 
+constant qkc = 0.175 
+constant qfilc = 0.035 
+
+
+constant bw = 70 
+
+constant vlc = 0.0257 
+constant vfc = 0.2142 
+constant vkc = 0.0044 
+constant vplasc = 0.0428 
+constant vfilc = 0.0004 
+
+constant htc = 0.44 
+
+
+constant tmc = 10 
+constant kt = 0.055 
+constant free = 0.02 
+
+constant pl = 2.2 
+constant pf = 0.47 
+constant pk = 1.05 
+constant pr = 0.04 
+constant ps = 0.04 
+
+constant kurinec = 0.00003 
+
+
+constant tstart = 0.0 
+
+countdw = 0.0 
+hourofday = 0.0 
+dayofweek = 0.0 
+
+
+constant backgrounddw = 0.01 
+constant exposeddw = 0.4 
+constant dwtotal = 2.0 
+constant drinks = 4 
+constant tlendw = 0.25 
+
+end 
+
+dynamic 
+
+algorithm ialg = 2 
+nsteps nstp = 10 
+maxterval maxt = 1.0e9 
+minterval mint = 1.0e-9 
+cinterval cint = 1 
+
+derivative 
+
+
+qc = qcc * bw ** 0.75 
+qcp = qc * ( 1 - htc ) 
+ql = qlc * qcp 
+qf = qfc * qcp 
+qk = qkc * qcp 
+qr = 0.76 * qcp - ql - qk - qfil 
+qs = 0.24 * qcp - qf 
+qfil = 0.2 * qk 
+qbal = qcp - ( ql + qf + qk + qr + qs + qfil ) 
+
+
+vl = vlc * bw 
+vf = vfc * bw 
+vk = vkc * bw 
+vplas = vplasc * bw 
+vr = 0.33 * bw - vl - vk - vfil - vplas 
+vs = 0.60 * bw - vf 
+vfil = vfilc * bw 
+# line 87 
+vbal = ( 0.93 * bw ) - ( vl + vf + vk + vplas + vr + vs + vfil ) 
+# line 88 
+vd = vl * ( pl ) + vf * ( pf ) + vk * ( pk ) 
+
+tm = tmc * bw ** 0.75 
+kurine = kurinec * bw ** ( - 0.25 ) 
+
+day = t / 24 
+year = day / 365 
+
+
+
+
+
+discrete drinkint 
+schedule drinkon .at. tstart 
+end 
+
+discrete drinkon 
+if ( t .lt. 332880 ) then 
+interval c2 = 4.0 
+if ( hourofday .lt. 16.0 ) then 
+# line 108 
+drinkdose = ( ( backgrounddw / tlendw ) * ( dwtotal / drinks ) ) 
+countdw = countdw + 1 
+schedule drinkoff .at. t + tlendw 
+endif 
+
+hourofday = hourofday + 4 
+
+if ( hourofday .eq. 24.0 ) dayofweek = dayofweek + 1.0 
+if ( hourofday .eq. 24.0 ) hourofday = 0.0 
+if ( dayofweek .eq. 7.0 ) dayofweek = 0.0 
+endif 
+
+end 
+# line 124 
+z99999 = drinkdose 
+# line 124 
+z99998 = 0. 
+# line 124 
+integral adrinkdose = z99999 , z99998 
+
+discrete drinkon 
+if ( t .gt. 332880 ) then 
+interval c2 = 4.0 
+if ( hourofday .lt. 16.0 ) then 
+# line 127 
+drinkdose = ( ( exposeddw / tlendw ) * ( dwtotal / drinks ) ) 
+countdw = countdw + 1 
+schedule drinkoff .at. t + tlendw 
+endif 
+
+hourofday = hourofday + 4 
+
+if ( hourofday .eq. 24.0 ) dayofweek = dayofweek + 1.0 
+if ( hourofday .eq. 24.0 ) hourofday = 0.0 
+if ( dayofweek .eq. 7.0 ) dayofweek = 0.0 
+endif 
+
+end 
+# line 144 
+z99997 = drinkdose 
+# line 144 
+z99996 = 0. 
+# line 144 
+integral adrinkdose2 = z99997 , z99996 
+
+discrete drinkoff 
+drinkdose = 0.0 
+end 
+
+
+
+# line 148 
+rl = ( ql * ( ca - cvl ) * free ) + drinkdose 
+# line 154 
+z99995 = rl 
+# line 154 
+z99994 = 0. 
+# line 154 
+integral al = z99995 , z99994 
+cl = al / vl 
+cvl = cl / pl 
+
+
+rf = qf * ( ca - cvf ) * free 
+# line 160 
+z99993 = rf 
+# line 160 
+z99992 = 0. 
+# line 160 
+integral af = z99993 , z99992 
+cf = af / vf 
+cvf = cf / pf 
+
+
+rr = qr * ( ca - cvr ) * free 
+# line 166 
+z99991 = rr 
+# line 166 
+z99990 = 0. 
+# line 166 
+integral ar = z99991 , z99990 
+cr = ar / vr 
+cvr = cr / pr 
+
+
+rs = qs * ( ca - cvs ) * free 
+# line 172 
+z99989 = rs 
+# line 172 
+z99988 = 0. 
+# line 172 
+integral as = z99989 , z99988 
+cs = as / vs 
+cvs = cs / ps 
+
+
+# line 172 
+rk = qk * ( ca - cvk ) * free + ( ( tm * cfil ) / ( kt + cfil ) ) 
+# line 179 
+z99987 = rk 
+# line 179 
+z99986 = 0. 
+# line 179 
+integral ak = z99987 , z99986 
+ck = ak / vk 
+cvk = ck / pk 
+
+
+# line 178 
+rfil = qfil * ( ca * free - cfil ) - ( ( tm * cfil ) / ( kt + cfil ) ) 
+# line 186 
+z99985 = rfil 
+# line 186 
+z99984 = 0. 
+# line 186 
+integral afil = z99985 , z99984 
+cfil = afil / vfil 
+
+
+rurine = kurine * cfil 
+# line 191 
+z99983 = rurine 
+# line 191 
+z99982 = 0. 
+# line 191 
+integral aurine = z99983 , z99982 
+curine = aurine / vfil 
+
+
+# line 188 
+rplas = ( qf * cvf * free + ( ql ) * cvl * free + qk * cvk * free + qr * cvr * free + qs * cvs * free ) - qcp * ca * free 
+# line 197 
+z99981 = rplas 
+# line 197 
+z99980 = 0. 
+# line 197 
+integral aplas = z99981 , z99980 
+ca = aplas / vplas 
+
+end 
+
+
+
+
+
+
+
+constant tstop = 481800 
+# line 209 
+if ( t .ge. tstop ) then 
+# line 209 
+call zztrmt ( 'checked on communication interval: REACHED TSTOP' ) 
+# line 209 
+endif 
+
+end 
+
+
+terminal 
+
+end 
+
+end 
+
+

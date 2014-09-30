@@ -1,0 +1,203 @@
+PROGRAM PBPK model for PFOA in Adult Humans. July 31, 2012
+
+!Created by R. Worley, based on previous models by A. Locissano
+!Compartments include richly perfused tissue, slowly perfused tissue, liver, kidney, gut, and fat 
+!This code attempts to realistically simulate the drinking water exposure of public water drinkers in Decatur, AL
+!As of 8/2/2013, dietary/oral exposure is NOT included. 
+
+INITIAL
+! Physiological Parameters
+! Cardiac output and blood flow
+CONSTANT QCC = 15 ! NOT SURE. Cardiac blood output (L/h/BW(kg)^0.75), [Brown, 1997 and Forsyth, 1968]
+CONSTANT QLC = 0.227 ! Fraction cardiac output going to liver, [Brown, 1997 and Forsyth, 1968]
+CONSTANT QFC = 0.052 ! Fraction cardiac output going to fat, [Brown, 1997 and Forsyth, 1968]
+CONSTANT QKC = 0.175 ! Fraction cardiac output going to kidney, [Brown, 1997 and Forsyth, 1968]
+
+!Tissue volumes
+CONSTANT BW = 80 ! Body weight (kg) [EPA Factors Handbook, 2011]
+CONSTANT VLC = 0.0257 ! Fraction liver volume, [Brown, 1997]
+CONSTANT VFC = 0.2142 ! Fraction fat volume, [Brown, 1997]
+CONSTANT VKC = 0.0044 ! Fraction kidney volume, [Brown, 1997]
+CONSTANT VPlasC = 0.0428 ! NOT SURE. Fraction plasma volume (58% of blood)
+
+CONSTANT Htc = 0.44 ! hematocrit
+
+!Chemical specific parameters.
+CONSTANT Tmc = 10 ! Maximum resorption rate (ug/h/BW(kg)^0.75)(From Loccisano adult human model - 3.8 yr half life)
+CONSTANT Kt = 0.055 ! Resorption affinity 
+CONSTANT Free = 0.02 ! Free fraction of PFOA in plasma (From Locissano human gestation/lactation model)
+
+CONSTANT PL = 2.2 ! Liver/blood partition coefficient 
+CONSTANT PF = 0.04 ! Fat/blood partition coefficient
+CONSTANT PK = 1.05 ! Kidney/blood partition coefficient
+CONSTANT PR = 0.04	 !0.04  ! Richly perfused tissues/blood partition coefficien (NEED PARAMETER VALUE)
+CONSTANT PS = 0.04	 !0.04  ! Slowly perfused tissues/blood partition coefficien (NEED PARAMETER VALUE)
+
+!CONSTANT halflife = 2.3 !half-life (years)
+
+! Exposure Parameters
+CONSTANT tstart = 0.0
+!CONSTANT expint = 24.0 !length of time that exposure occurs (hrs)
+
+countdw = 0.0
+hourofday = 0.0
+dayofweek = 0.0 
+
+!Drinking Water
+CONSTANT backgrounddw = 0.01 ! Drinking water concentration (ug/L or ppb)
+CONSTANT exposeddw = 2.2
+CONSTANT dwtotal = 1.2 ! daily drinking water consumption (L), from the EPA Factors Handbook (2011)
+CONSTANT drinks = 4 !Total drinks per day (drink)
+CONSTANT tlendw = 0.25 !Length of time spent drinking each drinking event (hrs/drink)
+
+!Urinary Elimination Constant
+CONSTANT kurinec = 1.0e-5
+
+END ! INITIAL
+
+DYNAMIC
+
+ALGORITHM IALG = 2 ! Gear method for stiff systems? 14?
+NSTEPS    NSTP = 10
+MAXTERVAL MAXT = 1.0e9
+MINTERVAL MINT = 1.0e-9
+CINTERVAL CINT = 1
+
+DERIVATIVE
+!Scaled Parameters
+!Cardiac output and blood flows
+QC = QCC*BW**0.75 ! Cardiac output (L/h)
+QCP = QC*(1-Htc) ! Plasma flow (L/h) WHY?
+QL = QLC*QCP ! Plasma flow to liver (L/h)
+QF = QFC*QCP ! Plasma flow to fat (L/h)
+QK = QKC*QCP ! Plasma flow to kidney (L/h)
+QR = 0.76*QCP - QL - QK !- QG ! Plasma flow to richly perfused tissue (L/h) (0.76 from Jeff's code)
+QS = 0.24*QCP - QF ! Plasma flow to slowly perfused tissue (L/h) (0.24 from Jeff's code)
+Qbal = QCP - (QL + QF + QK + QR + QS) ! balance check, should be zero
+
+!Tissue Volumes
+VL = VLC*BW ! Liver volume (L)
+VF = VFC*BW ! Fat volume (L)
+VK = VKC*BW ! Kidney volume (L)
+VPlas = VPlasC*BW ! Plasma volume (L)
+VR = 0.33*BW - VL - VK !- VG ! Richly perfused tissue volume (L) (0.33 from Jeff's code)
+VS = 0.60*BW - VF ! Slowly perfused tissue volume (L) (0.60 from Jeff's code - 7% is bone, not included)
+Vbal = (0.93*BW)- (VL + VF + VK + VPlas + VR + VS) ! Balance check, should be zero
+Vd = VL*(PL) + VF*(PF) + VK*(PK) !+ VG*(PG) !+ VR*(PR) + VS*(PS) ! Volume of distribution (L)
+
+Tm = Tmc*BW**0.75 ! Resportion maximum scaled to BW
+!kurinec = (((0.693*Vd)/(halflife*365*24))/BW)     !urinary elimination, L/hr/kg
+kurine = kurinec*BW**(0.75) ! urinary elimination rate (L/h)
+
+day = t/24
+year = day/365
+
+!Drinking water exposure -- SCHEDULE METHOD, Historical Reconstruction
+!drinkint = 24/drinks !length of time between drinks (hrs)
+!DWpulse = pulse(0.0,drinkint,tlendw)*pulse(0.0,TSTOP,expint)
+!drinkdose = DWpulse*((dwtotal/drinks)*(drinkconc/tlendw)) !simulate drinking water exposure at set interval(ug/hr)
+DISCRETE Drinkint
+SCHEDULE DrinkON .AT. tstart
+END
+
+DISCRETE DrinkON
+IF (T.LT.332880) THEN !if time is less than 38 years, 
+INTERVAL C2 = 4.0 !simulate drinking exposure every four hours
+IF (hourofday .LT. 16.0) THEN !if hour of day is less than 16 (8pm)
+drinkdose = ((backgrounddw/tlendw)*(dwtotal/drinks)) !simulate drinking water (background concentration)exposure at set interval(ug/hr)
+countdw = countdw + 1 !increase drinking episode count by 1 following exposure
+SCHEDULE DrinkOFF .AT. T+tlendw !turn off drinking water exposure after 15 minutes (tlen)
+ENDIF
+
+hourofday = hourofday + 4 !increase hour of day count by four hours following each exposure
+
+IF(hourofday .EQ. 24.0) dayofweek = dayofweek + 1.0 !when hour of day count reaches 24, increase day of week count by 1
+IF(hourofday .EQ. 24.0) hourofday = 0.0 !when hour of day count reaches 24, reset hour of day count to zero
+IF (dayofweek .EQ. 7.0) dayofweek = 0.0 !when day of week count reaches 7, reset day of week count to zero
+ENDIF
+
+END
+adrinkdose = integ(drinkdose, 0.)
+
+DISCRETE DrinkON
+IF (T.GT.332880) THEN !if time is greater than 38 years, 
+INTERVAL C2 = 4.0 !simulate drinking exposure every four hours
+IF (hourofday .LT. 16.0) THEN !if hour of day is less than 16 (8pm)
+drinkdose = ((exposeddw/tlendw)*(dwtotal/drinks)) !simulate drinking water (exposed concentration)exposure at set interval(ug/hr)
+countdw = countdw + 1 !increase drinking episode count by 1 following exposure
+SCHEDULE DrinkOFF .AT. T+tlendw !turn off drinking water exposure after 15 minutes (tlen)
+ENDIF
+
+hourofday = hourofday + 4 !increase hour of day count by four hours following each exposure
+
+IF(hourofday .EQ. 24.0) dayofweek = dayofweek + 1.0 !when hour of day count reaches 24, increase day of week count by 1
+IF(hourofday .EQ. 24.0) hourofday = 0.0 !when hour of day count reaches 24, reset hour of day count to zero
+IF (dayofweek .EQ. 7.0) dayofweek = 0.0 !when day of week count reaches 7, reset day of week count to zero
+ENDIF
+
+END
+adrinkdose2 = integ(drinkdose, 0.)
+
+DISCRETE DrinkOFF 
+Drinkdose = 0.0 !set drink dose to zero during non-exposure periods
+END
+
+!Differential Equations
+!Liver compartment
+RL = (QL*(CA - CVL)*Free) + drinkdose ! rate of change in liver
+AL = integ(RL, 0.) ! amount in the liver (ug)
+CL = AL/VL ! concentration in the liver (ug/L)
+CVL = CL/PL ! concentration in the venous blood leaving the liver (ug/L)
+
+!Fat compartment
+RF = QF*(CA-CVF)*Free !rate of change in fat
+AF = integ(RF, 0.) ! amount in the fat (ug)
+CF = AF/VF ! concentration in the fat (ug/L)
+CVF = CF/PF ! concentration in the venous blood leaving the fat (ug/L)
+
+!Richly perfused tissue compartment
+RR = QR*(CA-CVR)*Free ! rate of change in richly perfused tissue
+AR = integ(RR, 0.) ! amount in richly perfused tissue (ug)
+CR = AR/VR ! concentration in richly perfused tissue (ug/L)
+CVR = CR/PR ! concentration in the venous blood leaving the richly perfused tissue (ug/L)
+
+!Slowly perfused tissue compartment
+RS = QS*(CA-CVS)*Free ! rate of change in slowly perfused tissue
+AS = integ(RS, 0.) ! amount in slowly perfused tissue (ug)
+CS = AS/VS ! concentration in slowly perfused tissue (ug/L)
+CVS = CS/PS ! concentration in the venous blood leaving the slowly perfued tissue (ug/L) 
+
+!Kidney compartment
+RK = QK*(CA-CVK)*Free - Rurine ! rate of change in kidneys (ug/h)
+AK = integ(RK, 0.) ! amount in the kidneys (ug)
+CK = AK/VK ! concentration in the kidneys (ug/L)
+CVK = CK/PK ! concentration in the venous blood leaving the kidneys (ug/L)
+
+Rurine = kurine*CVK ! rate of excretion (ug/h)	
+Aurine = integ(Rurine, 0.) !(ug)
+
+!Plasma compartment
+RPlas = (QF*CVF*Free + (QL)*CVL*Free + QK*CVK*Free + QR*CVR*Free + QS*CVS*Free) - QCP*CA*Free !rate of change in the plasma
+APlas = integ (RPlas, 0.) !amount in the plasma (ug)
+CA = APlas/VPlas !concentration in the plasma (ug/L)
+
+END ! DERIVATIVE
+
+! Add discrete events here as needed
+!  DISCRETE
+!  END
+
+! code that is executed once at each communication interval goes here
+
+CONSTANT TSTOP = 481800
+TERMT (T .GE. TSTOP, 'checked on communication interval: REACHED TSTOP')
+
+END ! DYNAMIC
+
+
+TERMINAL
+! code that is executed once at the end of a simulation run goes here
+END ! TERMINAL
+
+END ! PROGRAM
+

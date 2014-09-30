@@ -1,0 +1,260 @@
+program 
+
+
+
+
+
+
+initial 
+
+
+constant qcc = 15 
+constant qlc = 0.227 
+constant qfc = 0.052 
+constant qkc = 0.175 
+
+
+constant bw = 80 
+constant vlc = 0.0257 
+constant vfc = 0.2142 
+constant vkc = 0.0044 
+constant vplasc = 0.0428 
+
+constant htc = 0.44 
+
+
+constant tmc = 10 
+constant kt = 0.055 
+constant free = 0.02 
+
+constant pl = 2.2 
+constant pf = 0.04 
+constant pk = 1.05 
+constant pr = 0.04 
+constant ps = 0.04 
+
+
+
+
+constant tstart = 0.0 
+
+
+countdw = 0.0 
+hourofday = 0.0 
+dayofweek = 0.0 
+
+
+constant backgrounddw = 0.01 
+constant exposeddw = 2.2 
+constant dwtotal = 1.2 
+constant drinks = 4 
+constant tlendw = 0.25 
+
+
+constant kurinec = 1.0e-5 
+
+end 
+
+dynamic 
+
+algorithm ialg = 2 
+nsteps nstp = 10 
+maxterval maxt = 1.0e9 
+minterval mint = 1.0e-9 
+cinterval cint = 1 
+
+derivative 
+
+
+qc = qcc * bw ** 0.75 
+qcp = qc * ( 1 - htc ) 
+ql = qlc * qcp 
+qf = qfc * qcp 
+qk = qkc * qcp 
+qr = 0.76 * qcp - ql - qk 
+qs = 0.24 * qcp - qf 
+qbal = qcp - ( ql + qf + qk + qr + qs ) 
+
+
+vl = vlc * bw 
+vf = vfc * bw 
+vk = vkc * bw 
+vplas = vplasc * bw 
+vr = 0.33 * bw - vl - vk 
+vs = 0.60 * bw - vf 
+# line 85 
+vbal = ( 0.93 * bw ) - ( vl + vf + vk + vplas + vr + vs ) 
+# line 86 
+vd = vl * ( pl ) + vf * ( pf ) + vk * ( pk ) 
+
+tm = tmc * bw ** 0.75 
+
+kurine = kurinec * bw ** ( 0.75 ) 
+
+day = t / 24 
+year = day / 365 
+
+
+
+
+
+discrete drinkint 
+schedule drinkon .at. tstart 
+end 
+
+discrete drinkon 
+if ( t .lt. 332880 ) then 
+interval c2 = 4.0 
+if ( hourofday .lt. 16.0 ) then 
+# line 107 
+drinkdose = ( ( backgrounddw / tlendw ) * ( dwtotal / drinks ) ) 
+countdw = countdw + 1 
+schedule drinkoff .at. t + tlendw 
+endif 
+
+hourofday = hourofday + 4 
+
+if ( hourofday .eq. 24.0 ) dayofweek = dayofweek + 1.0 
+if ( hourofday .eq. 24.0 ) hourofday = 0.0 
+if ( dayofweek .eq. 7.0 ) dayofweek = 0.0 
+endif 
+
+end 
+# line 123 
+z99999 = drinkdose 
+# line 123 
+z99998 = 0. 
+# line 123 
+integral adrinkdose = z99999 , z99998 
+
+discrete drinkon 
+if ( t .gt. 332880 ) then 
+interval c2 = 4.0 
+if ( hourofday .lt. 16.0 ) then 
+# line 126 
+drinkdose = ( ( exposeddw / tlendw ) * ( dwtotal / drinks ) ) 
+countdw = countdw + 1 
+schedule drinkoff .at. t + tlendw 
+endif 
+
+hourofday = hourofday + 4 
+
+if ( hourofday .eq. 24.0 ) dayofweek = dayofweek + 1.0 
+if ( hourofday .eq. 24.0 ) hourofday = 0.0 
+if ( dayofweek .eq. 7.0 ) dayofweek = 0.0 
+endif 
+
+end 
+# line 143 
+z99997 = drinkdose 
+# line 143 
+z99996 = 0. 
+# line 143 
+integral adrinkdose2 = z99997 , z99996 
+
+discrete drinkoff 
+drinkdose = 0.0 
+end 
+
+
+
+# line 147 
+rl = ( ql * ( ca - cvl ) * free ) + drinkdose 
+# line 153 
+z99995 = rl 
+# line 153 
+z99994 = 0. 
+# line 153 
+integral al = z99995 , z99994 
+cl = al / vl 
+cvl = cl / pl 
+
+
+rf = qf * ( ca - cvf ) * free 
+# line 159 
+z99993 = rf 
+# line 159 
+z99992 = 0. 
+# line 159 
+integral af = z99993 , z99992 
+cf = af / vf 
+cvf = cf / pf 
+
+
+rr = qr * ( ca - cvr ) * free 
+# line 165 
+z99991 = rr 
+# line 165 
+z99990 = 0. 
+# line 165 
+integral ar = z99991 , z99990 
+cr = ar / vr 
+cvr = cr / pr 
+
+
+rs = qs * ( ca - cvs ) * free 
+# line 171 
+z99989 = rs 
+# line 171 
+z99988 = 0. 
+# line 171 
+integral as = z99989 , z99988 
+cs = as / vs 
+cvs = cs / ps 
+
+
+rk = qk * ( ca - cvk ) * free - rurine 
+# line 177 
+z99987 = rk 
+# line 177 
+z99986 = 0. 
+# line 177 
+integral ak = z99987 , z99986 
+ck = ak / vk 
+cvk = ck / pk 
+
+rurine = kurine * cvk 
+# line 182 
+z99985 = rurine 
+# line 182 
+z99984 = 0. 
+# line 182 
+integral aurine = z99985 , z99984 
+
+
+# line 180 
+rplas = ( qf * cvf * free + ( ql ) * cvl * free + qk * cvk * free + qr * cvr * free + qs * cvs * free ) - qcp * ca * free 
+# line 187 
+z99983 = rplas 
+# line 187 
+z99982 = 0. 
+# line 187 
+integral aplas = z99983 , z99982 
+ca = aplas / vplas 
+
+end 
+
+
+
+
+
+
+
+constant tstop = 481800 
+# line 199 
+if ( t .ge. tstop ) then 
+# line 199 
+call zztrmt ( 'checked on communication interval: REACHED TSTOP' ) 
+# line 199 
+endif 
+
+end 
+
+
+terminal 
+
+end 
+
+end 
+
+

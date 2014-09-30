@@ -1,0 +1,10 @@
+<project>
+  <csl name="PFOA Adult Human.csl" location="." />
+  <mscript name="little hocking.m" location="." />
+  <mscript name="other communities.m" location="." />
+  <mscript name="private.m" location="." />
+  <mscript name="public.m" location="." />
+  <mscript name="public reverse dosimetry.m" location="." />
+  <exe name="PFOA Adult Human.dll" location="." />
+  <resultsfolder name="" location="" />
+</project>
