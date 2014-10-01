@@ -1,4 +1,5 @@
 <workspace>
   <project name="PFOA Adult Human.apj" location=".\pfoa adult human" />
   <project name="PFOA Adult Human - Urine Dosimetry.apj" location=".\pfoa adult human - urine dosimetry" />
+  <project name="PFOA Adult Rat.apj" location=".\pfoa adult rat" />
 </workspace>
