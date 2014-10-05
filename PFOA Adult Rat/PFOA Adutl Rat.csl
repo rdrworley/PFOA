@@ -1,7 +1,7 @@
-PROGRAM PBPK Model for PFOA in Adult Rats. September 30, 2014
+PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 
 ! Created by R. Worley based on previous model by A. Locissano
-! Model includes compartments for Gut, Liver, Rest of Body, Kidney, Filtrate, and Plasma.
+! Model includes compartments for Gut, Liver, Rest of Body(Tis), Kidney, Filtrate, and Plasma.
 ! Exposure routes are oral (into gut compartment) and IV (into plasma compartment).
 ! Excretion pathways are feces and urine. 
 
@@ -22,36 +22,45 @@ PROGRAM PBPK Model for PFOA in Adult Rats. September 30, 2014
 
 	! Chemical Specific Parameters
 		!Free Fraction of Chemical in Plasma
-		CONSTANT delta = 0.94 !constant for adjustment of free fraction in serum
-		CONSTANT kfreec = 0.035 !rate constant for free fraction of chemical in blood (/h/kg^-0.25)
-		CONSTANT Free0 = 0.022 !free fraction of cmpd. in blood at t=0
+		CONSTANT Free = 0.006 !free fraction in plasma (male); from Locissano, 2012 (fit to plasma and urine data)
+		!CONSTANT Free = 0.045 !free fraction in plasma (female); from Locissano, 2012 (fit to plasma and urine data)
 		
 		!Resorption Parameters
-		constant Tmc = 120 !transporter maximum (ug/h/kg^0.75), aka Maximum resorption rate
-		constant Kt = 16.7 !transporter affinity constant (ug/L), aka Resorption affinity 
+		constant Tmc = 270000 !transporter maximum (male) (ug/h/kg^0.75), aka Maximum resorption rate; from Locissano, 2012 (fit to plasma and urine data)
+		!constant Tmc = 3000 !transporter maximum (female) (ug/h/kg^0.75), aka Maximum resorption rate; from Locissano, 2012 (fit to plasma and urine data)
+		constant Kt = 67000 !transporter affinity constant (ug/L), aka Resorption affinity; from Locissano, 2012 (Yang et al) 
 		
-		!Partition Coefficients (from A. Locissano, "calculated from mouse tissue concentrations of PFOS (data from Joe DePierre)")
-		constant PLiv = 3.72 !liver:blood
-		constant PKid = 0.80 !kidney:blood
-		constant PTis = 0.22 !rest of body:blood
+		!Partition Coefficients (from A. Locissano, from rat tissue data, Kudo et al, 2007)
+		constant PLiv = 2.2 !liver:blood
+		constant PKid = 1.05 !kidney:blood
+		constant PTis = 0.11 !rest of body:blood
 
-		!parameters for binding in liver
-		constant Kb = 0.0036 !binding affinity constant (ug/L)
-		constant Bmax = 6.5 !max. association rate constant (ug/h)
-		constant koff= 0.03 !dissociation rate constant (/h)
+		!parameters for binding in liver (10/5/2014 - all set to zero per Locissano, 2012. Will need to reevaluate.)
+		constant Kb = 0 !binding affinity constant (ug/L)
+		constant Bmax = 0 !max. association rate constant (ug/h)
+		constant koff= 0 !dissociation rate constant (/h)
  
 		!rate constants (1/h)
-		constant kabs = 25.1 !rate of absorption of chemical from GI into liver (/hr)
-		constant kurinec = 0.002 !rate of urine elimination from urine storage (/h/kg^-0.25)
-		constant kunabs = 0. !rate of unabsorbed dose to feces (/h/kg^0.25)
-		constant kbilec = 1 !biliary elimination rate; liver to feces storage (h/kg^-0.25)
-		constant kfecesc = 0.008 !fecal elimination rate (GI tract to feces) (h/kg^-0.25)
+		constant kabs = 31.3 !rate of absorption of chemical from GI into liver (/hr); from Locissano, 2012 (fit to plasma concentration data)
+		constant kunabs = 0.0001 !rate of unabsorbed dose (male) to appear in feces (/h/kg^0.25); from Locissano, 2012 (fit to feces data)
+		!constant kunabs = 0.037 !rate of unabsorbed dose (female) to appear in feces (/h/kg^0.25); from Locissano, 2012 (fit to feces data)
+		constant kbilec = 0.35 !biliary elimination rate ((male); liver to feces storage (h/kg^-0.25); from Locissano, 2012 (fit to feces and plasma data)
+		!constant kbilec = 0.25 !biliary elimination rate (female); liver to feces storage (h/kg^-0.25); from Locissano, 2012 (fit to feces and plasma data)
+		constant kfecesc = 0.6 !fecal elimination rate (male) (GI tract to feces) (h/kg^-0.25); from Locissano, 2012 (fit to feces data)
+		!constant kfecesc = 0.03 !fecal elimination rate (female) (GI tract to feces) (h/kg^-0.25); from Locissano, 2012 (fit to feces data)		
+		constant kurinec = 0.1 !rate of urine elimination from urine storage (male) (/h/kg^-0.25); from Locissano, 2012 (fit to urine data)
+		!constant kurinec = 0.32 !rate of urine elimination from urine storage (female) (/h/kg^-0.25); from Locissano, 2012 (fit to urine data)
 
-	!Simulation Parameters
-		
-		
+	!Simulation (dosing) Parameters
+		constant tlast = 0.0 !last day of dosing
 
+		!Oral Gavage Dosing
+		constant Pdose = 0.0	!oral dose (mg/kg)
+		
+		!IV Dosing
+		constant IV dose = 0.0	!IV dose (mg/kg)
 	
+
 	END ! INITIAL
 
 
@@ -64,7 +73,34 @@ PROGRAM PBPK Model for PFOA in Adult Rats. September 30, 2014
 		CINTERVAL CINT = 0.1
 
  		DERIVATIVE
- 			! code for calulating the derivative goes here
+ 	!Scaled Parameters
+		!Cardiac output and blood flows
+		QC = QCC*(BW**0.75))*(1-Htc)	!cardiac output in L/h; adjusted for plasma
+		QKid = (QKidC*QC)	!plasma flow to kidney (L/h)
+		QLiv = (QLivC*QC)	!plasma flow to liver (L/h)
+		QFil = (QFilC*QC)	!plasma flow to filtrate (L/h)
+		QTis = QC - QKid - QLiv - QFil	!plasma flow to rest of body
+		QBal = QC - (QKid + QLiv + QFil + QTis) !Balance check of blood flows; should equal zero
+
+		!Tissue Volumes
+		VPlas = VplasC*BW 	!volume of plasm (L)
+		VKid = VKidC*BW 	!volume of kidney (L)
+		VLiv = VLivC*BW	!volume of liver (L)
+		VFil = VFilC*BW	!volume of filtrate (L)
+		VTis = (0.84*BW) - VPlas - Vkid - VLiv - VFil	!volume of remaining tissue; NOT SURE WHERE 0.84 COMES FROM
+		VBal = (0.84*BW) - (VTis + VLiv + VKid + VFil + VPlas)	!Balance check of tissue volumes; should equal zero
+
+		Tm = Tmc*BW**0.75	!transporter maximum, scaled to body weight
+		
+		kbile = kbilec*BW**(-0.25)	!biliary elimination; liver to feces storage
+		kfeces = kfecesc*BW**(-0.25)	! feces elimination from feces storage
+		kurine = kurinec*BW**(-0.25)	! urinary elimination, from urine storage
+
+		FreeL = Free/PLiv	!free fraction in liver
+		FreeK = Free/PKid	!free fraction in kidney
+		FreeTis = Free/PTis	!free fraction in rest of body
+		
+ 
 		END ! DERIVATIVE
 
 	
