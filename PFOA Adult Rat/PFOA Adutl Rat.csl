@@ -9,16 +9,16 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 	! Physiological Parameters
 		! Cardiac Output and Bloodflow (as fraction of cardiac output)
 		CONSTANT QCC = 14.0 !cardiac output in L/h/kg^0.75; Brown 1997		 
-		CONSTANT QLivC = 0.183 !Blood flow to liver; Brown 1997	
-		CONSTANT QKidC = 0.141 !Blood flow to kidney; Brown 1997
-		CONSTANT QFilC = 0.0705 !flow to filtrate; 50% of kidney blood flow
+		CONSTANT QLivC = 0.183 !fraction blood flow to liver; Brown 1997	
+		CONSTANT QKidC = 0.141 !fraction blood flow to kidney; Brown 1997
+		CONSTANT QFilC = 0.0705 !fraction blood flow to filtrate; 50% of kidney blood flow
 		CONSTANT Htc = 0.46 !hematocrit for the rat; Davies 1993
 		
 		! Tissue Volumes 
-		CONSTANT VplasC = 0.0312 !vol. of plasma; Davies 1993
-		CONSTANT VLivC = 0.035 !vol. of liver; Brown 1997
-		CONSTANT VKidC = 0.0084 !vol. of kidney; Brown 1997
-		CONSTANT VFilC = 8.4e-4 !vol. of filtrate compartment; 10% of kidney vol.
+		CONSTANT VplasC = 0.0312 !fraction vol. of plasma; Davies 1993
+		CONSTANT VLivC = 0.035 !fraction vol. of liver; Brown 1997
+		CONSTANT VKidC = 0.0084 !fraction vol. of kidney; Brown 1997
+		CONSTANT VFilC = 8.4e-4 !fraction vol. of filtrate compartment; 10% of kidney vol.
 
 	! Chemical Specific Parameters
 		!Free Fraction of Chemical in Plasma
@@ -87,7 +87,7 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		VKid = VKidC*BW 	!volume of kidney (L)
 		VLiv = VLivC*BW	!volume of liver (L)
 		VFil = VFilC*BW	!volume of filtrate (L)
-		VTis = (0.84*BW) - VPlas - Vkid - VLiv - VFil	!volume of remaining tissue; NOT SURE WHERE 0.84 COMES FROM
+		VTis = (0.84*BW) - VPlas - Vkid - VLiv - VFil	!volume of remaining tissue (L); NOT SURE WHERE 0.84 COMES FROM
 		VBal = (0.84*BW) - (VTis + VLiv + VKid + VFil + VPlas)	!Balance check of tissue volumes; should equal zero
 
 		Tm = Tmc*BW**0.75	!transporter maximum, scaled to body weight
@@ -96,11 +96,42 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		kfeces = kfecesc*BW**(-0.25)	! feces elimination from feces storage
 		kurine = kurinec*BW**(-0.25)	! urinary elimination, from urine storage
 
-		FreeL = Free/PLiv	!free fraction in liver
+		FreeL = Free/PLiv	!free fraction in liver 
 		FreeK = Free/PKid	!free fraction in kidney
 		FreeTis = Free/PTis	!free fraction in rest of body
 		
- 
+ 	!Model Equations
+		!Rest of Body (Tis)
+		RTis = QTis*(CA*Free-CTis*FreeTis)	! rate of change in rest of body (ug/h)
+		ATis = integ(RTis, 0.0)	! amount in rest of body (ug)
+		CTis = ATis/VTis	! concentration in rest of body (ug/L)
+		CVTis = CTis/PTis	!concentration in venous blood leaving the rest of the body
+
+		!Kidney
+		RKid = QKid*(CA*Free-CKid*FreeK) + (Tm*CFil)/(Kt+CFil)	!rate of change in the kidney (ug/h). NEED TO REEVALUATE TRANSPORT DESCRIPTIONS.
+		Akid = integ(RKid, 0.0)	!amount in kidney (ug)
+		CKid = AKid/VKid	!concentration in kidney (ug/L)
+		CVKid = CKid/PKid	!concentration in venous blood leaving the kidney (ug/L)
+
+		!Filtrate
+		RFil = QKid*(CA*Free-CKid*FreeK) + (Tm*CFil)/(Kt+CFil)	!rate of change in the filtrate (ug/h) 
+		AFil = integ(RFil, 0.0) !amount in the filtrate (ug)
+		CFil = AFil/VFil	!concentration in the filtrate
+
+		!Urinary storage compartment
+		Rstor = QFil*CFil-kurine*Astor	!rate of change in the storage compartment (ug/h)
+		Astor = integ(Rstor, 0.0)	!amount in storage compartment
+
+		!Urinary elimination (HOW TO DESCRIBE URINARY CONCENTRATION? URINE VOLUME? FILTRATE VOLUME?)
+		Rurine = kurine*Astor	!rate of change in the urine (ug/h)
+		Aurine = integ(Rurine, 0.0)	!amount in the urine (ug)
+
+		!GI Tract (Absorption site of oral dose)
+		RGI = -kabs*AGI+OD-kunabs*AGI	!rate of change in the GI tract (ug/h) (accounts for loss to kidney (abs) and loss to feces (unabs), oral dose. Does not account for dietary exposure
+		AGI = integ(RGI, 0.0)	!amount in GI tract (ug)
+		
+		
+	
 		END ! DERIVATIVE
 
 	
