@@ -7,6 +7,8 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 
 	INITIAL
 	! Physiological Parameters
+		CONSTANT BW = 0.3	!bodyweight (kg)
+
 		! Cardiac Output and Bloodflow (as fraction of cardiac output)
 		CONSTANT QCC = 14.0 !cardiac output in L/h/kg^0.75; Brown 1997		 
 		CONSTANT QLivC = 0.183 !fraction blood flow to liver; Brown 1997	
@@ -58,7 +60,8 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		constant Pdose = 0.0	!oral dose (mg/kg)
 		
 		!IV Dosing
-		constant IVdose = 0.0	!IV dose (mg/kg)
+		constant IVdoseC = 0.0	!IV dose concentration (mg/kg)
+		constant IVTime = 0.01	!length of IV infusion (hrs)
 	
 
 	END ! INITIAL
@@ -99,7 +102,13 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		FreeL = Free/PLiv	!free fraction in liver 
 		FreeK = Free/PKid	!free fraction in kidney
 		FreeTis = Free/PTis	!free fraction in rest of body
-		
+	
+	 !Dosing Euqations
+		IVdose = IVdoseC*BW	!mg
+		IVR = IVon*IVdose/IVTime	!IV dose rate (mg/hr)
+		AIV = integ(IVR, 0.0)
+		IVon = Pulse(0, 24, IVTime) !turn the IV dose on an off, need to modify to reflect simulated study
+	
  	!Model Equations
 		!Rest of Body (Tis)
 		RTis = QTis*(CA*Free-CTis*FreeTis)	! rate of change in rest of body (ug/h)
@@ -153,7 +162,9 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		Afeces = integ(Rfeces, 0.0)	!amount in the feces (ug)
 		
 		!Plasma compartment NEED TO DESCRIBE IV DOSE HERE. 
-		RPlas = (QTis*CTis*FreeTis) + (QKid*CKid*FreeKid) + (QLiv*CLiv*FreeL) - (QC*CA*Free)	!rate of change in the plasma (ug/h)
+		RPlas = (QTis*CTis*FreeTis) + (QKid*CKid*FreeKid) + (QLiv*CLiv*FreeL) - (QC*CA*Free) + IVR	!rate of change in the plasma (ug/h)
+		Aplas = integ(RPlas, 0.0)
+		CA = APlas/VPlas
 		
 		!Mass Balance Check
 		Atissue = APlas + ATis + AKid + AFil + ALiv + Abound + Astor + Astor2 + AGI	!sum of mass in all compartments (ug)
@@ -163,7 +174,6 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 	
 		END ! DERIVATIVE
 
-	
 		! Add discrete events here as needed
 		!  DISCRETE
 		!  END
