@@ -58,7 +58,7 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		constant Pdose = 0.0	!oral dose (mg/kg)
 		
 		!IV Dosing
-		constant IV dose = 0.0	!IV dose (mg/kg)
+		constant IVdose = 0.0	!IV dose (mg/kg)
 	
 
 	END ! INITIAL
@@ -127,10 +127,39 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		Aurine = integ(Rurine, 0.0)	!amount in the urine (ug)
 
 		!GI Tract (Absorption site of oral dose)
-		RGI = -kabs*AGI+OD-kunabs*AGI	!rate of change in the GI tract (ug/h) (accounts for loss to kidney (abs) and loss to feces (unabs), oral dose. Does not account for dietary exposure
+		RGI = -kabs*AGI+OD-kunabs*AGI	!rate of change in the GI tract (ug/h) (accounts for loss to kidney (abs) and loss to feces (unabs), oral dose (OD). Does not account for dietary exposure
 		AGI = integ(RGI, 0.0)	!amount in GI tract (ug)
 		
+		!Liver
+		RLiv = QLiv*(CA*Free-CL*FreeL) + kabs*AGI - kbile*ALiv*FreeL - (Bmax*CLiv*FreeL)/(Kb+CLive*FreeL) + koff*Abound	!rate of change in the liver (ug/h)
+		ALiv = integ(RLiv, 0.0)	!amount in liver (ug)
+		CLiv = ALiv/VLiv	!concentration in liver (ug/L)
+		CVLiv = CLiv/PLiv	!amount in venous blood leaving the kidney (ug/L)
+
+		!Liver Binding
+		Rbound = (Bmax*CLiv*Free)/(Kb+CLiv*FreeL) - koff*Abound	!rate of change of amount bound in liver (ug/h)
+		Abound = integ(Rbound, 0.0)	!amount bound in the liver
 		
+		!Total Amount in Liver
+		AtotalLiv = ALiv + Abound	!total amount in liver (amount free and bound in liver tissue) (ug)
+		CtotalLiv = AtotalLiv/VLiv	!total concentration in liver (ug/L)
+		
+		!Feces storage compartment
+		Rstor2 = kbile*ALiv*FreeL - kfeces*Astor2	!rate of change in the feecs storage compartment (ug/h)
+		Astor2 = integ(Rstor2, 0.0)	!amount in the feces storage compartment (ug)
+
+		!Fecal elimination
+		Rfeces = kfeces*Astor2	!rate of change in the feces (ug/h)
+		Afeces = integ(Rfeces, 0.0)	!amount in the feces (ug)
+		
+		!Plasma compartment NEED TO DESCRIBE IV DOSE HERE. 
+		RPlas = (QTis*CTis*FreeTis) + (QKid*CKid*FreeKid) + (QLiv*CLiv*FreeL) - (QC*CA*Free)	!rate of change in the plasma (ug/h)
+		
+		!Mass Balance Check
+		Atissue = APlas + ATis + AKid + AFil + ALiv + Abound + Astor + Astor2 + AGI	!sum of mass in all compartments (ug)
+		Aloss = Aurine + Afeces 	!sum of mass lost through urinary and fecal excretion (ug)
+		Atotal = Atissue + Aloss 	!total mass; should equal total dose? 
+
 	
 		END ! DERIVATIVE
 
