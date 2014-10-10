@@ -56,17 +56,20 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 	!Simulation (dosing) Parameters
 	!Simulation parameters designed to replicate IV exposure data (male only) from Kudo et.al, 2007 and IV and oral exposure data (male and female) from Kemper et.al,2003.  
 		!Oral Gavage Dosing
-		!Kemper - Male and female rats administered oral gavage dose of 1, 5, or 25 mg/kg PFOA. Plasma collected for 22 days in males, 5 days in females. Urine and feces
-			!collected for 28 days in males, 7 days in females. 
-		!Perkins - NEED PERKINS data
+		!Kemper - Male and female rats administered a single oral gavage dose of 1, 5, or 25 mg/kg PFOA. Plasma collected (daily?) for 22 days in males, 5 days in females. Urine and feces
+			!collected for 28 days in males, 7 days in females. NEED DATA.
+		!Perkins - Male rats administered APFO at 0,1,10,30, or 100 ppm in diet for 13 weeks. Serum samples collected at 4, 7, and 13 weeks, and 8 weeks after
+			!end of treatment. NEED DATA. 
 
-		constant Pdose = 0.0	!oral dose (mg/kg)
+		constant OdoseC = 0.0	!oral dose concentration(mg/kg)
+		constant OGtime = 0.01	!length of oral gavage (hrs)
 		
 		!IV Dosing
 		!Kudo - Male rats administered one IV dose (jugular) of 0.041 or 16.56 mg/kg PFOA, blood  (vena cava) and tissue samples collected 2 h after dosing.
 		!Kudo - Male rats administered one IV dose (femoral) of 0.041 or 16.56 mg/kg PFOA, blood collected 9 times between 0 and 300 minutes. 
 		!Kemper - Male and female rats administered one IV dose of 1 mg/kg PFOA. Blood samples collected from males 9 times in first 24 hours, at 24 hour intervals up to 8 days, 
 			!and at 48 hour intervals up to 22 days. Blood samples collected from females 13 times over 4 days. 
+		
 		constant IVdoseC = 0.0	!IV dose concentration (mg/kg)
 		constant IVTime = 0.01	!length of IV infusion (hrs)
 	
@@ -110,11 +113,19 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		FreeTis = Free/PTis	!free fraction in rest of body
 	
 	 !Dosing Equations
+		!IV Dosing
 		IVdose = IVdoseC*BW	!mg
 		IVR = IVon*IVdose/IVTime	!IV dose rate (mg/hr)
-		AIV = integ(IVR, 0.0)
-		IVon = Pulse(0, 24, IVTime) !turn the IV dose on an off, need to modify to reflect simulated study
+		AIV = integ(IVR, 0.0)	!amount administered in IV (?) (mg)
+		!IVon = Pulse(0, tstop, IVTime) !turn the IV dose on an off, need to modify to reflect simulated study
+		IVon = RSW(T.GE.IVTime, 0.,1.)	!RDW switch to turn IV dose on. As written, will only work with a single, non-repeating IV dose. 
 	
+		!Oral Gavage Dosing
+		Odose = OdoseC*BW	!oral dose (mg)
+		OGR = OGon*Odose/OGtime	!Oral gavage rate (mg/hr)
+		AOG = integ(OGR, 0.0)	!amount administered in oral gavage (?) (mg)
+		OGon = RSW(T.GE.OGTime,0.,1.)	!RSW switch to turn on oral gavage. As written will only work with a single, non-repeating oral dose. s
+		
  	!Model Equations
 		!Rest of Body (Tis)
 		RTis = QTis*(CA*Free-CTis*FreeTis)	! rate of change in rest of body (ug/h)
@@ -142,7 +153,7 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		Aurine = integ(Rurine, 0.0)	!amount in the urine (ug)
 
 		!GI Tract (Absorption site of oral dose)
-		RGI = -kabs*AGI+OD-kunabs*AGI	!rate of change in the GI tract (ug/h) (accounts for loss to kidney (abs) and loss to feces (unabs), oral dose (OD). Does not account for dietary exposure
+		RGI = -kabs*AGI + OGR - kunabs*AGI	!rate of change in the GI tract (ug/h) (accounts for loss to kidney (abs) and loss to feces (unabs), oral dose (OGR). Does not account for dietary exposure
 		AGI = integ(RGI, 0.0)	!amount in GI tract (ug)
 		
 		!Liver
