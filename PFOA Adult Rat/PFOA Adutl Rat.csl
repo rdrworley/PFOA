@@ -11,15 +11,15 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 
 		! Cardiac Output and Bloodflow (as fraction of cardiac output)
 		CONSTANT QCC = 14.0 !cardiac output in L/h/kg^0.75; Brown 1997		 
-		CONSTANT QLivC = 0.183 !fraction blood flow to liver; Brown 1997	
-		CONSTANT QKidC = 0.141 !fraction blood flow to kidney; Brown 1997
+		CONSTANT QLC = 0.183 !fraction blood flow to liver; Brown 1997	
+		CONSTANT QKC = 0.141 !fraction blood flow to kidney; Brown 1997
 		CONSTANT QFilC = 0.0705 !fraction blood flow to filtrate; 50% of kidney blood flow
 		CONSTANT Htc = 0.46 !hematocrit for the rat; Davies 1993
 		
 		! Tissue Volumes 
 		CONSTANT VplasC = 0.0312 !fraction vol. of plasma; Davies 1993
-		CONSTANT VLivC = 0.035 !fraction vol. of liver; Brown 1997
-		CONSTANT VKidC = 0.0084 !fraction vol. of kidney; Brown 1997
+		CONSTANT VLC = 0.035 !fraction vol. of liver; Brown 1997
+		CONSTANT VKC = 0.0084 !fraction vol. of kidney; Brown 1997
 		CONSTANT VFilC = 8.4e-4 !fraction vol. of filtrate compartment; 10% of kidney vol.
 
 	! Chemical Specific Parameters
@@ -28,20 +28,12 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		!CONSTANT Free = 0.045 !free fraction in plasma (female); from Locissano, 2012 (fit to plasma and urine data)
 		
 		!Kidney Transport Parameters
-			!Apical Membrane Transporters
-			constant TmcA = 270000 !transporter maximum (male) (ug/h/kg^0.75) of the apical membrane transporters, aka Maximum resorption rate; from Locissano, 2012 (fit to plasma and urine data)
-			!constant TmcA = 3000 !transporter maximum (female) (ug/h/kg^0.75) of the apical membrance transporters, aka Maximum resorption rate; from Locissano, 2012 (fit to plasma and urine data)
-			constant KtA = 67000 !transporter affinity constant (ug/L) of the apical membrane transporters, aka Resorption affinity; from Locissano, 2012 (Yang et al) 
 			
-			!Basolateral Membrane Transporters NEED TO PARAMETERIZE	
-			constant TmcB = 270000 !transporter maximum (male) (ug/h/kg^0.75) of the basolateral membrane transporters, aka Maximum resorption rate; 
-			!constant TmcB = 3000 !transporter maximum (female) (ug/h/kg^0.75) of the basolateral membrance transporters, aka Maximum resorption rate;
-			constant KtB = 67000 !transporter affinity constant (ug/L) of the basolateral membrane transporters, aka Resorption affinity;
 
 		!Partition Coefficients (from A. Locissano, from rat tissue data, Kudo et al, 2007)
-		constant PLiv = 2.2 !liver:blood
-		constant PKid = 1.05 !kidney:blood
-		constant PTis = 0.11 !rest of body:blood
+		constant PL = 2.2 !liver:blood
+		constant PK = 1.05 !kidney:blood
+		constant PR = 0.11 !rest of body:blood
 
 		!parameters for binding in liver (10/5/2014 - all set to zero per Locissano, 2012. Will need to reevaluate.)
 		constant Kb = 0 !binding affinity constant (ug/L)
@@ -94,29 +86,26 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
  	!Scaled Parameters
 		!Cardiac output and blood flows
 		QC = QCC*(BW**0.75))*(1-Htc)	!cardiac output in L/h; adjusted for plasma
-		QKid = (QKidC*QC)	!plasma flow to kidney (L/h)
-		QLiv = (QLivC*QC)	!plasma flow to liver (L/h)
+		QK = (QKC*QC)	!plasma flow to kidney (L/h)
+		QL = (QLC*QC)	!plasma flow to liver (L/h)
 		QFil = (QFilC*QC)	!plasma flow to filtrate (L/h)
-		QTis = QC - QKid - QLiv - QFil	!plasma flow to rest of body
-		QBal = QC - (QKid + QLiv + QFil + QTis) !Balance check of blood flows; should equal zero
+		QR = QC - QK - QL - QFil	!plasma flow to rest of body
+		QBal = QC - (QK + QL + QFil + QR) !Balance check of blood flows; should equal zero
 
 		!Tissue Volumes
-		VPlas = VplasC*BW 	!volume of plasm (L)
-		VKid = VKidC*BW 	!volume of kidney (L)
-		VLiv = VLivC*BW	!volume of liver (L)
+		VPlas = VplasC*BW 	!volume of plasma (L) NEED TO SUBTRACT BLOOD VOLUME OF KIDNEY?
+		VK = VKC*BW 	!volume of kidney (L)HOW IS THIS IMPACTED BY KIDNEY BLOOD COMPARTMENT?
+		VKB =	!volume of blood in the kidney (L) NEED VALUE
+		VL = VLC*BW	!volume of liver (L)
 		VFil = VFilC*BW	!volume of filtrate (L)
-		VTis = (0.84*BW) - VPlas - Vkid - VLiv - VFil	!volume of remaining tissue (L); NOT SURE WHERE 0.84 COMES FROM
-		VBal = (0.84*BW) - (VTis + VLiv + VKid + VFil + VPlas)	!Balance check of tissue volumes; should equal zero
+		VR = (0.84*BW) - VPlas - VK - VL - VFil	!volume of remaining tissue (L); NOT SURE WHERE 0.84 COMES FROM
+		VBal = (0.84*BW) - (VR + VL + VK + VFil + VPlas)	!Balance check of tissue volumes; should equal zero (NEED TO INCLUDE VOLUME OF BLOOD IN KIDNEY?)
 
-		Tm = Tmc*BW**0.75	!transporter maximum, scaled to body weight
-		
 		kbile = kbilec*BW**(-0.25)	!biliary elimination; liver to feces storage
 		kfeces = kfecesc*BW**(-0.25)	! feces elimination from feces storage
 		kurine = kurinec*BW**(-0.25)	! urinary elimination, from urine storage
 
-		FreeL = Free/PLiv	!free fraction in liver 
-		FreeK = Free/PKid	!free fraction in kidney
-		FreeTis = Free/PTis	!free fraction in rest of body
+		FreeK = Free/PK	!free fraction in kidney
 	
 	 !Dosing Equations
 		!IV Dosing
@@ -134,47 +123,33 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		
  	!Model Equations
 		!Rest of Body (Tis)
-		RTis = QTis*(CA*Free-CTis*FreeTis)	! rate of change in rest of body (ug/h)
-		ATis = integ(RTis, 0.0)	! amount in rest of body (ug)
-		CTis = ATis/VTis	! concentration in rest of body (ug/L)
-		CVTis = CTis/PTis	!concentration in venous blood leaving the rest of the body
+		RR = QR*(CA-CVR)*Free	! rate of change in rest of body (ug/h)
+		AR = integ(RR, 0.0)	!amount in rest of body
+		CR = AR/VR !	concentration in rest of body (ug/L)
+		CVR = CR/PR	!concentration in venous blood leaving the rest of the body
 
-		!Kidney
-		RKid = QKid*(CA*Free-CKid*FreeK) - ((TmB*CKid)/(KtB+CKid)) + ((TmA*CFil)/(KtA+CFil))	!rate of change in the kidney (ug/h). 
-		Akid = integ(RKid, 0.0)	!amount in kidney (ug)
-		CKid = AKid/VKid	!concentration in kidney (ug/L)
-		CVKid = CKid/PKid	!concentration in venous blood leaving the kidney (ug/L)
+		!Kidney 
+			!Kidney Blood (Kb)
+		
 
-		!Filtrate 
-		RFil = QKid*(CA*Free-CKid*FreeK) + ((TmB*CKid)/(KtB+CKid)) - ((TmA*CFil)/(KtA+CFil))	!rate of change in the filtrate (ug/h) 
-		AFil = integ(RFil, 0.0) !amount in the filtrate (ug)
-		CFil = AFil/VFil	!concentration in the filtrate
+			!Kidney Tissue (Ktis)
+	
 
-		!Urinary storage compartment
-		Rstor = QFil*CFil-kurine*Astor	!rate of change in the storage compartment (ug/h)
-		Astor = integ(Rstor, 0.0)	!amount in storage compartment
+			!Filtrate (Fil)
 
-		!Urinary elimination (HOW TO DESCRIBE URINARY CONCENTRATION? URINE VOLUME? FILTRATE VOLUME?)
-		Rurine = kurine*Astor	!rate of change in the urine (ug/h)
-		Aurine = integ(Rurine, 0.0)	!amount in the urine (ug)
+
+			!Urinary elimination (HOW TO DESCRIBE URINARY CONCENTRATION? URINE VOLUME? FILTRATE VOLUME?)
 
 		!GI Tract (Absorption site of oral dose)
 		RGI = -kabs*AGI + OGR - kunabs*AGI	!rate of change in the GI tract (ug/h) (accounts for loss to kidney (abs) and loss to feces (unabs), oral dose (OGR). Does not account for dietary exposure
 		AGI = integ(RGI, 0.0)	!amount in GI tract (ug)
 		
 		!Liver
-		RLiv = QLiv*(CA*Free-CL*FreeL) + kabs*AGI - kbile*ALiv*FreeL - (Bmax*CLiv*FreeL)/(Kb+CLive*FreeL) + koff*Abound	!rate of change in the liver (ug/h)
-		ALiv = integ(RLiv, 0.0)	!amount in liver (ug)
-		CLiv = ALiv/VLiv	!concentration in liver (ug/L)
-		CVLiv = CLiv/PLiv	!amount in venous blood leaving the kidney (ug/L)
 
 		!Liver Binding
-		Rbound = (Bmax*CLiv*Free)/(Kb+CLiv*FreeL) - koff*Abound	!rate of change of amount bound in liver (ug/h)
-		Abound = integ(Rbound, 0.0)	!amount bound in the liver
 		
 		!Total Amount in Liver
-		AtotalLiv = ALiv + Abound	!total amount in liver (amount free and bound in liver tissue) (ug)
-		CtotalLiv = AtotalLiv/VLiv	!total concentration in liver (ug/L)
+
 		
 		!Feces storage compartment
 		Rstor2 = kbile*ALiv*FreeL - kfeces*Astor2	!rate of change in the feecs storage compartment (ug/h)
@@ -185,12 +160,12 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		Afeces = integ(Rfeces, 0.0)	!amount in the feces (ug)
 		
 		!Plasma compartment
-		RPlas = (QTis*CTis*FreeTis) + (QKid*CKid*FreeKid) + (QLiv*CLiv*FreeL) - (QC*CA*Free) + IVR	!rate of change in the plasma (ug/h)
+		RPlas = (QR*CVR*Free) + (QK*CVKb*Free) + (QK*CVKtis*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR	!rate of change in the plasma (ug/h) DO I NEED TO INCLUDE KIDNEY TISSUE COMPARTMENT?
 		Aplas = integ(RPlas, 0.0)
 		CA = APlas/VPlas
 		
 		!Mass Balance Check
-		Atissue = APlas + ATis + AKid + AFil + ALiv + Abound + Astor + Astor2 + AGI	!sum of mass in all compartments (ug)
+		Atissue = APlas + AR + AKTis + AKb + AFil + AL + Abound + Astor + Astor2 + AGI	!sum of mass in all compartments (ug)
 		Aloss = Aurine + Afeces 	!sum of mass lost through urinary and fecal excretion (ug)
 		Atotal = Atissue + Aloss 	!total mass; should equal total dose? 
 
