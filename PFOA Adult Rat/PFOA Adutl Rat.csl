@@ -12,15 +12,15 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		! Cardiac Output and Bloodflow (as fraction of cardiac output)
 		CONSTANT QCC = 14.0 !cardiac output in L/h/kg^0.75; Brown 1997		 
 		CONSTANT QLC = 0.183 !fraction blood flow to liver; Brown 1997	
-		CONSTANT QKC = 0.141 !fraction blood flow to kidney; Brown 1997
-		CONSTANT QFilC = 0.0705 !fraction blood flow to filtrate; 50% of kidney blood flow
+		CONSTANT QKC = 0.141 !fraction blood flow to kidney; Brown 1997.
+		CONSTANT QfilC = 0.0705 !fraction blood flow to filtrate; 50% of kidney blood flow NOT SURE IF THIS IS NEEDED>
 		CONSTANT Htc = 0.46 !hematocrit for the rat; Davies 1993
 		
 		! Tissue Volumes 
 		CONSTANT VplasC = 0.0312 !fraction vol. of plasma; Davies 1993
 		CONSTANT VLC = 0.035 !fraction vol. of liver; Brown 1997
 		CONSTANT VKC = 0.0084 !fraction vol. of kidney; Brown 1997
-		CONSTANT VFilC = 8.4e-4 !fraction vol. of filtrate compartment; 10% of kidney vol.
+		CONSTANT VfilC = 8.4e-4 !fraction vol. of filtrate compartment; 10% of kidney vol.
 
 	! Chemical Specific Parameters
 		!Free Fraction of Chemical in Plasma
@@ -97,13 +97,13 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		VK = VKC*BW 	!volume of kidney (L)HOW IS THIS IMPACTED BY KIDNEY BLOOD COMPARTMENT?
 		VKB =	!volume of blood in the kidney (L) NEED VALUE
 		VL = VLC*BW	!volume of liver (L)
-		VFil = VFilC*BW	!volume of filtrate (L)
+		Vfil = VfilC*BW	!volume of filtrate (L)
 		VR = (0.84*BW) - VPlas - VK - VL - VFil	!volume of remaining tissue (L); NOT SURE WHERE 0.84 COMES FROM
 		VBal = (0.84*BW) - (VR + VL + VK + VFil + VPlas)	!Balance check of tissue volumes; should equal zero (NEED TO INCLUDE VOLUME OF BLOOD IN KIDNEY?)
 
 		kbile = kbilec*BW**(-0.25)	!biliary elimination; liver to feces storage
 		kfeces = kfecesc*BW**(-0.25)	! feces elimination from feces storage
-		kurine = kurinec*BW**(-0.25)	! urinary elimination, from urine storage
+		kurine = kurinec*BW**(-0.25)	! urinary elimination, from filtrate
 
 		FreeK = Free/PK	!free fraction in kidney
 	
@@ -124,20 +124,27 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
  	!Model Equations
 		!Rest of Body (Tis)
 		RR = QR*(CA-CVR)*Free	! rate of change in rest of body (ug/h)
-		AR = integ(RR, 0.0)	!amount in rest of body
+		AR = integ(RR, 0.0)	!amount in rest of body (ug)
 		CR = AR/VR !	concentration in rest of body (ug/L)
 		CVR = CR/PR	!concentration in venous blood leaving the rest of the body
 
 		!Kidney 
 			!Kidney Blood (Kb)
-		
+			RKb = QK*(CA-CVK)*Free + 0.001*CPTC - CKb*GFR - (Vmax_basolateral*CKb)/(Km_basolateral + CKb)) !rate of change in kidney blood (ug/h)
+			AKb = integ(RKb, 0.0) !amount in kidney blood (ug)
+			CKb = AKb/VKb	!concentration in kidney blodd (ug/L) IS VKb SAME AS VK?
+			CVK = CKb/PK	!concentration in venous blood leaving kidney (ug/L)
 
-			!Kidney Tissue (Ktis)
-	
+			!Proximal Tubule Cells (PTC)
+			RPTC = (Vmax_basolateral*CKb)/(Km_basolateral + CKb) + (Vmax_apical*Cfil)/(Km_bapical + Cfil) - 0.001*CPTC - 0.001*CPTC	!rate of change in PTC(ug/h)
+			APTC = integ(RPTC, 0.0)	!amount in proximal tubule cells (ug)
+			CPTC = APTC/VPTC	!concentration in PTC (ug/L)
 
 			!Filtrate (Fil)
-
-
+			Rfil = CKb*GFR + 0.001*CPTC - (Vmax_apical*Cfil)/(Km_bapical + Cfil) - Cfil*kurine	!rate of change in filtrate (ug/h)
+			Afil = integ(Rfil, 0.0)	!amount in filtrate
+			Cfil = Afil/Vfil	!concentration in filtrate 
+			
 			!Urinary elimination (HOW TO DESCRIBE URINARY CONCENTRATION? URINE VOLUME? FILTRATE VOLUME?)
 
 		!GI Tract (Absorption site of oral dose)
