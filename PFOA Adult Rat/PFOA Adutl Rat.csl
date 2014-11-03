@@ -41,6 +41,8 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		constant koff= 0 !dissociation rate constant (/h)
  
 		!rate constants (1/h)
+		constant GFR = 0.0	!glomerular filtration rate (L/hr)
+		constant kdif = 0.001	!diffusion rate from proximal tubule cells (UNITS?)
 		constant kabs = 31.3 !rate of absorption of chemical from GI into liver (/hr); from Locissano, 2012 (fit to plasma concentration data)
 		constant kunabs = 0.0001 !rate of unabsorbed dose (male) to appear in feces (/h/kg^0.25); from Locissano, 2012 (fit to feces data)
 		!constant kunabs = 0.037 !rate of unabsorbed dose (female) to appear in feces (/h/kg^0.25); from Locissano, 2012 (fit to feces data)
@@ -130,18 +132,18 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 
 		!Kidney 
 			!Kidney Blood (Kb)
-			RKb = QK*(CA-CVK)*Free + 0.001*CPTC - CKb*GFR - (Vmax_basolateral*CKb)/(Km_basolateral + CKb)) !rate of change in kidney blood (ug/h)
+			RKb = QK*(CA-CVK)*Free - CKb*GFR - ((Vmax_basolateral*CKb)/(Km_basolateral + CKb)) + ((Vmax_efflux*CPTC)/(Km_efflux + CPTC))+ kdif*CPTC - kdif*CKb !rate of change in kidney blood (ug/h)
 			AKb = integ(RKb, 0.0) !amount in kidney blood (ug)
 			CKb = AKb/VKb	!concentration in kidney blodd (ug/L) IS VKb SAME AS VK?
 			CVK = CKb/PK	!concentration in venous blood leaving kidney (ug/L)
 
 			!Proximal Tubule Cells (PTC)
-			RPTC = (Vmax_basolateral*CKb)/(Km_basolateral + CKb) + (Vmax_apical*Cfil)/(Km_bapical + Cfil) - 0.001*CPTC - 0.001*CPTC	!rate of change in PTC(ug/h)
+			RPTC = (Vmax_basolateral*CKb)/(Km_basolateral + CKb) + (Vmax_apical*Cfil)/(Km_bapical + Cfil) - ((Vmax_efflux*CPTC)/(Km_efflux + CPTC)) - kdif*CPTC + kdif*CKb	!rate of change in PTC(ug/h)
 			APTC = integ(RPTC, 0.0)	!amount in proximal tubule cells (ug)
 			CPTC = APTC/VPTC	!concentration in PTC (ug/L)
 
 			!Filtrate (Fil)
-			Rfil = CKb*GFR + 0.001*CPTC - (Vmax_apical*Cfil)/(Km_bapical + Cfil) - Cfil*kurine	!rate of change in filtrate (ug/h)
+			Rfil = CKb*GFR - (Vmax_apical*Cfil)/(Km_bapical + Cfil) - Cfil*kurine	!rate of change in filtrate (ug/h)
 			Afil = integ(Rfil, 0.0)	!amount in filtrate
 			Cfil = Afil/Vfil	!concentration in filtrate 
 			
