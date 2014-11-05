@@ -1,7 +1,7 @@
 PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 
 ! Created by R. Worley based on previous model by A. Locissano
-! Model includes compartments for Gut, Liver, Rest of Body(Tis), Kidney, Filtrate, and Plasma.
+! Model includes compartments for GI Tract, Liver, Rest of Body(Tis), Kidney Blood, Proximal Tubule Cells, Filtrate, and Plasma.
 ! Exposure routes are oral (into gut compartment) and IV (into plasma compartment).
 ! Excretion pathways are feces and urine. 
 
@@ -18,9 +18,10 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		! Tissue Volumes 
 		CONSTANT VplasC = 0.0312 !fraction vol. of plasma; Davies 1993
 		CONSTANT VLC = 0.035 !fraction vol. of liver; Brown 1997
-		CONSTANT VKbC = ??? !fraction vol. of kidney blood
-		CONSTANT VPTC = ???	!fraction vol. of proximal tubule cells
+		CONSTANT VKC = 0.0084 !fraction vol. of kidney; Brown 1997
 		CONSTANT VfilC = 8.4e-4	!fraction vol. of filtrate
+
+		CONSTANT MKC = 0.0084	!fraction mass of kidney (percent of BW); Brown 1997
 
 	! Chemical Specific Parameters
 		!Free Fraction of Chemical in Plasma
@@ -101,12 +102,16 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 
 		!Tissue Volumes
 		VPlas = VplasC*BW 	!volume of plasma (L) 
-		VKb = ???	!volume of blood in the kidney (L) NEED VALUE
-		VPTC = ???	!volume of the proximal tubule cells NEED VALUE
+		VK = = VKC*BW 	!volume of kidney (L)
+		VKb = VK*0.16	!volume of blood in the kidney (L); fraction blood volume of kidney (0.16) from Brown, 1997
 		Vfil = VfilC*BW	!volume of filtrate (L)
 		VL = VLC*BW	!volume of liver (L)
 		VR = (0.84*BW) - VPlas - VKb - VPTC - Vfil - VL	!volume of remaining tissue (L); NOT SURE WHERE 0.84 COMES FROM
 		VBal = (0.84*BW) - (VR + VL + VKb + VPTC + VFil + VPlas)	!Balance check of tissue volumes; should equal zero 
+		
+		VPTCC = 6.0e7*2.25e-12 !vol. of proximal tubule cells (liters per gram kidney) (60 million PTC cells/gram kidney, 1 PTC = 2000 um3)
+		MK = MKC*BW*1000	!mass of the kidney (g)
+		VPTC = MK*VPTCC	!volume of proximal tubule cells (L)		
 
 		kbile = kbilec*BW**(-0.25)	!biliary elimination; liver to feces storage
 		kfeces = kfecesc*BW**(-0.25)	! feces elimination from feces storage
