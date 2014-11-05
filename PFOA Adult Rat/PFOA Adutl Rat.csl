@@ -179,7 +179,7 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		Afeces = integ(Rfeces, 0.0)	!amount in the feces (ug)
 		
 		!Plasma compartment
-		RPlas = (QR*CVR*Free) + (QK*CVKb*Free) + (QK*CVKtis*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + + ((Vmax_efflux*CPTC)/(Km_efflux + CPTC))	!rate of change in the plasma (ug/h) DO I NEED TO INCLUDE KIDNEY TISSUE COMPARTMENT?
+		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + ((Vmax_efflux*CPTC)/(Km_efflux + CPTC))	!rate of change in the plasma (ug/h) DO I NEED TO INCLUDE KIDNEY TISSUE COMPARTMENT?
 		Aplas = integ(RPlas, 0.0)
 		CA = APlas/VPlas
 		
