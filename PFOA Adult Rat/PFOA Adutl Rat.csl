@@ -47,7 +47,7 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		constant koff= 0 !dissociation rate constant (/h)
  
 		!rate constants (1/h)
-		constant GFR = 0.0	!glomerular filtration rate (L/hr)
+		constant GFR = 0.0	!glomerular filtration rate (L/hr) NEED VALUE
 		constant kdif = 0.001	!diffusion rate from proximal tubule cells (UNITS?)
 		constant kabs = 31.3 !rate of absorption of chemical from GI into liver (/hr); from Locissano, 2012 (fit to plasma concentration data)
 		
@@ -144,7 +144,7 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 			!Kidney Blood (Kb)
 			RKb = QK*(CA-CVK)*Free - CKb*GFR - ((Vmax_basolateral*CKb)/(Km_basolateral + CKb)) + kdif*CPTC - kdif*CKb !rate of change in kidney blood (ug/h)
 			AKb = integ(RKb, 0.0) !amount in kidney blood (ug)
-			CKb = AKb/VKb	!concentration in kidney blodd (ug/L) IS VKb SAME AS VK?
+			CKb = AKb/VKb	!concentration in kidney blodd (ug/L) 
 			CVK = CKb/PK	!concentration in venous blood leaving kidney (ug/L)
 
 			!Proximal Tubule Cells (PTC)
@@ -154,10 +154,12 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 
 			!Filtrate (Fil)
 			Rfil = CKb*GFR - (Vmax_apical*Cfil)/(Km_apical + Cfil) - Cfil*kurine	!rate of change in filtrate (ug/h)
-			Afil = integ(Rfil, 0.0)	!amount in filtrate
-			Cfil = Afil/Vfil	!concentration in filtrate 
+			Afil = integ(Rfil, 0.0)	!amount in filtrate (ug)
+			Cfil = Afil/Vfil	!concentration in filtrate (ug/L)
 			
-			!Urinary elimination (HOW TO DESCRIBE URINARY CONCENTRATION? URINE VOLUME? FILTRATE VOLUME?)
+			!Urinary elimination 
+			Rurine = kurine*Cfil	!rate of change in urine (ug/L/h)
+			Curine = integ(Rurine, 0.0)	!concentratin in urine (ug/L)
 
 		!GI Tract (Absorption site of oral dose)
 		RGI = -kabs*AGI + OGR - kunabs*AGI	!rate of change in the GI tract (ug/h) (accounts for loss to kidney (abs) and loss to feces (unabs), oral dose (OGR). Does not account for dietary exposure
@@ -171,12 +173,8 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 
 		
 		!Feces storage compartment
-		Rstor2 = kbile*ALiv*FreeL - kfeces*Astor2	!rate of change in the feecs storage compartment (ug/h)
-		Astor2 = integ(Rstor2, 0.0)	!amount in the feces storage compartment (ug)
-
-		!Fecal elimination
-		Rfeces = kfeces*Astor2	!rate of change in the feces (ug/h)
-		Afeces = integ(Rfeces, 0.0)	!amount in the feces (ug)
+		Rfeces = kunabs*AGI + kbile*ALiv*FreeL - kfeces*Afeces	!rate of change in the feces compartment (ug/h)
+		Afeces = integ(Rfeces, 0.0)	!amount in the feces compartment (ug)
 		
 		!Plasma compartment
 		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + ((Vmax_efflux*CPTC)/(Km_efflux + CPTC))	!rate of change in the plasma (ug/h) DO I NEED TO INCLUDE KIDNEY TISSUE COMPARTMENT?
