@@ -36,6 +36,9 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		CONSTANT Vmax_efflux = ??? !Vmax of efflux transporter (UNITS?)
 		CONSTANT Km_efflux = ??? !Km of efflux transporter (UNITS?)
 
+		constant GFRC = 62.1	!glomerular filtration rate (L/hr/kg kidney) (male); Corley, 2005
+		!constant GFRC = 41.04	!glomerular filtration rate (L/hr/kg kidney) (female); Corley, 2005
+
 		!Partition Coefficients (from A. Locissano, from rat tissue data, Kudo et al, 2007)
 		constant PL = 2.2 !liver:blood
 		constant PK = 1.05 !kidney:blood
@@ -47,7 +50,6 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		constant koff= 0 !dissociation rate constant (/h)
  
 		!rate constants (1/h)
-		constant GFR = 0.0	!glomerular filtration rate (L/hr) NEED VALUE
 		constant kdif = 0.001	!diffusion rate from proximal tubule cells (UNITS?)
 		constant kabs = 31.3 !rate of absorption of chemical from GI into liver (/hr); from Locissano, 2012 (fit to plasma concentration data)
 		
@@ -99,6 +101,8 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		QL = (QLC*QC)	!plasma flow to liver (L/h)
 		QR = QC - QK - QL 	!plasma flow to rest of body
 		QBal = QC - (QK + QL + QR) !Balance check of blood flows; should equal zero
+
+		GFR = GFRC*(MK/1000)	!glomerular filtration rate, scaled to mass of kidney(in kg)
 
 		!Tissue Volumes
 		VPlas = VplasC*BW 	!volume of plasma (L) 
