@@ -50,11 +50,11 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
  
 		!rate constants (1/h)
 		constant kdif = 0.001	!diffusion rate from proximal tubule cells (UNITS?)
-		CONSTANT kefflux = ???	!rate of clearance of PFOA from proximal tubule cells into blood (UNITS?)
 		constant kabs = 31.3 !rate of absorption of chemical from GI into liver (/hr); from Locissano, 2012 (fit to plasma concentration data)
+		constant kunabs = 0.0001 !rate of unabsorbed dose (male) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
+		!constant kunabs = 0.037 !rate of unabsorbed dose (female) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		
-		constant kunabs = 0.0001 !rate of unabsorbed dose (male) to appear in feces (/h/kg^0.25); from Locissano, 2012 (fit to feces data)
-		!constant kunabs = 0.037 !rate of unabsorbed dose (female) to appear in feces (/h/kg^0.25); from Locissano, 2012 (fit to feces data)
+		CONSTANT keffluxc = ???	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/kg^-0.25)
 		constant kbilec = 0.35 !biliary elimination rate ((male); liver to feces storage (h/kg^-0.25); from Locissano, 2012 (fit to feces and plasma data)
 		!constant kbilec = 0.25 !biliary elimination rate (female); liver to feces storage (h/kg^-0.25); from Locissano, 2012 (fit to feces and plasma data)
 		constant kurinec = 0.1 !rate of urine elimination from urine storage (male) (/h/kg^-0.25); from Locissano, 2012 (fit to urine data)
@@ -115,8 +115,9 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		MK = MKC*BW*1000	!mass of the kidney (g)
 		VPTC = MK*VPTCC	!volume of proximal tubule cells (L)		
 
-		kbile = kbilec*BW**(-0.25)	!biliary elimination; liver to feces storage
-		kurine = kurinec*BW**(-0.25)	! urinary elimination, from filtrate
+		kbile = kbilec*BW**(-0.25)	!biliary elimination; liver to feces storage (/h)
+		kurine = kurinec*BW**(-0.25)	! urinary elimination, from filtrate (/h)
+		kefflux = keffluxc*BW**(-0.25)	!efflux clearance rate, from PTC to blood (/h)
 
 	 !Dosing Equations
 		!IV Dosing
