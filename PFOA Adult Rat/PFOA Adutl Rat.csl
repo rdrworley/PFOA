@@ -170,14 +170,21 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		AGI = integ(RGI, 0.0)	!amount in GI tract (ug)
 		
 		!Liver
+		RL = QL*(CA-CVL)*Free + kabs*AGI - kbile*AL - ((Bmax*CV)/(Kb + CL)) + koff*Abound	!rate of change in the liver (ug/h)
+		AL = integ(RL, 0.0) !amount in liver (ug)
+		CL = AL/VL	!concentration in the liver (ug/L)
+		CVL = CL/PL	!concentration in the venous blood leaving the liver (ug/L)
 
 		!Liver Binding
-		
+		Rbound = ((Bmax*CL)/(Kb + CL)) - koff*Abound	!rate of change of bound by liver proteins (ug/h)
+		Abound = integ(Rbound, 0.0)	!amount bound by liver proteins (ug)
+				
 		!Total Amount in Liver
-
+		ALtotal = AL + Abound	!total amount (bound and unbound) in liver (ug)
+		CLtotal = ALtotal/VL	!total concentration in liver (ug/L) [to be used to compare to measured liver concentrations from rat studies]
 		
-		!Feces storage compartment
-		Rfeces = kunabs*AGI + kbile*ALiv*FreeL - kfeces*Afeces	!rate of change in the feces compartment (ug/h)
+		!Feces compartment
+		Rfeces = kunabs*AGI + kbile*AL - kfeces*Afeces	!rate of change in the feces compartment (ug/h)
 		Afeces = integ(Rfeces, 0.0)	!amount in the feces compartment (ug)
 		
 		!Plasma compartment
