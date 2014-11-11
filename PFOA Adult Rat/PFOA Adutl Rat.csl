@@ -33,8 +33,7 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		CONSTANT Km_basolateral = ??? !Km of basolateral transporter (UNITS?)
 		CONSTANT Vmax_apical = ??? !Vmax of apical transporter (UNITS?)
 		CONSTANT Km_apical = ??? !Km of apical transporter (UNITS?)
-		CONSTANT Vmax_efflux = ??? !Vmax of efflux transporter (UNITS?)
-		CONSTANT Km_efflux = ??? !Km of efflux transporter (UNITS?)
+				
 
 		constant GFRC = 62.1	!glomerular filtration rate (L/hr/kg kidney) (male); Corley, 2005
 		!constant GFRC = 41.04	!glomerular filtration rate (L/hr/kg kidney) (female); Corley, 2005
@@ -51,14 +50,13 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
  
 		!rate constants (1/h)
 		constant kdif = 0.001	!diffusion rate from proximal tubule cells (UNITS?)
+		CONSTANT kefflux = ???	!rate of clearance of PFOA from proximal tubule cells into blood (UNITS?)
 		constant kabs = 31.3 !rate of absorption of chemical from GI into liver (/hr); from Locissano, 2012 (fit to plasma concentration data)
 		
 		constant kunabs = 0.0001 !rate of unabsorbed dose (male) to appear in feces (/h/kg^0.25); from Locissano, 2012 (fit to feces data)
 		!constant kunabs = 0.037 !rate of unabsorbed dose (female) to appear in feces (/h/kg^0.25); from Locissano, 2012 (fit to feces data)
 		constant kbilec = 0.35 !biliary elimination rate ((male); liver to feces storage (h/kg^-0.25); from Locissano, 2012 (fit to feces and plasma data)
 		!constant kbilec = 0.25 !biliary elimination rate (female); liver to feces storage (h/kg^-0.25); from Locissano, 2012 (fit to feces and plasma data)
-		constant kfecesc = 0.6 !fecal elimination rate (male) (GI tract to feces) (h/kg^-0.25); from Locissano, 2012 (fit to feces data)
-		!constant kfecesc = 0.03 !fecal elimination rate (female) (GI tract to feces) (h/kg^-0.25); from Locissano, 2012 (fit to feces data)		
 		constant kurinec = 0.1 !rate of urine elimination from urine storage (male) (/h/kg^-0.25); from Locissano, 2012 (fit to urine data)
 		!constant kurinec = 0.32 !rate of urine elimination from urine storage (female) (/h/kg^-0.25); from Locissano, 2012 (fit to urine data)
 
@@ -118,11 +116,8 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		VPTC = MK*VPTCC	!volume of proximal tubule cells (L)		
 
 		kbile = kbilec*BW**(-0.25)	!biliary elimination; liver to feces storage
-		kfeces = kfecesc*BW**(-0.25)	! feces elimination from feces storage
 		kurine = kurinec*BW**(-0.25)	! urinary elimination, from filtrate
 
-		FreeK = Free/PK	!free fraction in kidney
-	
 	 !Dosing Equations
 		!IV Dosing
 		IVdose = IVdoseC*BW	!mg
@@ -152,7 +147,7 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 			CVK = CKb/PK	!concentration in venous blood leaving kidney (ug/L)
 
 			!Proximal Tubule Cells (PTC)
-			RPTC = (Vmax_basolateral*CKb)/(Km_basolateral + CKb) + (Vmax_apical*Cfil)/(Km_apical + Cfil) - ((Vmax_efflux*CPTC)/(Km_efflux + CPTC)) - kdif*CPTC + kdif*CKb	!rate of change in PTC(ug/h)
+			RPTC = (Vmax_basolateral*CKb)/(Km_basolateral + CKb) + (Vmax_apical*Cfil)/(Km_apical + Cfil) - kefflux*CPTC - kdif*CPTC + kdif*CKb	!rate of change in PTC(ug/h)
 			APTC = integ(RPTC, 0.0)	!amount in proximal tubule cells (ug)
 			CPTC = APTC/VPTC	!concentration in PTC (ug/L)
 
@@ -162,15 +157,15 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 			Cfil = Afil/Vfil	!concentration in filtrate (ug/L)
 			
 			!Urinary elimination 
-			Rurine = kurine*Cfil	!rate of change in urine (ug/L/h)
-			Curine = integ(Rurine, 0.0)	!concentratin in urine (ug/L)
+			Rurine = kurine*Afil	!rate of change in urine (ug/h)
+			Aurine = integ(Rurine, 0.0)	!amount in urine (ug)
 
 		!GI Tract (Absorption site of oral dose)
 		RGI = -kabs*AGI + OGR - kunabs*AGI	!rate of change in the GI tract (ug/h) (accounts for loss to kidney (abs) and loss to feces (unabs), oral dose (OGR). Does not account for dietary exposure
 		AGI = integ(RGI, 0.0)	!amount in GI tract (ug)
 		
 		!Liver
-		RL = QL*(CA-CVL)*Free + kabs*AGI - kbile*AL - ((Bmax*CV)/(Kb + CL)) + koff*Abound	!rate of change in the liver (ug/h)
+		RL = QL*(CA-CVL)*Free + kabs*AGI - kbile*AL - ((Bmax*CL)/(Kb + CL)) + koff*Abound	!rate of change in the liver (ug/h)
 		AL = integ(RL, 0.0) !amount in liver (ug)
 		CL = AL/VL	!concentration in the liver (ug/L)
 		CVL = CL/PL	!concentration in the venous blood leaving the liver (ug/L)
@@ -184,16 +179,16 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		CLtotal = ALtotal/VL	!total concentration in liver (ug/L) [to be used to compare to measured liver concentrations from rat studies]
 		
 		!Feces compartment
-		Rfeces = kunabs*AGI + kbile*AL - kfeces*Afeces	!rate of change in the feces compartment (ug/h)
+		Rfeces = kunabs*AGI + kbile*AL !rate of change in the feces compartment (ug/h)
 		Afeces = integ(Rfeces, 0.0)	!amount in the feces compartment (ug)
 		
 		!Plasma compartment
-		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + ((Vmax_efflux*CPTC)/(Km_efflux + CPTC))	!rate of change in the plasma (ug/h) DO I NEED TO INCLUDE KIDNEY TISSUE COMPARTMENT?
+		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + kefflux*CPTC	!rate of change in the plasma (ug/h)
 		Aplas = integ(RPlas, 0.0)
 		CA = APlas/VPlas
 		
 		!Mass Balance Check
-		Atissue = APlas + AR + AKTis + AKb + AFil + AL + Abound + Astor + Astor2 + AGI	!sum of mass in all compartments (ug)
+		Atissue = APlas + AR + APTC + AKb + AFil + ALtotal + AGI	!sum of mass in all compartments (ug)
 		Aloss = Aurine + Afeces 	!sum of mass lost through urinary and fecal excretion (ug)
 		Atotal = Atissue + Aloss 	!total mass; should equal total dose? 
 
