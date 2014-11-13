@@ -6,6 +6,9 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 ! Excretion pathways are feces and urine. 
 
 	INITIAL
+
+CONSTANT tstart = 0.0
+
 	! Physiological Parameters
 		CONSTANT BW = 0.3	!bodyweight (kg)
 
@@ -29,10 +32,10 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		!CONSTANT Free = 0.045 !free fraction in plasma (female); from Locissano, 2012 (fit to plasma and urine data)
 		
 		!Kidney Transport Parameters
-		CONSTANT Vmax_basolateral = ??? !Vmax of basolateral transporter (UNITS?)
-		CONSTANT Km_basolateral = ??? !Km of basolateral transporter (UNITS?)
-		CONSTANT Vmax_apical = ??? !Vmax of apical transporter (UNITS?)
-		CONSTANT Km_apical = ??? !Km of apical transporter (UNITS?)
+		CONSTANT Vmax_basolateral = 0.0 !Vmax of basolateral transporter (UNITS?) NNED VALUE, FIT 
+		CONSTANT Km_basolateral = 0.0 !Km of basolateral transporter (UNITS?) NEED VALUE
+		CONSTANT Vmax_apical = 0.0 !Vmax of apical transporter (UNITS?) NEED VALUE, FIT
+		CONSTANT Km_apical = 0.0 !Km of apical transporter (UNITS?) NEED VALUE
 				
 
 		constant GFRC = 62.1	!glomerular filtration rate (L/hr/kg kidney) (male); Corley, 2005
@@ -54,7 +57,7 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		constant kunabs = 0.0001 !rate of unabsorbed dose (male) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		!constant kunabs = 0.037 !rate of unabsorbed dose (female) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		
-		CONSTANT keffluxc = ???	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/kg^-0.25)
+		CONSTANT keffluxc = 0.0	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/kg^-0.25) NEED VALUE, FIT
 		constant kbilec = 0.35 !biliary elimination rate ((male); liver to feces storage (h/kg^-0.25); from Locissano, 2012 (fit to feces and plasma data)
 		!constant kbilec = 0.25 !biliary elimination rate (female); liver to feces storage (h/kg^-0.25); from Locissano, 2012 (fit to feces and plasma data)
 		constant kurinec = 0.1 !rate of urine elimination from urine storage (male) (/h/kg^-0.25); from Locissano, 2012 (fit to urine data)
@@ -94,24 +97,24 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
  		DERIVATIVE
  	!Scaled Parameters
 		!Cardiac output and blood flows
-		QC = QCC*(BW**0.75))*(1-Htc)	!cardiac output in L/h; adjusted for plasma
+		QC = QCC*(BW**0.75)*(1-Htc)	!cardiac output in L/h; adjusted for plasma
 		QK = (QKC*QC)	!plasma flow to kidney (L/h)
 		QL = (QLC*QC)	!plasma flow to liver (L/h)
-		QR = QC - QK - QL 	!plasma flow to rest of body
+		QR = QC - QK - QL 	!plasma flow to rest of body (L/h)
 		QBal = QC - (QK + QL + QR) !Balance check of blood flows; should equal zero
 
-		GFR = GFRC*(MK/1000)	!glomerular filtration rate, scaled to mass of kidney(in kg)
+		GFR = GFRC*(MK/1000)	!glomerular filtration rate, scaled to mass of kidney(in kg)(L/h)
 
 		!Tissue Volumes
 		VPlas = VplasC*BW 	!volume of plasma (L) 
-		VK = = VKC*BW 	!volume of kidney (L)
+		VK = VKC*BW 	!volume of kidney (L)
 		VKb = VK*0.16	!volume of blood in the kidney (L); fraction blood volume of kidney (0.16) from Brown, 1997
 		Vfil = VfilC*BW	!volume of filtrate (L)
 		VL = VLC*BW	!volume of liver (L)
-		VR = (0.84*BW) - VPlas - VKb - VPTC - Vfil - VL	!volume of remaining tissue (L); NOT SURE WHERE 0.84 COMES FROM
-		VBal = (0.84*BW) - (VR + VL + VKb + VPTC + VFil + VPlas)	!Balance check of tissue volumes; should equal zero 
+		VR = (0.84*BW) - VPlas - VKb - VPTC - Vfil - VL - VK	!volume of remaining tissue (L); NOT SURE WHERE 0.84 COMES FROM
+		VBal = (0.84*BW) - (VR + VL + VKb + VPTC + VFil + VPlas + VK)	!Balance check of tissue volumes; should equal zero 
 		
-		VPTCC = 6.0e7*2.25e-12 !vol. of proximal tubule cells (liters per gram kidney) (60 million PTC cells/gram kidney, 1 PTC = 2000 um3)
+		VPTCC = 6.0e7*2.25e-12 !vol. of proximal tubule cells (liters per gram kidney) (60 million PTC cells/gram kidney, 1 PTC = 2250 um3)
 		MK = MKC*BW*1000	!mass of the kidney (g)
 		VPTC = MK*VPTCC	!volume of proximal tubule cells (L)		
 
@@ -125,7 +128,7 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		IVR = IVon*IVdose/IVTime	!IV dose rate (mg/hr)
 		AIV = integ(IVR, 0.0)	!amount administered in IV (?) (mg)
 		!IVon = Pulse(0, tstop, IVTime) !turn the IV dose on an off, need to modify to reflect simulated study
-		IVon = RSW(T.GE.IVTime, 0.,1.)	!RDW switch to turn IV dose on. As written, will only work with a single, non-repeating IV dose. 
+		IVon = RSW(T.GE.IVTime, 0.,1.)	!RSW switch to turn IV dose on. As written, will only work with a single, non-repeating IV dose. 
 	
 		!Oral Gavage Dosing
 		Odose = OdoseC*BW	!oral dose (mg)
@@ -135,14 +138,14 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		
  	!Model Equations
 		!Rest of Body (Tis)
-		RR = QR*(CA-CVR)*Free	! rate of change in rest of body (ug/h)
+		RR = QR*(CA-CVR)*Free	!rate of change in rest of body (ug/h)
 		AR = integ(RR, 0.0)	!amount in rest of body (ug)
-		CR = AR/VR !	concentration in rest of body (ug/L)
+		CR = AR/VR !concentration in rest of body (ug/L)
 		CVR = CR/PR	!concentration in venous blood leaving the rest of the body
 
 		!Kidney 
 			!Kidney Blood (Kb)
-			RKb = QK*(CA-CVK)*Free - CA*GFR - ((Vmax_basolateral*CKb)/(Km_basolateral + CKb)) + kdif*CPTC - kdif*CKb !rate of change in kidney blood (ug/h) NOT SURE IF TRANSPORT AND DIFFUSION CONSTANTS SHOULD BE MULTIPLIED BY CA or CKb.
+			RKb = QK*(CA-CVK)*Free - CA*GFR - ((Vmax_basolateral*CKb)/(Km_basolateral + CKb)) + kdif*CPTC - kdif*CKb !rate of change in kidney blood (ug/h).
 			AKb = integ(RKb, 0.0) !amount in kidney blood (ug)
 			CKb = AKb/VKb	!concentration in kidney blodd (ug/L) 
 			CVK = CKb/PK	!concentration in venous blood leaving kidney (ug/L)
@@ -153,7 +156,7 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 			CPTC = APTC/VPTC	!concentration in PTC (ug/L)
 
 			!Filtrate (Fil)
-			Rfil = CA*GFR - (Vmax_apical*Cfil)/(Km_apical + Cfil) - Cfil*kurine	!rate of change in filtrate (ug/h)
+			Rfil = CA*GFR - (Vmax_apical*Cfil)/(Km_apical + Cfil) - Afil*kurine	!rate of change in filtrate (ug/h)
 			Afil = integ(Rfil, 0.0)	!amount in filtrate (ug)
 			Cfil = Afil/Vfil	!concentration in filtrate (ug/L)
 			
@@ -162,7 +165,7 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 			Aurine = integ(Rurine, 0.0)	!amount in urine (ug)
 
 		!GI Tract (Absorption site of oral dose)
-		RGI = -kabs*AGI + OGR - kunabs*AGI	!rate of change in the GI tract (ug/h) (accounts for loss to kidney (abs) and loss to feces (unabs), oral dose (OGR). Does not account for dietary exposure
+		RGI = -kabs*AGI + OGR - kunabs*AGI	!rate of change in the GI tract (ug/h) (accounts for loss to kidney (abs) and loss to feces (unabs), oral dose (OGR). Does not account for dietary exposure (ug/h)
 		AGI = integ(RGI, 0.0)	!amount in GI tract (ug)
 		
 		!Liver
@@ -191,7 +194,7 @@ PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
 		!Mass Balance Check
 		Atissue = APlas + AR + APTC + AKb + AFil + ALtotal + AGI	!sum of mass in all compartments (ug)
 		Aloss = Aurine + Afeces 	!sum of mass lost through urinary and fecal excretion (ug)
-		Atotal = Atissue + Aloss 	!total mass; should equal total dose? 
+		Atotal = Atissue + Aloss 	!total mass; should equal total dose
 
 	
 		END ! DERIVATIVE

@@ -1,4 +1,6 @@
 <project>
   <csl name="PFOA Adutl Rat.csl" location="." />
-  <resultsfolder name="" location="" />
+  <mscript name="PFOA Adult Rat Test.m" location="." />
+  <exe name="PFOA Adutl Rat.dll" location="." />
+  <resultsfolder name="" location="." />
 </project>
