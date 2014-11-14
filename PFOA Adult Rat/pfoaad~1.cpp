@@ -232,10 +232,10 @@ SimImpl zzsim =
 8.4e-4,
 0.0084,
 0.006,
-.1,
-.1,
-0.3,
-0.3,
+.001,
+.001,
+.003,
+.003,
 62.1,
 2.2,
 1.05,
@@ -246,7 +246,7 @@ SimImpl zzsim =
 0.001,
 31.3,
 0.0001,
-1,
+0.1,
 0.35,
 0.1,
 10,
@@ -1233,7 +1233,7 @@ zzsim.cvk = (zzsim.ckb / zzsim.pk);
 zzsim.cptc = (zzsim.aptc / zzsim.vptc);
 
 
-zzsim.rkb = (((((((zzsim.qk * (zzsim.ca - zzsim.cvk)) * zzsim.free) - (zzsim.ca * zzsim.gfr)) - (zzsim.kdif * zzsim.ckb)) + (zzsim.kdif * zzsim.cptc)) - ((zzsim.vmax_basolateral * zzsim.ckb) / (zzsim.km_basolateral + zzsim.ckb))) + (zzsim.kefflux * zzsim.cptc));
+zzsim.rkb = (((((((zzsim.qk * (zzsim.ca - zzsim.cvk)) * zzsim.free) - ((zzsim.ca * zzsim.gfr) * zzsim.free)) - (zzsim.kdif * zzsim.ckb)) + (zzsim.kdif * zzsim.cptc)) - ((zzsim.vmax_basolateral * zzsim.ckb) / (zzsim.km_basolateral + zzsim.ckb))) + (zzsim.kefflux * zzsim.cptc));
 
 
 zzsim.z99993 = zzsim.rkb;
@@ -1251,7 +1251,7 @@ zzsim.z99991 = zzsim.rptc;
 zzsim.kurine = (zzsim.kurinec * ( pow ( zzsim.bw , -(0.25) ) ));
 
 
-zzsim.rfil = (((zzsim.ca * zzsim.gfr) - ((zzsim.vmax_apical * zzsim.cfil) / (zzsim.km_apical + zzsim.cfil))) - (zzsim.afil * zzsim.kurine));
+zzsim.rfil = ((((zzsim.ca * zzsim.gfr) * zzsim.free) - ((zzsim.vmax_apical * zzsim.cfil) / (zzsim.km_apical + zzsim.cfil))) - (zzsim.afil * zzsim.kurine));
 
 
 zzsim.z99989 = zzsim.rfil;

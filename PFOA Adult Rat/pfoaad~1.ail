@@ -2241,7 +2241,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>.1</csl_sym_initializer>
+<csl_sym_initializer>.001</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -2286,7 +2286,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>.1</csl_sym_initializer>
+<csl_sym_initializer>.001</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -2331,7 +2331,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>0.3</csl_sym_initializer>
+<csl_sym_initializer>.003</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -2376,7 +2376,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>0.3</csl_sym_initializer>
+<csl_sym_initializer>.003</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -2871,7 +2871,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>1</csl_sym_initializer>
+<csl_sym_initializer>0.1</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -7765,7 +7765,7 @@
 <Assignment>
 <LValue>
 <Identifier>rkb</Identifier></LValue>
-<ArithAddition><ArithSubtraction><ArithAddition><ArithSubtraction><ArithSubtraction><ArithMultiplication><ArithMultiplication><Identifier>qk</Identifier><ArithSubtraction><Identifier>ca</Identifier><Identifier>cvk</Identifier></ArithSubtraction></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication><ArithMultiplication><Identifier>ca</Identifier><Identifier>gfr</Identifier></ArithMultiplication></ArithSubtraction><ArithMultiplication><Identifier>kdif</Identifier><Identifier>ckb</Identifier></ArithMultiplication></ArithSubtraction><ArithMultiplication><Identifier>kdif</Identifier><Identifier>cptc</Identifier></ArithMultiplication></ArithAddition><ArithDivision><ArithMultiplication><Identifier>vmax_basolateral</Identifier><Identifier>ckb</Identifier></ArithMultiplication><ArithAddition><Identifier>km_basolateral</Identifier><Identifier>ckb</Identifier></ArithAddition></ArithDivision></ArithSubtraction><ArithMultiplication><Identifier>kefflux</Identifier><Identifier>cptc</Identifier></ArithMultiplication></ArithAddition></Assignment>
+<ArithAddition><ArithSubtraction><ArithAddition><ArithSubtraction><ArithSubtraction><ArithMultiplication><ArithMultiplication><Identifier>qk</Identifier><ArithSubtraction><Identifier>ca</Identifier><Identifier>cvk</Identifier></ArithSubtraction></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication><ArithMultiplication><ArithMultiplication><Identifier>ca</Identifier><Identifier>gfr</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication></ArithSubtraction><ArithMultiplication><Identifier>kdif</Identifier><Identifier>ckb</Identifier></ArithMultiplication></ArithSubtraction><ArithMultiplication><Identifier>kdif</Identifier><Identifier>cptc</Identifier></ArithMultiplication></ArithAddition><ArithDivision><ArithMultiplication><Identifier>vmax_basolateral</Identifier><Identifier>ckb</Identifier></ArithMultiplication><ArithAddition><Identifier>km_basolateral</Identifier><Identifier>ckb</Identifier></ArithAddition></ArithDivision></ArithSubtraction><ArithMultiplication><Identifier>kefflux</Identifier><Identifier>cptc</Identifier></ArithMultiplication></ArithAddition></Assignment>
 </Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="152">
 <Assignment>
@@ -7801,7 +7801,7 @@
 <Assignment>
 <LValue>
 <Identifier>rfil</Identifier></LValue>
-<ArithSubtraction><ArithSubtraction><ArithMultiplication><Identifier>ca</Identifier><Identifier>gfr</Identifier></ArithMultiplication><ArithDivision><ArithMultiplication><Identifier>vmax_apical</Identifier><Identifier>cfil</Identifier></ArithMultiplication><ArithAddition><Identifier>km_apical</Identifier><Identifier>cfil</Identifier></ArithAddition></ArithDivision></ArithSubtraction><ArithMultiplication><Identifier>afil</Identifier><Identifier>kurine</Identifier></ArithMultiplication></ArithSubtraction></Assignment>
+<ArithSubtraction><ArithSubtraction><ArithMultiplication><ArithMultiplication><Identifier>ca</Identifier><Identifier>gfr</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication><ArithDivision><ArithMultiplication><Identifier>vmax_apical</Identifier><Identifier>cfil</Identifier></ArithMultiplication><ArithAddition><Identifier>km_apical</Identifier><Identifier>cfil</Identifier></ArithAddition></ArithDivision></ArithSubtraction><ArithMultiplication><Identifier>afil</Identifier><Identifier>kurine</Identifier></ArithMultiplication></ArithSubtraction></Assignment>
 </Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="165">
 <Assignment>
