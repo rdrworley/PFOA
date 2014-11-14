@@ -232,26 +232,26 @@ SimImpl zzsim =
 8.4e-4,
 0.0084,
 0.006,
-0.0,
-0.0,
-0.0,
-0.0,
+1,
+1,
+1,
+1,
 62.1,
 2.2,
 1.05,
 0.11,
-0,
-0,
-0,
+1,
+1,
+1,
 0.001,
 31.3,
 0.0001,
-0.0,
+1.0,
 0.35,
 0.1,
-0.0,
+10,
 0.01,
-0.0,
+0,
 0.01,
 5.5555E+33,
 5.5555E+33,
@@ -303,7 +303,7 @@ SimImpl zzsim =
 5.5555E+33,
 5.5555E+33,
 24.0,
-0.1,
+0.01,
 5,
 10,
 1.0e9,
@@ -1236,7 +1236,7 @@ zzsim.rkb = ((((((zzsim.qk * (zzsim.ca - zzsim.cvk)) * zzsim.free) - (zzsim.ca *
 zzsim.z99993 = zzsim.rkb;
 
 
-zzsim.kefflux = (zzsim.keffluxc * ( pow ( zzsim.bw , -(0.25) ) ));
+zzsim.kefflux = (zzsim.keffluxc * ( pow ( zzsim.bw , 0.75 ) ));
 
 
 zzsim.cfil = (zzsim.afil / zzsim.vfil);

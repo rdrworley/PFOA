@@ -2241,7 +2241,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>0.0</csl_sym_initializer>
+<csl_sym_initializer>1</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -2286,7 +2286,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>0.0</csl_sym_initializer>
+<csl_sym_initializer>1</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -2331,7 +2331,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>0.0</csl_sym_initializer>
+<csl_sym_initializer>1</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -2376,7 +2376,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>0.0</csl_sym_initializer>
+<csl_sym_initializer>1</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -2601,7 +2601,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>0</csl_sym_initializer>
+<csl_sym_initializer>1</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -2646,7 +2646,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>0</csl_sym_initializer>
+<csl_sym_initializer>1</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -2691,7 +2691,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>0</csl_sym_initializer>
+<csl_sym_initializer>1</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -2871,7 +2871,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>0.0</csl_sym_initializer>
+<csl_sym_initializer>1.0</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -3006,7 +3006,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>0.0</csl_sym_initializer>
+<csl_sym_initializer>10</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -3096,7 +3096,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>0.0</csl_sym_initializer>
+<csl_sym_initializer>0</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -5436,7 +5436,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_CINTERVAL</csl_sym_symboltype>
-<csl_sym_initializer>0.1</csl_sym_initializer>
+<csl_sym_initializer>0.01</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>FALSE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -7771,7 +7771,7 @@
 <Assignment>
 <LValue>
 <Identifier>kefflux</Identifier></LValue>
-<ArithMultiplication><Identifier>keffluxc</Identifier><ArithExponentiation><Identifier>bw</Identifier><UnaryArithMinus><RealLiteral>0.25</RealLiteral></UnaryArithMinus></ArithExponentiation></ArithMultiplication></Assignment>
+<ArithMultiplication><Identifier>keffluxc</Identifier><ArithExponentiation><Identifier>bw</Identifier><RealLiteral>0.75</RealLiteral></ArithExponentiation></ArithMultiplication></Assignment>
 </Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="166">
 <Assignment>

@@ -32,10 +32,10 @@ constant free = 0.006
 
 
 
-constant vmax_basolateral = 0.0 
-constant km_basolateral = 0.0 
-constant vmax_apical = 0.0 
-constant km_apical = 0.0 
+constant vmax_basolateral = 1 
+constant km_basolateral = 1 
+constant vmax_apical = 1 
+constant km_apical = 1 
 
 
 constant gfrc = 62.1 
@@ -47,9 +47,9 @@ constant pk = 1.05
 constant pr = 0.11 
 
 
-constant kb = 0 
-constant bmax = 0 
-constant koff = 0 
+constant kb = 1 
+constant bmax = 1 
+constant koff = 1 
 
 
 constant kdif = 0.001 
@@ -57,7 +57,7 @@ constant kabs = 31.3
 constant kunabs = 0.0001 
 
 
-constant keffluxc = 0.0 
+constant keffluxc = 1.0 
 constant kbilec = 0.35 
 
 constant kurinec = 0.1 
@@ -71,7 +71,7 @@ constant kurinec = 0.1
 
 
 
-constant odosec = 0.0 
+constant odosec = 10 
 constant ogtime = 0.01 
 
 
@@ -80,7 +80,7 @@ constant ogtime = 0.01
 
 
 
-constant ivdosec = 0.0 
+constant ivdosec = 0 
 constant ivtime = 0.01 
 
 end 
@@ -92,7 +92,7 @@ algorithm ialg = 5
 nsteps nstp = 10 
 maxterval maxt = 1.0e9 
 minterval mint = 1.0e-9 
-cinterval cint = 0.1 
+cinterval cint = 0.01 
 
 derivative 
 
@@ -122,7 +122,7 @@ vptc = mk * vptcc
 
 kbile = kbilec * bw ** ( - 0.25 ) 
 kurine = kurinec * bw ** ( - 0.25 ) 
-kefflux = keffluxc * bw ** ( - 0.25 ) 
+kefflux = keffluxc * bw ** ( 0.75 ) 
 
 
 

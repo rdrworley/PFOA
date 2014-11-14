@@ -32,10 +32,10 @@ CONSTANT tstart = 0.0
 		!CONSTANT Free = 0.045 !free fraction in plasma (female); from Locissano, 2012 (fit to plasma and urine data)
 		
 		!Kidney Transport Parameters
-		CONSTANT Vmax_basolateral = 0.0 !Vmax of basolateral transporter (UNITS?) NNED VALUE, FIT 
-		CONSTANT Km_basolateral = 0.0 !Km of basolateral transporter (UNITS?) NEED VALUE
-		CONSTANT Vmax_apical = 0.0 !Vmax of apical transporter (UNITS?) NEED VALUE, FIT
-		CONSTANT Km_apical = 0.0 !Km of apical transporter (UNITS?) NEED VALUE
+		CONSTANT Vmax_basolateral = 1 !Vmax of basolateral transporter (UNITS?) NNED VALUE, FIT 
+		CONSTANT Km_basolateral = 1 !Km of basolateral transporter (UNITS?) NEED VALUE
+		CONSTANT Vmax_apical = 1 !Vmax of apical transporter (UNITS?) NEED VALUE, FIT
+		CONSTANT Km_apical = 1 !Km of apical transporter (UNITS?) NEED VALUE
 				
 
 		constant GFRC = 62.1	!glomerular filtration rate (L/hr/kg kidney) (male); Corley, 2005
@@ -47,9 +47,9 @@ CONSTANT tstart = 0.0
 		constant PR = 0.11 !rest of body:blood
 		
 		!parameters for binding in liver (10/5/2014 - all set to zero per Locissano, 2012. Will need to reevaluate.)
-		constant Kb = 0 !binding affinity constant (ug/L)
-		constant Bmax = 0 !max. association rate constant (ug/h)
-		constant koff= 0 !dissociation rate constant (/h)
+		constant Kb = 1 !binding affinity constant (ug/L)
+		constant Bmax = 1 !max. association rate constant (ug/h)
+		constant koff= 1 !dissociation rate constant (/h)
  
 		!rate constants (1/h)
 		constant kdif = 0.001	!diffusion rate from proximal tubule cells (UNITS?)
@@ -57,7 +57,7 @@ CONSTANT tstart = 0.0
 		constant kunabs = 0.0001 !rate of unabsorbed dose (male) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		!constant kunabs = 0.037 !rate of unabsorbed dose (female) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		
-		CONSTANT keffluxc = 0.0	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/kg^-0.25) NEED VALUE, FIT
+		CONSTANT keffluxc = 1.0	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/kg^0.75) NEED VALUE, FIT
 		constant kbilec = 0.35 !biliary elimination rate ((male); liver to feces storage (h/kg^-0.25); from Locissano, 2012 (fit to feces and plasma data)
 		!constant kbilec = 0.25 !biliary elimination rate (female); liver to feces storage (h/kg^-0.25); from Locissano, 2012 (fit to feces and plasma data)
 		constant kurinec = 0.1 !rate of urine elimination from urine storage (male) (/h/kg^-0.25); from Locissano, 2012 (fit to urine data)
@@ -71,7 +71,7 @@ CONSTANT tstart = 0.0
 		!Perkins - Male rats administered APFO at 0,1,10,30, or 100 ppm in diet for 13 weeks. Serum samples collected at 4, 7, and 13 weeks, and 8 weeks after
 			!end of treatment. NEED DATA. 
 
-		constant OdoseC = 0.0	!oral dose concentration(mg/kg)
+		constant OdoseC = 10	!oral dose concentration(mg/kg)
 		constant OGtime = 0.01	!length of oral gavage (hrs)
 		
 		!IV Dosing
@@ -80,7 +80,7 @@ CONSTANT tstart = 0.0
 		!Kemper - Male and female rats administered one IV dose of 1 mg/kg PFOA. Blood samples collected from males 9 times in first 24 hours, at 24 hour intervals up to 8 days, 
 			!and at 48 hour intervals up to 22 days. Blood samples collected from females 13 times over 4 days. 
 		
-		constant IVdoseC = 0.0	!IV dose concentration (mg/kg)
+		constant IVdoseC = 0	!IV dose concentration (mg/kg)
 		constant IVTime = 0.01	!length of IV infusion (hrs)
 	
 	END ! INITIAL
@@ -92,7 +92,7 @@ CONSTANT tstart = 0.0
 		NSTEPS    NSTP = 10
 		MAXTERVAL MAXT = 1.0e9
 		MINTERVAL MINT = 1.0e-9
-		CINTERVAL CINT = 0.1
+		CINTERVAL CINT = 0.01
 
  		DERIVATIVE
  	!Scaled Parameters
@@ -120,7 +120,7 @@ CONSTANT tstart = 0.0
 
 		kbile = kbilec*BW**(-0.25)	!biliary elimination; liver to feces storage (/h)
 		kurine = kurinec*BW**(-0.25)	! urinary elimination, from filtrate (/h)
-		kefflux = keffluxc*BW**(-0.25)	!efflux clearance rate, from PTC to blood (/h)
+		kefflux = keffluxc*BW**(0.75)	!efflux clearance rate, from PTC to blood (/h)
 
 	 !Dosing Equations
 		!IV Dosing
