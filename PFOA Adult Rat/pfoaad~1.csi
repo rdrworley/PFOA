@@ -32,10 +32,10 @@ constant free = 0.006
 
 
 
-constant vmax_basolateral = 1 
-constant km_basolateral = 1 
-constant vmax_apical = 1 
-constant km_apical = 1 
+constant vmax_basolateral = .1 
+constant km_basolateral = .1 
+constant vmax_apical = 0.3 
+constant km_apical = 0.3 
 
 
 constant gfrc = 62.1 
@@ -57,7 +57,7 @@ constant kabs = 31.3
 constant kunabs = 0.0001 
 
 
-constant keffluxc = 1.0 
+constant keffluxc = 1 
 constant kbilec = 0.35 
 
 constant kurinec = 0.1 
@@ -163,7 +163,7 @@ cvr = cr / pr
 
 
 # line 148 
-rkb = qk * ( ca - cvk ) * free - ca * gfr - ( ( vmax_basolateral * ckb ) / ( km_basolateral + ckb ) ) + kdif * cptc - kdif * ckb 
+rkb = qk * ( ca - cvk ) * free - ca * gfr - kdif * ckb + kdif * cptc - ( ( vmax_basolateral * ckb ) / ( km_basolateral + ckb ) ) 
 # line 152 
 z99993 = rkb 
 # line 152 
@@ -175,7 +175,7 @@ cvk = ckb / pk
 
 
 # line 154 
-rptc = ( vmax_basolateral * ckb ) / ( km_basolateral + ckb ) + ( vmax_apical * cfil ) / ( km_apical + cfil ) - kefflux * cptc - kdif * cptc + kdif * ckb 
+rptc = kdif * ckb - kdif * cptc + ( ( vmax_basolateral * ckb ) / ( km_basolateral + ckb ) ) + ( vmax_apical * cfil ) / ( km_apical + cfil ) 
 # line 159 
 z99991 = rptc 
 # line 159 
@@ -186,7 +186,7 @@ cptc = aptc / vptc
 
 
 # line 159 
-rfil = ca * gfr - ( vmax_apical * cfil ) / ( km_apical + cfil ) - afil * kurine 
+rfil = ca * gfr - ( ( vmax_apical * cfil ) / ( km_apical + cfil ) ) - afil * kurine 
 # line 165 
 z99989 = rfil 
 # line 165 
@@ -250,7 +250,7 @@ integral afeces = z99979 , z99978
 
 
 # line 190 
-rplas = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr + kefflux * cptc 
+rplas = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr 
 # line 199 
 z99977 = rplas 
 # line 199 
@@ -260,7 +260,7 @@ integral aplas = z99977 , z99976
 ca = aplas / vplas 
 
 
-atissue = aplas + ar + aptc + akb + afil + altotal + agi 
+atissue = aplas + ar + akb + afil + altotal + agi 
 aloss = aurine + afeces 
 atotal = atissue + aloss 
 

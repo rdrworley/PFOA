@@ -32,10 +32,10 @@ CONSTANT tstart = 0.0
 		!CONSTANT Free = 0.045 !free fraction in plasma (female); from Locissano, 2012 (fit to plasma and urine data)
 		
 		!Kidney Transport Parameters
-		CONSTANT Vmax_basolateral = 1 !Vmax of basolateral transporter (UNITS?) NNED VALUE, FIT 
-		CONSTANT Km_basolateral = 1 !Km of basolateral transporter (UNITS?) NEED VALUE
-		CONSTANT Vmax_apical = 1 !Vmax of apical transporter (UNITS?) NEED VALUE, FIT
-		CONSTANT Km_apical = 1 !Km of apical transporter (UNITS?) NEED VALUE
+		CONSTANT Vmax_basolateral = .1 !Vmax of basolateral transporter (UNITS?) NNED VALUE, FIT 
+		CONSTANT Km_basolateral = .1 !Km of basolateral transporter (UNITS?) NEED VALUE
+		CONSTANT Vmax_apical = 0.3 !Vmax of apical transporter (UNITS?) NEED VALUE, FIT
+		CONSTANT Km_apical = 0.3 !Km of apical transporter (UNITS?) NEED VALUE
 				
 
 		constant GFRC = 62.1	!glomerular filtration rate (L/hr/kg kidney) (male); Corley, 2005
@@ -57,7 +57,7 @@ CONSTANT tstart = 0.0
 		constant kunabs = 0.0001 !rate of unabsorbed dose (male) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		!constant kunabs = 0.037 !rate of unabsorbed dose (female) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		
-		CONSTANT keffluxc = 1.0	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/kg^0.75) NEED VALUE, FIT
+		CONSTANT keffluxc = 1	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/kg^0.75) NEED VALUE, FIT
 		constant kbilec = 0.35 !biliary elimination rate ((male); liver to feces storage (h/kg^-0.25); from Locissano, 2012 (fit to feces and plasma data)
 		!constant kbilec = 0.25 !biliary elimination rate (female); liver to feces storage (h/kg^-0.25); from Locissano, 2012 (fit to feces and plasma data)
 		constant kurinec = 0.1 !rate of urine elimination from urine storage (male) (/h/kg^-0.25); from Locissano, 2012 (fit to urine data)
@@ -145,18 +145,18 @@ CONSTANT tstart = 0.0
 
 		!Kidney 
 			!Kidney Blood (Kb)
-			RKb = QK*(CA-CVK)*Free - CA*GFR - ((Vmax_basolateral*CKb)/(Km_basolateral + CKb)) + kdif*CPTC - kdif*CKb !rate of change in kidney blood (ug/h).
+			RKb = QK*(CA-CVK)*Free - CA*GFR - kdif*CKb + kdif*CPTC - ((Vmax_basolateral*CKb)/(Km_basolateral + CKb))  !rate of change in kidney blood (ug/h).
 			AKb = integ(RKb, 0.0) !amount in kidney blood (ug)
 			CKb = AKb/VKb	!concentration in kidney blodd (ug/L) 
 			CVK = CKb/PK	!concentration in venous blood leaving kidney (ug/L)
 
 			!Proximal Tubule Cells (PTC)
-			RPTC = (Vmax_basolateral*CKb)/(Km_basolateral + CKb) + (Vmax_apical*Cfil)/(Km_apical + Cfil) - kefflux*CPTC - kdif*CPTC + kdif*CKb	!rate of change in PTC(ug/h)
+			RPTC =  kdif*CKb - kdif*CPTC + ((Vmax_basolateral*CKb)/(Km_basolateral + CKb)) + (Vmax_apical*Cfil)/(Km_apical + Cfil) !- kefflux*CPTC !rate of change in PTC(ug/h)
 			APTC = integ(RPTC, 0.0)	!amount in proximal tubule cells (ug)
 			CPTC = APTC/VPTC	!concentration in PTC (ug/L)
 
 			!Filtrate (Fil)
-			Rfil = CA*GFR - (Vmax_apical*Cfil)/(Km_apical + Cfil) - Afil*kurine	!rate of change in filtrate (ug/h)
+			Rfil = CA*GFR - ((Vmax_apical*Cfil)/(Km_apical + Cfil)) - Afil*kurine	!rate of change in filtrate (ug/h)
 			Afil = integ(Rfil, 0.0)	!amount in filtrate (ug)
 			Cfil = Afil/Vfil	!concentration in filtrate (ug/L)
 			
@@ -187,12 +187,12 @@ CONSTANT tstart = 0.0
 		Afeces = integ(Rfeces, 0.0)	!amount in the feces compartment (ug)
 		
 		!Plasma compartment
-		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + kefflux*CPTC	!rate of change in the plasma (ug/h)
+		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR !+ kefflux*CPTC	!rate of change in the plasma (ug/h)
 		Aplas = integ(RPlas, 0.0)
 		CA = APlas/VPlas
 		
 		!Mass Balance Check
-		Atissue = APlas + AR + APTC + AKb + AFil + ALtotal + AGI	!sum of mass in all compartments (ug)
+		Atissue = APlas + AR + AKb + AFil + ALtotal + AGI !+ APTC 	!sum of mass in all compartments (ug)
 		Aloss = Aurine + Afeces 	!sum of mass lost through urinary and fecal excretion (ug)
 		Atotal = Atissue + Aloss 	!total mass; should equal total dose
 
