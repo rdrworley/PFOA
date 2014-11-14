@@ -163,7 +163,7 @@ cvr = cr / pr
 
 
 # line 148 
-rkb = qk * ( ca - cvk ) * free - ca * gfr - kdif * ckb + kdif * cptc - ( ( vmax_basolateral * ckb ) / ( km_basolateral + ckb ) ) 
+rkb = qk * ( ca - cvk ) * free - ca * gfr - kdif * ckb + kdif * cptc - ( ( vmax_basolateral * ckb ) / ( km_basolateral + ckb ) ) + kefflux * cptc 
 # line 152 
 z99993 = rkb 
 # line 152 
@@ -175,7 +175,7 @@ cvk = ckb / pk
 
 
 # line 154 
-rptc = kdif * ckb - kdif * cptc + ( ( vmax_basolateral * ckb ) / ( km_basolateral + ckb ) ) + ( vmax_apical * cfil ) / ( km_apical + cfil ) 
+rptc = kdif * ckb - kdif * cptc + ( ( vmax_basolateral * ckb ) / ( km_basolateral + ckb ) ) + ( vmax_apical * cfil ) / ( km_apical + cfil ) - kefflux * cptc 
 # line 159 
 z99991 = rptc 
 # line 159 

@@ -4005,7 +4005,7 @@
 <csl_sym_isequiv>FALSE</csl_sym_isequiv>
 <csl_sym_isglobal>FALSE</csl_sym_isglobal>
 <csl_sym_isinterval>FALSE</csl_sym_isinterval>
-<csl_sym_isinput>FALSE</csl_sym_isinput>
+<csl_sym_isinput>TRUE</csl_sym_isinput>
 <csl_sym_isoutput>TRUE</csl_sym_isoutput>
 <csl_sym_istyped>FALSE</csl_sym_istyped>
 <csl_sym_isimplicitlytyped>TRUE</csl_sym_isimplicitlytyped>
@@ -7737,6 +7737,12 @@
 <Identifier>gfr</Identifier></LValue>
 <ArithMultiplication><Identifier>gfrc</Identifier><ArithDivision><Identifier>mk</Identifier><IntegerLiteral>1000</IntegerLiteral></ArithDivision></ArithMultiplication></Assignment>
 </Statement>
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="123">
+<Assignment>
+<LValue>
+<Identifier>kefflux</Identifier></LValue>
+<ArithMultiplication><Identifier>keffluxc</Identifier><ArithExponentiation><Identifier>bw</Identifier><RealLiteral>0.75</RealLiteral></ArithExponentiation></ArithMultiplication></Assignment>
+</Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="153">
 <Assignment>
 <LValue>
@@ -7759,7 +7765,7 @@
 <Assignment>
 <LValue>
 <Identifier>rkb</Identifier></LValue>
-<ArithSubtraction><ArithAddition><ArithSubtraction><ArithSubtraction><ArithMultiplication><ArithMultiplication><Identifier>qk</Identifier><ArithSubtraction><Identifier>ca</Identifier><Identifier>cvk</Identifier></ArithSubtraction></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication><ArithMultiplication><Identifier>ca</Identifier><Identifier>gfr</Identifier></ArithMultiplication></ArithSubtraction><ArithMultiplication><Identifier>kdif</Identifier><Identifier>ckb</Identifier></ArithMultiplication></ArithSubtraction><ArithMultiplication><Identifier>kdif</Identifier><Identifier>cptc</Identifier></ArithMultiplication></ArithAddition><ArithDivision><ArithMultiplication><Identifier>vmax_basolateral</Identifier><Identifier>ckb</Identifier></ArithMultiplication><ArithAddition><Identifier>km_basolateral</Identifier><Identifier>ckb</Identifier></ArithAddition></ArithDivision></ArithSubtraction></Assignment>
+<ArithAddition><ArithSubtraction><ArithAddition><ArithSubtraction><ArithSubtraction><ArithMultiplication><ArithMultiplication><Identifier>qk</Identifier><ArithSubtraction><Identifier>ca</Identifier><Identifier>cvk</Identifier></ArithSubtraction></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication><ArithMultiplication><Identifier>ca</Identifier><Identifier>gfr</Identifier></ArithMultiplication></ArithSubtraction><ArithMultiplication><Identifier>kdif</Identifier><Identifier>ckb</Identifier></ArithMultiplication></ArithSubtraction><ArithMultiplication><Identifier>kdif</Identifier><Identifier>cptc</Identifier></ArithMultiplication></ArithAddition><ArithDivision><ArithMultiplication><Identifier>vmax_basolateral</Identifier><Identifier>ckb</Identifier></ArithMultiplication><ArithAddition><Identifier>km_basolateral</Identifier><Identifier>ckb</Identifier></ArithAddition></ArithDivision></ArithSubtraction><ArithMultiplication><Identifier>kefflux</Identifier><Identifier>cptc</Identifier></ArithMultiplication></ArithAddition></Assignment>
 </Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="152">
 <Assignment>
@@ -7777,7 +7783,7 @@
 <Assignment>
 <LValue>
 <Identifier>rptc</Identifier></LValue>
-<ArithAddition><ArithAddition><ArithSubtraction><ArithMultiplication><Identifier>kdif</Identifier><Identifier>ckb</Identifier></ArithMultiplication><ArithMultiplication><Identifier>kdif</Identifier><Identifier>cptc</Identifier></ArithMultiplication></ArithSubtraction><ArithDivision><ArithMultiplication><Identifier>vmax_basolateral</Identifier><Identifier>ckb</Identifier></ArithMultiplication><ArithAddition><Identifier>km_basolateral</Identifier><Identifier>ckb</Identifier></ArithAddition></ArithDivision></ArithAddition><ArithDivision><ArithMultiplication><Identifier>vmax_apical</Identifier><Identifier>cfil</Identifier></ArithMultiplication><ArithAddition><Identifier>km_apical</Identifier><Identifier>cfil</Identifier></ArithAddition></ArithDivision></ArithAddition></Assignment>
+<ArithSubtraction><ArithAddition><ArithAddition><ArithSubtraction><ArithMultiplication><Identifier>kdif</Identifier><Identifier>ckb</Identifier></ArithMultiplication><ArithMultiplication><Identifier>kdif</Identifier><Identifier>cptc</Identifier></ArithMultiplication></ArithSubtraction><ArithDivision><ArithMultiplication><Identifier>vmax_basolateral</Identifier><Identifier>ckb</Identifier></ArithMultiplication><ArithAddition><Identifier>km_basolateral</Identifier><Identifier>ckb</Identifier></ArithAddition></ArithDivision></ArithAddition><ArithDivision><ArithMultiplication><Identifier>vmax_apical</Identifier><Identifier>cfil</Identifier></ArithMultiplication><ArithAddition><Identifier>km_apical</Identifier><Identifier>cfil</Identifier></ArithAddition></ArithDivision></ArithAddition><ArithMultiplication><Identifier>kefflux</Identifier><Identifier>cptc</Identifier></ArithMultiplication></ArithSubtraction></Assignment>
 </Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="159">
 <Assignment>
@@ -7976,12 +7982,6 @@
 <LValue>
 <Identifier>vbal</Identifier></LValue>
 <ArithSubtraction><ArithMultiplication><RealLiteral>0.84</RealLiteral><Identifier>bw</Identifier></ArithMultiplication><ArithAddition><ArithAddition><ArithAddition><ArithAddition><ArithAddition><ArithAddition><Identifier>vr</Identifier><Identifier>vl</Identifier></ArithAddition><Identifier>vkb</Identifier></ArithAddition><Identifier>vptc</Identifier></ArithAddition><Identifier>vfil</Identifier></ArithAddition><Identifier>vplas</Identifier></ArithAddition><Identifier>vk</Identifier></ArithAddition></ArithSubtraction></Assignment>
-</Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="123">
-<Assignment>
-<LValue>
-<Identifier>kefflux</Identifier></LValue>
-<ArithMultiplication><Identifier>keffluxc</Identifier><ArithExponentiation><Identifier>bw</Identifier><RealLiteral>0.75</RealLiteral></ArithExponentiation></ArithMultiplication></Assignment>
 </Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="189">
 <Assignment>
