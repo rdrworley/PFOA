@@ -71,7 +71,7 @@ CONSTANT tstart = 0.0
 		!Perkins - Male rats administered APFO at 0,1,10,30, or 100 ppm in diet for 13 weeks. Serum samples collected at 4, 7, and 13 weeks, and 8 weeks after
 			!end of treatment. NEED DATA. 
 
-		constant OdoseC = 10	!oral dose concentration(mg/kg)
+		constant OdoseC = 25	!oral dose concentration(mg/kg)
 		constant OGtime = 0.01	!length of oral gavage (hrs)
 		
 		!IV Dosing

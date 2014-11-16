@@ -71,7 +71,7 @@ constant kurinec = 0.1
 
 
 
-constant odosec = 10 
+constant odosec = 25 
 constant ogtime = 0.01 
 
 
