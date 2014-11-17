@@ -1,4 +1,4 @@
-PROGRAM PBPK Model for PFOA in Adult Male Rats. September 30, 2014
+PROGRAM PBPK Model for PFOA in Adult Male Rats. Version date: November 17, 2014. 
 
 ! Created by R. Worley based on previous model by A. Locissano
 ! Model includes compartments for GI Tract, Liver, Rest of Body(Tis), Kidney Blood, Proximal Tubule Cells, Filtrate, and Plasma.
@@ -19,10 +19,10 @@ CONSTANT tstart = 0.0
 		CONSTANT Htc = 0.46 !hematocrit for the rat; Davies 1993
 		
 		! Tissue Volumes 
-		CONSTANT VplasC = 0.0312 !fraction vol. of plasma; Davies 1993
-		CONSTANT VLC = 0.035 !fraction vol. of liver; Brown 1997
-		CONSTANT VKC = 0.0084 !fraction vol. of kidney; Brown 1997
-		CONSTANT VfilC = 8.4e-4	!fraction vol. of filtrate
+		CONSTANT VplasC = 0.0312 !fraction vol. of plasma (L/kg BW); Davies 1993
+		CONSTANT VLC = 0.035 !fraction vol. of liver (L/kg BW); Brown 1997
+		CONSTANT VKC = 0.0084 !fraction vol. of kidney (L/ kg BW); Brown 1997
+		CONSTANT VfilC = 8.4e-4	!fraction vol. of filtrate (L/ kg BW)
 
 		CONSTANT MKC = 0.0084	!fraction mass of kidney (percent of BW); Brown 1997
 
@@ -32,10 +32,10 @@ CONSTANT tstart = 0.0
 		!CONSTANT Free = 0.045 !free fraction in plasma (female); from Locissano, 2012 (fit to plasma and urine data)
 		
 		!Kidney Transport Parameters
-		CONSTANT Vmax_basolateral = .001 !Vmax of basolateral transporter (UNITS?) NNED VALUE, FIT 
-		CONSTANT Km_basolateral = .001 !Km of basolateral transporter (UNITS?) NEED VALUE
+		CONSTANT Vmax_basolateral = .001 !Vmax of basolateral transporter (UNITS?) NEED VALUE, FIT 
+		CONSTANT Km_basolateral = 3.77e4 !Km of basolateral transporter (ug/L) Average of OAT1 and OAT3 from Nakagawa et. al, 2007
 		CONSTANT Vmax_apical = .003 !Vmax of apical transporter (UNITS?) NEED VALUE, FIT
-		CONSTANT Km_apical = .003 !Km of apical transporter (UNITS?) NEED VALUE
+		CONSTANT Km_apical = 1.41e5 !Km of apical transporter (ug/L), Average of OAT4 and URAT1 from Nakagawa et. al, 2007
 				
 
 		constant GFRC = 62.1	!glomerular filtration rate (L/hr/kg kidney) (male); Corley, 2005
@@ -71,7 +71,7 @@ CONSTANT tstart = 0.0
 		!Perkins - Male rats administered APFO at 0,1,10,30, or 100 ppm in diet for 13 weeks. Serum samples collected at 4, 7, and 13 weeks, and 8 weeks after
 			!end of treatment. NEED DATA. 
 
-		constant OdoseC = 25	!oral dose concentration(mg/kg)
+		constant OdoseC = 25	!oral dose concentration(mg/kg BW)
 		constant OGtime = 0.01	!length of oral gavage (hrs)
 		
 		!IV Dosing
