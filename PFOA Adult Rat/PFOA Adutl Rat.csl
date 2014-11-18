@@ -1,4 +1,4 @@
-PROGRAM PBPK Model for PFOA in Adult Male Rats. Version date: November 17, 2014. 
+PROGRAM PBPK Model for PFOA in Adult Male Rats. Version date: November 18, 2014. 
 
 ! Created by R. Worley based on previous model by A. Locissano
 ! Model includes compartments for GI Tract, Liver, Rest of Body(Tis), Kidney Blood, Proximal Tubule Cells, Filtrate, and Plasma.
@@ -11,6 +11,7 @@ CONSTANT tstart = 0.0
 
 	! Physiological Parameters
 		CONSTANT BW = 0.3	!bodyweight (kg)
+		CONSTANT MKC = 0.0084	!fraction mass of kidney (percent of BW); Brown 1997
 
 		! Cardiac Output and Bloodflow (as fraction of cardiac output)
 		CONSTANT QCC = 14.0 !cardiac output in L/h/kg^0.75; Brown 1997		 
@@ -21,22 +22,24 @@ CONSTANT tstart = 0.0
 		! Tissue Volumes 
 		CONSTANT VplasC = 0.0312 !fraction vol. of plasma (L/kg BW); Davies 1993
 		CONSTANT VLC = 0.035 !fraction vol. of liver (L/kg BW); Brown 1997
-		CONSTANT VKC = 0.0084 !fraction vol. of kidney (L/ kg BW); Brown 1997
-		CONSTANT VfilC = 8.4e-4	!fraction vol. of filtrate (L/ kg BW)
-
-		CONSTANT MKC = 0.0084	!fraction mass of kidney (percent of BW); Brown 1997
-
+		CONSTANT VKC = 0.0084 !fraction vol. of kidney (L/kg BW); Brown 1997
+		CONSTANT VfilC = 8.4e-4	!fraction vol. of filtrate (L/kg BW)
+		CONSTANT VPTCC = 1.35e-4 !vol. of proximal tubule cells (L/g kidney) (60 million PTC cells/gram kidney, 1 PTC = 2250 um3)
+	
 	! Chemical Specific Parameters
+		CONSTANT MW = 414.07	!PFOA molecular mass (g/mol)
 		!Free Fraction of Chemical in Plasma
 		CONSTANT Free = 0.006 !free fraction in plasma (male); from Locissano, 2012 (fit to plasma and urine data)
 		!CONSTANT Free = 0.045 !free fraction in plasma (female); from Locissano, 2012 (fit to plasma and urine data)
 		
 		!Kidney Transport Parameters
-		CONSTANT Vmax_basolateral = .001 !Vmax of basolateral transporter (UNITS?) NEED VALUE, FIT 
-		CONSTANT Km_basolateral = 3.77e4 !Km of basolateral transporter (ug/L) Average of OAT1 and OAT3 from Nakagawa et. al, 2007
-		CONSTANT Vmax_apical = .003 !Vmax of apical transporter (UNITS?) NEED VALUE, FIT
+		CONSTANT Vmax_baso_invitro = 393.45 !Vmax of basolateral transporter (pmol/mg protein/min); averaged in vitro value of OAT1 and OAT3 from Nakagawa, 2007
+		CONSTANT Km_baso = 3.77e4 !Km of basolateral transporter (ug/L) Average of OAT1 and OAT3 from Nakagawa et. al, 2007
+		CONSTANT Vmax_apical_invitro = 500.00 !Vmax of apical transporter, NEED VALUE
 		CONSTANT Km_apical = 1.41e5 !Km of apical transporter (ug/L), Average of OAT4 and URAT1 from Nakagawa et. al, 2007
-				
+		CONSTANT RAFbaso = 0.01356	!relative activity factor, basolateral transporters (averaged from OAT1 and OAT3 in Yamada, 2007)
+		CONSTANT RAFapi = 0.01	!relative activity factor, apical transporters (NEED VALUE)		
+		CONSTANT protein = 2.0e-6	!amount of protein in proximal tubule cells (mg protein/proximal tubule cell)
 
 		constant GFRC = 62.1	!glomerular filtration rate (L/hr/kg kidney) (male); Corley, 2005
 		!constant GFRC = 41.04	!glomerular filtration rate (L/hr/kg kidney) (female); Corley, 2005
@@ -114,9 +117,13 @@ CONSTANT tstart = 0.0
 		VR = (0.84*BW) - VPlas - VKb - VPTC - Vfil - VL - VK	!volume of remaining tissue (L); NOT SURE WHERE 0.84 COMES FROM
 		VBal = (0.84*BW) - (VR + VL + VKb + VPTC + VFil + VPlas + VK)	!Balance check of tissue volumes; should equal zero 
 		
-		VPTCC = 6.0e7*2.25e-12 !vol. of proximal tubule cells (liters per gram kidney) (60 million PTC cells/gram kidney, 1 PTC = 2250 um3)
+		!Kidney Parameters
 		MK = MKC*BW*1000	!mass of the kidney (g)
-		VPTC = MK*VPTCC	!volume of proximal tubule cells (L)		
+		PTC = MK*6e7	!number of PTC (60 million PTC/gram kidney)
+		VPTC = MK*VPTCC	!volume of proximal tubule cells (L)	
+		MPTC = VPTC*1000 !mass of the proximal tubule cells (g) (assuming density 1 kg/L)	
+		Vmax_baso = Vmax_baso_invitro*RAFbaso*PTC*protein*(BW**0.75)*(MW/10e6) !Vmax of basolateral transporters (ug/min)
+		Vmax_apical = Vmax_apical_invitro*RAFapi*PTC*protein*(BW**0.75)*(MW/10e6) !Vmax of basolateral transporters (ug/min)
 
 		kbile = kbilec*BW**(-0.25)	!biliary elimination; liver to feces storage (/h)
 		kurine = kurinec*BW**(-0.25)	! urinary elimination, from filtrate (/h)
@@ -145,13 +152,13 @@ CONSTANT tstart = 0.0
 
 		!Kidney 
 			!Kidney Blood (Kb)
-			RKb = QK*(CA-CVK)*Free - CA*GFR*Free - kdif*CKb + kdif*CPTC - ((Vmax_basolateral*CKb)/(Km_basolateral + CKb)) + kefflux*CPTC !rate of change in kidney blood (ug/h).
+			RKb = QK*(CA-CVK)*Free - CA*GFR*Free - kdif*CKb + kdif*CPTC - ((Vmax_baso*CKb)/(Km_baso + CKb)) + kefflux*CPTC !rate of change in kidney blood (ug/h).
 			AKb = integ(RKb, 0.0) !amount in kidney blood (ug)
 			CKb = AKb/VKb	!concentration in kidney blodd (ug/L) 
 			CVK = CKb/PK	!concentration in venous blood leaving kidney (ug/L)
 
 			!Proximal Tubule Cells (PTC)
-			RPTC =  kdif*CKb - kdif*CPTC + ((Vmax_basolateral*CKb)/(Km_basolateral + CKb)) + (Vmax_apical*Cfil)/(Km_apical + Cfil) - kefflux*CPTC !rate of change in PTC(ug/h)
+			RPTC =  kdif*CKb - kdif*CPTC + ((Vmax_baso*CKb)/(Km_baso + CKb)) + (Vmax_apical*Cfil)/(Km_apical + Cfil) - kefflux*CPTC !rate of change in PTC(ug/h)
 			APTC = integ(RPTC, 0.0)	!amount in proximal tubule cells (ug)
 			CPTC = APTC/VPTC	!concentration in PTC (ug/L)
 
