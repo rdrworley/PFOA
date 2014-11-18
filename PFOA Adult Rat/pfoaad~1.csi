@@ -35,7 +35,7 @@ constant free = 0.006
 
 constant vmax_baso_invitro = 393.45 
 constant km_baso = 3.77e4 
-constant vmax_apical_invitro = 500.00 
+constant vmax_apical_invitro = 18861.8 
 constant km_apical = 1.41e5 
 constant rafbaso = 0.01356 
 constant rafapi = 0.01 
