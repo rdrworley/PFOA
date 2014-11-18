@@ -33,9 +33,9 @@ constant free = 0.006
 
 
 constant vmax_basolateral = .001 
-constant km_basolateral = .001 
+constant km_basolateral = 3.77e4 
 constant vmax_apical = .003 
-constant km_apical = .003 
+constant km_apical = 1.41e5 
 
 
 constant gfrc = 62.1 
