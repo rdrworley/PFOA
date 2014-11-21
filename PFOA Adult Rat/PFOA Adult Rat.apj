@@ -1,6 +1,7 @@
 <project>
   <csl name="PFOA Adutl Rat.csl" location="." />
   <mscript name="PFOA Adult Rat Test.m" location="." />
+  <mscript name="Kemper Oral Dosing.m" location="." />
   <exe name="PFOA Adutl Rat.dll" location="." />
   <resultsfolder name="" location="." />
 </project>

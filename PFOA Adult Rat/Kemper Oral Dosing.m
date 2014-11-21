@@ -13,15 +13,11 @@ prepare @clear @all
 %kidney parameters
 !! s keffluxc = 0.1
 
-%dosing parameters
-
-
-
 !! st/nc
 
 %Experiment 1: 1 mg/kg administered via single oral dose. Whole blood and tisuses collected at sacrifice (672 hours - male, 168 hours - female)
 !! s BW = 0.233	%MALE
-!! s BW = 0.175	%FEMALE
+%!! s BW = 0.175	%FEMALE
 !! s OdoseC = 1
 !! s IVdoseC = 0
 

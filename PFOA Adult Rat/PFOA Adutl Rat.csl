@@ -50,9 +50,9 @@ CONSTANT tstart = 0.0
 		constant PR = 0.11 !rest of body:blood
 		
 		!parameters for binding in liver (10/5/2014 - all set to zero per Locissano, 2012. Will need to reevaluate.)
-		constant Kb = 1 !binding affinity constant (ug/L)
-		constant Bmax = 1 !max. association rate constant (ug/h)
-		constant koff= 1 !dissociation rate constant (/h)
+		constant Kb = 1 !binding affinity constant (ug/L); from Locissano et. al, 2012, value for PFOS
+		constant Bmax = 1 !max. association rate constant (ug/h); from Locissano et. al, 2012, value for PFOS
+		constant koff= 1 !dissociation rate constant (/h); from Locissano et. al, 2012, value for PFOS
  
 		!rate constants (1/h)
 		constant kdif = 0.001	!diffusion rate from proximal tubule cells (UNITS?)
