@@ -1,4 +1,4 @@
-PROGRAM PBPK Model for PFOA in Adult Male Rats. Version date: November 18, 2014. 
+PROGRAM PBPK Model for PFOA in Adult Male Rats. Version date: November 20, 2014. 
 
 ! Created by R. Worley based on previous model by A. Locissano
 ! Model includes compartments for GI Tract, Liver, Rest of Body(Tis), Kidney Blood, Proximal Tubule Cells, Filtrate, and Plasma.
@@ -38,7 +38,7 @@ CONSTANT tstart = 0.0
 		CONSTANT Vmax_apical_invitro = 18861.8 !Vmax of apical transporter (pmol/mg protein/min); averaged in vitro value of OAT4 and URAT1 from Nakagawa, 2007
 		CONSTANT Km_apical = 1.41e5 !Km of apical transporter (ug/L), Average of OAT4 and URAT1 from Nakagawa et. al, 2007
 		CONSTANT RAFbaso = 0.01356	!relative activity factor, basolateral transporters (averaged from OAT1 and OAT3 in Yamada, 2007)
-		CONSTANT RAFapi = 0.01	!relative activity factor, apical transporters (NEED VALUE)		
+		CONSTANT RAFapi = 0.01356	!relative activity factor, apical transporters (NEED VALUE - current value is copied from RAF for baso)		
 		CONSTANT protein = 2.0e-6	!amount of protein in proximal tubule cells (mg protein/proximal tubule cell)
 
 		constant GFRC = 62.1	!glomerular filtration rate (L/hr/kg kidney) (male); Corley, 2005

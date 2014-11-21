@@ -38,7 +38,7 @@ constant km_baso = 3.77e4
 constant vmax_apical_invitro = 18861.8 
 constant km_apical = 1.41e5 
 constant rafbaso = 0.01356 
-constant rafapi = 0.01 
+constant rafapi = 0.01356 
 constant protein = 2.0e-6 
 
 constant gfrc = 62.1 
