@@ -64,13 +64,6 @@ five_female_blood = [0.0	0
 plot(_year, _ca, five_male_blood(:,1), five_male_blood(:,2),'+')		%MALE
 %plot(_year, _ca, five_female_blood(:,1), five_female_blood(:,2),'+')		%FEMALE
 
-%Experiment 7: 5 mg/kg administered via single oral dose. Whole blood collected from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 
-%and at 24-hour intervals through 192 hours. Whole blood collected from females at pre-dose, and at 0.25, 0.5, 1, 2, 4, 8, 16, 24, 36, 48, 72, and 96 hours 
-%post dose.
-
-% Experiment 8: 25 mg/kg administered via single oral dose. Whole blood collected from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 
-%and at 24-hour intervals through 192 hours. Whole blood collected from females at pre-dose, and at 0.25, 0.5, 1, 2, 4, 8, 16, 24, 36, 48, 72, and 96 hours 
-%post dose.
 
 %Experiment 10: 1 mg/kg administered via single oral dose. Whole blood and tissues collected from males at Tmax (10.5 hours) and Tmax/2 (171 hours). Whole 
 %blood and tissues collected from females at Tmax (1.25 hours) and Tmax/2 (4 hours).  
