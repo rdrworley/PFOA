@@ -152,7 +152,7 @@ CONSTANT tstart = 0.0
 
 		!Kidney 
 			!Kidney Blood (Kb)
-			RKb = QK*(CA-CVK)*Free - CA*GFR*Free - kdif*CKb + kdif*CPTC - ((Vmax_baso*CKb)/(Km_baso + CKb)) + kefflux*CPTC !rate of change in kidney blood (ug/h).
+			RKb = QK*(CA-CVK)*Free - CA*GFR*Free - kdif*CKb + kdif*CPTC - ((Vmax_baso*CKb)/(Km_baso + CKb))  !rate of change in kidney blood (ug/h).
 			AKb = integ(RKb, 0.0) !amount in kidney blood (ug)
 			CKb = AKb/VKb	!concentration in kidney blodd (ug/L) 
 			CVK = CKb/PK	!concentration in venous blood leaving kidney (ug/L)
@@ -194,7 +194,7 @@ CONSTANT tstart = 0.0
 		Afeces = integ(Rfeces, 0.0)	!amount in the feces compartment (ug)
 		
 		!Plasma compartment
-		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR 	!rate of change in the plasma (ug/h)
+		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + kefflux*CPTC	!rate of change in the plasma (ug/h)
 		Aplas = integ(RPlas, 0.0)
 		CA = APlas/VPlas
 		

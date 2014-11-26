@@ -66,5 +66,5 @@ six_female_blood = [0.0	0
 48.0	0.036
 96.0	0.075]
 
-plot(_year, _ca, six_male_blood(:,1), six_male_blood(:,2),'+')		%MALE
-%plot(_year, _ca, six_female_blood(:,1), six_female_blood(:,2),'+')		%FEMALE
+plot(_t, _ca, six_male_blood(:,1), six_male_blood(:,2),'+')		%MALE
+%plot(_t, _ca, six_female_blood(:,1), six_female_blood(:,2),'+')		%FEMALE

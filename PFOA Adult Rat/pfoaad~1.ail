@@ -8103,12 +8103,6 @@
 <Identifier>vmax_baso</Identifier></LValue>
 <ArithMultiplication><ArithMultiplication><ArithMultiplication><ArithMultiplication><ArithMultiplication><Identifier>vmax_baso_invitro</Identifier><Identifier>rafbaso</Identifier></ArithMultiplication><Identifier>ptc</Identifier></ArithMultiplication><Identifier>protein</Identifier></ArithMultiplication><ArithExponentiation><Identifier>bw</Identifier><RealLiteral>0.75</RealLiteral></ArithExponentiation></ArithMultiplication><ArithDivision><Identifier>mw</Identifier><RealLiteral>10e6</RealLiteral></ArithDivision></ArithMultiplication></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="130">
-<Assignment>
-<LValue>
-<Identifier>kefflux</Identifier></LValue>
-<ArithMultiplication><Identifier>keffluxc</Identifier><ArithExponentiation><Identifier>bw</Identifier><RealLiteral>0.75</RealLiteral></ArithExponentiation></ArithMultiplication></Assignment>
-</Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="162">
 <Assignment>
 <LValue>
@@ -8131,7 +8125,7 @@
 <Assignment>
 <LValue>
 <Identifier>rkb</Identifier></LValue>
-<ArithAddition><ArithSubtraction><ArithAddition><ArithSubtraction><ArithSubtraction><ArithMultiplication><ArithMultiplication><Identifier>qk</Identifier><ArithSubtraction><Identifier>ca</Identifier><Identifier>cvk</Identifier></ArithSubtraction></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication><ArithMultiplication><ArithMultiplication><Identifier>ca</Identifier><Identifier>gfr</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication></ArithSubtraction><ArithMultiplication><Identifier>kdif</Identifier><Identifier>ckb</Identifier></ArithMultiplication></ArithSubtraction><ArithMultiplication><Identifier>kdif</Identifier><Identifier>cptc</Identifier></ArithMultiplication></ArithAddition><ArithDivision><ArithMultiplication><Identifier>vmax_baso</Identifier><Identifier>ckb</Identifier></ArithMultiplication><ArithAddition><Identifier>km_baso</Identifier><Identifier>ckb</Identifier></ArithAddition></ArithDivision></ArithSubtraction><ArithMultiplication><Identifier>kefflux</Identifier><Identifier>cptc</Identifier></ArithMultiplication></ArithAddition></Assignment>
+<ArithSubtraction><ArithAddition><ArithSubtraction><ArithSubtraction><ArithMultiplication><ArithMultiplication><Identifier>qk</Identifier><ArithSubtraction><Identifier>ca</Identifier><Identifier>cvk</Identifier></ArithSubtraction></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication><ArithMultiplication><ArithMultiplication><Identifier>ca</Identifier><Identifier>gfr</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication></ArithSubtraction><ArithMultiplication><Identifier>kdif</Identifier><Identifier>ckb</Identifier></ArithMultiplication></ArithSubtraction><ArithMultiplication><Identifier>kdif</Identifier><Identifier>cptc</Identifier></ArithMultiplication></ArithAddition><ArithDivision><ArithMultiplication><Identifier>vmax_baso</Identifier><Identifier>ckb</Identifier></ArithMultiplication><ArithAddition><Identifier>km_baso</Identifier><Identifier>ckb</Identifier></ArithAddition></ArithDivision></ArithSubtraction></Assignment>
 </Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="161">
 <Assignment>
@@ -8144,6 +8138,12 @@
 <LValue>
 <Identifier>vmax_apical</Identifier></LValue>
 <ArithMultiplication><ArithMultiplication><ArithMultiplication><ArithMultiplication><ArithMultiplication><Identifier>vmax_apical_invitro</Identifier><Identifier>rafapi</Identifier></ArithMultiplication><Identifier>ptc</Identifier></ArithMultiplication><Identifier>protein</Identifier></ArithMultiplication><ArithExponentiation><Identifier>bw</Identifier><RealLiteral>0.75</RealLiteral></ArithExponentiation></ArithMultiplication><ArithDivision><Identifier>mw</Identifier><RealLiteral>10e6</RealLiteral></ArithDivision></ArithMultiplication></Assignment>
+</Statement>
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="130">
+<Assignment>
+<LValue>
+<Identifier>kefflux</Identifier></LValue>
+<ArithMultiplication><Identifier>keffluxc</Identifier><ArithExponentiation><Identifier>bw</Identifier><RealLiteral>0.75</RealLiteral></ArithExponentiation></ArithMultiplication></Assignment>
 </Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="175">
 <Assignment>
@@ -8263,7 +8263,7 @@
 <Assignment>
 <LValue>
 <Identifier>rplas</Identifier></LValue>
-<ArithAddition><ArithSubtraction><ArithAddition><ArithAddition><ArithMultiplication><ArithMultiplication><Identifier>qr</Identifier><Identifier>cvr</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication><ArithMultiplication><ArithMultiplication><Identifier>qk</Identifier><Identifier>cvk</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication></ArithAddition><ArithMultiplication><ArithMultiplication><Identifier>ql</Identifier><Identifier>cvl</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication></ArithAddition><ArithMultiplication><ArithMultiplication><Identifier>qc</Identifier><Identifier>ca</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication></ArithSubtraction><Identifier>ivr</Identifier></ArithAddition></Assignment>
+<ArithAddition><ArithAddition><ArithSubtraction><ArithAddition><ArithAddition><ArithMultiplication><ArithMultiplication><Identifier>qr</Identifier><Identifier>cvr</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication><ArithMultiplication><ArithMultiplication><Identifier>qk</Identifier><Identifier>cvk</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication></ArithAddition><ArithMultiplication><ArithMultiplication><Identifier>ql</Identifier><Identifier>cvl</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication></ArithAddition><ArithMultiplication><ArithMultiplication><Identifier>qc</Identifier><Identifier>ca</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication></ArithSubtraction><Identifier>ivr</Identifier></ArithAddition><ArithMultiplication><Identifier>kefflux</Identifier><Identifier>cptc</Identifier></ArithMultiplication></ArithAddition></Assignment>
 </Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="208">
 <Assignment>

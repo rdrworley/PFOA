@@ -1272,9 +1272,6 @@ zzsim.ptc = (zzsim.mk * 6e7);
 zzsim.vmax_baso = (((((zzsim.vmax_baso_invitro * zzsim.rafbaso) * zzsim.ptc) * zzsim.protein) * ( pow ( zzsim.bw , 0.75 ) )) * (zzsim.mw / 10e6));
 
 
-zzsim.kefflux = (zzsim.keffluxc * ( pow ( zzsim.bw , 0.75 ) ));
-
-
 zzsim.ckb = (zzsim.akb / zzsim.vkb);
 
 
@@ -1284,13 +1281,16 @@ zzsim.cvk = (zzsim.ckb / zzsim.pk);
 zzsim.cptc = (zzsim.aptc / zzsim.vptc);
 
 
-zzsim.rkb = (((((((zzsim.qk * (zzsim.ca - zzsim.cvk)) * zzsim.free) - ((zzsim.ca * zzsim.gfr) * zzsim.free)) - (zzsim.kdif * zzsim.ckb)) + (zzsim.kdif * zzsim.cptc)) - ((zzsim.vmax_baso * zzsim.ckb) / (zzsim.km_baso + zzsim.ckb))) + (zzsim.kefflux * zzsim.cptc));
+zzsim.rkb = ((((((zzsim.qk * (zzsim.ca - zzsim.cvk)) * zzsim.free) - ((zzsim.ca * zzsim.gfr) * zzsim.free)) - (zzsim.kdif * zzsim.ckb)) + (zzsim.kdif * zzsim.cptc)) - ((zzsim.vmax_baso * zzsim.ckb) / (zzsim.km_baso + zzsim.ckb)));
 
 
 zzsim.z99993 = zzsim.rkb;
 
 
 zzsim.vmax_apical = (((((zzsim.vmax_apical_invitro * zzsim.rafapi) * zzsim.ptc) * zzsim.protein) * ( pow ( zzsim.bw , 0.75 ) )) * (zzsim.mw / 10e6));
+
+
+zzsim.kefflux = (zzsim.keffluxc * ( pow ( zzsim.bw , 0.75 ) ));
 
 
 zzsim.cfil = (zzsim.afil / zzsim.vfil);
@@ -1350,7 +1350,7 @@ zzsim.rfeces = ((zzsim.kunabs * zzsim.agi) + (zzsim.kbile * zzsim.al));
 zzsim.z99979 = zzsim.rfeces;
 
 
-zzsim.rplas = ((((((zzsim.qr * zzsim.cvr) * zzsim.free) + ((zzsim.qk * zzsim.cvk) * zzsim.free)) + ((zzsim.ql * zzsim.cvl) * zzsim.free)) - ((zzsim.qc * zzsim.ca) * zzsim.free)) + zzsim.ivr);
+zzsim.rplas = (((((((zzsim.qr * zzsim.cvr) * zzsim.free) + ((zzsim.qk * zzsim.cvk) * zzsim.free)) + ((zzsim.ql * zzsim.cvl) * zzsim.free)) - ((zzsim.qc * zzsim.ca) * zzsim.free)) + zzsim.ivr) + (zzsim.kefflux * zzsim.cptc));
 
 
 zzsim.z99977 = zzsim.rplas;

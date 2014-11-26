@@ -1,4 +1,4 @@
-This .m file runs the .csl file and overlays data from the Kemper, 2003 oral gavage Experiment 7.
+%This .m file runs the .csl file and overlays data from the Kemper, 2003 oral gavage Experiment 7.
 
 output @clear
 prepare @clear @all
@@ -65,6 +65,6 @@ seven_female_blood = [0.0	0
 48.0	0.020
 72.0	0.012]
 
-plot(_year, _ca, seven_male_blood(:,1), seven_male_blood(:,2),'+')		%MALE
-%plot(_year, _ca, seven_female_blood(:,1), seven_female_blood(:,2),'+')		%FEMALE
+plot(_t, _ca, seven_male_blood(:,1), seven_male_blood(:,2),'+')		%MALE
+%plot(_t, _ca, seven_female_blood(:,1), seven_female_blood(:,2),'+')		%FEMALE
 
