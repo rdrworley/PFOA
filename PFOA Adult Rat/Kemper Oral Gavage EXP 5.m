@@ -2,6 +2,7 @@
 
 output @clear
 prepare @clear @all
+WESTIG=0;WEDITG=0;CJVITG=0;
 
 %liver binding parameters (Values from Loccisano PFOS model, Bmax is female values)
 !! s Bmax = 0.02
@@ -9,22 +10,22 @@ prepare @clear @all
 !! s koff = 0.03
 
 %kidney parameters
-!! s keffluxc = 0.1
-
-!! st/nc
+!! s keffluxc = 1
 
 %Experiment 5: 0.1 mg/kg administered via single oral dose. Whole blood collected from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 
 %and at 24-hour intervals through 192 hours. Whole blood collected from females at pre-dose, and at 0.25, 0.5, 1, 2, 4, 8, 16, 24, 36, 48, 72, and 96 hours 
 %post dose.
 
-!! s TSTOP = 550	% MALE
-!! s BW = 0.216	%MALE
+!! s TSTOP = 550	!MALE
+!! s BW = 0.216	!MALE
 
-%!! s TSTOP = 100	%FEMALE
-%!! s BW = 0.176	%FEMALE
+%!! s TSTOP = 100	!FEMALE
+%!! s BW = 0.176	!FEMALE
 
-!! s OdoseC = 0.1	%mg/kg BW
+!! s OdoseC = 0.1	!mg/kg BW
 !! s IVdoseC = 0
+
+!! st/nc
 
 five_male_blood = [0	0
 0.25	0.282

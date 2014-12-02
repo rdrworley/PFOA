@@ -56,7 +56,7 @@ CONSTANT tstart = 0.0
  
 		!rate constants (1/h)
 		constant kdif = 0.001	!diffusion rate from proximal tubule cells (UNITS?)
-		constant kabs = 31.3 !rate of absorption of chemical from GI into liver (/hr); from Locissano, 2012 (fit to plasma concentration data)
+		constant kabs = 0.1 !rate of absorption of chemical from GI into liver (/hr); fFIT TO DATA
 		constant kunabs = 0.0001 !rate of unabsorbed dose (male) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		!constant kunabs = 0.037 !rate of unabsorbed dose (female) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		
@@ -158,7 +158,7 @@ CONSTANT tstart = 0.0
 			CVK = CKb/PK	!concentration in venous blood leaving kidney (ug/L)
 
 			!Proximal Tubule Cells (PTC)
-			RPTC =  kdif*CKb - kdif*CPTC + ((Vmax_baso*CKb)/(Km_baso + CKb)) + (Vmax_apical*Cfil)/(Km_apical + Cfil) - kefflux*CPTC !rate of change in PTC(ug/h)
+			RPTC =  kdif*CKb - kdif*CPTC + ((Vmax_baso*CKb)/(Km_baso + CKb)) + (Vmax_apical*Cfil)/(Km_apical + Cfil) - kefflux*APTC !rate of change in PTC(ug/h)
 			APTC = integ(RPTC, 0.0)	!amount in proximal tubule cells (ug)
 			CPTC = APTC/VPTC	!concentration in PTC (ug/L)
 
@@ -176,7 +176,7 @@ CONSTANT tstart = 0.0
 		AGI = integ(RGI, 0.0)	!amount in GI tract (ug)
 		
 		!Liver
-		RL = QL*(CA-CVL)*Free + kabs*AGI - kbile*AL - ((Bmax*CL)/(Kb + CL)) + koff*Abound	!rate of change in the liver (ug/h)
+		RL = QL*(CA-CVL)*Free - kbile*AL - ((Bmax*CL)/(Kb + CL)) + koff*Abound	!rate of change in the liver (ug/h)
 		AL = integ(RL, 0.0) !amount in liver (ug)
 		CL = AL/VL	!concentration in the liver (ug/L)
 		CVL = CL/PL	!concentration in the venous blood leaving the liver (ug/L)
@@ -194,12 +194,12 @@ CONSTANT tstart = 0.0
 		Afeces = integ(Rfeces, 0.0)	!amount in the feces compartment (ug)
 		
 		!Plasma compartment
-		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + kefflux*CPTC	!rate of change in the plasma (ug/h)
+		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + kefflux*APTC + kabs*AGI !rate of change in the plasma (ug/h)
 		Aplas = integ(RPlas, 0.0)
 		CA = APlas/VPlas
 		
 		!Mass Balance Check
-		Atissue = APlas + AR + AKb + AFil + ALtotal + AGI !+ APTC 	!sum of mass in all compartments (ug)
+		Atissue = APlas + AR + AKb + AFil + ALtotal + AGI + APTC 	!sum of mass in all compartments (ug)
 		Aloss = Aurine + Afeces 	!sum of mass lost through urinary and fecal excretion (ug)
 		Atotal = Atissue + Aloss 	!total mass; should equal total dose
 

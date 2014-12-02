@@ -56,7 +56,7 @@ constant koff = 1
 
 
 constant kdif = 0.001 
-constant kabs = 31.3 
+constant kabs = 0.1 
 constant kunabs = 0.0001 
 
 
@@ -184,7 +184,7 @@ cvk = ckb / pk
 
 
 # line 161 
-rptc = kdif * ckb - kdif * cptc + ( ( vmax_baso * ckb ) / ( km_baso + ckb ) ) + ( vmax_apical * cfil ) / ( km_apical + cfil ) - kefflux * cptc 
+rptc = kdif * ckb - kdif * cptc + ( ( vmax_baso * ckb ) / ( km_baso + ckb ) ) + ( vmax_apical * cfil ) / ( km_apical + cfil ) - kefflux * aptc 
 # line 168 
 z99991 = rptc 
 # line 168 
@@ -223,53 +223,46 @@ z99984 = 0.0
 integral agi = z99985 , z99984 
 
 
-# line 179 
-rl = ql * ( ca - cvl ) * free + kabs * agi - kbile * al - ( ( bmax * cl ) / ( kb + cl ) ) + koff * abound 
-# line 188 
+rl = ql * ( ca - cvl ) * free - kbile * al 
+# line 187 
 z99983 = rl 
-# line 188 
+# line 187 
 z99982 = 0.0 
-# line 188 
+# line 187 
 integral al = z99983 , z99982 
 cl = al / vl 
 cvl = cl / pl 
 
 
-# line 185 
-rbound = ( ( bmax * cl ) / ( kb + cl ) ) - koff * abound 
-# line 195 
-z99981 = rbound 
-# line 195 
-z99980 = 0.0 
-# line 195 
-integral abound = z99981 , z99980 
 
 
-altotal = al + abound 
-cltotal = altotal / vl 
+
+
+
+
 
 
 rfeces = kunabs * agi + kbile * al 
-# line 203 
-z99979 = rfeces 
-# line 203 
-z99978 = 0.0 
-# line 203 
-integral afeces = z99979 , z99978 
+# line 201 
+z99981 = rfeces 
+# line 201 
+z99980 = 0.0 
+# line 201 
+integral afeces = z99981 , z99980 
 
 
 # line 197 
-rplas = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr + kefflux * cptc 
-# line 208 
-z99977 = rplas 
-# line 208 
-z99976 = 0.0 
-# line 208 
-integral aplas = z99977 , z99976 
+rplas = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr + kefflux * aptc + kabs * agi 
+# line 206 
+z99979 = rplas 
+# line 206 
+z99978 = 0.0 
+# line 206 
+integral aplas = z99979 , z99978 
 ca = aplas / vplas 
 
 
-atissue = aplas + ar + akb + afil + altotal + agi 
+atissue = aplas + ar + akb + afil + al + agi + aptc 
 aloss = aurine + afeces 
 atotal = atissue + aloss 
 
@@ -283,11 +276,11 @@ end
 
 
 constant tstop = 24.0 
-# line 226 
+# line 224 
 if ( t .ge. tstop ) then 
-# line 226 
+# line 224 
 call zztrmt ( 'checked on communication interval: REACHED TSTOP' ) 
-# line 226 
+# line 224 
 endif 
 
 end 
