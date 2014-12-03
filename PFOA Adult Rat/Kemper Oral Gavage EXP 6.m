@@ -4,9 +4,9 @@ output @clear
 prepare @clear @all
 
 %liver binding parameters
-!! s Bmax = 1
-!! s Kb = 1
-!! s koff = 1
+!! s Bmax = 0.02
+!! s Kb = 0.0036
+!! s koff = 0.03
 
 %kidney parameters
 !! s keffluxc = 0.1

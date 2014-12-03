@@ -1,4 +1,4 @@
-PROGRAM PBPK Model for PFOA in Adult Male Rats. Version date: November 20, 2014. 
+PROGRAM PBPK Model for PFOA in Adult Male Rats. Version date: December 3, 2014. 
 
 ! Created by R. Worley based on previous model by A. Locissano
 ! Model includes compartments for GI Tract, Liver, Rest of Body(Tis), Kidney Blood, Proximal Tubule Cells, Filtrate, and Plasma.
@@ -56,7 +56,7 @@ CONSTANT tstart = 0.0
  
 		!rate constants (1/h)
 		constant kdif = 0.001	!diffusion rate from proximal tubule cells (UNITS?)
-		constant kabs = 0.1 !rate of absorption of chemical from GI into liver (/hr); fFIT TO DATA
+		constant kabs = 0.1 !rate of absorption of chemical from GI into liver (/hr); FIT TO DATA
 		constant kunabs = 0.0001 !rate of unabsorbed dose (male) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		!constant kunabs = 0.037 !rate of unabsorbed dose (female) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		
@@ -69,7 +69,7 @@ CONSTANT tstart = 0.0
 	!Simulation (dosing) Parameters
 	!Simulation parameters designed to replicate IV exposure data (male only) from Kudo et.al, 2007 and IV and oral exposure data (male and female) from Kemper et.al,2003.  
 		!Oral Gavage Dosing
-		!Kemper - Male and female rats administered a single oral gavage dose of 1, 5, or 25 mg/kg PFOA. Plasma collected (daily?) for 22 days in males, 5 days in females. Urine and feces
+		!Kemper - Male and female rats administered a single oral gavage dose of 0.1, 1, 5, or 25 mg/kg PFOA. Plasma collected (daily?) for 22 days in males, 5 days in females. Urine and feces
 			!collected for 28 days in males, 7 days in females. NEED DATA.
 		!Perkins - Male rats administered APFO at 0,1,10,30, or 100 ppm in diet for 13 weeks. Serum samples collected at 4, 7, and 13 weeks, and 8 weeks after
 			!end of treatment. NEED DATA. 
