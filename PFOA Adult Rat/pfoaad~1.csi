@@ -34,9 +34,9 @@ constant free = 0.006
 
 
 constant vmax_baso_invitro = 393.45 
-constant km_baso = 3.77e4 
+constant km_baso = 37.7 
 constant vmax_apical_invitro = 18861.8 
-constant km_apical = 1.41e5 
+constant km_apical = 141 
 constant rafbaso = 0.01356 
 constant rafapi = 0.01356 
 constant protein = 2.0e-6 
@@ -56,7 +56,7 @@ constant koff = 1
 
 
 constant kdif = 0.001 
-constant kabs = 0.1 
+constant kabs = 0.02 
 constant kunabs = 0.0001 
 
 
@@ -125,10 +125,11 @@ ptc = mk * 6e7
 vptc = mk * vptcc 
 mptc = vptc * 1000 
 # line 125 
-vmax_baso = vmax_baso_invitro * rafbaso * ptc * protein * ( bw ** 0.75 ) * ( mw / 10e6 ) 
+vmax_basoc = ( vmax_baso_invitro * rafbaso * ptc * protein * 60 * ( mw / 10e12 ) * 1000 ) 
 # line 126 
-vmax_apical = vmax_apical_invitro * rafapi * ptc * protein * ( bw ** 0.75 ) * ( mw / 10e6 ) 
-
+vmax_apicalc = ( vmax_apical_invitro * rafapi * ptc * protein * 60 * ( mw / 10e12 ) * 1000 ) 
+vmax_baso = vmax_basoc * bw ** 0.75 
+vmax_apical = vmax_apicalc * bw ** 0.75 
 kbile = kbilec * bw ** ( - 0.25 ) 
 kurine = kurinec * bw ** ( - 0.25 ) 
 kefflux = keffluxc * bw ** ( 0.75 ) 
@@ -137,11 +138,11 @@ kefflux = keffluxc * bw ** ( 0.75 )
 
 ivdose = ivdosec * bw 
 ivr = ivon * ivdose / ivtime 
-# line 140 
+# line 141 
 z99999 = ivr 
-# line 140 
+# line 141 
 z99998 = 0.0 
-# line 140 
+# line 141 
 integral aiv = z99999 , z99998 
 
 ivon = rsw ( t .ge. ivtime , 0. , 1. ) 
@@ -149,99 +150,99 @@ ivon = rsw ( t .ge. ivtime , 0. , 1. )
 
 odose = odosec * bw 
 ogr = ogon * odose / ogtime 
-# line 147 
+# line 148 
 z99997 = ogr 
-# line 147 
+# line 148 
 z99996 = 0.0 
-# line 147 
+# line 148 
 integral aog = z99997 , z99996 
 ogon = rsw ( t .ge. ogtime , 0. , 1. ) 
 
 
 
 rr = qr * ( ca - cvr ) * free 
-# line 153 
+# line 154 
 z99995 = rr 
-# line 153 
+# line 154 
 z99994 = 0.0 
-# line 153 
+# line 154 
 integral ar = z99995 , z99994 
 cr = ar / vr 
 cvr = cr / pr 
 
 
 
-# line 155 
+# line 156 
 rkb = qk * ( ca - cvk ) * free - ca * gfr * free - kdif * ckb + kdif * cptc - ( ( vmax_baso * ckb ) / ( km_baso + ckb ) ) 
-# line 161 
+# line 162 
 z99993 = rkb 
-# line 161 
+# line 162 
 z99992 = 0.0 
-# line 161 
+# line 162 
 integral akb = z99993 , z99992 
 ckb = akb / vkb 
 cvk = ckb / pk 
 
 
-# line 161 
+# line 162 
 rptc = kdif * ckb - kdif * cptc + ( ( vmax_baso * ckb ) / ( km_baso + ckb ) ) + ( vmax_apical * cfil ) / ( km_apical + cfil ) - kefflux * aptc 
-# line 168 
+# line 169 
 z99991 = rptc 
-# line 168 
+# line 169 
 z99990 = 0.0 
-# line 168 
+# line 169 
 integral aptc = z99991 , z99990 
 cptc = aptc / vptc 
 
 
-# line 166 
+# line 167 
 rfil = ca * gfr * free - ( ( vmax_apical * cfil ) / ( km_apical + cfil ) ) - afil * kurine 
-# line 174 
+# line 175 
 z99989 = rfil 
-# line 174 
+# line 175 
 z99988 = 0.0 
-# line 174 
+# line 175 
 integral afil = z99989 , z99988 
 cfil = afil / vfil 
 
 
 rurine = kurine * afil 
-# line 179 
+# line 180 
 z99987 = rurine 
-# line 179 
+# line 180 
 z99986 = 0.0 
-# line 179 
+# line 180 
 integral aurine = z99987 , z99986 
 
 
 rgi = - kabs * agi + ogr - kunabs * agi 
-# line 183 
+# line 184 
 z99985 = rgi 
-# line 183 
+# line 184 
 z99984 = 0.0 
-# line 183 
+# line 184 
 integral agi = z99985 , z99984 
 
 
-# line 179 
+# line 180 
 rl = ql * ( ca - cvl ) * free - kbile * al - ( ( bmax * cl ) / ( kb + cl ) ) + koff * abound 
-# line 188 
+# line 189 
 z99983 = rl 
-# line 188 
+# line 189 
 z99982 = 0.0 
-# line 188 
+# line 189 
 integral al = z99983 , z99982 
 cl = al / vl 
 cvl = cl / pl 
 
 
-# line 185 
+# line 186 
 rbound = ( ( bmax * cl ) / ( kb + cl ) ) - koff * abound 
-# line 195 
+# line 196 
 z99981 = rbound 
-# line 195 
+# line 196 
 z99980 = 0.0 
-# line 195 
+# line 196 
 integral abound = z99981 , z99980 
 
 
@@ -250,21 +251,21 @@ cltotal = altotal / vl
 
 
 rfeces = kunabs * agi + kbile * al 
-# line 203 
+# line 204 
 z99979 = rfeces 
-# line 203 
+# line 204 
 z99978 = 0.0 
-# line 203 
+# line 204 
 integral afeces = z99979 , z99978 
 
 
-# line 197 
+# line 198 
 rplas = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr + kefflux * aptc + kabs * agi 
-# line 208 
+# line 209 
 z99977 = rplas 
-# line 208 
+# line 209 
 z99976 = 0.0 
-# line 208 
+# line 209 
 integral aplas = z99977 , z99976 
 ca = aplas / vplas 
 
@@ -283,11 +284,11 @@ end
 
 
 constant tstop = 24.0 
-# line 226 
+# line 227 
 if ( t .ge. tstop ) then 
-# line 226 
+# line 227 
 call zztrmt ( 'checked on communication interval: REACHED TSTOP' ) 
-# line 226 
+# line 227 
 endif 
 
 end 
