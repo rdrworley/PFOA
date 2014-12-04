@@ -3006,7 +3006,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>0.02</csl_sym_initializer>
+<csl_sym_initializer>0.015</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -8191,7 +8191,7 @@
 <Assignment>
 <LValue>
 <Identifier>vmax_basoc</Identifier></LValue>
-<ArithMultiplication><ArithMultiplication><ArithMultiplication><ArithMultiplication><ArithMultiplication><ArithMultiplication><Identifier>vmax_baso_invitro</Identifier><Identifier>rafbaso</Identifier></ArithMultiplication><Identifier>ptc</Identifier></ArithMultiplication><Identifier>protein</Identifier></ArithMultiplication><IntegerLiteral>60</IntegerLiteral></ArithMultiplication><ArithDivision><Identifier>mw</Identifier><RealLiteral>10e12</RealLiteral></ArithDivision></ArithMultiplication><IntegerLiteral>1000</IntegerLiteral></ArithMultiplication></Assignment>
+<ArithMultiplication><ArithMultiplication><ArithMultiplication><ArithMultiplication><ArithMultiplication><ArithMultiplication><Identifier>vmax_baso_invitro</Identifier><Identifier>rafbaso</Identifier></ArithMultiplication><Identifier>ptc</Identifier></ArithMultiplication><Identifier>protein</Identifier></ArithMultiplication><IntegerLiteral>60</IntegerLiteral></ArithMultiplication><ArithDivision><Identifier>mw</Identifier><RealLiteral>1e12</RealLiteral></ArithDivision></ArithMultiplication><IntegerLiteral>1000</IntegerLiteral></ArithMultiplication></Assignment>
 </Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="127">
 <Assignment>
@@ -8233,7 +8233,7 @@
 <Assignment>
 <LValue>
 <Identifier>vmax_apicalc</Identifier></LValue>
-<ArithMultiplication><ArithMultiplication><ArithMultiplication><ArithMultiplication><ArithMultiplication><ArithMultiplication><Identifier>vmax_apical_invitro</Identifier><Identifier>rafapi</Identifier></ArithMultiplication><Identifier>ptc</Identifier></ArithMultiplication><Identifier>protein</Identifier></ArithMultiplication><IntegerLiteral>60</IntegerLiteral></ArithMultiplication><ArithDivision><Identifier>mw</Identifier><RealLiteral>10e12</RealLiteral></ArithDivision></ArithMultiplication><IntegerLiteral>1000</IntegerLiteral></ArithMultiplication></Assignment>
+<ArithMultiplication><ArithMultiplication><ArithMultiplication><ArithMultiplication><ArithMultiplication><ArithMultiplication><Identifier>vmax_apical_invitro</Identifier><Identifier>rafapi</Identifier></ArithMultiplication><Identifier>ptc</Identifier></ArithMultiplication><Identifier>protein</Identifier></ArithMultiplication><IntegerLiteral>60</IntegerLiteral></ArithMultiplication><ArithDivision><Identifier>mw</Identifier><RealLiteral>1e12</RealLiteral></ArithDivision></ArithMultiplication><IntegerLiteral>1000</IntegerLiteral></ArithMultiplication></Assignment>
 </Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="128">
 <Assignment>

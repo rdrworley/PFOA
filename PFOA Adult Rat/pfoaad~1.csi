@@ -56,7 +56,7 @@ constant koff = 1
 
 
 constant kdif = 0.001 
-constant kabs = 0.02 
+constant kabs = 0.015 
 constant kunabs = 0.0001 
 
 
@@ -125,9 +125,9 @@ ptc = mk * 6e7
 vptc = mk * vptcc 
 mptc = vptc * 1000 
 # line 125 
-vmax_basoc = ( vmax_baso_invitro * rafbaso * ptc * protein * 60 * ( mw / 10e12 ) * 1000 ) 
+vmax_basoc = ( vmax_baso_invitro * rafbaso * ptc * protein * 60 * ( mw / 1e12 ) * 1000 ) 
 # line 126 
-vmax_apicalc = ( vmax_apical_invitro * rafapi * ptc * protein * 60 * ( mw / 10e12 ) * 1000 ) 
+vmax_apicalc = ( vmax_apical_invitro * rafapi * ptc * protein * 60 * ( mw / 1e12 ) * 1000 ) 
 vmax_baso = vmax_basoc * bw ** 0.75 
 vmax_apical = vmax_apicalc * bw ** 0.75 
 kbile = kbilec * bw ** ( - 0.25 ) 

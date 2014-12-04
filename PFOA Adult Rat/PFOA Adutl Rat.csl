@@ -1,4 +1,4 @@
-PROGRAM PBPK Model for PFOA in Adult Male Rats. Version date: December 3, 2014. 
+PROGRAM PBPK Model for PFOA in Adult Male Rats. Version date: December 4, 2014. 
 
 ! Created by R. Worley based on previous model by A. Locissano
 ! Model includes compartments for GI Tract, Liver, Rest of Body(Tis), Kidney Blood, Proximal Tubule Cells, Filtrate, and Plasma.
@@ -50,13 +50,13 @@ CONSTANT tstart = 0.0
 		constant PR = 0.11 !rest of body:blood
 		
 		!parameters for binding in liver (10/5/2014 - all set to zero per Locissano, 2012. Will need to reevaluate.)
-		constant Kb = 1 !binding affinity constant (ug/mL); from Locissano et. al, 2012, value for PFOS
-		constant Bmax = 1 !max. association rate constant (ug/h); from Locissano et. al, 2012, value for PFOS
-		constant koff= 1 !dissociation rate constant (/h); from Locissano et. al, 2012, value for PFOS
+		constant Kb = 1 !binding affinity constant (ug/mL); 
+		constant Bmax = 1 !max. association rate constant (ug/h); 
+		constant koff= 1 !dissociation rate constant (/h); 
  
 		!rate constants (1/h)
 		constant kdif = 0.001	!diffusion rate from proximal tubule cells (UNITS?)
-		constant kabs = 0.02 !rate of absorption of chemical from GI(/hr); fit to time-to-peak
+		constant kabs = 0.015 !rate of absorption of chemical from GI(/hr); fit to time-to-peak
 		constant kunabs = 0.0001 !rate of unabsorbed dose (male) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		!constant kunabs = 0.037 !rate of unabsorbed dose (female) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		
@@ -122,8 +122,8 @@ CONSTANT tstart = 0.0
 		PTC = MK*6e7	!number of PTC (60 million PTC/gram kidney)
 		VPTC = MK*VPTCC	!volume of proximal tubule cells (L)	
 		MPTC = VPTC*1000 !mass of the proximal tubule cells (g) (assuming density 1 kg/L)	
-		Vmax_basoC = (Vmax_baso_invitro*RAFbaso*PTC*protein*60*(MW/10e12)*1000)!Vmax of basolateral transporters (mg/h/kg BW ^0.75)
-		Vmax_apicalC = (Vmax_apical_invitro*RAFapi*PTC*protein*60*(MW/10e12)*1000) !Vmax of basolateral transporters (mg/h/kg BW ^0.75)
+		Vmax_basoC = (Vmax_baso_invitro*RAFbaso*PTC*protein*60*(MW/1e12)*1000)!Vmax of basolateral transporters (mg/h/kg BW ^0.75)
+		Vmax_apicalC = (Vmax_apical_invitro*RAFapi*PTC*protein*60*(MW/1e12)*1000) !Vmax of basolateral transporters (mg/h/kg BW ^0.75)
 		Vmax_baso = Vmax_basoC*BW**0.75	!(mg/h)
 		VMax_apical = Vmax_apicalC*BW**0.75	!(mg/h)
 		kbile = kbilec*BW**(-0.25)	!biliary elimination; liver to feces storage (/h)

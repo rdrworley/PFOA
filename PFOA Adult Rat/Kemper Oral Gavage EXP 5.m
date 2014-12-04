@@ -5,12 +5,17 @@ prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
 %liver binding parameters (Values from Loccisano PFOS model, Bmax is female values)
-!! s Bmax = 0.02
-!! s Kb = 0.0036
-!! s koff = 0.03
+!! s Bmax = 0
+!! s koff = 0
 
 %kidney parameters
-!! s keffluxc = 0.001
+!! s RAFapi = 1
+!! s keffluxc = 1
+!! s Vmax_apical_invitro = 18861.8
+%!! s Vmax_apical_invitro = 30000
+!! s protein = 4.0e-6
+!! s Km_apical = 14100
+
 
 %Experiment 5: 0.1 mg/kg administered via single oral dose. Whole blood collected from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 
 %and at 24-hour intervals through 192 hours. Whole blood collected from females at pre-dose, and at 0.25, 0.5, 1, 2, 4, 8, 16, 24, 36, 48, 72, and 96 hours 
