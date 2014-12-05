@@ -9,12 +9,10 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s koff = 0
 
 %kidney parameters
-!! s RAFapi = 1
-!! s keffluxc = 1
-!! s Vmax_apical_invitro = 18861.8
-%!! s Vmax_apical_invitro = 30000
-!! s protein = 4.0e-6
-!! s Km_apical = 14100
+!! s RAFapi = 0.0135600
+!! s keffluxc = 0.1
+!! s Vmax_apical = 0.778916 
+!! s Km_apical = 141
 
 
 %Experiment 5: 0.1 mg/kg administered via single oral dose. Whole blood collected from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 

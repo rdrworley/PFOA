@@ -195,7 +195,7 @@ CONSTANT tstart = 0.0
 		Afeces = integ(Rfeces, 0.0)	!amount in the feces compartment (mg)
 		
 		!Plasma compartment
-		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + kefflux*APTC + kabs*AGI !rate of change in the plasma (mg/h)
+		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + kabs*AGI + kefflux*APTC !rate of change in the plasma (mg/h)
 		Aplas = integ(RPlas, 0.0)	!amount in the plasma (mg)
 		CA = APlas/VPlas		!concentration in plasma (mg)
 		
