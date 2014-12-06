@@ -153,7 +153,7 @@ CONSTANT tstart = 0.0
 
 		!Kidney 
 			!Kidney Blood (Kb)
-			RKb = QK*(CA-CVK)*Free - CA*GFR*Free - kdif*CKb + kdif*CPTC - ((Vmax_baso*CKb)/(Km_baso + CKb))  !rate of change in kidney blood (mg/h).
+			RKb = QK*(CA-CVK)*Free - CA*GFR*Free - kdif*CKb + kdif*CPTC - ((Vmax_baso*CKb)/(Km_baso + CKb))   !rate of change in kidney blood (mg/h).
 			AKb = integ(RKb, 0.0) !amount in kidney blood (mg)
 			CKb = AKb/VKb	!concentration in kidney blodd (mg/L) 
 			CVK = CKb/PK	!concentration in venous blood leaving kidney (mg/L)

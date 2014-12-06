@@ -10,7 +10,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 %kidney parameters
 !! s RAFapi = 0.0135600
-!! s keffluxc = 0.1
+!! s keffluxc = 2
 !! s Vmax_apical = 0.778916 
 !! s Km_apical = 141
 

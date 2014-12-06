@@ -173,7 +173,7 @@ cvr = cr / pr
 
 
 # line 156 
-rkb = qk * ( ca - cvk ) * free - ca * gfr * free - kdif * ckb + kdif * cptc - ( ( vmax_baso * ckb ) / ( km_baso + ckb ) ) + kefflux * aptc 
+rkb = qk * ( ca - cvk ) * free - ca * gfr * free - kdif * ckb + kdif * cptc - ( ( vmax_baso * ckb ) / ( km_baso + ckb ) ) 
 # line 162 
 z99993 = rkb 
 # line 162 
@@ -260,7 +260,7 @@ integral afeces = z99979 , z99978
 
 
 # line 198 
-rplas = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr + kabs * agi 
+rplas = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr + kabs * agi + kefflux * aptc 
 # line 209 
 z99977 = rplas 
 # line 209 

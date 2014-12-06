@@ -16,8 +16,8 @@ double t;
 double aiv;
 double aog;
 double ar;
-double aptc;
 double akb;
+double aptc;
 double afil;
 double aurine;
 double agi;
@@ -28,8 +28,8 @@ double aplas;
 double z99999;
 double z99997;
 double z99995;
-double z99991;
 double z99993;
+double z99991;
 double z99989;
 double z99987;
 double z99985;
@@ -40,8 +40,8 @@ double z99977;
 double z99998;
 double z99996;
 double z99994;
-double z99990;
 double z99992;
+double z99990;
 double z99988;
 double z99986;
 double z99984;
@@ -409,10 +409,10 @@ AcslSimSetVariableExtendedInfo(3,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,
 AcslSimSetVariableDescriptor(4,"ar",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_STATE,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(4,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(5,"aptc",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_STATE,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(5,"akb",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_STATE,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(5,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(6,"akb",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_STATE,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(6,"aptc",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_STATE,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(6,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
 AcslSimSetVariableDescriptor(7,"afil",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_STATE,0,0,0,0,0,0,-1,-1);
@@ -445,10 +445,10 @@ AcslSimSetVariableExtendedInfo(15,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,
 AcslSimSetVariableDescriptor(16,"z99995",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_DERIV,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(16,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(17,"z99991",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_DERIV,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(17,"z99993",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_DERIV,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(17,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(18,"z99993",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_DERIV,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(18,"z99991",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_DERIV,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(18,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
 AcslSimSetVariableDescriptor(19,"z99989",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_DERIV,0,0,0,0,0,0,-1,-1);
@@ -481,10 +481,10 @@ AcslSimSetVariableExtendedInfo(27,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE
 AcslSimSetVariableDescriptor(28,"z99994",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_INITCOND,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(28,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(29,"z99990",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_INITCOND,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(29,"z99992",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_INITCOND,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(29,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(30,"z99992",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_INITCOND,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(30,"z99990",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_INITCOND,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(30,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
 AcslSimSetVariableDescriptor(31,"z99988",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_INITCOND,0,0,0,0,0,0,-1,-1);
@@ -939,8 +939,8 @@ AcslSimSetVariablePointer(handle,1,&zzsim.t);
 AcslSimSetVariablePointer(handle,2,&zzsim.aiv);
 AcslSimSetVariablePointer(handle,3,&zzsim.aog);
 AcslSimSetVariablePointer(handle,4,&zzsim.ar);
-AcslSimSetVariablePointer(handle,5,&zzsim.aptc);
-AcslSimSetVariablePointer(handle,6,&zzsim.akb);
+AcslSimSetVariablePointer(handle,5,&zzsim.akb);
+AcslSimSetVariablePointer(handle,6,&zzsim.aptc);
 AcslSimSetVariablePointer(handle,7,&zzsim.afil);
 AcslSimSetVariablePointer(handle,8,&zzsim.aurine);
 AcslSimSetVariablePointer(handle,9,&zzsim.agi);
@@ -951,8 +951,8 @@ AcslSimSetVariablePointer(handle,13,&zzsim.aplas);
 AcslSimSetVariablePointer(handle,14,&zzsim.z99999);
 AcslSimSetVariablePointer(handle,15,&zzsim.z99997);
 AcslSimSetVariablePointer(handle,16,&zzsim.z99995);
-AcslSimSetVariablePointer(handle,17,&zzsim.z99991);
-AcslSimSetVariablePointer(handle,18,&zzsim.z99993);
+AcslSimSetVariablePointer(handle,17,&zzsim.z99993);
+AcslSimSetVariablePointer(handle,18,&zzsim.z99991);
 AcslSimSetVariablePointer(handle,19,&zzsim.z99989);
 AcslSimSetVariablePointer(handle,20,&zzsim.z99987);
 AcslSimSetVariablePointer(handle,21,&zzsim.z99985);
@@ -963,8 +963,8 @@ AcslSimSetVariablePointer(handle,25,&zzsim.z99977);
 AcslSimSetVariablePointer(handle,26,&zzsim.z99998);
 AcslSimSetVariablePointer(handle,27,&zzsim.z99996);
 AcslSimSetVariablePointer(handle,28,&zzsim.z99994);
-AcslSimSetVariablePointer(handle,29,&zzsim.z99990);
-AcslSimSetVariablePointer(handle,30,&zzsim.z99992);
+AcslSimSetVariablePointer(handle,29,&zzsim.z99992);
+AcslSimSetVariablePointer(handle,30,&zzsim.z99990);
 AcslSimSetVariablePointer(handle,31,&zzsim.z99988);
 AcslSimSetVariablePointer(handle,32,&zzsim.z99986);
 AcslSimSetVariablePointer(handle,33,&zzsim.z99984);
@@ -1275,6 +1275,9 @@ zzsim.rr = ((zzsim.qr * (zzsim.ca - zzsim.cvr)) * zzsim.free);
 zzsim.z99995 = zzsim.rr;
 
 
+zzsim.gfr = (zzsim.gfrc * (zzsim.mk / 1000));
+
+
 zzsim.ptc = (zzsim.mk * 6e7);
 
 
@@ -1282,6 +1285,21 @@ zzsim.vmax_basoc = ((((((zzsim.vmax_baso_invitro * zzsim.rafbaso) * zzsim.ptc) *
 
 
 zzsim.vmax_baso = (zzsim.vmax_basoc * ( pow ( zzsim.bw , 0.75 ) ));
+
+
+zzsim.ckb = (zzsim.akb / zzsim.vkb);
+
+
+zzsim.cvk = (zzsim.ckb / zzsim.pk);
+
+
+zzsim.cptc = (zzsim.aptc / zzsim.vptc);
+
+
+zzsim.rkb = ((((((zzsim.qk * (zzsim.ca - zzsim.cvk)) * zzsim.free) - ((zzsim.ca * zzsim.gfr) * zzsim.free)) - (zzsim.kdif * zzsim.ckb)) + (zzsim.kdif * zzsim.cptc)) - ((zzsim.vmax_baso * zzsim.ckb) / (zzsim.km_baso + zzsim.ckb)));
+
+
+zzsim.z99993 = zzsim.rkb;
 
 
 zzsim.vmax_apicalc = ((((((zzsim.vmax_apical_invitro * zzsim.rafapi) * zzsim.ptc) * zzsim.protein) * 60) * (zzsim.mw / 1e12)) * 1000);
@@ -1293,12 +1311,6 @@ zzsim.vmax_apical = (zzsim.vmax_apicalc * ( pow ( zzsim.bw , 0.75 ) ));
 zzsim.kefflux = (zzsim.keffluxc * ( pow ( zzsim.bw , 0.75 ) ));
 
 
-zzsim.ckb = (zzsim.akb / zzsim.vkb);
-
-
-zzsim.cptc = (zzsim.aptc / zzsim.vptc);
-
-
 zzsim.cfil = (zzsim.afil / zzsim.vfil);
 
 
@@ -1306,18 +1318,6 @@ zzsim.rptc = (((((zzsim.kdif * zzsim.ckb) - (zzsim.kdif * zzsim.cptc)) + ((zzsim
 
 
 zzsim.z99991 = zzsim.rptc;
-
-
-zzsim.gfr = (zzsim.gfrc * (zzsim.mk / 1000));
-
-
-zzsim.cvk = (zzsim.ckb / zzsim.pk);
-
-
-zzsim.rkb = (((((((zzsim.qk * (zzsim.ca - zzsim.cvk)) * zzsim.free) - ((zzsim.ca * zzsim.gfr) * zzsim.free)) - (zzsim.kdif * zzsim.ckb)) + (zzsim.kdif * zzsim.cptc)) - ((zzsim.vmax_baso * zzsim.ckb) / (zzsim.km_baso + zzsim.ckb))) + (zzsim.kefflux * zzsim.aptc));
-
-
-zzsim.z99993 = zzsim.rkb;
 
 
 zzsim.kurine = (zzsim.kurinec * ( pow ( zzsim.bw , -(0.25) ) ));
@@ -1368,7 +1368,7 @@ zzsim.rfeces = ((zzsim.kunabs * zzsim.agi) + (zzsim.kbile * zzsim.al));
 zzsim.z99979 = zzsim.rfeces;
 
 
-zzsim.rplas = (((((((zzsim.qr * zzsim.cvr) * zzsim.free) + ((zzsim.qk * zzsim.cvk) * zzsim.free)) + ((zzsim.ql * zzsim.cvl) * zzsim.free)) - ((zzsim.qc * zzsim.ca) * zzsim.free)) + zzsim.ivr) + (zzsim.kabs * zzsim.agi));
+zzsim.rplas = ((((((((zzsim.qr * zzsim.cvr) * zzsim.free) + ((zzsim.qk * zzsim.cvk) * zzsim.free)) + ((zzsim.ql * zzsim.cvl) * zzsim.free)) - ((zzsim.qc * zzsim.ca) * zzsim.free)) + zzsim.ivr) + (zzsim.kabs * zzsim.agi)) + (zzsim.kefflux * zzsim.aptc));
 
 
 zzsim.z99977 = zzsim.rplas;
@@ -1383,10 +1383,10 @@ zzsim.z99996 = 0.0;
 zzsim.z99994 = 0.0;
 
 
-zzsim.z99990 = 0.0;
-
-
 zzsim.z99992 = 0.0;
+
+
+zzsim.z99990 = 0.0;
 
 
 zzsim.z99988 = 0.0;
