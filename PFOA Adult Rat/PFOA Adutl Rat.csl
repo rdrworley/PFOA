@@ -1,4 +1,4 @@
-PROGRAM PBPK Model for PFOA in Adult Male Rats. Version date: December 4, 2014. 
+PROGRAM PBPK Model for PFOA in Adult Male Rats. Version date: December 7, 2014. 
 
 ! Created by R. Worley based on previous model by A. Locissano
 ! Model includes compartments for GI Tract, Liver, Rest of Body(Tis), Kidney Blood, Proximal Tubule Cells, Filtrate, and Plasma.
@@ -153,18 +153,30 @@ CONSTANT tstart = 0.0
 
 		!Kidney 
 			!Kidney Blood (Kb)
-			RKb = QK*(CA-CVK)*Free - CA*GFR*Free - kdif*CKb + kdif*CPTC - ((Vmax_baso*CKb)/(Km_baso + CKb))   !rate of change in kidney blood (mg/h).
+			RKb = QK*(CA-CVK)*Free - CA*GFR*Free - Rdif - RA_baso   !rate of change in kidney blood (mg/h).
 			AKb = integ(RKb, 0.0) !amount in kidney blood (mg)
 			CKb = AKb/VKb	!concentration in kidney blodd (mg/L) 
-			CVK = CKb/PK	!concentration in venous blood leaving kidney (mg/L)
+			CVK = CKb !/PK	!concentration in venous blood leaving kidney (mg/L)
+
+			Rdif = Kdif*(CKb - CPTC)
+			Adif = integ(Rdif, 0.)
+
+			RA_baso = (Vmax_baso*CKb)/(Km_baso + CKb)
+			A_baso = integ(RA_baso, 0.)
 
 			!Proximal Tubule Cells (PTC)
-			RPTC =  kdif*CKb - kdif*CPTC + ((Vmax_baso*CKb)/(Km_baso + CKb)) + (Vmax_apical*Cfil)/(Km_apical + Cfil) - kefflux*APTC !rate of change in PTC(mg/h)
+			RPTC =  Rdif + RA_apical + RA_baso - RAefflux !rate of change in PTC(mg/h)
 			APTC = integ(RPTC, 0.0)	!amount in proximal tubule cells (mg)
 			CPTC = APTC/VPTC	!concentration in PTC (mg/L)
 
+			RA_apical = (Vmax_apical*Cfil)/(Km_apical + Cfil)
+			A_apical = integ(RA_apical, 0.)
+
+			RAefflux = kefflux*APTC
+			Aefflux = integ(RAefflux, 0.)
+
 			!Filtrate (Fil)
-			Rfil = CA*GFR*Free - ((Vmax_apical*Cfil)/(Km_apical + Cfil)) - Afil*kurine	!rate of change in filtrate (mg/h)
+			Rfil = CA*GFR*Free - RA_apical - Afil*kurine	!rate of change in filtrate (mg/h)
 			Afil = integ(Rfil, 0.0)	!amount in filtrate (mg)
 			Cfil = Afil/Vfil	!concentration in filtrate (mg/L)
 			
@@ -177,7 +189,7 @@ CONSTANT tstart = 0.0
 		AGI = integ(RGI, 0.0)	!amount in GI tract (mg)
 		
 		!Liver
-		RL = QL*(CA-CVL)*Free - kbile*AL - ((Bmax*CL)/(Kb + CL)) + koff*Abound	!rate of change in the liver (mg/h)
+		RL = QL*(CA-CVL)*Free - kbile*AL !- ((Bmax*CL)/(Kb + CL)) + koff*Abound	!rate of change in the liver (mg/h)
 		AL = integ(RL, 0.0) !amount in liver (mg)
 		CL = AL/VL	!concentration in the liver (mg/L)
 		CVL = CL/PL	!concentration in the venous blood leaving the liver (mg/L)
@@ -195,7 +207,7 @@ CONSTANT tstart = 0.0
 		Afeces = integ(Rfeces, 0.0)	!amount in the feces compartment (mg)
 		
 		!Plasma compartment
-		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + kabs*AGI + kefflux*APTC !rate of change in the plasma (mg/h)
+		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + kabs*AGI + RAefflux !rate of change in the plasma (mg/h)
 		Aplas = integ(RPlas, 0.0)	!amount in the plasma (mg)
 		CA = APlas/VPlas		!concentration in plasma (mg)
 		

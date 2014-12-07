@@ -172,78 +172,108 @@ cvr = cr / pr
 
 
 
-# line 156 
-rkb = qk * ( ca - cvk ) * free - ca * gfr * free - kdif * ckb + kdif * cptc - ( ( vmax_baso * ckb ) / ( km_baso + ckb ) ) 
-# line 162 
+rkb = qk * ( ca - cvk ) * free - ca * gfr * free - rdif - ra_baso 
+# line 161 
 z99993 = rkb 
-# line 162 
+# line 161 
 z99992 = 0.0 
-# line 162 
+# line 161 
 integral akb = z99993 , z99992 
 ckb = akb / vkb 
-cvk = ckb / pk 
+cvk = ckb 
+
+rdif = kdif * ( ckb - cptc ) 
+# line 166 
+z99991 = rdif 
+# line 166 
+z99990 = 0. 
+# line 166 
+integral adif = z99991 , z99990 
+
+# line 164 
+ra_baso = ( vmax_baso * ckb ) / ( km_baso + ckb ) 
+# line 170 
+z99989 = ra_baso 
+# line 170 
+z99988 = 0. 
+# line 170 
+integral a_baso = z99989 , z99988 
 
 
-# line 162 
-rptc = kdif * ckb - kdif * cptc + ( ( vmax_baso * ckb ) / ( km_baso + ckb ) ) + ( vmax_apical * cfil ) / ( km_apical + cfil ) - kefflux * aptc 
-# line 169 
-z99991 = rptc 
-# line 169 
-z99990 = 0.0 
-# line 169 
-integral aptc = z99991 , z99990 
+rptc = rdif + ra_apical + ra_baso - raefflux 
+# line 174 
+z99987 = rptc 
+# line 174 
+z99986 = 0.0 
+# line 174 
+integral aptc = z99987 , z99986 
 cptc = aptc / vptc 
 
+# line 172 
+ra_apical = ( vmax_apical * cfil ) / ( km_apical + cfil ) 
+# line 179 
+z99985 = ra_apical 
+# line 179 
+z99984 = 0. 
+# line 179 
+integral a_apical = z99985 , z99984 
 
-# line 167 
-rfil = ca * gfr * free - ( ( vmax_apical * cfil ) / ( km_apical + cfil ) ) - afil * kurine 
-# line 175 
-z99989 = rfil 
-# line 175 
-z99988 = 0.0 
-# line 175 
-integral afil = z99989 , z99988 
+raefflux = kefflux * aptc 
+# line 182 
+z99983 = raefflux 
+# line 182 
+z99982 = 0. 
+# line 182 
+integral aefflux = z99983 , z99982 
+
+
+rfil = ca * gfr * free - ra_apical - afil * kurine 
+# line 186 
+z99981 = rfil 
+# line 186 
+z99980 = 0.0 
+# line 186 
+integral afil = z99981 , z99980 
 cfil = afil / vfil 
 
 
 rurine = kurine * afil 
-# line 180 
-z99987 = rurine 
-# line 180 
-z99986 = 0.0 
-# line 180 
-integral aurine = z99987 , z99986 
+# line 191 
+z99979 = rurine 
+# line 191 
+z99978 = 0.0 
+# line 191 
+integral aurine = z99979 , z99978 
 
 
 rgi = - kabs * agi + ogr - kunabs * agi 
-# line 184 
-z99985 = rgi 
-# line 184 
-z99984 = 0.0 
-# line 184 
-integral agi = z99985 , z99984 
+# line 195 
+z99977 = rgi 
+# line 195 
+z99976 = 0.0 
+# line 195 
+integral agi = z99977 , z99976 
 
 
-# line 180 
-rl = ql * ( ca - cvl ) * free - kbile * al - ( ( bmax * cl ) / ( kb + cl ) ) + koff * abound 
-# line 189 
-z99983 = rl 
-# line 189 
-z99982 = 0.0 
-# line 189 
-integral al = z99983 , z99982 
+rl = ql * ( ca - cvl ) * free - kbile * al 
+# line 199 
+z99975 = rl 
+# line 199 
+z99974 = 0.0 
+# line 199 
+integral al = z99975 , z99974 
 cl = al / vl 
 cvl = cl / pl 
 
 
-# line 186 
+# line 198 
 rbound = ( ( bmax * cl ) / ( kb + cl ) ) - koff * abound 
-# line 196 
-z99981 = rbound 
-# line 196 
-z99980 = 0.0 
-# line 196 
-integral abound = z99981 , z99980 
+# line 206 
+z99973 = rbound 
+# line 206 
+z99972 = 0.0 
+# line 206 
+integral abound = z99973 , z99972 
 
 
 altotal = al + abound 
@@ -251,22 +281,22 @@ cltotal = altotal / vl
 
 
 rfeces = kunabs * agi + kbile * al 
-# line 204 
-z99979 = rfeces 
-# line 204 
-z99978 = 0.0 
-# line 204 
-integral afeces = z99979 , z99978 
+# line 214 
+z99971 = rfeces 
+# line 214 
+z99970 = 0.0 
+# line 214 
+integral afeces = z99971 , z99970 
 
 
-# line 198 
-rplas = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr + kabs * agi + kefflux * aptc 
-# line 209 
-z99977 = rplas 
-# line 209 
-z99976 = 0.0 
-# line 209 
-integral aplas = z99977 , z99976 
+# line 210 
+rplas = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr + kabs * agi + raefflux 
+# line 219 
+z99969 = rplas 
+# line 219 
+z99968 = 0.0 
+# line 219 
+integral aplas = z99969 , z99968 
 ca = aplas / vplas 
 
 
@@ -284,11 +314,11 @@ end
 
 
 constant tstop = 24.0 
-# line 227 
+# line 237 
 if ( t .ge. tstop ) then 
-# line 227 
+# line 237 
 call zztrmt ( 'checked on communication interval: REACHED TSTOP' ) 
-# line 227 
+# line 237 
 endif 
 
 end 
