@@ -11,12 +11,12 @@
 <numDerivativeSections>1</numDerivativeSections>
 <numDiscreteSections>0</numDiscreteSections>
 <symboltable>
-<num_symbols>193</num_symbols>
+<num_symbols>195</num_symbols>
 <num_state_symbols>16</num_state_symbols>
 <num_ode_state_symbols>16</num_ode_state_symbols>
 <num_dae_state_symbols>0</num_dae_state_symbols>
 <num_delay_state_symbols>0</num_delay_state_symbols>
-<num_algebraic_symbols>97</num_algebraic_symbols>
+<num_algebraic_symbols>99</num_algebraic_symbols>
 <symbol>
 <sym_name>t</sym_name>
 <sym_datatype>ACSL_DATATYPE_DOUBLE</sym_datatype>
@@ -3546,7 +3546,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>0.015</csl_sym_initializer>
+<csl_sym_initializer>0.3</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -3681,7 +3681,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>0.35</csl_sym_initializer>
+<csl_sym_initializer>0.008</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -6048,6 +6048,51 @@
 <csl_sym_sectionid>0</csl_sym_sectionid>
 </symbol>
 <symbol>
+<sym_name>aabs</sym_name>
+<sym_datatype>ACSL_DATATYPE_DOUBLE</sym_datatype>
+<sym_datatypename>double</sym_datatypename>
+<sym_dimensions><sym_dimension index="1">0</sym_dimension>
+<sym_dimension index="2">0</sym_dimension>
+<sym_dimension index="3">0</sym_dimension>
+<sym_dimension index="4">0</sym_dimension>
+<sym_dimension index="5">0</sym_dimension>
+<sym_dimension index="6">0</sym_dimension>
+</sym_dimensions>
+<sym_dim_str_list><sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+</sym_dim_str_list>
+<csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
+<csl_sym_initializer>5.5555E+33</csl_sym_initializer>
+<csl_sym_string_length>0</csl_sym_string_length>
+<csl_sym_isconstant>FALSE</csl_sym_isconstant>
+<csl_sym_isdae>FALSE</csl_sym_isdae>
+<csl_sym_isdeclared>FALSE</csl_sym_isdeclared>
+<csl_sym_isdelaystate>FALSE</csl_sym_isdelaystate>
+<csl_sym_isequiv>FALSE</csl_sym_isequiv>
+<csl_sym_isglobal>FALSE</csl_sym_isglobal>
+<csl_sym_isinterval>FALSE</csl_sym_isinterval>
+<csl_sym_isinput>FALSE</csl_sym_isinput>
+<csl_sym_isoutput>TRUE</csl_sym_isoutput>
+<csl_sym_istyped>FALSE</csl_sym_istyped>
+<csl_sym_isimplicitlytyped>TRUE</csl_sym_isimplicitlytyped>
+<csl_sym_deriv_sym_name></csl_sym_deriv_sym_name>
+<csl_sym_init_cond_sym_name></csl_sym_init_cond_sym_name>
+<csl_sym_merror>-1</csl_sym_merror>
+<csl_sym_xerror>-1</csl_sym_xerror>
+<csl_sym_isarray>FALSE</csl_sym_isarray>
+<csl_sym_init_array_sym_name></csl_sym_init_array_sym_name>
+<csl_sym_num_init_elements>0</csl_sym_num_init_elements>
+<csl_sym_c_array_initializer>5.5555e33</csl_sym_c_array_initializer>
+<csl_sym_f_array_initializer>1*5.5555e33</csl_sym_f_array_initializer>
+<csl_sym_isparameter>FALSE</csl_sym_isparameter>
+<csl_sym_parameter_expression></csl_sym_parameter_expression>
+<csl_sym_sectionid>0</csl_sym_sectionid>
+</symbol>
+<symbol>
 <sym_name>rl</sym_name>
 <sym_datatype>ACSL_DATATYPE_DOUBLE</sym_datatype>
 <sym_datatypename>double</sym_datatypename>
@@ -6166,6 +6211,51 @@
 <csl_sym_isglobal>FALSE</csl_sym_isglobal>
 <csl_sym_isinterval>FALSE</csl_sym_isinterval>
 <csl_sym_isinput>TRUE</csl_sym_isinput>
+<csl_sym_isoutput>TRUE</csl_sym_isoutput>
+<csl_sym_istyped>FALSE</csl_sym_istyped>
+<csl_sym_isimplicitlytyped>TRUE</csl_sym_isimplicitlytyped>
+<csl_sym_deriv_sym_name></csl_sym_deriv_sym_name>
+<csl_sym_init_cond_sym_name></csl_sym_init_cond_sym_name>
+<csl_sym_merror>-1</csl_sym_merror>
+<csl_sym_xerror>-1</csl_sym_xerror>
+<csl_sym_isarray>FALSE</csl_sym_isarray>
+<csl_sym_init_array_sym_name></csl_sym_init_array_sym_name>
+<csl_sym_num_init_elements>0</csl_sym_num_init_elements>
+<csl_sym_c_array_initializer>5.5555e33</csl_sym_c_array_initializer>
+<csl_sym_f_array_initializer>1*5.5555e33</csl_sym_f_array_initializer>
+<csl_sym_isparameter>FALSE</csl_sym_isparameter>
+<csl_sym_parameter_expression></csl_sym_parameter_expression>
+<csl_sym_sectionid>0</csl_sym_sectionid>
+</symbol>
+<symbol>
+<sym_name>abile</sym_name>
+<sym_datatype>ACSL_DATATYPE_DOUBLE</sym_datatype>
+<sym_datatypename>double</sym_datatypename>
+<sym_dimensions><sym_dimension index="1">0</sym_dimension>
+<sym_dimension index="2">0</sym_dimension>
+<sym_dimension index="3">0</sym_dimension>
+<sym_dimension index="4">0</sym_dimension>
+<sym_dimension index="5">0</sym_dimension>
+<sym_dimension index="6">0</sym_dimension>
+</sym_dimensions>
+<sym_dim_str_list><sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+</sym_dim_str_list>
+<csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
+<csl_sym_initializer>5.5555E+33</csl_sym_initializer>
+<csl_sym_string_length>0</csl_sym_string_length>
+<csl_sym_isconstant>FALSE</csl_sym_isconstant>
+<csl_sym_isdae>FALSE</csl_sym_isdae>
+<csl_sym_isdeclared>FALSE</csl_sym_isdeclared>
+<csl_sym_isdelaystate>FALSE</csl_sym_isdelaystate>
+<csl_sym_isequiv>FALSE</csl_sym_isequiv>
+<csl_sym_isglobal>FALSE</csl_sym_isglobal>
+<csl_sym_isinterval>FALSE</csl_sym_isinterval>
+<csl_sym_isinput>FALSE</csl_sym_isinput>
 <csl_sym_isoutput>TRUE</csl_sym_isoutput>
 <csl_sym_istyped>FALSE</csl_sym_istyped>
 <csl_sym_isimplicitlytyped>TRUE</csl_sym_isimplicitlytyped>
@@ -8715,11 +8805,11 @@
 </Tables>
 <Dynamic>
 <Statements>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="238">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="241">
 <Conditional>
 <Predicate><RelationalGte><Identifier>t</Identifier><Identifier>tstop</Identifier></RelationalGte></Predicate>
 <PredTrueAlternative>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="238">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="241">
 <Call><SubroutineCall><SubroutineName>zztrmt</SubroutineName><SubroutineArgument><Identifier>zzinstidx</Identifier></SubroutineArgument>
 <SubroutineArgument><StringLiteral>checked on communication interval: REACHED TSTOP</StringLiteral></SubroutineArgument></SubroutineCall>
 </Call>
@@ -8823,7 +8913,7 @@
 <Identifier>vplas</Identifier></LValue>
 <ArithMultiplication><Identifier>vplasc</Identifier><Identifier>bw</Identifier></ArithMultiplication></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="221">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="224">
 <Assignment>
 <LValue>
 <Identifier>ca</Identifier></LValue>
@@ -9081,61 +9171,61 @@
 <Identifier>kbile</Identifier></LValue>
 <ArithMultiplication><Identifier>kbilec</Identifier><ArithExponentiation><Identifier>bw</Identifier><UnaryArithMinus><RealLiteral>0.25</RealLiteral></UnaryArithMinus></ArithExponentiation></ArithMultiplication></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="201">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="202">
 <Assignment>
 <LValue>
 <Identifier>cl</Identifier></LValue>
 <ArithDivision><Identifier>al</Identifier><Identifier>vl</Identifier></ArithDivision></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="202">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="203">
 <Assignment>
 <LValue>
 <Identifier>cvl</Identifier></LValue>
 <ArithDivision><Identifier>cl</Identifier><Identifier>pl</Identifier></ArithDivision></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="192">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="200">
 <Assignment>
 <LValue>
 <Identifier>rl</Identifier></LValue>
-<ArithAddition><ArithSubtraction><ArithSubtraction><ArithMultiplication><ArithMultiplication><Identifier>ql</Identifier><ArithSubtraction><Identifier>ca</Identifier><Identifier>cvl</Identifier></ArithSubtraction></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication><ArithMultiplication><Identifier>kbile</Identifier><Identifier>al</Identifier></ArithMultiplication></ArithSubtraction><ArithDivision><ArithMultiplication><Identifier>bmax</Identifier><Identifier>cl</Identifier></ArithMultiplication><ArithAddition><Identifier>kb</Identifier><Identifier>cl</Identifier></ArithAddition></ArithDivision></ArithSubtraction><ArithMultiplication><Identifier>koff</Identifier><Identifier>abound</Identifier></ArithMultiplication></ArithAddition></Assignment>
+<ArithSubtraction><ArithMultiplication><ArithMultiplication><Identifier>ql</Identifier><ArithSubtraction><Identifier>ca</Identifier><Identifier>cvl</Identifier></ArithSubtraction></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication><ArithMultiplication><Identifier>kbile</Identifier><Identifier>al</Identifier></ArithMultiplication></ArithSubtraction></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="200">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="201">
 <Assignment>
 <LValue>
 <Identifier>z99975</Identifier></LValue>
 <Identifier>rl</Identifier></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="198">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="202">
 <Assignment>
 <LValue>
 <Identifier>rbound</Identifier></LValue>
 <ArithSubtraction><ArithDivision><ArithMultiplication><Identifier>bmax</Identifier><Identifier>cl</Identifier></ArithMultiplication><ArithAddition><Identifier>kb</Identifier><Identifier>cl</Identifier></ArithAddition></ArithDivision><ArithMultiplication><Identifier>koff</Identifier><Identifier>abound</Identifier></ArithMultiplication></ArithSubtraction></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="207">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="210">
 <Assignment>
 <LValue>
 <Identifier>z99973</Identifier></LValue>
 <Identifier>rbound</Identifier></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="214">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="217">
 <Assignment>
 <LValue>
 <Identifier>rfeces</Identifier></LValue>
 <ArithAddition><ArithMultiplication><Identifier>kunabs</Identifier><Identifier>agi</Identifier></ArithMultiplication><ArithMultiplication><Identifier>kbile</Identifier><Identifier>al</Identifier></ArithMultiplication></ArithAddition></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="215">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="218">
 <Assignment>
 <LValue>
 <Identifier>z99971</Identifier></LValue>
 <Identifier>rfeces</Identifier></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="210">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="214">
 <Assignment>
 <LValue>
 <Identifier>rplas</Identifier></LValue>
 <ArithAddition><ArithAddition><ArithAddition><ArithSubtraction><ArithAddition><ArithAddition><ArithMultiplication><ArithMultiplication><Identifier>qr</Identifier><Identifier>cvr</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication><ArithMultiplication><ArithMultiplication><Identifier>qk</Identifier><Identifier>cvk</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication></ArithAddition><ArithMultiplication><ArithMultiplication><Identifier>ql</Identifier><Identifier>cvl</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication></ArithAddition><ArithMultiplication><ArithMultiplication><Identifier>qc</Identifier><Identifier>ca</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication></ArithSubtraction><Identifier>ivr</Identifier></ArithAddition><ArithMultiplication><Identifier>kabs</Identifier><Identifier>agi</Identifier></ArithMultiplication></ArithAddition><Identifier>raefflux</Identifier></ArithAddition></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="220">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="223">
 <Assignment>
 <LValue>
 <Identifier>z99969</Identifier></LValue>
@@ -9213,25 +9303,25 @@
 <Identifier>z99976</Identifier></LValue>
 <RealLiteral>0.0</RealLiteral></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="200">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="201">
 <Assignment>
 <LValue>
 <Identifier>z99974</Identifier></LValue>
 <RealLiteral>0.0</RealLiteral></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="207">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="210">
 <Assignment>
 <LValue>
 <Identifier>z99972</Identifier></LValue>
 <RealLiteral>0.0</RealLiteral></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="215">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="218">
 <Assignment>
 <LValue>
 <Identifier>z99970</Identifier></LValue>
 <RealLiteral>0.0</RealLiteral></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="220">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="223">
 <Assignment>
 <LValue>
 <Identifier>z99968</Identifier></LValue>
@@ -9255,31 +9345,43 @@
 <Identifier>mptc</Identifier></LValue>
 <ArithMultiplication><Identifier>vptc</Identifier><IntegerLiteral>1000</IntegerLiteral></ArithMultiplication></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="210">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="197">
+<Assignment>
+<LValue>
+<Identifier>aabs</Identifier></LValue>
+<ArithMultiplication><Identifier>kabs</Identifier><Identifier>agi</Identifier></ArithMultiplication></Assignment>
+</Statement>
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="205">
+<Assignment>
+<LValue>
+<Identifier>abile</Identifier></LValue>
+<ArithMultiplication><Identifier>kbile</Identifier><Identifier>al</Identifier></ArithMultiplication></Assignment>
+</Statement>
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="213">
 <Assignment>
 <LValue>
 <Identifier>altotal</Identifier></LValue>
 <ArithAddition><Identifier>al</Identifier><Identifier>abound</Identifier></ArithAddition></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="211">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="214">
 <Assignment>
 <LValue>
 <Identifier>cltotal</Identifier></LValue>
 <ArithDivision><Identifier>altotal</Identifier><Identifier>vl</Identifier></ArithDivision></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="224">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="227">
 <Assignment>
 <LValue>
 <Identifier>atissue</Identifier></LValue>
 <ArithAddition><ArithAddition><ArithAddition><ArithAddition><ArithAddition><ArithAddition><Identifier>aplas</Identifier><Identifier>ar</Identifier></ArithAddition><Identifier>akb</Identifier></ArithAddition><Identifier>afil</Identifier></ArithAddition><Identifier>altotal</Identifier></ArithAddition><Identifier>agi</Identifier></ArithAddition><Identifier>aptc</Identifier></ArithAddition></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="225">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="228">
 <Assignment>
 <LValue>
 <Identifier>aloss</Identifier></LValue>
 <ArithAddition><Identifier>aurine</Identifier><Identifier>afeces</Identifier></ArithAddition></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="226">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="229">
 <Assignment>
 <LValue>
 <Identifier>atotal</Identifier></LValue>

@@ -10,8 +10,8 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 %kidney parameters
 !! s RAFapi = 0.0135600
-!! s keffluxc = 100
-!! s Vmax_apical_invitro = 0.438351   
+!! s keffluxc = 10
+!! s Vmax_apical_invitro = 18861.8
 !! s Km_apical = 141
 
 !! s TSTOP = 24.0
@@ -21,4 +21,4 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! st/nc
 
-!! display CA, APTC, AKb, Aefflux
+!! display AOG, Aabs, Aplas, Afeces, Aurine, AL, Abile, AGI

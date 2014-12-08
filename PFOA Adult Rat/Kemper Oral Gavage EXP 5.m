@@ -9,6 +9,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s koff = 0
 
 !! s kabs = 0.3
+!!s kbilec = 0.0075
 
 %kidney parameters
 !! s RAFapi = 0.0135600
