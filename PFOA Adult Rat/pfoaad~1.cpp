@@ -1470,7 +1470,7 @@ zzsim.cl = (zzsim.al / zzsim.vl);
 zzsim.cvl = (zzsim.cl / zzsim.pl);
 
 
-zzsim.rl = (((zzsim.ql * (zzsim.ca - zzsim.cvl)) * zzsim.free) - (zzsim.kbile * zzsim.al));
+zzsim.rl = (((((zzsim.ql * (zzsim.ca - zzsim.cvl)) * zzsim.free) - (zzsim.kbile * zzsim.al)) - ((zzsim.bmax * zzsim.cl) / (zzsim.kb + zzsim.cl))) + (zzsim.koff * zzsim.abound));
 
 
 zzsim.z99975 = zzsim.rl;

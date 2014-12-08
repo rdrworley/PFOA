@@ -8,6 +8,8 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s Bmax = 0
 !! s koff = 0
 
+!! s kabs = 0.3
+
 %kidney parameters
 !! s RAFapi = 0.0135600
 !! s keffluxc = 10

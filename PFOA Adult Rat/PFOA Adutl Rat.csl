@@ -56,7 +56,7 @@ CONSTANT tstart = 0.0
  
 		!rate constants (1/h)
 		constant kdif = 0.001	!diffusion rate from proximal tubule cells (UNITS?)
-		constant kabs = 0.015 !rate of absorption of chemical from GI(/hr); fit to time-to-peak
+		constant kabs = 0.3 !rate of absorption of chemical from GI(/hr); fit to time-to-peak
 		constant kunabs = 0.0001 !rate of unabsorbed dose (male) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		!constant kunabs = 0.037 !rate of unabsorbed dose (female) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		
@@ -189,7 +189,7 @@ CONSTANT tstart = 0.0
 		AGI = integ(RGI, 0.0)	!amount in GI tract (mg)
 		
 		!Liver
-		RL = QL*(CA-CVL)*Free - kbile*AL !- ((Bmax*CL)/(Kb + CL)) + koff*Abound	!rate of change in the liver (mg/h)
+		RL = QL*(CA-CVL)*Free - kbile*AL - ((Bmax*CL)/(Kb + CL)) + koff*Abound	!rate of change in the liver (mg/h)
 		AL = integ(RL, 0.0) !amount in liver (mg)
 		CL = AL/VL	!concentration in the liver (mg/L)
 		CVL = CL/PL	!concentration in the venous blood leaving the liver (mg/L)
