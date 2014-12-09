@@ -1,4 +1,4 @@
-PROGRAM PBPK Model for PFOA in Adult Male Rats. Version date: December 7, 2014. 
+PROGRAM PBPK Model for PFOA in Adult Male Rats. Version date: December 9, 2014. 
 
 ! Created by R. Worley based on previous model by A. Locissano
 ! Model includes compartments for GI Tract, Liver, Rest of Body(Tis), Kidney Blood, Proximal Tubule Cells, Filtrate, and Plasma.
@@ -144,6 +144,8 @@ CONSTANT tstart = 0.0
 		AOG = integ(OGR, 0.0)	!amount administered in oral gavage (mg)
 		OGon = RSW(T.GE.OGTime,0.,1.)	!RSW switch to turn on oral gavage. As written will only work with a single, non-repeating oral dose. s
 		
+		total_dose = AOG + AIV	!total administered dose (mg)
+
  	!Model Equations
 		!Rest of Body (Tis)
 		RR = QR*(CA-CVR)*Free	!rate of change in rest of body (mg/h)
@@ -209,12 +211,14 @@ CONSTANT tstart = 0.0
 		!Feces compartment
 		Rfeces = kunabs*AGI + kbile*AL !rate of change in the feces compartment (mg/h)
 		Afeces = integ(Rfeces, 0.0)	!amount in the feces compartment (mg)
-		
+
+		!percent_in_feces = Afeces/total_dose
+
 		!Plasma compartment
 		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + kabs*AGI + RAefflux !rate of change in the plasma (mg/h)
 		Aplas = integ(RPlas, 0.0)	!amount in the plasma (mg)
 		CA = APlas/VPlas		!concentration in plasma (mg)
-		
+
 		!Mass Balance Check
 		Atissue = APlas + AR + AKb + AFil + ALtotal + AGI + APTC 	!sum of mass in all compartments (mg)
 		Aloss = Aurine + Afeces 	!sum of mass lost through urinary and fecal excretion (mg)

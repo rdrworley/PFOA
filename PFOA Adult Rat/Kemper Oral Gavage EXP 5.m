@@ -8,12 +8,13 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s Bmax = 0
 !! s koff = 0
 
-!! s kabs = 0.3
-!!s kbilec = 0.0075
+!! s kabs = 0.35
+!! s kbilec = 0.009
+!! s kurinec = 17
 
 %kidney parameters
 !! s RAFapi = 0.0135600
-!! s keffluxc = 10
+!! s keffluxc = 1000
 !! s Vmax_apical = 0.778916 
 !! s Km_apical = 141
 
