@@ -4,12 +4,11 @@ output @clear
 prepare @clear @all
 
 %liver binding parameters
-!! s Bmax = 0.02
-!! s Kb = 0.0036
-!! s koff = 0.03
+!! s Bmax = 0
+!! s koff = 0
 
 %kidney parameters
-!! s keffluxc = 0.1
+!! s keffluxc = 10
 
 %Experiment 7: 5 mg/kg administered via single oral dose. Whole blood collected from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 
 %and at 24-hour intervals through 192 hours. Whole blood collected from females at pre-dose, and at 0.25, 0.5, 1, 2, 4, 8, 16, 24, 36, 48, 72, and 96 hours 

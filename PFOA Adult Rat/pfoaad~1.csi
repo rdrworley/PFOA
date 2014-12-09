@@ -56,12 +56,12 @@ constant koff = 1
 
 
 constant kdif = 0.001 
-constant kabs = 0.015 
+constant kabs = 0.3 
 constant kunabs = 0.0001 
 
 
 constant keffluxc = 0.1 
-constant kbilec = 0.35 
+constant kbilec = 0.008 
 
 constant kurinec = 0.1 
 
@@ -254,25 +254,29 @@ z99976 = 0.0
 # line 195 
 integral agi = z99977 , z99976 
 
+aabs = kabs * agi 
+
 
 rl = ql * ( ca - cvl ) * free - kbile * al 
-# line 199 
+# line 201 
 z99975 = rl 
-# line 199 
+# line 201 
 z99974 = 0.0 
-# line 199 
+# line 201 
 integral al = z99975 , z99974 
 cl = al / vl 
 cvl = cl / pl 
 
+abile = kbile * al 
 
-# line 198 
+
+# line 202 
 rbound = ( ( bmax * cl ) / ( kb + cl ) ) - koff * abound 
-# line 206 
+# line 210 
 z99973 = rbound 
-# line 206 
+# line 210 
 z99972 = 0.0 
-# line 206 
+# line 210 
 integral abound = z99973 , z99972 
 
 
@@ -281,21 +285,21 @@ cltotal = altotal / vl
 
 
 rfeces = kunabs * agi + kbile * al 
-# line 214 
+# line 218 
 z99971 = rfeces 
-# line 214 
+# line 218 
 z99970 = 0.0 
-# line 214 
+# line 218 
 integral afeces = z99971 , z99970 
 
 
-# line 210 
+# line 214 
 rplas = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr + kabs * agi + raefflux 
-# line 219 
+# line 223 
 z99969 = rplas 
-# line 219 
+# line 223 
 z99968 = 0.0 
-# line 219 
+# line 223 
 integral aplas = z99969 , z99968 
 ca = aplas / vplas 
 
@@ -314,11 +318,11 @@ end
 
 
 constant tstop = 24.0 
-# line 237 
+# line 241 
 if ( t .ge. tstop ) then 
-# line 237 
+# line 241 
 call zztrmt ( 'checked on communication interval: REACHED TSTOP' ) 
-# line 237 
+# line 241 
 endif 
 
 end 

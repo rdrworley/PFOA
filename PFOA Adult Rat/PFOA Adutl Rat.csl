@@ -56,12 +56,12 @@ CONSTANT tstart = 0.0
  
 		!rate constants (1/h)
 		constant kdif = 0.001	!diffusion rate from proximal tubule cells (UNITS?)
-		constant kabs = 0.015 !rate of absorption of chemical from GI(/hr); fit to time-to-peak
+		constant kabs = 0.3 !rate of absorption of chemical from GI(/hr); fit to time-to-peak
 		constant kunabs = 0.0001 !rate of unabsorbed dose (male) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		!constant kunabs = 0.037 !rate of unabsorbed dose (female) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		
 		CONSTANT keffluxc = 0.1	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/kg^0.75) NEED VALUE, FIT
-		constant kbilec = 0.35 !biliary elimination rate ((male); liver to feces storage (/h/kg^-0.25); from Locissano, 2012 (fit to feces and plasma data)
+		constant kbilec = 0.0075 !biliary elimination rate ((male); liver to feces storage (/h/kg^-0.25); fit to serum data
 		!constant kbilec = 0.25 !biliary elimination rate (female); liver to feces storage (/h/kg^-0.25); from Locissano, 2012 (fit to feces and plasma data)
 		constant kurinec = 0.1 !rate of urine elimination from urine storage (male) (/h/kg^-0.25); from Locissano, 2012 (fit to urine data)
 		!constant kurinec = 0.32 !rate of urine elimination from urine storage (female) (/h/kg^-0.25); from Locissano, 2012 (fit to urine data)
@@ -141,7 +141,7 @@ CONSTANT tstart = 0.0
 		!Oral Gavage Dosing
 		Odose = OdoseC*BW	!oral dose (mg)
 		OGR = OGon*Odose/OGtime	!Oral gavage rate (mg/hr)
-		AOG = integ(OGR, 0.0)	!amount administered in oral gavage (?) (mg)
+		AOG = integ(OGR, 0.0)	!amount administered in oral gavage (mg)
 		OGon = RSW(T.GE.OGTime,0.,1.)	!RSW switch to turn on oral gavage. As written will only work with a single, non-repeating oral dose. s
 		
  	!Model Equations
@@ -188,11 +188,15 @@ CONSTANT tstart = 0.0
 		RGI = -kabs*AGI + OGR - kunabs*AGI	!rate of change in the GI tract (mg/h) (accounts for loss to kidney (abs) and loss to feces (unabs), oral dose (OGR). Does not account for dietary exposure (mg/h)
 		AGI = integ(RGI, 0.0)	!amount in GI tract (mg)
 		
+		Aabs = kabs*AGI
+
 		!Liver
 		RL = QL*(CA-CVL)*Free - kbile*AL !- ((Bmax*CL)/(Kb + CL)) + koff*Abound	!rate of change in the liver (mg/h)
 		AL = integ(RL, 0.0) !amount in liver (mg)
 		CL = AL/VL	!concentration in the liver (mg/L)
 		CVL = CL/PL	!concentration in the venous blood leaving the liver (mg/L)
+		
+		Abile = kbile*AL
 
 		!Liver Binding
 		Rbound = ((Bmax*CL)/(Kb + CL)) - koff*Abound	!rate of change of bound by liver proteins (mg/h)
