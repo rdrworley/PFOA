@@ -3,18 +3,22 @@
 output @clear
 prepare @clear @all
 
-%liver binding parameters
+%liver parameters
 !! s Bmax = 0
 !! s koff = 0
+!! s kbilec = 0.0003
+!! s kabs = 0.3
+!! s kunabs = 0.004
 
 %kidney parameters
 !! s keffluxc = 10
+!! s kurinec = 3.0
 
 %Experiment 6: 1 mg/kg administered via single oral dose. Whole blood collected from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 
 %and at 24-hour intervals through 192 hours. Whole blood collected from females at pre-dose, and at 0.25, 0.5, 1, 2, 4, 8, 16, 24, 36, 48, 72, and 96 hours 
 %post dose.   
 
-!! s TSTOP = 550	!MALE
+!! s TSTOP = 700	!MALE
 !! s BW = 0.249	!MALE
 
 %!! s TSTOP = 100	!FEMALE
@@ -67,29 +71,30 @@ six_female_blood = [0.0	0
 
 %cumulative percent of dose in urine
 six_male_urine = [4	0.048
-8	0.408
-12	0.896
-24	2.114
-48	3.37
-72	2.978
-96	2.32
-120	2.101
-144	2.155
-168	1.914
-192	1.735
-216	1.626
-240	1.75
-264	1.496
-288	1.472
-312	1.086
-336	1.191
-384	2.34
-432	2.457
-480	2.377
-528	2.272
-576	2.062
-624	1.499
-672	1.619]
+8	0.456
+12	1.352
+24	3.466
+48	6.836
+72	9.814
+96	12.134
+120	14.235
+144	16.39
+168	18.304
+192	20.039
+216	21.665
+240	23.415
+264	24.911
+288	26.383
+312	27.469
+336	28.66
+384	31
+432	33.457
+480	35.834
+528	38.106
+576	40.168
+624	41.667
+672	43.286
+]
 
 %cumulative percent of dose in feces
 six_male_feces = [8	2.269
@@ -115,15 +120,12 @@ six_male_feces = [8	2.269
 576	15.298
 624	15.56
 672	15.758
-
 ]
-
-
-
-
 
 plot(_t, _ca, six_male_blood(:,1), six_male_blood(:,2),'+')		%MALE
 %plot(_t, _ca, six_female_blood(:,1), six_female_blood(:,2),'+')		%FEMALE
 
-plot(_t, _percent_in_urine, six_male_urine(:,1), six_male_urine(:,2),'+')		%MALE
-plot(_t, _percent_in_feces, six_male_feces(:,1), six_male_feces(:,2),'+')		%MALE
+plot(_t, _percentod_in_urine, six_male_urine(:,1), six_male_urine(:,2),'+')		%MALE
+plot(_t, _percentod_in_feces, six_male_feces(:,1), six_male_feces(:,2),'+')		%MALE
+
+%!! display AOG, Afeces, Aurine, Aplas, percentod_in_urine, percentod_in_feces

@@ -144,9 +144,7 @@ CONSTANT tstart = 0.0
 		AOG = integ(OGR, 0.0)	!amount administered in oral gavage (mg)
 		OGon = RSW(T.GE.OGTime,0.,1.)	!RSW switch to turn on oral gavage. As written will only work with a single, non-repeating oral dose. s
 		
-		total_dose = AOG + AIV	!total administered dose (mg)
-
- 	!Model Equations
+		!Model Equations
 		!Rest of Body (Tis)
 		RR = QR*(CA-CVR)*Free	!rate of change in rest of body (mg/h)
 		AR = integ(RR, 0.0)	!amount in rest of body (mg)
@@ -186,7 +184,7 @@ CONSTANT tstart = 0.0
 			Rurine = kurine*Afil	!rate of change in urine (mg/h)
 			Aurine = integ(Rurine, 0.0)	!amount in urine (mg)
 
-			percent_in_urine = (Aurine/Odose)*100
+			percentOD_in_urine = (Aurine/Odose)*100
 
 		!GI Tract (Absorption site of oral dose)
 		RGI = -kabs*AGI + OGR - kunabs*AGI	!rate of change in the GI tract (mg/h) (accounts for loss to kidney (abs) and loss to feces (unabs), oral dose (OGR). Does not account for dietary exposure (mg/h)
@@ -214,7 +212,7 @@ CONSTANT tstart = 0.0
 		Rfeces = kunabs*AGI + kbile*AL !rate of change in the feces compartment (mg/h)
 		Afeces = integ(Rfeces, 0.0)	!amount in the feces compartment (mg)
 
-		percent_in_feces = (Afeces/Odose)*100
+		percentOD_in_feces = (Afeces/Odose)*100
 
 		!percent_in_feces = Afeces/total_dose
 

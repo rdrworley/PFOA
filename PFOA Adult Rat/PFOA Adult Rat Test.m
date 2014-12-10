@@ -22,4 +22,4 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! st/nc
 
-!! display AOG, Afeces, Aurine, Aplas
+!! display AOG, Afeces, Aurine, Aplas, percentod_in_urine, percentod_in_feces
