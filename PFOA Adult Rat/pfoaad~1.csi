@@ -247,24 +247,26 @@ z99978 = 0.0
 # line 193 
 integral aurine = z99979 , z99978 
 
+percent_in_urine = ( aurine / odose ) * 100 
+
 
 rgi = - kabs * agi + ogr - kunabs * agi 
-# line 197 
+# line 199 
 z99977 = rgi 
-# line 197 
+# line 199 
 z99976 = 0.0 
-# line 197 
+# line 199 
 integral agi = z99977 , z99976 
 
 aabs = kabs * agi 
 
 
 rl = ql * ( ca - cvl ) * free - kbile * al 
-# line 203 
+# line 205 
 z99975 = rl 
-# line 203 
+# line 205 
 z99974 = 0.0 
-# line 203 
+# line 205 
 integral al = z99975 , z99974 
 cl = al / vl 
 cvl = cl / pl 
@@ -272,13 +274,13 @@ cvl = cl / pl
 abile = kbile * al 
 
 
-# line 204 
+# line 206 
 rbound = ( ( bmax * cl ) / ( kb + cl ) ) - koff * abound 
-# line 212 
+# line 214 
 z99973 = rbound 
-# line 212 
+# line 214 
 z99972 = 0.0 
-# line 212 
+# line 214 
 integral abound = z99973 , z99972 
 
 
@@ -287,23 +289,25 @@ cltotal = altotal / vl
 
 
 rfeces = kunabs * agi + kbile * al 
-# line 220 
+# line 222 
 z99971 = rfeces 
-# line 220 
+# line 222 
 z99970 = 0.0 
-# line 220 
+# line 222 
 integral afeces = z99971 , z99970 
 
+percent_in_feces = ( afeces / odose ) * 100 
 
 
 
-# line 218 
+
+# line 222 
 rplas = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr + kabs * agi + raefflux 
-# line 227 
+# line 231 
 z99969 = rplas 
-# line 227 
+# line 231 
 z99968 = 0.0 
-# line 227 
+# line 231 
 integral aplas = z99969 , z99968 
 ca = aplas / vplas 
 
@@ -322,11 +326,11 @@ end
 
 
 constant tstop = 24.0 
-# line 245 
+# line 249 
 if ( t .ge. tstop ) then 
-# line 245 
+# line 249 
 call zztrmt ( 'checked on communication interval: REACHED TSTOP' ) 
-# line 245 
+# line 249 
 endif 
 
 end 
