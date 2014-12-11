@@ -7,12 +7,12 @@ prepare @clear @all
 !! s Bmax = 0
 !! s koff = 0
 !! s kbilec = 0.0003
-!! s kabs = 0.3
-!! s kunabs = 0.004
+!! s kabs = 0.4
+!! s kunabs = 0.04
 
 %kidney parameters
 !! s keffluxc = 10
-!! s kurinec = 3.0
+!! s kurinec = 1.0
 
 %Experiment 7: 5 mg/kg administered via single oral dose. Whole blood collected from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 
 %and at 24-hour intervals through 192 hours. Whole blood collected from females at pre-dose, and at 0.25, 0.5, 1, 2, 4, 8, 16, 24, 36, 48, 72, and 96 hours 
