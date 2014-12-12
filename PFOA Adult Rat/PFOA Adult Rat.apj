@@ -7,8 +7,10 @@
   <mscript name="Kemper Oral Gavage EXP 8.m" location="." />
   <mscript name="Kudo IV low dose 2h.m" location="." />
   <mscript name="Kudo IV high dose 2h.m" location="." />
-  <mscript name="Kudo IV low dose 300m.m" location="." />
-  <mscript name="Kudo IV high dose 300m.m" location="." />
+  <mscript name="Kemper Oral Gavage EXP 1.m" location="." />
+  <mscript name="Kemper Oral Gavage EXP 2.m" location="." />
+  <mscript name="Kemper Oral Gavage EXP 3.m" location="." />
+  <mscript name="Kemper IV Exp 6.m" location="." />
   <exe name="PFOA Adutl Rat.dll" location="." />
   <resultsfolder name="" location="." />
 </project>

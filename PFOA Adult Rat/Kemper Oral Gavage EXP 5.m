@@ -7,10 +7,9 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 %liver binding parameters (Values from Loccisano PFOS model, Bmax is female values)
 !! s Bmax = 0
 !! s koff = 0
-
 !! s kabs = 0.35
 !! s kbilec = 0.009
-!! s kurinec = 17
+!! s kurinec = 0.17
 
 %kidney parameters
 !! s RAFapi = 0.0135600

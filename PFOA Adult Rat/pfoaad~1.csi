@@ -12,6 +12,7 @@ constant tstart = 0.0
 
 constant bw = 0.3 
 constant mkc = 0.0084 
+constant mlc = 0.034 
 
 
 constant qcc = 14.0 
@@ -74,7 +75,7 @@ constant kurinec = 0.1
 
 
 
-constant odosec = 0 
+constant odosec = 1 
 constant ogtime = 0.01 
 
 
@@ -100,7 +101,7 @@ cinterval cint = 0.01
 derivative 
 
 
-# line 103 
+# line 104 
 qc = qcc * ( bw ** 0.75 ) * ( 1 - htc ) 
 qk = ( qkc * qc ) 
 ql = ( qlc * qc ) 
@@ -116,17 +117,19 @@ vkb = vk * 0.16
 vfil = vfilc * bw 
 vl = vlc * bw 
 vr = ( 0.84 * bw ) - vplas - vkb - vptc - vfil - vl - vk 
-# line 118 
+# line 119 
 vbal = ( 0.84 * bw ) - ( vr + vl + vkb + vptc + vfil + vplas + vk ) 
+
+ml = mlc * bw * 1000 
 
 
 mk = mkc * bw * 1000 
 ptc = mk * 6e7 
 vptc = mk * vptcc 
 mptc = vptc * 1000 
-# line 125 
+# line 128 
 vmax_basoc = ( vmax_baso_invitro * rafbaso * ptc * protein * 60 * ( mw / 1e12 ) * 1000 ) 
-# line 126 
+# line 129 
 vmax_apicalc = ( vmax_apical_invitro * rafapi * ptc * protein * 60 * ( mw / 1e12 ) * 1000 ) 
 vmax_baso = vmax_basoc * bw ** 0.75 
 vmax_apical = vmax_apicalc * bw ** 0.75 
@@ -138,11 +141,11 @@ kefflux = keffluxc * bw ** ( 0.75 )
 
 ivdose = ivdosec * bw 
 ivr = ivon * ivdose / ivtime 
-# line 141 
+# line 144 
 z99999 = ivr 
-# line 141 
+# line 144 
 z99998 = 0.0 
-# line 141 
+# line 144 
 integral aiv = z99999 , z99998 
 
 ivon = rsw ( t .ge. ivtime , 0. , 1. ) 
@@ -150,22 +153,22 @@ ivon = rsw ( t .ge. ivtime , 0. , 1. )
 
 odose = odosec * bw 
 ogr = ogon * odose / ogtime 
-# line 148 
+# line 151 
 z99997 = ogr 
-# line 148 
+# line 151 
 z99996 = 0.0 
-# line 148 
+# line 151 
 integral aog = z99997 , z99996 
 ogon = rsw ( t .ge. ogtime , 0. , 1. ) 
 
 
 
 rr = qr * ( ca - cvr ) * free 
-# line 154 
+# line 157 
 z99995 = rr 
-# line 154 
+# line 157 
 z99994 = 0.0 
-# line 154 
+# line 157 
 integral ar = z99995 , z99994 
 cr = ar / vr 
 cvr = cr / pr 
@@ -173,112 +176,113 @@ cvr = cr / pr
 
 
 rkb = qk * ( ca - cvk ) * free - ca * gfr * free - rdif - ra_baso 
-# line 161 
+# line 164 
 z99993 = rkb 
-# line 161 
+# line 164 
 z99992 = 0.0 
-# line 161 
+# line 164 
 integral akb = z99993 , z99992 
 ckb = akb / vkb 
 cvk = ckb 
 
 rdif = kdif * ( ckb - cptc ) 
-# line 166 
+# line 169 
 z99991 = rdif 
-# line 166 
+# line 169 
 z99990 = 0. 
-# line 166 
+# line 169 
 integral adif = z99991 , z99990 
 
-# line 164 
+# line 167 
 ra_baso = ( vmax_baso * ckb ) / ( km_baso + ckb ) 
-# line 170 
+# line 173 
 z99989 = ra_baso 
-# line 170 
+# line 173 
 z99988 = 0. 
-# line 170 
+# line 173 
 integral a_baso = z99989 , z99988 
 
 
 rptc = rdif + ra_apical + ra_baso - raefflux 
-# line 174 
+# line 177 
 z99987 = rptc 
-# line 174 
+# line 177 
 z99986 = 0.0 
-# line 174 
+# line 177 
 integral aptc = z99987 , z99986 
 cptc = aptc / vptc 
 
-# line 172 
+# line 175 
 ra_apical = ( vmax_apical * cfil ) / ( km_apical + cfil ) 
-# line 179 
+# line 182 
 z99985 = ra_apical 
-# line 179 
+# line 182 
 z99984 = 0. 
-# line 179 
+# line 182 
 integral a_apical = z99985 , z99984 
 
 raefflux = kefflux * aptc 
-# line 182 
+# line 185 
 z99983 = raefflux 
-# line 182 
+# line 185 
 z99982 = 0. 
-# line 182 
+# line 185 
 integral aefflux = z99983 , z99982 
 
 
 rfil = ca * gfr * free - ra_apical - afil * kurine 
-# line 186 
+# line 189 
 z99981 = rfil 
-# line 186 
+# line 189 
 z99980 = 0.0 
-# line 186 
+# line 189 
 integral afil = z99981 , z99980 
 cfil = afil / vfil 
 
 
 rurine = kurine * afil 
-# line 191 
+# line 194 
 z99979 = rurine 
-# line 191 
+# line 194 
 z99978 = 0.0 
-# line 191 
+# line 194 
 integral aurine = z99979 , z99978 
 
 percentod_in_urine = ( aurine / odose ) * 100 
 
 
 rgi = - kabs * agi + ogr - kunabs * agi 
-# line 197 
+# line 200 
 z99977 = rgi 
-# line 197 
+# line 200 
 z99976 = 0.0 
-# line 197 
+# line 200 
 integral agi = z99977 , z99976 
 
 aabs = kabs * agi 
 
 
 rl = ql * ( ca - cvl ) * free - kbile * al 
-# line 203 
+# line 206 
 z99975 = rl 
-# line 203 
+# line 206 
 z99974 = 0.0 
-# line 203 
+# line 206 
 integral al = z99975 , z99974 
 cl = al / vl 
 cvl = cl / pl 
 
 abile = kbile * al 
+amount_per_gram_liver = ( al / ml ) * 1000 
 
 
-# line 204 
+# line 208 
 rbound = ( ( bmax * cl ) / ( kb + cl ) ) - koff * abound 
-# line 212 
+# line 216 
 z99973 = rbound 
-# line 212 
+# line 216 
 z99972 = 0.0 
-# line 212 
+# line 216 
 integral abound = z99973 , z99972 
 
 
@@ -287,11 +291,11 @@ cltotal = altotal / vl
 
 
 rfeces = kbile * al + kunabs * agi 
-# line 220 
+# line 224 
 z99971 = rfeces 
-# line 220 
+# line 224 
 z99970 = 0.0 
-# line 220 
+# line 224 
 integral afeces = z99971 , z99970 
 
 percentod_in_feces = ( afeces / odose ) * 100 
@@ -299,13 +303,13 @@ percentod_in_feces = ( afeces / odose ) * 100
 
 
 
-# line 220 
+# line 224 
 rplas = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr + raefflux + kabs * agi 
-# line 229 
+# line 233 
 z99969 = rplas 
-# line 229 
+# line 233 
 z99968 = 0.0 
-# line 229 
+# line 233 
 integral aplas = z99969 , z99968 
 ca = aplas / vplas 
 
@@ -324,11 +328,11 @@ end
 
 
 constant tstop = 24.0 
-# line 247 
+# line 251 
 if ( t .ge. tstop ) then 
-# line 247 
+# line 251 
 call zztrmt ( 'checked on communication interval: REACHED TSTOP' ) 
-# line 247 
+# line 251 
 endif 
 
 end 

@@ -6,13 +6,14 @@ prepare @clear @all
 %liver binding parameters
 !! s Bmax = 0
 !! s koff = 0
-!! s kbilec = 0.0008
-!! s kabs = 0.3
+!! s kbilec = 0.009
+!! s kabs = 0.35
 !! s kunabs = 0.0001
 
 %kidney parameters
 !! s keffluxc = 10
-!! s kurinec = 2.0
+!! s kurinec = 0.17
+
 %Experiment 8: 25 mg/kg administered via single oral dose. Whole blood collected from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 
 %and at 24-hour intervals through 192 hours. Whole blood collected from females at pre-dose, and at 0.25, 0.5, 1, 2, 4, 8, 16, 24, 36, 48, 72, and 96 hours 
 %post dose.
@@ -68,60 +69,4 @@ eight_female_blood = [0.0	0.019
 72.0	0.048
 96.0	0.033]
 
-%cumulative percent of dose in urine
-eight_male_urine = [4	0.251
-8	1.022
-12	2.372
-24	5.63
-48	12.433
-72	17.042
-96	21.068
-120	24.847
-144	28.085
-168	30.652
-192	32.718
-216	34.374
-240	36.23
-264	37.945
-288	39.484
-312	40.666
-336	41.79
-384	43.285
-432	44.436
-480	46.685
-528	48.638
-576	50.457
-624	51.979
-672	53.266]
-
-%cumulative percent of dose in feces
-eight_male_feces = [4	0.02
-8	0.201
-12	0.326
-24	1.993
-48	2.979
-72	3.317
-96	3.753
-120	4.275
-144	4.782
-168	5.277
-192	5.999
-216	6.677
-240	7.61
-264	7.935
-288	8.254
-312	8.713
-336	9.134
-384	9.932
-432	11.252
-480	11.443
-528	11.75
-576	12.047
-624	12.369
-672	12.629]
-
 plot(_t, _ca, eight_male_blood(:,1), eight_male_blood(:,2),'+')		%MALE
-%plot(_t, _ca, eight_female_blood(:,1), eight_female_blood(:,2),'+')		%FEMALE
-
-plot(_t, _percentod_in_urine, eight_male_urine(:,1), eight_male_urine(:,2),'+')		%MALE
-plot(_t, _percentod_in_feces, eight_male_feces(:,1), eight_male_feces(:,2),'+')		%MALE

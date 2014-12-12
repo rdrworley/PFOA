@@ -12,6 +12,7 @@ CONSTANT tstart = 0.0
 	! Physiological Parameters
 		CONSTANT BW = 0.3	!bodyweight (kg)
 		CONSTANT MKC = 0.0084	!fraction mass of kidney (percent of BW); Brown 1997
+		CONSTANT MLC = 0.034	!fraction mass of liver (percent of BW); Brown 1997
 
 		! Cardiac Output and Bloodflow (as fraction of cardiac output)
 		CONSTANT QCC = 14.0 !cardiac output in L/h/kg^0.75; Brown 1997		 
@@ -74,7 +75,7 @@ CONSTANT tstart = 0.0
 		!Perkins - Male rats administered APFO at 0,1,10,30, or 100 ppm in diet for 13 weeks. Serum samples collected at 4, 7, and 13 weeks, and 8 weeks after
 			!end of treatment. NEED DATA. 
 
-		constant OdoseC = 0	!oral dose concentration(mg/kg BW)
+		constant OdoseC = 1	!oral dose concentration(mg/kg BW)
 		constant OGtime = 0.01	!length of oral gavage (hrs)
 		
 		!IV Dosing
@@ -117,6 +118,8 @@ CONSTANT tstart = 0.0
 		VR = (0.84*BW) - VPlas - VKb - VPTC - Vfil - VL - VK	!volume of remaining tissue (L); NOT SURE WHERE 0.84 COMES FROM
 		VBal = (0.84*BW) - (VR + VL + VKb + VPTC + VFil + VPlas + VK)	!Balance check of tissue volumes; should equal zero 
 		
+		ML = MLC*BW*1000	!mass of the liver (g)
+
 		!Kidney Parameters
 		MK = MKC*BW*1000	!mass of the kidney (g)
 		PTC = MK*6e7	!number of PTC (60 million PTC/gram kidney)
@@ -199,6 +202,7 @@ CONSTANT tstart = 0.0
 		CVL = CL/PL	!concentration in the venous blood leaving the liver (mg/L)
 		
 		Abile = kbile*AL
+		amount_per_gram_liver = (AL/ML)*1000	!amount of PFOA in liver per gram liver (ug/g)
 
 		!Liver Binding
 		Rbound = ((Bmax*CL)/(Kb + CL)) - koff*Abound	!rate of change of bound by liver proteins (mg/h)

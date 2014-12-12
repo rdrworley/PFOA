@@ -26,19 +26,9 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! st/nc
 
 %Data from Kudo, 2007 Table 1
-kudo_high_serum_dist = [2.0	105.35]
+kudo_high_serum = [2.0	105.35]
 
-kudo_high_liver_dist = [2.0	87.45]	
+kudo_high_liver = [2.0	87.45]	
 
-%Data from Kudo, 2007, Fig 2 (pulled from figure using graph digitizer)
-kudo_high_serum = [5	403.448
-15	328.448
-45	284.483
-90	248.276
-120	235.345
-150	243.103
-210	235.345
-270	250.862
-300	248.276]
-
-plot(_t, _ca, kudo_high_serum_dist(:,1),kudo_high_serum_dist(:,2),'+')
+plot(_t, _ca, kudo_high_serum(:,1),kudo_high_serum(:,2),'+')
+plot(_t, _amount_per_gram_liver, kudo_low_liver(:,1),kudo_low_liver(:,2),'+')

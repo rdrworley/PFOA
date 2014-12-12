@@ -7,9 +7,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 %liver parameters
 !! s Bmax = 0
 !! s koff = 0
-!! s kbilec = 0.0003
-!! s kabs = 0.4
-!! s kunabs = 0.04
+!! s kbilec = 0.35
 
 %kidney parameters
 !! s keffluxc = 10
@@ -26,8 +24,9 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! st/nc
 
 %Data from Kudo, 2007 Table 1
-kudo_low_serum_dist = [2.0	0.254]
+kudo_low_serum = [2.0	0.254]
 
-kudo_low_liver_dist = [2.0	0.558]	
+kudo_low_liver = [2.0	0.558]	
 
-plot(_t, _ca, kudo_low_serum_dist(:,1),kudo_low_serum_dist(:,2),'+')
+plot(_t, _ca, kudo_low_serum(:,1),kudo_low_serum(:,2),'+')
+plot(_t, _amount_per_gram_liver, kudo_low_liver(:,1),kudo_low_liver(:,2),'+')
