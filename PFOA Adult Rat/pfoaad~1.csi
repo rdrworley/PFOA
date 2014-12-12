@@ -60,7 +60,7 @@ constant kabs = 0.3
 constant kunabs = 0.0001 
 
 
-constant keffluxc = 0.1 
+constant keffluxc = 10 
 constant kbilec = 0.0075 
 
 constant kurinec = 0.1 
@@ -74,7 +74,7 @@ constant kurinec = 0.1
 
 
 
-constant odosec = 25 
+constant odosec = 0 
 constant ogtime = 0.01 
 
 
@@ -83,7 +83,7 @@ constant ogtime = 0.01
 
 
 
-constant ivdosec = 0 
+constant ivdosec = 0.041 
 constant ivtime = 0.01 
 
 end 
@@ -286,7 +286,7 @@ altotal = al + abound
 cltotal = altotal / vl 
 
 
-rfeces = kunabs * agi + kbile * al 
+rfeces = kbile * al + kunabs * agi 
 # line 220 
 z99971 = rfeces 
 # line 220 
@@ -300,7 +300,7 @@ percentod_in_feces = ( afeces / odose ) * 100
 
 
 # line 220 
-rplas = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr + kabs * agi + raefflux 
+rplas = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr + raefflux + kabs * agi 
 # line 229 
 z99969 = rplas 
 # line 229 
@@ -310,7 +310,7 @@ integral aplas = z99969 , z99968
 ca = aplas / vplas 
 
 
-atissue = aplas + ar + akb + afil + altotal + agi + aptc 
+atissue = aplas + ar + akb + afil + aptc + altotal + agi 
 aloss = aurine + afeces 
 atotal = atissue + aloss 
 

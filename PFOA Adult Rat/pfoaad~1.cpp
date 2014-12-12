@@ -293,12 +293,12 @@ SimImpl zzsim =
 0.001,
 0.3,
 0.0001,
-0.1,
+10,
 0.0075,
 0.1,
-25,
-0.01,
 0,
+0.01,
+0.041,
 0.01,
 5.5555E+33,
 5.5555E+33,
@@ -1506,13 +1506,13 @@ zzsim.rbound = (((zzsim.bmax * zzsim.cl) / (zzsim.kb + zzsim.cl)) - (zzsim.koff 
 zzsim.z99973 = zzsim.rbound;
 
 
-zzsim.rfeces = ((zzsim.kunabs * zzsim.agi) + (zzsim.kbile * zzsim.al));
+zzsim.rfeces = ((zzsim.kbile * zzsim.al) + (zzsim.kunabs * zzsim.agi));
 
 
 zzsim.z99971 = zzsim.rfeces;
 
 
-zzsim.rplas = ((((((((zzsim.qr * zzsim.cvr) * zzsim.free) + ((zzsim.qk * zzsim.cvk) * zzsim.free)) + ((zzsim.ql * zzsim.cvl) * zzsim.free)) - ((zzsim.qc * zzsim.ca) * zzsim.free)) + zzsim.ivr) + (zzsim.kabs * zzsim.agi)) + zzsim.raefflux);
+zzsim.rplas = ((((((((zzsim.qr * zzsim.cvr) * zzsim.free) + ((zzsim.qk * zzsim.cvk) * zzsim.free)) + ((zzsim.ql * zzsim.cvl) * zzsim.free)) - ((zzsim.qc * zzsim.ca) * zzsim.free)) + zzsim.ivr) + zzsim.raefflux) + (zzsim.kabs * zzsim.agi));
 
 
 zzsim.z99969 = zzsim.rplas;
@@ -1593,7 +1593,7 @@ zzsim.cltotal = (zzsim.altotal / zzsim.vl);
 zzsim.percentod_in_feces = ((zzsim.afeces / zzsim.odose) * 100);
 
 
-zzsim.atissue = ((((((zzsim.aplas + zzsim.ar) + zzsim.akb) + zzsim.afil) + zzsim.altotal) + zzsim.agi) + zzsim.aptc);
+zzsim.atissue = ((((((zzsim.aplas + zzsim.ar) + zzsim.akb) + zzsim.afil) + zzsim.aptc) + zzsim.altotal) + zzsim.agi);
 
 
 zzsim.aloss = (zzsim.aurine + zzsim.afeces);

@@ -1,4 +1,4 @@
-%This .m file runs the .csl file and overlays data from the Kemper, 2003 oral gavage Experiment 5.
+	%This .m file runs the .csl file and overlays data from the Kemper, 2003 oral gavage Experiment 5.
 
 output @clear
 prepare @clear @all
@@ -14,8 +14,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 %kidney parameters
 !! s RAFapi = 0.0135600
-!! s keffluxc = 1000
-!! s Vmax_apical = 0.778916 
+!! s keffluxc = 10
 !! s Km_apical = 141
 
 

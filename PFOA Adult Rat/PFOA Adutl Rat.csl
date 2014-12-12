@@ -60,7 +60,7 @@ CONSTANT tstart = 0.0
 		constant kunabs = 0.0001 !rate of unabsorbed dose (male) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		!constant kunabs = 0.037 !rate of unabsorbed dose (female) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		
-		CONSTANT keffluxc = 0.1	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/kg^0.75) NEED VALUE, FIT
+		CONSTANT keffluxc = 10	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/kg^0.75) NEED VALUE, FIT
 		constant kbilec = 0.0075 !biliary elimination rate ((male); liver to feces storage (/h/kg^-0.25); fit to serum data
 		!constant kbilec = 0.25 !biliary elimination rate (female); liver to feces storage (/h/kg^-0.25); from Locissano, 2012 (fit to feces and plasma data)
 		constant kurinec = 0.1 !rate of urine elimination from urine storage (male) (/h/kg^-0.25); from Locissano, 2012 (fit to urine data)
@@ -74,7 +74,7 @@ CONSTANT tstart = 0.0
 		!Perkins - Male rats administered APFO at 0,1,10,30, or 100 ppm in diet for 13 weeks. Serum samples collected at 4, 7, and 13 weeks, and 8 weeks after
 			!end of treatment. NEED DATA. 
 
-		constant OdoseC = 25	!oral dose concentration(mg/kg BW)
+		constant OdoseC = 0	!oral dose concentration(mg/kg BW)
 		constant OGtime = 0.01	!length of oral gavage (hrs)
 		
 		!IV Dosing
@@ -83,7 +83,7 @@ CONSTANT tstart = 0.0
 		!Kemper - Male and female rats administered one IV dose of 1 mg/kg PFOA. Blood samples collected from males 9 times in first 24 hours, at 24 hour intervals up to 8 days, 
 			!and at 48 hour intervals up to 22 days. Blood samples collected from females 13 times over 4 days. 
 		
-		constant IVdoseC = 0	!IV dose concentration (mg/kg)
+		constant IVdoseC = 0.041	!IV dose concentration (mg/kg)
 		constant IVTime = 0.01	!length of IV infusion (hrs)
 	
 	END ! INITIAL
@@ -142,7 +142,7 @@ CONSTANT tstart = 0.0
 		Odose = OdoseC*BW	!oral dose (mg)
 		OGR = OGon*Odose/OGtime	!Oral gavage rate (mg/hr)
 		AOG = integ(OGR, 0.0)	!amount administered in oral gavage (mg)
-		OGon = RSW(T.GE.OGTime,0.,1.)	!RSW switch to turn on oral gavage. As written will only work with a single, non-repeating oral dose. s
+		OGon = RSW(T.GE.OGTime,0.,1.)	!RSW switch to turn on oral gavage. As written will only work with a single, non-repeating oral dose. 
 		
 		!Model Equations
 		!Rest of Body (Tis)
@@ -209,7 +209,7 @@ CONSTANT tstart = 0.0
 		CLtotal = ALtotal/VL	!total concentration in liver (mg/L) [to be used to compare to measured liver concentrations from rat studies]
 		
 		!Feces compartment
-		Rfeces = kunabs*AGI + kbile*AL !rate of change in the feces compartment (mg/h)
+		Rfeces = kbile*AL + kunabs*AGI !rate of change in the feces compartment (mg/h)
 		Afeces = integ(Rfeces, 0.0)	!amount in the feces compartment (mg)
 
 		percentOD_in_feces = (Afeces/Odose)*100
@@ -217,12 +217,12 @@ CONSTANT tstart = 0.0
 		!percent_in_feces = Afeces/total_dose
 
 		!Plasma compartment
-		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + kabs*AGI + RAefflux !rate of change in the plasma (mg/h)
+		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + RAefflux + kabs*AGI  !rate of change in the plasma (mg/h)
 		Aplas = integ(RPlas, 0.0)	!amount in the plasma (mg)
 		CA = APlas/VPlas		!concentration in plasma (mg)
 
 		!Mass Balance Check
-		Atissue = APlas + AR + AKb + AFil + ALtotal + AGI + APTC 	!sum of mass in all compartments (mg)
+		Atissue = APlas + AR + AKb + AFil + APTC + ALtotal + AGI 	!sum of mass in all compartments (mg)
 		Aloss = Aurine + Afeces 	!sum of mass lost through urinary and fecal excretion (mg)
 		Atotal = Atissue + Aloss 	!total mass; should equal total dose
 
