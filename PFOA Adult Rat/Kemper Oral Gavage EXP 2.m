@@ -6,13 +6,13 @@ prepare @clear @all
 %liver parameters
 !! s Bmax = 0
 !! s koff = 0
-!! s kbilec = 0.0003
-!! s kabs = 0.4
-!! s kunabs = 0.04
+!! s kbilec = 0.009
+!! s kabs = 0.35
+!! s kunabs = 0.0001
 
 %kidney parameters
 !! s keffluxc = 10
-!! s kurinec = 1.0
+!! s kurinec = 0.17
 
 %Experiment 2: 5 mg/kg administered via single oral dose. percent of dose in urine and feces reported from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 
 %and at 24-hour intervals through 192 hours.

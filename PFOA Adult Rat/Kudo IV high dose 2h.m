@@ -7,20 +7,20 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 %liver parameters
 !! s Bmax = 0
 !! s koff = 0
-!! s kbilec = 0.0003
-!! s kabs = 0.4
-!! s kunabs = 0.04
+!! s kbilec = 0.009
+!! s kabs = 0.35
+!! s kunabs = 0.0001
 
 %kidney parameters
 !! s keffluxc = 10
-!! s kurinec = 1.0 
+!! s kurinec = 0.17
 
 %Experiment: 16.56 mg/kg BW administered to male wistar rats in single bolus IV, serum and liver concentrations measured 2h post-dose serum collected at time points from 0-300 minutes.
 
 !! s TSTOP = 5.5	
 !! s BW = 0.3	!MALE (range in study was 280-200 mg)
 
-!! s OdoseC = 0.0000000001	!mg/kg BW, SHOULD BE ZERO, BUT I GET A RUNTIME ERROR WHEN SET TO ZERO. 
+!! s OdoseC = 1.0e-33	!mg/kg BW, SHOULD BE ZERO, BUT I GET A RUNTIME ERROR WHEN SET TO ZERO. 
 !! s IVdoseC = 16.56	! mg/kg BW
 
 !! st/nc
