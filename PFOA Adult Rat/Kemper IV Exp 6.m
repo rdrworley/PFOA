@@ -14,6 +14,13 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 %kidney parameters
 !! s keffluxc = 10
 !! s kurinec = 0.0017
+!! s Vmax_baso_invitro = 393.45 
+!! s Km_baso = 37.7 
+!! s Vmax_apical_invitro = 18861.8 
+!! s Km_apical = 141 
+!! s RAFbaso = 0.01356	
+!! s RAFapi = 0.01356	
+!! s protein = 2.0e-6	
 
 %Experiment: 0.041 mg/kg BW administered to male wistar rats in single bolus IV, serum and liver concentrations measured 2h post-dose serum collected at time points from 0-300 minutes.
 
@@ -21,7 +28,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s BW = 0.248	!MALE 
 
 !! s OdoseC = 1.0e-33	!mg/kg BW, SHOULD BE ZERO, BUT I GET A RUNTIME ERROR WHEN SET TO ZERO. 
-!! s IVdoseC = 0.041
+!! s IVdoseC = 1.0
 
 !! st/nc
 

@@ -31,4 +31,4 @@ kudo_high_serum = [2.0	105.35]
 kudo_high_liver = [2.0	87.45]	
 
 plot(_t, _ca, kudo_high_serum(:,1),kudo_high_serum(:,2),'+')
-plot(_t, _amount_per_gram_liver, kudo_low_liver(:,1),kudo_low_liver(:,2),'+')
+plot(_t, _amount_per_gram_liver, kudo_high_liver(:,1),kudo_high_liver(:,2),'+')
