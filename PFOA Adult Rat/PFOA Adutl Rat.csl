@@ -57,9 +57,10 @@ CONSTANT tstart = 0.0
  
 		!rate constants (1/h)
 		constant kdif = 0.001	!diffusion rate from proximal tubule cells (UNITS?)
-		constant kabs = 0.3 !rate of absorption of chemical from GI(/hr); fit to time-to-peak
+		constant kabs = 0.3 !rate of absorption of chemical from small intestine to liver (/hr); fit to time-to-peak
 		constant kunabs = 0.0001 !rate of unabsorbed dose (male) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
-		!constant kunabs = 0.037 !rate of unabsorbed dose (female) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
+		CONSTANT GEC = 0.54 !gastric emptying time (kg^0.25/h); from Yang, 2013
+		CONSTANT k0C = 1	!rate of uptake from the stomach into the liver (1/h/BW^-0.25)
 		
 		CONSTANT keffluxc = 10	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/kg^0.75) NEED VALUE, FIT
 		constant kbilec = 0.0075 !biliary elimination rate ((male); liver to feces storage (/h/kg^-0.25); fit to serum data
@@ -107,8 +108,6 @@ CONSTANT tstart = 0.0
 		QR = QC - QK - QL 	!plasma flow to rest of body (L/h)
 		QBal = QC - (QK + QL + QR) !Balance check of blood flows; should equal zero
 
-		GFR = GFRC*(MK/1000)	!glomerular filtration rate, scaled to mass of kidney(in kg)(L/h)
-
 		!Tissue Volumes
 		VPlas = VplasC*BW 	!volume of plasma (L) 
 		VK = VKC*BW 	!volume of kidney (L)
@@ -117,7 +116,6 @@ CONSTANT tstart = 0.0
 		VL = VLC*BW	!volume of liver (L)
 		VR = (0.84*BW) - VPlas - VKb - VPTC - Vfil - VL - VK	!volume of remaining tissue (L); NOT SURE WHERE 0.84 COMES FROM
 		VBal = (0.84*BW) - (VR + VL + VKb + VPTC + VFil + VPlas + VK)	!Balance check of tissue volumes; should equal zero 
-		
 		ML = MLC*BW*1000	!mass of the liver (g)
 
 		!Kidney Parameters
@@ -132,6 +130,11 @@ CONSTANT tstart = 0.0
 		kbile = kbilec*BW**(-0.25)	!biliary elimination; liver to feces storage (/h)
 		kurine = kurinec*BW**(-0.25)	! urinary elimination, from filtrate (/h)
 		kefflux = keffluxc*BW**(0.75)	!efflux clearance rate, from PTC to blood (/h)
+		GFR = GFRC*(MK/1000)	!glomerular filtration rate, scaled to mass of kidney(in kg)(L/h)
+
+		!GI Tract Parameters
+		GE = GEC/BW**0.25	!gastric emptying time (/h)
+		k0 = K0C/BW**0.25 	!rate of uptake from the stomach into the liver (/h)
 
 	 !Dosing Equations
 		!IV Dosing
@@ -161,8 +164,8 @@ CONSTANT tstart = 0.0
 			CKb = AKb/VKb	!concentration in kidney blodd (mg/L) 
 			CVK = CKb !/PK	!concentration in venous blood leaving kidney (mg/L)
 
-			Rdif = Kdif*(CKb - CPTC)
-			Adif = integ(Rdif, 0.)
+			Rdif = Kdif*(CKb - CPTC)	!rate of diffusion from into the PTC (mg/hr)
+			Adif = integ(Rdif, 0.)	!amount diffused into the PTC (mg)
 
 			RA_baso = (Vmax_baso*CKb)/(Km_baso + CKb)
 			A_baso = integ(RA_baso, 0.)
@@ -190,13 +193,24 @@ CONSTANT tstart = 0.0
 			percentOD_in_urine = (Aurine/Odose)*100
 
 		!GI Tract (Absorption site of oral dose)
-		RGI = -kabs*AGI + OGR - kunabs*AGI	!rate of change in the GI tract (mg/h) (accounts for loss to kidney (abs) and loss to feces (unabs), oral dose (OGR). Does not account for dietary exposure (mg/h)
-		AGI = integ(RGI, 0.0)	!amount in GI tract (mg)
-		
-		Aabs = kabs*AGI
+			!Stomach
+			RST= OGR - k0*AST - GE*AST	!rate of change in the stomach (mg/h)
+			AST = integ(RST, 0.)	!amount in the stomach (mg)
+
+			!Small Intestine
+			RSI = GE*AST - kabs*ASI - kunabs*ASI	!rate of change in the small intestine (mg/hr)
+			ASI = integ(RSI, 0.)	!amount in the small intestine (mg)
+
+			Rabs = kabs*ASI	!rate of absorption inthe small intestine (mg/hr)
+			Aabs = integ(Rabs, 0.)	!amount absorbed in the small intestine (mg)
+
+			!Feces compartment
+			Rfeces = kbile*AL + kunabs*ASI !rate of change in the feces compartment (mg/h)
+			Afeces = integ(Rfeces, 0.0)	!amount in the feces compartment (mg)
+			percentOD_in_feces = (Afeces/Odose)*100	!percent of the oral dose in the feces (%)
 
 		!Liver
-		RL = QL*(CA-CVL)*Free - kbile*AL !- ((Bmax*CL)/(Kb + CL)) + koff*Abound	!rate of change in the liver (mg/h)
+		RL = QL*(CA-CVL)*Free - kbile*AL + kabs*ASI + k0*AST !- ((Bmax*CL)/(Kb + CL)) + koff*Abound	!rate of change in the liver (mg/h)
 		AL = integ(RL, 0.0) !amount in liver (mg)
 		CL = AL/VL	!concentration in the liver (mg/L)
 		CVL = CL/PL	!concentration in the venous blood leaving the liver (mg/L)
@@ -212,21 +226,13 @@ CONSTANT tstart = 0.0
 		ALtotal = AL + Abound	!total amount (bound and unbound) in liver (mg)
 		CLtotal = ALtotal/VL	!total concentration in liver (mg/L) [to be used to compare to measured liver concentrations from rat studies]
 		
-		!Feces compartment
-		Rfeces = kbile*AL + kunabs*AGI !rate of change in the feces compartment (mg/h)
-		Afeces = integ(Rfeces, 0.0)	!amount in the feces compartment (mg)
-
-		percentOD_in_feces = (Afeces/Odose)*100
-
-		!percent_in_feces = Afeces/total_dose
-
 		!Plasma compartment
-		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + RAefflux + kabs*AGI  !rate of change in the plasma (mg/h)
+		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + RAefflux  !rate of change in the plasma (mg/h)
 		Aplas = integ(RPlas, 0.0)	!amount in the plasma (mg)
 		CA = APlas/VPlas		!concentration in plasma (mg)
 
 		!Mass Balance Check
-		Atissue = APlas + AR + AKb + AFil + APTC + ALtotal + AGI 	!sum of mass in all compartments (mg)
+		Atissue = APlas + AR + AKb + AFil + APTC + ALtotal + AST + ASI 	!sum of mass in all compartments (mg)
 		Aloss = Aurine + Afeces 	!sum of mass lost through urinary and fecal excretion (mg)
 		Atotal = Atissue + Aloss 	!total mass; should equal total dose
 
