@@ -2,6 +2,7 @@
 
 output @clear
 prepare @clear @all
+WESTIG=0;WEDITG=0;CJVITG=0;
 
 %liver parameters
 !! s Bmax = 0
