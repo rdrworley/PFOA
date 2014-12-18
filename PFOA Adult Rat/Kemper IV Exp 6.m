@@ -13,17 +13,22 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 %kidney parameters
 !! s keffluxc = 10
-!! s kurinec = 0.17
+!! s kurinec = 0.0017
+!! s Vmax_baso_invitro = 393.45 
+!! s Km_baso = 37.7 
+!! s Vmax_apical_invitro = 18861.8 
+!! s Km_apical = 141 
+!! s RAFbaso = 0.01356	
+!! s RAFapi = 0.01356	
+!! s protein = 2.0e-6	
 
-%Experiment 6: 1 mg/kg administered via single IV injection. Whole blood collected from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 
-%and at 24-hour intervals through 192 hours. Whole blood collected from females at pre-dose, and at 0.25, 0.5, 1, 2, 4, 8, 16, 24, 36, 48, 72, and 96 hours 
-%post dose. 
+%Experiment: 0.041 mg/kg BW administered to male wistar rats in single bolus IV, serum and liver concentrations measured 2h post-dose serum collected at time points from 0-300 minutes.
 
 !! s TSTOP = 550	
 !! s BW = 0.248	!MALE 
 
 !! s OdoseC = 1.0e-33	!mg/kg BW, SHOULD BE ZERO, BUT I GET A RUNTIME ERROR WHEN SET TO ZERO. 
-!! s IVdoseC = 1.0	!mg/kg BW
+!! s IVdoseC = 1.0
 
 !! st/nc
 
