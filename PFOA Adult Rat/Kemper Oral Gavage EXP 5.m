@@ -7,14 +7,15 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 %liver binding parameters (Values from Loccisano PFOS model, Bmax is female values)
 !! s Bmax = 0
 !! s koff = 0
+!! s kbilec = 0.0006
 !! s kabs = 0.35
-!! s kbilec = 0.009
-!! s kurinec = 0.17
+!! s kunabs = 0.0001
+!! s k0c = 1.0e-33
+!! s GEC = 0.54
 
 %kidney parameters
-!! s RAFapi = 0.0135600
 !! s keffluxc = 10
-!! s Km_apical = 141
+!! s kurinec = 1.3
 
 
 %Experiment 5: 0.1 mg/kg administered via single oral dose. Whole blood collected from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 

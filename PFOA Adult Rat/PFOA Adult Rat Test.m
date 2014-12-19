@@ -4,22 +4,25 @@ output @clear
 prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
-%liver binding parameters (Values from Loccisano PFOS model, Bmax is female values)
+%liver parameters
 !! s Bmax = 0
 !! s koff = 0
 !! s kbilec = 0.009
-!! s kurinec = 17
-%kidney parameters
-!! s RAFapi = 0.0135600
-!! s keffluxc = 10
-!! s Vmax_apical_invitro = 18861.8
-!! s Km_apical = 141
+!! s kabs = 0.35
+!! s kunabs = 0.0001
 
-!! s TSTOP = 24.0
+%kidney parameters
+!! s keffluxc = 10
+!! s kurinec = 0.17
+
+%GI Tract Parameters
+!! s GEC = 0.54
+
+!! s TSTOP = 0.25
 
 !! s OdoseC = 10	!mg/kg BW
 !! s IVdoseC = 0
 
 !! st/nc
 
-!! display AOG, Afeces, Aurine, Aplas, percentod_in_urine, percentod_in_feces
+!! display total_oral_uptake, AabsSI, AabsST

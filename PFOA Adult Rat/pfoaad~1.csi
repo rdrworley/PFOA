@@ -60,7 +60,7 @@ constant kdif = 0.001
 constant kabs = 0.3 
 constant kunabs = 0.0001 
 constant gec = 0.54 
-constant k0c = 1 
+constant k0c = 1.0e-33 
 
 constant keffluxc = 10 
 constant kbilec = 0.0075 
@@ -263,41 +263,51 @@ z99976 = 0.
 # line 204 
 integral ast = z99977 , z99976 
 
+rabsst = k0 * ast 
+# line 207 
+z99975 = rabsst 
+# line 207 
+z99974 = 0. 
+# line 207 
+integral aabsst = z99975 , z99974 
+
 
 rsi = ge * ast - kabs * asi - kunabs * asi 
-# line 208 
-z99975 = rsi 
-# line 208 
-z99974 = 0. 
-# line 208 
-integral asi = z99975 , z99974 
-
-rabs = kabs * asi 
 # line 211 
-z99973 = rabs 
+z99973 = rsi 
 # line 211 
 z99972 = 0. 
 # line 211 
-integral aabs = z99973 , z99972 
+integral asi = z99973 , z99972 
+
+rabssi = kabs * asi 
+# line 214 
+z99971 = rabssi 
+# line 214 
+z99970 = 0. 
+# line 214 
+integral aabssi = z99971 , z99970 
+
+total_oral_uptake = aabssi + aabsst 
 
 
 rfeces = kbile * al + kunabs * asi 
-# line 215 
-z99971 = rfeces 
-# line 215 
-z99970 = 0.0 
-# line 215 
-integral afeces = z99971 , z99970 
+# line 220 
+z99969 = rfeces 
+# line 220 
+z99968 = 0.0 
+# line 220 
+integral afeces = z99969 , z99968 
 percentod_in_feces = ( afeces / odose ) * 100 
 
 
 rl = ql * ( ca - cvl ) * free - kbile * al + kabs * asi + k0 * ast 
-# line 220 
-z99969 = rl 
-# line 220 
-z99968 = 0.0 
-# line 220 
-integral al = z99969 , z99968 
+# line 225 
+z99967 = rl 
+# line 225 
+z99966 = 0.0 
+# line 225 
+integral al = z99967 , z99966 
 cl = al / vl 
 cvl = cl / pl 
 
@@ -305,28 +315,28 @@ abile = kbile * al
 amount_per_gram_liver = ( al / ml ) * 1000 
 
 
-# line 222 
+# line 227 
 rbound = ( ( bmax * cl ) / ( kb + cl ) ) - koff * abound 
-# line 230 
-z99967 = rbound 
-# line 230 
-z99966 = 0.0 
-# line 230 
-integral abound = z99967 , z99966 
+# line 235 
+z99965 = rbound 
+# line 235 
+z99964 = 0.0 
+# line 235 
+integral abound = z99965 , z99964 
 
 
 altotal = al + abound 
 cltotal = altotal / vl 
 
 
-# line 230 
+# line 235 
 rplas = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr + raefflux 
-# line 239 
-z99965 = rplas 
-# line 239 
-z99964 = 0.0 
-# line 239 
-integral aplas = z99965 , z99964 
+# line 244 
+z99963 = rplas 
+# line 244 
+z99962 = 0.0 
+# line 244 
+integral aplas = z99963 , z99962 
 ca = aplas / vplas 
 
 
@@ -344,11 +354,11 @@ end
 
 
 constant tstop = 24.0 
-# line 257 
+# line 262 
 if ( t .ge. tstop ) then 
-# line 257 
+# line 262 
 call zztrmt ( 'checked on communication interval: REACHED TSTOP' ) 
-# line 257 
+# line 262 
 endif 
 
 end 
