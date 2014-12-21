@@ -60,7 +60,7 @@ CONSTANT tstart = 0.0
 		constant kabs = 0.3 !rate of absorption of chemical from small intestine to liver (/hr); fit to time-to-peak
 		constant kunabs = 0.0001 !rate of unabsorbed dose (male) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		CONSTANT GEC = 0.54 !gastric emptying time (kg^0.25/h); from Yang, 2013
-		CONSTANT k0C = 1	!rate of uptake from the stomach into the liver (1/h/BW^-0.25)
+		CONSTANT k0C = 1.0e-33	!rate of uptake from the stomach into the liver (1/h/BW^-0.25)
 		
 		CONSTANT keffluxc = 10	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/kg^0.75) NEED VALUE, FIT
 		constant kbilec = 0.0075 !biliary elimination rate ((male); liver to feces storage (/h/kg^-0.25); fit to serum data
@@ -197,12 +197,17 @@ CONSTANT tstart = 0.0
 			RST= OGR - k0*AST - GE*AST	!rate of change in the stomach (mg/h)
 			AST = integ(RST, 0.)	!amount in the stomach (mg)
 
+			RabsST = k0*AST	!rate of absorption in the stomach
+			AabsST = integ(RabsST, 0.)	!amount absorbed in the stomach
+
 			!Small Intestine
 			RSI = GE*AST - kabs*ASI - kunabs*ASI	!rate of change in the small intestine (mg/hr)
 			ASI = integ(RSI, 0.)	!amount in the small intestine (mg)
 
-			Rabs = kabs*ASI	!rate of absorption inthe small intestine (mg/hr)
-			Aabs = integ(Rabs, 0.)	!amount absorbed in the small intestine (mg)
+			RabsSI = kabs*ASI	!rate of absorption inthe small intestine (mg/hr)
+			AabsSI = integ(RabsSI, 0.)	!amount absorbed in the small intestine (mg)
+
+			total_oral_uptake = AabsSI + AabsST	!total oral uptake in the GI tract (mg) 
 
 			!Feces compartment
 			Rfeces = kbile*AL + kunabs*ASI !rate of change in the feces compartment (mg/h)
