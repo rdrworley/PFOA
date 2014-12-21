@@ -4,6 +4,7 @@ output @clear
 prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
+%liver binding parameters (Values from Loccisano PFOS model, Bmax is female values)
 !! s Bmax = 0
 !! s koff = 0
 !! s kbilec = 0.0006

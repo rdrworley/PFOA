@@ -3,7 +3,7 @@
 output @clear
 prepare @clear @all
 
-%liver parameters
+%liver binding parameters (Values from Loccisano PFOS model, Bmax is female values)
 !! s Bmax = 0
 !! s koff = 0
 !! s kbilec = 0.0006
