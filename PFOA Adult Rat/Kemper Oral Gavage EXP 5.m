@@ -8,9 +8,9 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s Bmax = 0
 !! s koff = 0
 !! s kbilec = 0.009
-!! s kabs = 35
+!! s kabs = .35
 !! s kunabs = 0.0001
-!! s k0c = 1.0e-33
+!! s k0c = 0.5
 !! s GEC = 0.54
 
 %kidney parameters

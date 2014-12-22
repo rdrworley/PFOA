@@ -1650,7 +1650,7 @@ zzsim.rbound = (((zzsim.bmax * zzsim.cl) / (zzsim.kb + zzsim.cl)) - (zzsim.koff 
 zzsim.z99965 = zzsim.rbound;
 
 
-zzsim.rplas = (((((((zzsim.qr * zzsim.cvr) * zzsim.free) + ((zzsim.qk * zzsim.cvk) * zzsim.free)) + ((zzsim.ql * zzsim.cvl) * zzsim.free)) - ((zzsim.qc * zzsim.ca) * zzsim.free)) + zzsim.ivr) + zzsim.raefflux);
+zzsim.rplas = ((((((zzsim.qr * zzsim.cvr) + (zzsim.qk * zzsim.cvk)) + (zzsim.ql * zzsim.cvl)) - (zzsim.qc * zzsim.ca)) + zzsim.ivr) + zzsim.raefflux);
 
 
 zzsim.z99963 = zzsim.rplas;

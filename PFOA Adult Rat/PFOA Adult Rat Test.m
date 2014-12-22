@@ -8,7 +8,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s Bmax = 0
 !! s koff = 0
 !! s kbilec = 0.004
-!! s kabs = 35.0
+!! s kabs = 0.35
 !! s kunabs = 0.0001
 !! s k0c = 1.0e-33
 !! s GEC = 0.54
@@ -22,9 +22,9 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! s TSTOP = 0.25
 
-!! s OdoseC = 10	!mg/kg BW
+!! s OdoseC = 0.1	!mg/kg BW
 !! s IVdoseC = 0
 
 !! st/nc
 
-!! display total_oral_uptake, AabsSI, AabsST
+!! display total_oral_uptake, AabsSI, AabsST, CA

@@ -6,10 +6,10 @@ prepare @clear @all
 %liver binding parameters (Values from Loccisano PFOS model, Bmax is female values)
 !! s Bmax = 0
 !! s koff = 0
-!! s kbilec = 0.004
-!! s kabs = 0.35
+!! s kbilec = 0.009
+!! s kabs = .35
 !! s kunabs = 0.0001
-!! s k0c = 1.0e-33
+!! s k0c = 0.5
 !! s GEC = 0.54
 
 %kidney parameters

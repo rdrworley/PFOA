@@ -330,7 +330,7 @@ cltotal = altotal / vl
 
 
 # line 235 
-rplas = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr + raefflux 
+rplas = ( qr * cvr ) + ( qk * cvk ) + ( ql * cvl ) - ( qc * ca ) + ivr + raefflux 
 # line 244 
 z99963 = rplas 
 # line 244 

@@ -1,4 +1,4 @@
-PROGRAM PBPK Model for PFOA in Adult Male Rats. Version date: December 9, 2014. 
+PROGRAM PBPK Model for PFOA in Adult Male Rats. Version date: December 22, 2014. 
 
 ! Created by R. Worley based on previous model by A. Locissano
 ! Model includes compartments for GI Tract, Liver, Rest of Body(Tis), Kidney Blood, Proximal Tubule Cells, Filtrate, and Plasma.
@@ -232,7 +232,7 @@ CONSTANT tstart = 0.0
 		CLtotal = ALtotal/VL	!total concentration in liver (mg/L) [to be used to compare to measured liver concentrations from rat studies]
 		
 		!Plasma compartment
-		RPlas = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + RAefflux  !rate of change in the plasma (mg/h)
+		RPlas = (QR*CVR) + (QK*CVK) + (QL*CVL) - (QC*CA) + IVR + RAefflux  !rate of change in the plasma (mg/h)
 		Aplas = integ(RPlas, 0.0)	!amount in the plasma (mg)
 		CA = APlas/VPlas		!concentration in plasma (mg)
 
