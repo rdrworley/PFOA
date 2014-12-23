@@ -69,5 +69,3 @@ five_female_blood = [0.0	0
 16.0	0.050]
 
 plot(_t, _ca, five_male_blood(:,1), five_male_blood(:,2),'+')		%MALE
-%plot(_t, _ca, five_female_blood(:,1), five_female_blood(:,2),'+')		%FEMALE
-

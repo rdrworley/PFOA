@@ -76,7 +76,7 @@ CONSTANT tstart = 0.0
 		!Perkins - Male rats administered APFO at 0,1,10,30, or 100 ppm in diet for 13 weeks. Serum samples collected at 4, 7, and 13 weeks, and 8 weeks after
 			!end of treatment. NEED DATA. 
 
-		constant OdoseC = 1	!oral dose concentration(mg/kg BW)
+		constant OdoseC = 1.0e-33	!oral dose concentration(mg/kg BW)
 		constant OGtime = 0.01	!length of oral gavage (hrs)
 		
 		!IV Dosing
@@ -85,7 +85,7 @@ CONSTANT tstart = 0.0
 		!Kemper - Male and female rats administered one IV dose of 1 mg/kg PFOA. Blood samples collected from males 9 times in first 24 hours, at 24 hour intervals up to 8 days, 
 			!and at 48 hour intervals up to 22 days. Blood samples collected from females 13 times over 4 days. 
 		
-		constant IVdoseC = 0.041	!IV dose concentration (mg/kg)
+		constant IVdoseC = 1.0	!IV dose concentration (mg/kg)
 		constant IVTime = 0.01	!length of IV infusion (hrs)
 	
 	END ! INITIAL
@@ -232,9 +232,12 @@ CONSTANT tstart = 0.0
 		CLtotal = ALtotal/VL	!total concentration in liver (mg/L) [to be used to compare to measured liver concentrations from rat studies]
 		
 		!Plasma compartment
-		RPlas = (QR*CVR) + (QK*CVK) + (QL*CVL) - (QC*CA) + IVR + RAefflux  !rate of change in the plasma (mg/h)
-		Aplas = integ(RPlas, 0.0)	!amount in the plasma (mg)
-		CA = APlas/VPlas		!concentration in plasma (mg)
+		RPlasfree = (QR*CVR) + (QK*CVK) + (QL*CVL) - (QC*CA) + IVR + RAefflux  !rate of change in the plasma (mg/h)
+		Aplasfree= integ(RPlasfree, 0.0)	!amount free in the plasma (mg)
+		Aplasbound = ((1-free)*Aplasfree)/Free	!amount bound in the plasma (mg)
+		Aplastotal = Aplasfree + Aplasbound	!total amount in the plasma (mg)
+
+		CA = APlasfree/VPlas		!concentration in plasma (mg/L)
 
 		!Mass Balance Check
 		Atissue = APlas + AR + AKb + AFil + APTC + ALtotal + AST + ASI 	!sum of mass in all compartments (mg)

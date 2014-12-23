@@ -11,12 +11,12 @@
 <numDerivativeSections>1</numDerivativeSections>
 <numDiscreteSections>0</numDiscreteSections>
 <symboltable>
-<num_symbols>216</num_symbols>
+<num_symbols>219</num_symbols>
 <num_state_symbols>19</num_state_symbols>
 <num_ode_state_symbols>19</num_ode_state_symbols>
 <num_dae_state_symbols>0</num_dae_state_symbols>
 <num_delay_state_symbols>0</num_delay_state_symbols>
-<num_algebraic_symbols>111</num_algebraic_symbols>
+<num_algebraic_symbols>114</num_algebraic_symbols>
 <symbol>
 <sym_name>t</sym_name>
 <sym_datatype>ACSL_DATATYPE_DOUBLE</sym_datatype>
@@ -873,7 +873,7 @@
 <csl_sym_sectionid>0</csl_sym_sectionid>
 </symbol>
 <symbol>
-<sym_name>aplas</sym_name>
+<sym_name>aplasfree</sym_name>
 <sym_datatype>ACSL_DATATYPE_DOUBLE</sym_datatype>
 <sym_datatypename>double</sym_datatypename>
 <sym_dimensions><sym_dimension index="1">0</sym_dimension>
@@ -4311,7 +4311,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>1</csl_sym_initializer>
+<csl_sym_initializer>1.0e-33</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -4401,7 +4401,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>0.041</csl_sym_initializer>
+<csl_sym_initializer>1.0</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -7398,7 +7398,7 @@
 <csl_sym_sectionid>0</csl_sym_sectionid>
 </symbol>
 <symbol>
-<sym_name>rplas</sym_name>
+<sym_name>rplasfree</sym_name>
 <sym_datatype>ACSL_DATATYPE_DOUBLE</sym_datatype>
 <sym_datatypename>double</sym_datatypename>
 <sym_dimensions><sym_dimension index="1">0</sym_dimension>
@@ -7426,6 +7426,96 @@
 <csl_sym_isglobal>FALSE</csl_sym_isglobal>
 <csl_sym_isinterval>FALSE</csl_sym_isinterval>
 <csl_sym_isinput>TRUE</csl_sym_isinput>
+<csl_sym_isoutput>TRUE</csl_sym_isoutput>
+<csl_sym_istyped>FALSE</csl_sym_istyped>
+<csl_sym_isimplicitlytyped>TRUE</csl_sym_isimplicitlytyped>
+<csl_sym_deriv_sym_name></csl_sym_deriv_sym_name>
+<csl_sym_init_cond_sym_name></csl_sym_init_cond_sym_name>
+<csl_sym_merror>-1</csl_sym_merror>
+<csl_sym_xerror>-1</csl_sym_xerror>
+<csl_sym_isarray>FALSE</csl_sym_isarray>
+<csl_sym_init_array_sym_name></csl_sym_init_array_sym_name>
+<csl_sym_num_init_elements>0</csl_sym_num_init_elements>
+<csl_sym_c_array_initializer>5.5555e33</csl_sym_c_array_initializer>
+<csl_sym_f_array_initializer>1*5.5555e33</csl_sym_f_array_initializer>
+<csl_sym_isparameter>FALSE</csl_sym_isparameter>
+<csl_sym_parameter_expression></csl_sym_parameter_expression>
+<csl_sym_sectionid>0</csl_sym_sectionid>
+</symbol>
+<symbol>
+<sym_name>aplasbound</sym_name>
+<sym_datatype>ACSL_DATATYPE_DOUBLE</sym_datatype>
+<sym_datatypename>double</sym_datatypename>
+<sym_dimensions><sym_dimension index="1">0</sym_dimension>
+<sym_dimension index="2">0</sym_dimension>
+<sym_dimension index="3">0</sym_dimension>
+<sym_dimension index="4">0</sym_dimension>
+<sym_dimension index="5">0</sym_dimension>
+<sym_dimension index="6">0</sym_dimension>
+</sym_dimensions>
+<sym_dim_str_list><sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+</sym_dim_str_list>
+<csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
+<csl_sym_initializer>5.5555E+33</csl_sym_initializer>
+<csl_sym_string_length>0</csl_sym_string_length>
+<csl_sym_isconstant>FALSE</csl_sym_isconstant>
+<csl_sym_isdae>FALSE</csl_sym_isdae>
+<csl_sym_isdeclared>FALSE</csl_sym_isdeclared>
+<csl_sym_isdelaystate>FALSE</csl_sym_isdelaystate>
+<csl_sym_isequiv>FALSE</csl_sym_isequiv>
+<csl_sym_isglobal>FALSE</csl_sym_isglobal>
+<csl_sym_isinterval>FALSE</csl_sym_isinterval>
+<csl_sym_isinput>TRUE</csl_sym_isinput>
+<csl_sym_isoutput>TRUE</csl_sym_isoutput>
+<csl_sym_istyped>FALSE</csl_sym_istyped>
+<csl_sym_isimplicitlytyped>TRUE</csl_sym_isimplicitlytyped>
+<csl_sym_deriv_sym_name></csl_sym_deriv_sym_name>
+<csl_sym_init_cond_sym_name></csl_sym_init_cond_sym_name>
+<csl_sym_merror>-1</csl_sym_merror>
+<csl_sym_xerror>-1</csl_sym_xerror>
+<csl_sym_isarray>FALSE</csl_sym_isarray>
+<csl_sym_init_array_sym_name></csl_sym_init_array_sym_name>
+<csl_sym_num_init_elements>0</csl_sym_num_init_elements>
+<csl_sym_c_array_initializer>5.5555e33</csl_sym_c_array_initializer>
+<csl_sym_f_array_initializer>1*5.5555e33</csl_sym_f_array_initializer>
+<csl_sym_isparameter>FALSE</csl_sym_isparameter>
+<csl_sym_parameter_expression></csl_sym_parameter_expression>
+<csl_sym_sectionid>0</csl_sym_sectionid>
+</symbol>
+<symbol>
+<sym_name>aplastotal</sym_name>
+<sym_datatype>ACSL_DATATYPE_DOUBLE</sym_datatype>
+<sym_datatypename>double</sym_datatypename>
+<sym_dimensions><sym_dimension index="1">0</sym_dimension>
+<sym_dimension index="2">0</sym_dimension>
+<sym_dimension index="3">0</sym_dimension>
+<sym_dimension index="4">0</sym_dimension>
+<sym_dimension index="5">0</sym_dimension>
+<sym_dimension index="6">0</sym_dimension>
+</sym_dimensions>
+<sym_dim_str_list><sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+</sym_dim_str_list>
+<csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
+<csl_sym_initializer>5.5555E+33</csl_sym_initializer>
+<csl_sym_string_length>0</csl_sym_string_length>
+<csl_sym_isconstant>FALSE</csl_sym_isconstant>
+<csl_sym_isdae>FALSE</csl_sym_isdae>
+<csl_sym_isdeclared>FALSE</csl_sym_isdeclared>
+<csl_sym_isdelaystate>FALSE</csl_sym_isdelaystate>
+<csl_sym_isequiv>FALSE</csl_sym_isequiv>
+<csl_sym_isglobal>FALSE</csl_sym_isglobal>
+<csl_sym_isinterval>FALSE</csl_sym_isinterval>
+<csl_sym_isinput>FALSE</csl_sym_isinput>
 <csl_sym_isoutput>TRUE</csl_sym_isoutput>
 <csl_sym_istyped>FALSE</csl_sym_istyped>
 <csl_sym_isimplicitlytyped>TRUE</csl_sym_isimplicitlytyped>
@@ -7474,6 +7564,51 @@
 <csl_sym_isoutput>TRUE</csl_sym_isoutput>
 <csl_sym_istyped>FALSE</csl_sym_istyped>
 <csl_sym_isimplicitlytyped>TRUE</csl_sym_isimplicitlytyped>
+<csl_sym_deriv_sym_name></csl_sym_deriv_sym_name>
+<csl_sym_init_cond_sym_name></csl_sym_init_cond_sym_name>
+<csl_sym_merror>-1</csl_sym_merror>
+<csl_sym_xerror>-1</csl_sym_xerror>
+<csl_sym_isarray>FALSE</csl_sym_isarray>
+<csl_sym_init_array_sym_name></csl_sym_init_array_sym_name>
+<csl_sym_num_init_elements>0</csl_sym_num_init_elements>
+<csl_sym_c_array_initializer>5.5555e33</csl_sym_c_array_initializer>
+<csl_sym_f_array_initializer>1*5.5555e33</csl_sym_f_array_initializer>
+<csl_sym_isparameter>FALSE</csl_sym_isparameter>
+<csl_sym_parameter_expression></csl_sym_parameter_expression>
+<csl_sym_sectionid>0</csl_sym_sectionid>
+</symbol>
+<symbol>
+<sym_name>aplas</sym_name>
+<sym_datatype>ACSL_DATATYPE_DOUBLE</sym_datatype>
+<sym_datatypename>double</sym_datatypename>
+<sym_dimensions><sym_dimension index="1">0</sym_dimension>
+<sym_dimension index="2">0</sym_dimension>
+<sym_dimension index="3">0</sym_dimension>
+<sym_dimension index="4">0</sym_dimension>
+<sym_dimension index="5">0</sym_dimension>
+<sym_dimension index="6">0</sym_dimension>
+</sym_dimensions>
+<sym_dim_str_list><sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+<sym_dim_str></sym_dim_str>
+</sym_dim_str_list>
+<csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
+<csl_sym_initializer>5.5555E+33</csl_sym_initializer>
+<csl_sym_string_length>0</csl_sym_string_length>
+<csl_sym_isconstant>FALSE</csl_sym_isconstant>
+<csl_sym_isdae>FALSE</csl_sym_isdae>
+<csl_sym_isdeclared>FALSE</csl_sym_isdeclared>
+<csl_sym_isdelaystate>FALSE</csl_sym_isdelaystate>
+<csl_sym_isequiv>FALSE</csl_sym_isequiv>
+<csl_sym_isglobal>FALSE</csl_sym_isglobal>
+<csl_sym_isinterval>FALSE</csl_sym_isinterval>
+<csl_sym_isinput>TRUE</csl_sym_isinput>
+<csl_sym_isoutput>FALSE</csl_sym_isoutput>
+<csl_sym_istyped>FALSE</csl_sym_istyped>
+<csl_sym_isimplicitlytyped>FALSE</csl_sym_isimplicitlytyped>
 <csl_sym_deriv_sym_name></csl_sym_deriv_sym_name>
 <csl_sym_init_cond_sym_name></csl_sym_init_cond_sym_name>
 <csl_sym_merror>-1</csl_sym_merror>
@@ -9750,11 +9885,11 @@
 </Tables>
 <Dynamic>
 <Statements>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="262">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="266">
 <Conditional>
 <Predicate><RelationalGte><Identifier>t</Identifier><Identifier>tstop</Identifier></RelationalGte></Predicate>
 <PredTrueAlternative>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="262">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="266">
 <Call><SubroutineCall><SubroutineName>zztrmt</SubroutineName><SubroutineArgument><Identifier>zzinstidx</Identifier></SubroutineArgument>
 <SubroutineArgument><StringLiteral>checked on communication interval: REACHED TSTOP</StringLiteral></SubroutineArgument></SubroutineCall>
 </Call>
@@ -9858,11 +9993,11 @@
 <Identifier>vplas</Identifier></LValue>
 <ArithMultiplication><Identifier>vplasc</Identifier><Identifier>bw</Identifier></ArithMultiplication></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="245">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="240">
 <Assignment>
 <LValue>
 <Identifier>ca</Identifier></LValue>
-<ArithDivision><Identifier>aplas</Identifier><Identifier>vplas</Identifier></ArithDivision></Assignment>
+<ArithDivision><Identifier>aplasfree</Identifier><Identifier>vplas</Identifier></ArithDivision></Assignment>
 </Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="113">
 <Assignment>
@@ -10215,14 +10350,14 @@
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="235">
 <Assignment>
 <LValue>
-<Identifier>rplas</Identifier></LValue>
+<Identifier>rplasfree</Identifier></LValue>
 <ArithAddition><ArithAddition><ArithSubtraction><ArithAddition><ArithAddition><ArithMultiplication><Identifier>qr</Identifier><Identifier>cvr</Identifier></ArithMultiplication><ArithMultiplication><Identifier>qk</Identifier><Identifier>cvk</Identifier></ArithMultiplication></ArithAddition><ArithMultiplication><Identifier>ql</Identifier><Identifier>cvl</Identifier></ArithMultiplication></ArithAddition><ArithMultiplication><Identifier>qc</Identifier><Identifier>ca</Identifier></ArithMultiplication></ArithSubtraction><Identifier>ivr</Identifier></ArithAddition><Identifier>raefflux</Identifier></ArithAddition></Assignment>
 </Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="244">
 <Assignment>
 <LValue>
 <Identifier>z99963</Identifier></LValue>
-<Identifier>rplas</Identifier></Assignment>
+<Identifier>rplasfree</Identifier></Assignment>
 </Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="147">
 <Assignment>
@@ -10404,19 +10539,31 @@
 <Identifier>cltotal</Identifier></LValue>
 <ArithDivision><Identifier>altotal</Identifier><Identifier>vl</Identifier></ArithDivision></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="248">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="237">
+<Assignment>
+<LValue>
+<Identifier>aplasbound</Identifier></LValue>
+<ArithDivision><ArithMultiplication><ArithSubtraction><IntegerLiteral>1</IntegerLiteral><Identifier>free</Identifier></ArithSubtraction><Identifier>aplasfree</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithDivision></Assignment>
+</Statement>
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="238">
+<Assignment>
+<LValue>
+<Identifier>aplastotal</Identifier></LValue>
+<ArithAddition><Identifier>aplasfree</Identifier><Identifier>aplasbound</Identifier></ArithAddition></Assignment>
+</Statement>
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="243">
 <Assignment>
 <LValue>
 <Identifier>atissue</Identifier></LValue>
 <ArithAddition><ArithAddition><ArithAddition><ArithAddition><ArithAddition><ArithAddition><ArithAddition><Identifier>aplas</Identifier><Identifier>ar</Identifier></ArithAddition><Identifier>akb</Identifier></ArithAddition><Identifier>afil</Identifier></ArithAddition><Identifier>aptc</Identifier></ArithAddition><Identifier>altotal</Identifier></ArithAddition><Identifier>ast</Identifier></ArithAddition><Identifier>asi</Identifier></ArithAddition></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="249">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="244">
 <Assignment>
 <LValue>
 <Identifier>aloss</Identifier></LValue>
 <ArithAddition><Identifier>aurine</Identifier><Identifier>afeces</Identifier></ArithAddition></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="250">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="245">
 <Assignment>
 <LValue>
 <Identifier>atotal</Identifier></LValue>
