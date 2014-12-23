@@ -343,6 +343,8 @@ aplastotal = aplasfree + aplasbound
 
 ca = aplasfree / vplas 
 
+catotal = aplastotal / vplas 
+
 
 atissue = aplas + ar + akb + afil + aptc + altotal + ast + asi 
 aloss = aurine + afeces 
@@ -358,11 +360,11 @@ end
 
 
 constant tstop = 24.0 
-# line 266 
+# line 268 
 if ( t .ge. tstop ) then 
-# line 266 
+# line 268 
 call zztrmt ( 'checked on communication interval: REACHED TSTOP' ) 
-# line 266 
+# line 268 
 endif 
 
 end 

@@ -179,6 +179,7 @@ double cltotal;
 double rplasfree;
 double aplasbound;
 double aplastotal;
+double catotal;
 double atissue;
 double aplas;
 double aloss;
@@ -406,6 +407,7 @@ SimImpl zzsim =
 5.5555E+33,
 5.5555E+33,
 5.5555E+33,
+5.5555E+33,
 24.0,
 0.01,
 5,
@@ -460,11 +462,11 @@ true,
 void AcslSimMain()
 {
 
-	AcslSimSetSystemInfo(219,// numSymbols
+	AcslSimSetSystemInfo(220,// numSymbols
 	19, // numOdeStates
 	0, // numDaeStates
 	0, // numDelayStates
-	114,// numAlgebraicVars
+	115,// numAlgebraicVars
 	1, // numDerivativeSections
 	0, // numDiscreteSections
 	zzinitialize,
@@ -980,163 +982,166 @@ AcslSimSetVariableDescriptor(166,"aplasbound",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTY
 AcslSimSetVariableExtendedInfo(166,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
 AcslSimSetVariableDescriptor(167,"aplastotal",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ALGEBRAIC,0,0,0,0,0,0,-1,-1);
-AcslSimSetVariableExtendedInfo(167,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
+AcslSimSetVariableExtendedInfo(167,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(168,"atissue",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ALGEBRAIC,0,0,0,0,0,0,-1,-1);
-AcslSimSetVariableExtendedInfo(168,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
+AcslSimSetVariableDescriptor(168,"catotal",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ALGEBRAIC,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableExtendedInfo(168,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(169,"aplas",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ALGEBRAIC,0,0,0,0,0,0,-1,-1);
-AcslSimSetVariableExtendedInfo(169,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
+AcslSimSetVariableDescriptor(169,"atissue",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ALGEBRAIC,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableExtendedInfo(169,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(170,"aloss",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ALGEBRAIC,0,0,0,0,0,0,-1,-1);
-AcslSimSetVariableExtendedInfo(170,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
+AcslSimSetVariableDescriptor(170,"aplas",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ALGEBRAIC,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableExtendedInfo(170,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(171,"atotal",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ALGEBRAIC,0,0,0,0,0,0,-1,-1);
-AcslSimSetVariableExtendedInfo(171,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
+AcslSimSetVariableDescriptor(171,"aloss",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ALGEBRAIC,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableExtendedInfo(171,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(172,"tstop",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ALGEBRAIC,0,0,0,0,0,0,-1,-1);
-AcslSimSetVariableExtendedInfo(172,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
+AcslSimSetVariableDescriptor(172,"atotal",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ALGEBRAIC,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableExtendedInfo(172,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(173,"cint",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_CINTERVAL,0,0,0,0,0,0,-1,-1);
-AcslSimSetVariableExtendedInfo(173,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
+AcslSimSetVariableDescriptor(173,"tstop",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ALGEBRAIC,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableExtendedInfo(173,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(174,"ialg",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ALGORITHM,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(174,"cint",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_CINTERVAL,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(174,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(175,"nstp",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_NSTEPS,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(175,"ialg",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ALGORITHM,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(175,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(176,"maxt",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_MAXTERVAL,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(176,"nstp",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_NSTEPS,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(176,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(177,"mint",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_MINTERVAL,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(177,"maxt",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_MAXTERVAL,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(177,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(178,"zzierr",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ERRTAG,0,0,0,0,0,0,-1,-1);
-AcslSimSetVariableExtendedInfo(178,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
+AcslSimSetVariableDescriptor(178,"mint",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_MINTERVAL,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableExtendedInfo(178,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(179,"zzstopflag",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(179,"zzierr",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ERRTAG,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(179,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(180,"zzrnfl",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(180,"zzstopflag",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(180,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(181,"zznist",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(181,"zzrnfl",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(181,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(182,"zznblk",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(182,"zznist",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(182,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(183,"zzfrfl",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(183,"zznblk",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(183,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(184,"zzjefl",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(184,"zzfrfl",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(184,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(185,"zzndst",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(185,"zzjefl",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(185,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(186,"zzicon",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(186,"zzndst",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(186,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(187,"zzicfl",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(187,"zzicon",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(187,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(188,"zznavr",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(188,"zzicfl",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(188,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(189,"zzinstidx",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(189,"zznavr",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(189,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(190,"zzstepstop",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(190,"zzinstidx",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(190,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(191,"nciout",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(191,"zzstepstop",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_SYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(191,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(192,"cioitg",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(192,"nciout",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(192,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(193,"cjvitg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(193,"cioitg",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(193,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(194,"cssitg",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(194,"cjvitg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(194,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(195,"dpsitg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(195,"cssitg",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(195,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(196,"ecsitg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(196,"dpsitg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(196,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(197,"fdeitg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(197,"ecsitg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(197,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(198,"mxoitg",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(198,"fdeitg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(198,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(199,"nrwitg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(199,"mxoitg",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(199,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(200,"nxeitg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(200,"nrwitg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(200,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(201,"tjnitg",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(201,"nxeitg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(201,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(202,"tsmitg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(202,"tjnitg",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(202,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(203,"weditg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(203,"tsmitg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(203,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(204,"wesitg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(204,"weditg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(204,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(205,"wnditg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(205,"wesitg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(205,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(206,"wxditg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(206,"wnditg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(206,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(207,"cieitg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(207,"wxditg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(207,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(208,"ubwitg",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(208,"cieitg",ACSL_DATATYPE_BOOLEAN,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(208,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(209,"lbwitg",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(209,"ubwitg",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(209,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(210,"omfitg",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(210,"lbwitg",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(210,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(211,"cmd",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(211,"omfitg",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(211,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(212,"dis",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(212,"cmd",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(212,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(213,"ndbug",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(213,"dis",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(213,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(214,"plt",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(214,"ndbug",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(214,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(215,"prn",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(215,"plt",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(215,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(216,"malprn",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(216,"prn",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(216,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(217,"rrr",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(217,"malprn",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(217,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(218,"save",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(218,"rrr",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(218,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(219,"zzticg",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_VARIABLE_INIT,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(219,"save",ACSL_DATATYPE_LONG,ACSL_SYMBOLTYPE_ACSLSYSTEMVAR,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(219,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
+
+AcslSimSetVariableDescriptor(220,"zzticg",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_VARIABLE_INIT,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableExtendedInfo(220,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
 }
 
@@ -1312,58 +1317,59 @@ AcslSimSetVariablePointer(handle,164,&zzsim.cltotal);
 AcslSimSetVariablePointer(handle,165,&zzsim.rplasfree);
 AcslSimSetVariablePointer(handle,166,&zzsim.aplasbound);
 AcslSimSetVariablePointer(handle,167,&zzsim.aplastotal);
-AcslSimSetVariablePointer(handle,168,&zzsim.atissue);
-AcslSimSetVariablePointer(handle,169,&zzsim.aplas);
-AcslSimSetVariablePointer(handle,170,&zzsim.aloss);
-AcslSimSetVariablePointer(handle,171,&zzsim.atotal);
-AcslSimSetVariablePointer(handle,172,&zzsim.tstop);
-AcslSimSetVariablePointer(handle,173,&zzsim.cint);
-AcslSimSetVariablePointer(handle,174,&zzsim.ialg);
-AcslSimSetVariablePointer(handle,175,&zzsim.nstp);
-AcslSimSetVariablePointer(handle,176,&zzsim.maxt);
-AcslSimSetVariablePointer(handle,177,&zzsim.mint);
-AcslSimSetVariablePointer(handle,178,&zzsim.zzierr);
-AcslSimSetVariablePointer(handle,179,&zzsim.zzstopflag);
-AcslSimSetVariablePointer(handle,180,&zzsim.zzrnfl);
-AcslSimSetVariablePointer(handle,181,&zzsim.zznist);
-AcslSimSetVariablePointer(handle,182,&zzsim.zznblk);
-AcslSimSetVariablePointer(handle,183,&zzsim.zzfrfl);
-AcslSimSetVariablePointer(handle,184,&zzsim.zzjefl);
-AcslSimSetVariablePointer(handle,185,&zzsim.zzndst);
-AcslSimSetVariablePointer(handle,186,&zzsim.zzicon);
-AcslSimSetVariablePointer(handle,187,&zzsim.zzicfl);
-AcslSimSetVariablePointer(handle,188,&zzsim.zznavr);
-AcslSimSetVariablePointer(handle,189,&zzsim.zzinstidx);
-AcslSimSetVariablePointer(handle,190,&zzsim.zzstepstop);
-AcslSimSetVariablePointer(handle,191,&zzsim.nciout);
-AcslSimSetVariablePointer(handle,192,&zzsim.cioitg);
-AcslSimSetVariablePointer(handle,193,&zzsim.cjvitg);
-AcslSimSetVariablePointer(handle,194,&zzsim.cssitg);
-AcslSimSetVariablePointer(handle,195,&zzsim.dpsitg);
-AcslSimSetVariablePointer(handle,196,&zzsim.ecsitg);
-AcslSimSetVariablePointer(handle,197,&zzsim.fdeitg);
-AcslSimSetVariablePointer(handle,198,&zzsim.mxoitg);
-AcslSimSetVariablePointer(handle,199,&zzsim.nrwitg);
-AcslSimSetVariablePointer(handle,200,&zzsim.nxeitg);
-AcslSimSetVariablePointer(handle,201,&zzsim.tjnitg);
-AcslSimSetVariablePointer(handle,202,&zzsim.tsmitg);
-AcslSimSetVariablePointer(handle,203,&zzsim.weditg);
-AcslSimSetVariablePointer(handle,204,&zzsim.wesitg);
-AcslSimSetVariablePointer(handle,205,&zzsim.wnditg);
-AcslSimSetVariablePointer(handle,206,&zzsim.wxditg);
-AcslSimSetVariablePointer(handle,207,&zzsim.cieitg);
-AcslSimSetVariablePointer(handle,208,&zzsim.ubwitg);
-AcslSimSetVariablePointer(handle,209,&zzsim.lbwitg);
-AcslSimSetVariablePointer(handle,210,&zzsim.omfitg);
-AcslSimSetVariablePointer(handle,211,&zzsim.cmd);
-AcslSimSetVariablePointer(handle,212,&zzsim.dis);
-AcslSimSetVariablePointer(handle,213,&zzsim.ndbug);
-AcslSimSetVariablePointer(handle,214,&zzsim.plt);
-AcslSimSetVariablePointer(handle,215,&zzsim.prn);
-AcslSimSetVariablePointer(handle,216,&zzsim.malprn);
-AcslSimSetVariablePointer(handle,217,&zzsim.rrr);
-AcslSimSetVariablePointer(handle,218,&zzsim.save);
-AcslSimSetVariablePointer(handle,219,&zzsim.zzticg);
+AcslSimSetVariablePointer(handle,168,&zzsim.catotal);
+AcslSimSetVariablePointer(handle,169,&zzsim.atissue);
+AcslSimSetVariablePointer(handle,170,&zzsim.aplas);
+AcslSimSetVariablePointer(handle,171,&zzsim.aloss);
+AcslSimSetVariablePointer(handle,172,&zzsim.atotal);
+AcslSimSetVariablePointer(handle,173,&zzsim.tstop);
+AcslSimSetVariablePointer(handle,174,&zzsim.cint);
+AcslSimSetVariablePointer(handle,175,&zzsim.ialg);
+AcslSimSetVariablePointer(handle,176,&zzsim.nstp);
+AcslSimSetVariablePointer(handle,177,&zzsim.maxt);
+AcslSimSetVariablePointer(handle,178,&zzsim.mint);
+AcslSimSetVariablePointer(handle,179,&zzsim.zzierr);
+AcslSimSetVariablePointer(handle,180,&zzsim.zzstopflag);
+AcslSimSetVariablePointer(handle,181,&zzsim.zzrnfl);
+AcslSimSetVariablePointer(handle,182,&zzsim.zznist);
+AcslSimSetVariablePointer(handle,183,&zzsim.zznblk);
+AcslSimSetVariablePointer(handle,184,&zzsim.zzfrfl);
+AcslSimSetVariablePointer(handle,185,&zzsim.zzjefl);
+AcslSimSetVariablePointer(handle,186,&zzsim.zzndst);
+AcslSimSetVariablePointer(handle,187,&zzsim.zzicon);
+AcslSimSetVariablePointer(handle,188,&zzsim.zzicfl);
+AcslSimSetVariablePointer(handle,189,&zzsim.zznavr);
+AcslSimSetVariablePointer(handle,190,&zzsim.zzinstidx);
+AcslSimSetVariablePointer(handle,191,&zzsim.zzstepstop);
+AcslSimSetVariablePointer(handle,192,&zzsim.nciout);
+AcslSimSetVariablePointer(handle,193,&zzsim.cioitg);
+AcslSimSetVariablePointer(handle,194,&zzsim.cjvitg);
+AcslSimSetVariablePointer(handle,195,&zzsim.cssitg);
+AcslSimSetVariablePointer(handle,196,&zzsim.dpsitg);
+AcslSimSetVariablePointer(handle,197,&zzsim.ecsitg);
+AcslSimSetVariablePointer(handle,198,&zzsim.fdeitg);
+AcslSimSetVariablePointer(handle,199,&zzsim.mxoitg);
+AcslSimSetVariablePointer(handle,200,&zzsim.nrwitg);
+AcslSimSetVariablePointer(handle,201,&zzsim.nxeitg);
+AcslSimSetVariablePointer(handle,202,&zzsim.tjnitg);
+AcslSimSetVariablePointer(handle,203,&zzsim.tsmitg);
+AcslSimSetVariablePointer(handle,204,&zzsim.weditg);
+AcslSimSetVariablePointer(handle,205,&zzsim.wesitg);
+AcslSimSetVariablePointer(handle,206,&zzsim.wnditg);
+AcslSimSetVariablePointer(handle,207,&zzsim.wxditg);
+AcslSimSetVariablePointer(handle,208,&zzsim.cieitg);
+AcslSimSetVariablePointer(handle,209,&zzsim.ubwitg);
+AcslSimSetVariablePointer(handle,210,&zzsim.lbwitg);
+AcslSimSetVariablePointer(handle,211,&zzsim.omfitg);
+AcslSimSetVariablePointer(handle,212,&zzsim.cmd);
+AcslSimSetVariablePointer(handle,213,&zzsim.dis);
+AcslSimSetVariablePointer(handle,214,&zzsim.ndbug);
+AcslSimSetVariablePointer(handle,215,&zzsim.plt);
+AcslSimSetVariablePointer(handle,216,&zzsim.prn);
+AcslSimSetVariablePointer(handle,217,&zzsim.malprn);
+AcslSimSetVariablePointer(handle,218,&zzsim.rrr);
+AcslSimSetVariablePointer(handle,219,&zzsim.save);
+AcslSimSetVariablePointer(handle,220,&zzsim.zzticg);
 
 zzsim.zzinstidx = handle;
 }
@@ -1768,6 +1774,9 @@ zzsim.aplasbound = (((1 - zzsim.free) * zzsim.aplasfree) / zzsim.free);
 
 
 zzsim.aplastotal = (zzsim.aplasfree + zzsim.aplasbound);
+
+
+zzsim.catotal = (zzsim.aplastotal / zzsim.vplas);
 
 
 zzsim.atissue = (((((((zzsim.aplas + zzsim.ar) + zzsim.akb) + zzsim.afil) + zzsim.aptc) + zzsim.altotal) + zzsim.ast) + zzsim.asi);

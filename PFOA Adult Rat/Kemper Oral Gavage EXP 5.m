@@ -8,7 +8,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s Bmax = 0
 !! s koff = 0
 !! s kbilec = 0.009
-!! s kabs = .35
+!! s kabs = .035
 !! s kunabs = 0.0001
 !! s k0c = 0.5
 !! s GEC = 0.54
@@ -69,3 +69,4 @@ five_female_blood = [0.0	0
 16.0	0.050]
 
 plot(_t, _ca, five_male_blood(:,1), five_male_blood(:,2),'+')		%MALE
+plot(_t, _catotal, five_male_blood(:,1), five_male_blood(:,2),'+')

@@ -239,6 +239,8 @@ CONSTANT tstart = 0.0
 
 		CA = APlasfree/VPlas		!concentration in plasma (mg/L)
 
+		CAtotal = Aplastotal/VPlas	!total PFOA in plasma (mg/L)
+
 		!Mass Balance Check
 		Atissue = APlas + AR + AKb + AFil + APTC + ALtotal + AST + ASI 	!sum of mass in all compartments (mg)
 		Aloss = Aurine + Afeces 	!sum of mass lost through urinary and fecal excretion (mg)
