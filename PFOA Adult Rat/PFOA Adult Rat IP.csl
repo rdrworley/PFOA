@@ -33,7 +33,7 @@ CONSTANT tstart = 0.0
 		CONSTANT Free = 0.006 !free fraction in plasma (male); from Locissano, 2012 (fit to plasma and urine data)
 		!CONSTANT Free = 0.045 !free fraction in plasma (female); from Locissano, 2012 (fit to plasma and urine data)
 		
-		!Kidney Transport Parameters
+		!Kidney Transport Parameters	
 		CONSTANT Vmax_baso_invitro = 393.45 !Vmax of basolateral transporter (pmol/mg protein/min); averaged in vitro value of OAT1 and OAT3 from Nakagawa, 2007
 		CONSTANT Km_baso = 37.7 !Km of basolateral transporter (ug/mL) Average of OAT1 and OAT3 from Nakagawa et. al, 2007
 		CONSTANT Vmax_apical_invitro = 18861.8 !Vmax of apical transporter (pmol/mg protein/min); averaged in vitro value of OAT4 and URAT1 from Nakagawa, 2007
@@ -161,6 +161,7 @@ CONSTANT tstart = 0.0
 		CR_bound = AR_bound/VR	!bound concentration in rest of body 
 		
 		CVR = (CR_free/PR) + CR_bound	!concentration in venous blood leaving the rest of the body (mg/L)
+
 		!Kidney 
 			!Kidney Blood (Kb)
 			RKb_bound = QK*(CA-CVK)*(1-Free)	!rate of change of bound PFOA in kidney blood (mg/h)
@@ -224,7 +225,7 @@ CONSTANT tstart = 0.0
 			percentOD_in_feces = (Afeces/Odose)*100	!percent of the oral dose in the feces (%)
 
 		!Liver
-		RL_bound = QL*(CA-CVL)*(1-Free) + kabs*ASI*(1-Free) + k0*AST*(1-Free)	!rate of change of bound PFOA in the liver compartment (mg/h)
+		RL_bound = QL*(CA-CVL)*(1-Free)+ kabs*ASI*(1-Free) + k0*AST*(1-Free)	!rate of change of bound PFOA in the liver compartment (mg/h)
 		AL_bound = integ(RL_bound, 0.0)	!amount of bound PFOA in liver compartment (mg)
 		CL_bound = AL_bound/VL	!concentration of bound PFOA in liver (mg/L)
 
@@ -237,7 +238,7 @@ CONSTANT tstart = 0.0
 		
 		Abile = kbile*AL_free	!amount in the bile (mg) FREE ONLY
 		amount_per_gram_liver = (AL_free/ML)*1000	!amount of free PFOA in liver per gram liver (ug/g)
-
+		
 		!Plasma compartment
 		RPlas = (QR*CVR) + (QK*CVK) + (QL*CVL) - (QC*CA) + IVR + RAefflux  !rate of change of total PFOA in the plasma (mg/h)
 		Aplas= integ(RPlas, 0.0)	!amount total PFOA in the plasma (mg)
@@ -247,6 +248,7 @@ CONSTANT tstart = 0.0
 		Atissue = APlas + AR_free + AR_bound + AKb_free + AKb_bound + AFil + APTC + AL_free + AL_bound + AST + ASI 	!sum of mass in all compartments (mg)
 		Aloss = Aurine + Afeces 	!sum of mass lost through urinary and fecal excretion (mg)
 		Atotal = Atissue + Aloss 	!total mass; should equal total dose
+
 	
 		END ! DERIVATIVE
 

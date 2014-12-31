@@ -166,190 +166,202 @@ ogon = rsw ( t .ge. ogtime , 0. , 1. )
 
 
 
-rr = qr * ( ca - cvr ) * free 
+rr_free = qr * ( ca - cvr ) * free 
 # line 160 
-z99995 = rr 
+z99995 = rr_free 
 # line 160 
 z99994 = 0.0 
 # line 160 
-integral ar = z99995 , z99994 
-cr = ar / vr 
-cvr = cr / pr 
+integral ar_free = z99995 , z99994 
+cr_free = ar_free / vr 
 
-
-
-rkb = qk * ( ca - cvk ) * free - ca * gfr * free - rdif - ra_baso 
-# line 167 
-z99993 = rkb 
-# line 167 
+# line 159 
+rr_bound = qr * ( ca - cvr ) * ( 1 - free ) 
+# line 165 
+z99993 = rr_bound 
+# line 165 
 z99992 = 0.0 
-# line 167 
-integral akb = z99993 , z99992 
-ckb = akb / vkb 
-cvk = ckb 
+# line 165 
+integral ar_bound = z99993 , z99992 
+cr_bound = ar_bound / vr 
 
-rdif = kdif * ( ckb - cptc ) 
-# line 172 
-z99991 = rdif 
-# line 172 
-z99990 = 0. 
-# line 172 
-integral adif = z99991 , z99990 
+cvr = ( cr_free / pr ) + cr_bound 
 
-# line 170 
-ra_baso = ( vmax_baso * ckb ) / ( km_baso + ckb ) 
-# line 176 
-z99989 = ra_baso 
-# line 176 
-z99988 = 0. 
-# line 176 
-integral a_baso = z99989 , z99988 
+
+# line 166 
+rkb_bound = qk * ( ca - cvk ) * ( 1 - free ) 
+# line 173 
+z99991 = rkb_bound 
+# line 173 
+z99990 = 0.0 
+# line 173 
+integral akb_bound = z99991 , z99990 
+ckb_bound = akb_bound / vkb 
+
+rkb_free = qk * ( ca - cvk ) * free - ca * gfr * free - rdif - ra_baso 
+# line 177 
+z99989 = rkb_free 
+# line 177 
+z99988 = 0.0 
+# line 177 
+integral akb_free = z99989 , z99988 
+ckb_free = akb_free / vkb 
+
+cvk = ( ckb_free / pk ) + ckb_bound 
+
+rdif = kdif * ( ckb_free - cptc ) 
+# line 183 
+z99987 = rdif 
+# line 183 
+z99986 = 0. 
+# line 183 
+integral adif = z99987 , z99986 
+
+# line 179 
+ra_baso = ( vmax_baso * ckb_free ) / ( km_baso + ckb_free ) 
+# line 187 
+z99985 = ra_baso 
+# line 187 
+z99984 = 0. 
+# line 187 
+integral a_baso = z99985 , z99984 
 
 
 rptc = rdif + ra_apical + ra_baso - raefflux 
-# line 180 
-z99987 = rptc 
-# line 180 
-z99986 = 0.0 
-# line 180 
-integral aptc = z99987 , z99986 
+# line 191 
+z99983 = rptc 
+# line 191 
+z99982 = 0.0 
+# line 191 
+integral aptc = z99983 , z99982 
 cptc = aptc / vptc 
 
-# line 178 
+# line 187 
 ra_apical = ( vmax_apical * cfil ) / ( km_apical + cfil ) 
-# line 185 
-z99985 = ra_apical 
-# line 185 
-z99984 = 0. 
-# line 185 
-integral a_apical = z99985 , z99984 
+# line 196 
+z99981 = ra_apical 
+# line 196 
+z99980 = 0. 
+# line 196 
+integral a_apical = z99981 , z99980 
 
 raefflux = kefflux * aptc 
-# line 188 
-z99983 = raefflux 
-# line 188 
-z99982 = 0. 
-# line 188 
-integral aefflux = z99983 , z99982 
+# line 199 
+z99979 = raefflux 
+# line 199 
+z99978 = 0. 
+# line 199 
+integral aefflux = z99979 , z99978 
 
 
 rfil = ca * gfr * free - ra_apical - afil * kurine 
-# line 192 
-z99981 = rfil 
-# line 192 
-z99980 = 0.0 
-# line 192 
-integral afil = z99981 , z99980 
+# line 203 
+z99977 = rfil 
+# line 203 
+z99976 = 0.0 
+# line 203 
+integral afil = z99977 , z99976 
 cfil = afil / vfil 
 
 
 rurine = kurine * afil 
-# line 197 
-z99979 = rurine 
-# line 197 
-z99978 = 0.0 
-# line 197 
-integral aurine = z99979 , z99978 
+# line 208 
+z99975 = rurine 
+# line 208 
+z99974 = 0.0 
+# line 208 
+integral aurine = z99975 , z99974 
 
 percentod_in_urine = ( aurine / odose ) * 100 
 
 
 
 rst = ogr - k0 * ast - ge * ast 
-# line 204 
-z99977 = rst 
-# line 204 
-z99976 = 0. 
-# line 204 
-integral ast = z99977 , z99976 
+# line 215 
+z99973 = rst 
+# line 215 
+z99972 = 0. 
+# line 215 
+integral ast = z99973 , z99972 
 
 rabsst = k0 * ast 
-# line 207 
-z99975 = rabsst 
-# line 207 
-z99974 = 0. 
-# line 207 
-integral aabsst = z99975 , z99974 
+# line 218 
+z99971 = rabsst 
+# line 218 
+z99970 = 0. 
+# line 218 
+integral aabsst = z99971 , z99970 
 
 
 rsi = ge * ast - kabs * asi - kunabs * asi 
-# line 211 
-z99973 = rsi 
-# line 211 
-z99972 = 0. 
-# line 211 
-integral asi = z99973 , z99972 
+# line 222 
+z99969 = rsi 
+# line 222 
+z99968 = 0. 
+# line 222 
+integral asi = z99969 , z99968 
 
 rabssi = kabs * asi 
-# line 214 
-z99971 = rabssi 
-# line 214 
-z99970 = 0. 
-# line 214 
-integral aabssi = z99971 , z99970 
+# line 225 
+z99967 = rabssi 
+# line 225 
+z99966 = 0. 
+# line 225 
+integral aabssi = z99967 , z99966 
 
 total_oral_uptake = aabssi + aabsst 
 
 
-rfeces = kbile * al + kunabs * asi 
-# line 220 
-z99969 = rfeces 
-# line 220 
-z99968 = 0.0 
-# line 220 
-integral afeces = z99969 , z99968 
+rfeces = kbile * al_free + kunabs * asi 
+# line 231 
+z99965 = rfeces 
+# line 231 
+z99964 = 0.0 
+# line 231 
+integral afeces = z99965 , z99964 
 percentod_in_feces = ( afeces / odose ) * 100 
 
 
-rl = ql * ( ca - cvl ) * free - kbile * al + kabs * asi + k0 * ast 
-# line 225 
-z99967 = rl 
-# line 225 
-z99966 = 0.0 
-# line 225 
-integral al = z99967 , z99966 
-cl = al / vl 
-cvl = cl / pl 
-
-abile = kbile * al 
-amount_per_gram_liver = ( al / ml ) * 1000 
-
-
 # line 227 
-rbound = ( ( bmax * cl ) / ( kb + cl ) ) - koff * abound 
-# line 235 
-z99965 = rbound 
-# line 235 
-z99964 = 0.0 
-# line 235 
-integral abound = z99965 , z99964 
-
-
-altotal = al + abound 
-cltotal = altotal / vl 
-
-
-# line 235 
-rplasfree = ( qr * cvr ) + ( qk * cvk ) + ( ql * cvl ) - ( qc * ca ) + ivr + raefflux 
-# line 244 
-z99963 = rplasfree 
-# line 244 
-z99962 = 0.0 
-# line 244 
-integral aplasfree = z99963 , z99962 
+rl_bound = ql * ( ca - cvl ) * ( 1 - free ) + kabs * asi * ( 1 - free ) + k0 * ast * ( 1 - free ) 
 # line 237 
-aplasbound = ( ( 1 - free ) * aplasfree ) / free 
-aplastotal = aplasfree + aplasbound 
+z99963 = rl_bound 
+# line 237 
+z99962 = 0.0 
+# line 237 
+integral al_bound = z99963 , z99962 
+cl_bound = al_bound / vl 
 
-ca = aplasfree / vplas 
+rl_free = ql * ( ca - cvl ) * free - kbile * al_free + kabs * asi * free + k0 * ast * free 
+# line 241 
+z99961 = rl_free 
+# line 241 
+z99960 = 0.0 
+# line 241 
+integral al_free = z99961 , z99960 
+cl_free = al_free / vl 
 
-catotal = aplastotal / vplas 
+cl = ( cl_free + cl_bound ) / vl 
+cvl = ( cl_free / pl ) + cl_bound 
+
+abile = kbile * al_free 
+amount_per_gram_liver = ( al_free / ml ) * 1000 
 
 
-atissue = aplas + ar + akb + afil + aptc + altotal + ast + asi 
+# line 242 
+rplas = ( qr * cvr ) + ( qk * cvk ) + ( ql * cvl ) - ( qc * ca ) + ivr + raefflux 
+# line 253 
+z99959 = rplas 
+# line 253 
+z99958 = 0.0 
+# line 253 
+integral aplas = z99959 , z99958 
+ca = aplas / vplas 
+
+
+atissue = aplas + ar_free + ar_bound + akb_free + akb_bound + afil + aptc + al_free + al_bound + ast + asi 
 aloss = aurine + afeces 
 atotal = atissue + aloss 
-
 
 end 
 
@@ -360,11 +372,11 @@ end
 
 
 constant tstop = 24.0 
-# line 268 
+# line 270 
 if ( t .ge. tstop ) then 
-# line 268 
+# line 270 
 call zztrmt ( 'checked on communication interval: REACHED TSTOP' ) 
-# line 268 
+# line 270 
 endif 
 
 end 
