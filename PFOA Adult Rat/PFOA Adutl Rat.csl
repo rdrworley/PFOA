@@ -152,32 +152,23 @@ CONSTANT tstart = 0.0
 		
 		!Model Equations
 		!Rest of Body (Tis)
-		RR_free = QR*(CA-CVR)*Free	!rate of change of free PFOA in rest of body (mg/h)
-		AR_free = integ(RR_free, 0.0)	!free amount in rest of body (mg)
-		CR_free = AR_free/VR !free concentration in rest of body (mg/L)
+		RR = QR*(CA-CVR)*Free	!rate of change in rest of body (mg/h)
+		AR = integ(RR, 0.0)	!amount in rest of body (mg)
+		CR = AR/VR !concentration in rest of body (mg/L)
+		CVR = CR/PR	!concentration in venous blood leaving the rest of the body (mg/L)
 		
-		RR_bound = QR*(CA-CVR)*(1-Free)	!rate of change of bound PFOA in rest of body (mg/h)
-		AR_bound = integ(RR_bound, 0.0)	!bound amount in rest of body (mg)
-		CR_bound = AR_bound/VR	!bound concentration in rest of body 
-		
-		CVR = (CR_free/PR) + CR_bound	!concentration in venous blood leaving the rest of the body (mg/L)
 		!Kidney 
 			!Kidney Blood (Kb)
-			RKb_bound = QK*(CA-CVK)*(1-Free)	!rate of change of bound PFOA in kidney blood (mg/h)
-			AKb_bound = integ(RKb_bound, 0.0)	!amount bound in kidney blood (mg)
-			CKb_bound = AKb_bound/VKb	!bound concentration in kidney blood (mg/L)
+			RKb = QK*(CA-CVK)*Free - CA*GFR*Free - Rdif - RA_baso   !rate of change in kidney blood (mg/h).
+			AKb = integ(RKb, 0.0) !amount in kidney blood (mg)
+			CKb = AKb/VKb	!concentration in kidney blodd (mg/L) 
+			CVK = CKb !/PK	!concentration in venous blood leaving kidney (mg/L)
 
-			RKb_free = QK*(CA-CVK)*Free - CA*GFR*Free - Rdif - RA_baso   !rate of change in kidney blood (mg/h).
-			AKb_free = integ(RKb_free, 0.0) !amount in kidney blood (mg)
-			CKb_free = AKb_free/VKb	!concentration in kidney blodd (mg/L) 
+			Rdif = Kdif*(CKb - CPTC)	!rate of diffusion from into the PTC (mg/hr)
+			Adif = integ(Rdif, 0.)	!amount diffused into the PTC (mg)
 
-			CVK = (CKb_free/PK) + CKb_bound	!concentration in venous blood leaving kidney (mg/L)
-
-			Rdif = Kdif*(CKb_free - CPTC)	!rate of diffusion from into the PTC (mg/hr)FREE ONLY
-			Adif = integ(Rdif, 0.)	!amount diffused into the PTC (mg) FREE ONLY
-
-			RA_baso = (Vmax_baso*CKb_free)/(Km_baso + CKb_free)	!rate of transport of free PFOA via basolateral transporters (mg/h)
-			A_baso = integ(RA_baso, 0.)	!amount of transport of tree PFOA via basolateral transporters (mg)
+			RA_baso = (Vmax_baso*CKb)/(Km_baso + CKb)
+			A_baso = integ(RA_baso, 0.)
 
 			!Proximal Tubule Cells (PTC)
 			RPTC =  Rdif + RA_apical + RA_baso - RAefflux !rate of change in PTC(mg/h)
@@ -204,47 +195,51 @@ CONSTANT tstart = 0.0
 		!GI Tract (Absorption site of oral dose)
 			!Stomach
 			RST= OGR - k0*AST - GE*AST	!rate of change in the stomach (mg/h)
-			AST = integ(RST, 0.)	!amount (total) in the stomach (mg)
+			AST = integ(RST, 0.)	!amount in the stomach (mg)
 
-			RabsST = k0*AST	!rate of absorption (total) in the stomach
-			AabsST = integ(RabsST, 0.)	!amount (total) absorbed in the stomach
+			RabsST = k0*AST	!rate of absorption in the stomach
+			AabsST = integ(RabsST, 0.)	!amount absorbed in the stomach
 
 			!Small Intestine
-			RSI = GE*AST - kabs*ASI - kunabs*ASI	!rate of change (total) in the small intestine (mg/hr)
-			ASI = integ(RSI, 0.)	!amount in the small intestine (total) (mg)
+			RSI = GE*AST - kabs*ASI - kunabs*ASI	!rate of change in the small intestine (mg/hr)
+			ASI = integ(RSI, 0.)	!amount in the small intestine (mg)
 
-			RabsSI = kabs*ASI	!rate of absorption in the small intestine (mg/hr)
-			AabsSI = integ(RabsSI, 0.)	!amount (total) absorbed in the small intestine (mg)
+			RabsSI = kabs*ASI	!rate of absorption inthe small intestine (mg/hr)
+			AabsSI = integ(RabsSI, 0.)	!amount absorbed in the small intestine (mg)
 
 			total_oral_uptake = AabsSI + AabsST	!total oral uptake in the GI tract (mg) 
 
 			!Feces compartment
-			Rfeces = kbile*AL_free + kunabs*ASI !rate of change in the feces compartment (mg/h)
+			Rfeces = kbile*AL + kunabs*ASI !rate of change in the feces compartment (mg/h)
 			Afeces = integ(Rfeces, 0.0)	!amount in the feces compartment (mg)
 			percentOD_in_feces = (Afeces/Odose)*100	!percent of the oral dose in the feces (%)
 
 		!Liver
-		RL_bound = QL*(CA-CVL)*(1-Free) + kabs*ASI*(1-Free) + k0*AST*(1-Free)	!rate of change of bound PFOA in the liver compartment (mg/h)
-		AL_bound = integ(RL_bound, 0.0)	!amount of bound PFOA in liver compartment (mg)
-		CL_bound = AL_bound/VL	!concentration of bound PFOA in liver (mg/L)
-
-		RL_free = QL*(CA-CVL)*Free - kbile*AL_free + kabs*ASI*Free + k0*AST*Free	!rate of change of free PFOA in the liver (mg/h)
-		AL_free = integ(RL_free, 0.0) !amount free PFOA in liver (mg)
-		CL_free = AL_free/VL	!concentration free PFOA in the liver (mg/L)
+		RL = QL*(CA-CVL)*Free - kbile*AL + kabs*ASI + k0*AST !- ((Bmax*CL)/(Kb + CL)) + koff*Abound	!rate of change in the liver (mg/h)
+		AL = integ(RL, 0.0) !amount in liver (mg)
+		CL = AL/VL	!concentration in the liver (mg/L)
+		CVL = CL/PL	!concentration in the venous blood leaving the liver (mg/L)
 		
-		CL = (CL_free + CL_bound)/VL	!total concentration in liver (mg/L) [to be used to compare to measured liver concentrations from rat studies]
-		CVL = (CL_free/PL) + CL_bound	!concentration in the venous blood leaving the liver (mg/L)
-		
-		Abile = kbile*AL_free	!amount in the bile (mg) FREE ONLY
-		amount_per_gram_liver = (AL_free/ML)*1000	!amount of free PFOA in liver per gram liver (ug/g)
+		Abile = kbile*AL
+		amount_per_gram_liver = (AL/ML)*1000	!amount of PFOA in liver per gram liver (ug/g)
 
+		!Liver Binding
+		Rbound = ((Bmax*CL)/(Kb + CL)) - koff*Abound	!rate of change of bound by liver proteins (mg/h)
+		Abound = integ(Rbound, 0.0)	!amount bound by liver proteins (mg)
+				
+		!Total Amount in Liver
+		ALtotal = AL + Abound	!total amount (bound and unbound) in liver (mg)
+		CLtotal = ALtotal/VL	!total concentration in liver (mg/L) [to be used to compare to measured liver concentrations from rat studies]
+		
 		!Plasma compartment
-		RPlas = (QR*CVR) + (QK*CVK) + (QL*CVL) - (QC*CA) + IVR + RAefflux  !rate of change of total PFOA in the plasma (mg/h)
-		Aplas= integ(RPlas, 0.0)	!amount total PFOA in the plasma (mg)
-		CA = APlas/VPlas		!concentration total PFOA in plasma (mg/L)
+		RPlas = (QR*CVR) + (QK*CVK) + (QL*CVL) - (QC*CA) + IVR + RAefflux  !rate of change in the plasma (mg/h)
+		Aplas = integ(RPlas, 0.0)	!amount in the plasma (mg)
+		CA_free = APlas/VPlas		!concentration in plasma (mg/L)
+		CA = CA_free/Free	!concentration total PFOA in plasma (mg/L)
+
 
 		!Mass Balance Check
-		Atissue = APlas + AR_free + AR_bound + AKb_free + AKb_bound + AFil + APTC + AL_free + AL_bound + AST + ASI 	!sum of mass in all compartments (mg)
+		Atissue = APlas + AR + AKb + AFil + APTC + AL + AST + ASI 	!sum of mass in all compartments (mg)
 		Aloss = Aurine + Afeces 	!sum of mass lost through urinary and fecal excretion (mg)
 		Atotal = Atissue + Aloss 	!total mass; should equal total dose
 	
