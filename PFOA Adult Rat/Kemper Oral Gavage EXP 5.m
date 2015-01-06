@@ -17,6 +17,11 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s keffluxc = 10
 !! s kurinec = 1.3
 
+%Partition Coefficients (from A. Locissano, from rat tissue data, Kudo et al, 2007)
+!! s PL = 2.2 
+!! s PK = 1.05 
+!! s PR = 0.11 
+
 
 %Experiment 5: 0.1 mg/kg administered via single oral dose. Whole blood collected from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 
 %and at 24-hour intervals through 192 hours. Whole blood collected from females at pre-dose, and at 0.25, 0.5, 1, 2, 4, 8, 16, 24, 36, 48, 72, and 96 hours 
@@ -69,4 +74,3 @@ five_female_blood = [0.0	0
 16.0	0.050]
 
 plot(_t, _ca, five_male_blood(:,1), five_male_blood(:,2),'+')		%MALE
-!plot(_t, _catotal, five_male_blood(:,1), five_male_blood(:,2),'+')
