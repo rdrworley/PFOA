@@ -330,19 +330,18 @@ cltotal = altotal / vl
 
 
 # line 235 
-rplas = ( qr * cvr ) + ( qk * cvk ) + ( ql * cvl ) - ( qc * ca ) + ivr + raefflux 
+rplas_free = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr + raefflux 
 # line 244 
-z99963 = rplas 
+z99963 = rplas_free 
 # line 244 
 z99962 = 0.0 
 # line 244 
-integral aplas = z99963 , z99962 
-ca_free = aplas / vplas 
-ca = ca_free / 0.006 
+integral aplas_free = z99963 , z99962 
+ca_free = aplas_free / vplas 
+ca = ca_free / free 
 
 
-
-atissue = aplas + ar + akb + afil + aptc + al + ast + asi 
+atissue = aplas_free + ar + akb + afil + aptc + al + ast + asi 
 aloss = aurine + afeces 
 atotal = atissue + aloss 
 
@@ -355,11 +354,11 @@ end
 
 
 constant tstop = 24.0 
-# line 263 
+# line 262 
 if ( t .ge. tstop ) then 
-# line 263 
+# line 262 
 call zztrmt ( 'checked on communication interval: REACHED TSTOP' ) 
-# line 263 
+# line 262 
 endif 
 
 end 

@@ -31,7 +31,7 @@ double aabssi;
 double al;
 double afeces;
 double abound;
-double aplas;
+double aplas_free;
 double z99999;
 double z99997;
 double z99995;
@@ -176,7 +176,7 @@ double amount_per_gram_liver;
 double rbound;
 double altotal;
 double cltotal;
-double rplas;
+double rplas_free;
 double ca_free;
 double atissue;
 double aloss;
@@ -534,7 +534,7 @@ AcslSimSetVariableExtendedInfo(18,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,
 AcslSimSetVariableDescriptor(19,"abound",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_STATE,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(19,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(20,"aplas",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_STATE,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(20,"aplas_free",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_STATE,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(20,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
 AcslSimSetVariableDescriptor(21,"z99999",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_DERIV,0,0,0,0,0,0,-1,-1);
@@ -969,7 +969,7 @@ AcslSimSetVariableExtendedInfo(163,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE
 AcslSimSetVariableDescriptor(164,"cltotal",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ALGEBRAIC,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(164,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
-AcslSimSetVariableDescriptor(165,"rplas",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ALGEBRAIC,0,0,0,0,0,0,-1,-1);
+AcslSimSetVariableDescriptor(165,"rplas_free",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ALGEBRAIC,0,0,0,0,0,0,-1,-1);
 AcslSimSetVariableExtendedInfo(165,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE, 0, 0);
 
 AcslSimSetVariableDescriptor(166,"ca_free",ACSL_DATATYPE_DOUBLE,ACSL_SYMBOLTYPE_ALGEBRAIC,0,0,0,0,0,0,-1,-1);
@@ -1154,7 +1154,7 @@ AcslSimSetVariablePointer(handle,16,&zzsim.aabssi);
 AcslSimSetVariablePointer(handle,17,&zzsim.al);
 AcslSimSetVariablePointer(handle,18,&zzsim.afeces);
 AcslSimSetVariablePointer(handle,19,&zzsim.abound);
-AcslSimSetVariablePointer(handle,20,&zzsim.aplas);
+AcslSimSetVariablePointer(handle,20,&zzsim.aplas_free);
 AcslSimSetVariablePointer(handle,21,&zzsim.z99999);
 AcslSimSetVariablePointer(handle,22,&zzsim.z99997);
 AcslSimSetVariablePointer(handle,23,&zzsim.z99995);
@@ -1299,7 +1299,7 @@ AcslSimSetVariablePointer(handle,161,&zzsim.amount_per_gram_liver);
 AcslSimSetVariablePointer(handle,162,&zzsim.rbound);
 AcslSimSetVariablePointer(handle,163,&zzsim.altotal);
 AcslSimSetVariablePointer(handle,164,&zzsim.cltotal);
-AcslSimSetVariablePointer(handle,165,&zzsim.rplas);
+AcslSimSetVariablePointer(handle,165,&zzsim.rplas_free);
 AcslSimSetVariablePointer(handle,166,&zzsim.ca_free);
 AcslSimSetVariablePointer(handle,167,&zzsim.atissue);
 AcslSimSetVariablePointer(handle,168,&zzsim.aloss);
@@ -1479,10 +1479,10 @@ zzsim.qr = ((zzsim.qc - zzsim.qk) - zzsim.ql);
 zzsim.vplas = (zzsim.vplasc * zzsim.bw);
 
 
-zzsim.ca_free = (zzsim.aplas / zzsim.vplas);
+zzsim.ca_free = (zzsim.aplas_free / zzsim.vplas);
 
 
-zzsim.ca = (zzsim.ca_free / 0.006);
+zzsim.ca = (zzsim.ca_free / zzsim.free);
 
 
 zzsim.vk = (zzsim.vkc * zzsim.bw);
@@ -1659,10 +1659,10 @@ zzsim.rbound = (((zzsim.bmax * zzsim.cl) / (zzsim.kb + zzsim.cl)) - (zzsim.koff 
 zzsim.z99965 = zzsim.rbound;
 
 
-zzsim.rplas = ((((((zzsim.qr * zzsim.cvr) + (zzsim.qk * zzsim.cvk)) + (zzsim.ql * zzsim.cvl)) - (zzsim.qc * zzsim.ca)) + zzsim.ivr) + zzsim.raefflux);
+zzsim.rplas_free = (((((((zzsim.qr * zzsim.cvr) * zzsim.free) + ((zzsim.qk * zzsim.cvk) * zzsim.free)) + ((zzsim.ql * zzsim.cvl) * zzsim.free)) - ((zzsim.qc * zzsim.ca) * zzsim.free)) + zzsim.ivr) + zzsim.raefflux);
 
 
-zzsim.z99963 = zzsim.rplas;
+zzsim.z99963 = zzsim.rplas_free;
 
 
 zzsim.z99998 = 0.0;
@@ -1755,7 +1755,7 @@ zzsim.altotal = (zzsim.al + zzsim.abound);
 zzsim.cltotal = (zzsim.altotal / zzsim.vl);
 
 
-zzsim.atissue = (((((((zzsim.aplas + zzsim.ar) + zzsim.akb) + zzsim.afil) + zzsim.aptc) + zzsim.al) + zzsim.ast) + zzsim.asi);
+zzsim.atissue = (((((((zzsim.aplas_free + zzsim.ar) + zzsim.akb) + zzsim.afil) + zzsim.aptc) + zzsim.al) + zzsim.ast) + zzsim.asi);
 
 
 zzsim.aloss = (zzsim.aurine + zzsim.afeces);
