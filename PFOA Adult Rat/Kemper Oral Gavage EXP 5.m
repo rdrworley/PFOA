@@ -8,14 +8,14 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s Bmax = 0
 !! s koff = 0
 !! s kbilec = 0.009
-!! s kabs = .035
+!! s kabs = .35
 !! s kunabs = 0.0001
 !! s k0c = 0.5
 !! s GEC = 0.54
 
 %kidney parameters
 !! s keffluxc = 10
-!! s kurinec = 1.3
+!! s kurinec = .13
 
 %Partition Coefficients (from A. Locissano, from rat tissue data, Kudo et al, 2007)
 !! s PL = 2.2 
