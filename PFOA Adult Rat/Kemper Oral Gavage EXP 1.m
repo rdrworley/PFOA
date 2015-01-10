@@ -6,15 +6,15 @@ prepare @clear @all
 %liver binding parameters (Values from Loccisano PFOS model, Bmax is female values)
 !! s Bmax = 0
 !! s koff = 0
-!! s kbilec = 0.001
-!! s kabs = 2.0
-!! s kunabs = 0.04
+!! s kbilec = 0.004
+!! s kabs = 3.0
+!! s kunabs = 0.0001
 !! s k0c = 1.0
 !! s GEC = 0.54
 
 %kidney parameters
 !! s keffluxc = 10
-!! s kurinec = 3.0
+!! s kurinec = 1.3
 
 %Experiment 1: 1 mg/kg administered via single oral dose. percent of dose in urine and feces reported from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 
 %and at 24-hour intervals through 192 hours.
