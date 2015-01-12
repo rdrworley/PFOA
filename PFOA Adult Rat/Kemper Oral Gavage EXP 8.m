@@ -14,7 +14,7 @@ prepare @clear @all
 
 %kidney parameters
 !! s keffluxc = 10
-!! s kurinec = 1.3
+!! s kurinec = 1.6
 
 
 %Experiment 8: 25 mg/kg administered via single oral dose. Whole blood collected from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 
