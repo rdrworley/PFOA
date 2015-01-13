@@ -231,7 +231,9 @@ CONSTANT tstart = 0.0
 		CLtotal = ALtotal/VL	!total concentration in liver (mg/L) [to be used to compare to measured liver concentrations from rat studies]
 		
 		!Plasma compartment
-		RPlas_free = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + RAefflux  !rate of change in the plasma (mg/h)
+		RPlas_free = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + RAefflux  !rate of change in the plasma (mg/h) OLD VERSION
+		!RPlas_free = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR*Free + RAefflux  !rate of change in the plasma (mg/h) NEW VERSION
+		!RPlas_free = (QR*CVR) + (QK*CVK) + (QL*CVL) - (QC*CA_free) + IVR + RAefflux !JEFF'S SUGGESTION
 		Aplas_free = integ(RPlas_free, 0.0)	!amount in the plasma (mg)
 		CA_free = APlas_free/VPlas		!concentration in plasma (mg)
 		CA = CA_free/Free	!concentration of total PFOA in plasma (mg/L)

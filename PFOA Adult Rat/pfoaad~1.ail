@@ -9795,11 +9795,11 @@
 </Tables>
 <Dynamic>
 <Statements>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="261">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="263">
 <Conditional>
 <Predicate><RelationalGte><Identifier>t</Identifier><Identifier>tstop</Identifier></RelationalGte></Predicate>
 <PredTrueAlternative>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="261">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="263">
 <Call><SubroutineCall><SubroutineName>zztrmt</SubroutineName><SubroutineArgument><Identifier>zzinstidx</Identifier></SubroutineArgument>
 <SubroutineArgument><StringLiteral>checked on communication interval: REACHED TSTOP</StringLiteral></SubroutineArgument></SubroutineCall>
 </Call>
@@ -9903,13 +9903,13 @@
 <Identifier>vplas</Identifier></LValue>
 <ArithMultiplication><Identifier>vplasc</Identifier><Identifier>bw</Identifier></ArithMultiplication></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="244">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="246">
 <Assignment>
 <LValue>
 <Identifier>ca_free</Identifier></LValue>
 <ArithDivision><Identifier>aplas_free</Identifier><Identifier>vplas</Identifier></ArithDivision></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="245">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="247">
 <Assignment>
 <LValue>
 <Identifier>ca</Identifier></LValue>
@@ -10267,9 +10267,9 @@
 <Assignment>
 <LValue>
 <Identifier>rplas_free</Identifier></LValue>
-<ArithAddition><ArithAddition><ArithSubtraction><ArithAddition><ArithAddition><ArithMultiplication><ArithMultiplication><Identifier>qr</Identifier><Identifier>cvr</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication><ArithMultiplication><ArithMultiplication><Identifier>qk</Identifier><Identifier>cvk</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication></ArithAddition><ArithMultiplication><ArithMultiplication><Identifier>ql</Identifier><Identifier>cvl</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication></ArithAddition><ArithMultiplication><ArithMultiplication><Identifier>qc</Identifier><Identifier>ca</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication></ArithSubtraction><ArithMultiplication><Identifier>ivr</Identifier><Identifier>free</Identifier></ArithMultiplication></ArithAddition><Identifier>raefflux</Identifier></ArithAddition></Assignment>
+<ArithAddition><ArithAddition><ArithSubtraction><ArithAddition><ArithAddition><ArithMultiplication><ArithMultiplication><Identifier>qr</Identifier><Identifier>cvr</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication><ArithMultiplication><ArithMultiplication><Identifier>qk</Identifier><Identifier>cvk</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication></ArithAddition><ArithMultiplication><ArithMultiplication><Identifier>ql</Identifier><Identifier>cvl</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication></ArithAddition><ArithMultiplication><ArithMultiplication><Identifier>qc</Identifier><Identifier>ca</Identifier></ArithMultiplication><Identifier>free</Identifier></ArithMultiplication></ArithSubtraction><Identifier>ivr</Identifier></ArithAddition><Identifier>raefflux</Identifier></ArithAddition></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="243">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="245">
 <Assignment>
 <LValue>
 <Identifier>z99963</Identifier></LValue>
@@ -10383,7 +10383,7 @@
 <Identifier>z99964</Identifier></LValue>
 <RealLiteral>0.0</RealLiteral></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="243">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="245">
 <Assignment>
 <LValue>
 <Identifier>z99962</Identifier></LValue>
@@ -10455,19 +10455,19 @@
 <Identifier>cltotal</Identifier></LValue>
 <ArithDivision><Identifier>altotal</Identifier><Identifier>vl</Identifier></ArithDivision></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="248">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="250">
 <Assignment>
 <LValue>
 <Identifier>atissue</Identifier></LValue>
 <ArithAddition><ArithAddition><ArithAddition><ArithAddition><ArithAddition><ArithAddition><ArithAddition><Identifier>aplas_free</Identifier><Identifier>ar</Identifier></ArithAddition><Identifier>akb</Identifier></ArithAddition><Identifier>afil</Identifier></ArithAddition><Identifier>aptc</Identifier></ArithAddition><Identifier>al</Identifier></ArithAddition><Identifier>ast</Identifier></ArithAddition><Identifier>asi</Identifier></ArithAddition></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="249">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="251">
 <Assignment>
 <LValue>
 <Identifier>aloss</Identifier></LValue>
 <ArithAddition><Identifier>aurine</Identifier><Identifier>afeces</Identifier></ArithAddition></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="250">
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~1.csl" blockname="" linenumber="252">
 <Assignment>
 <LValue>
 <Identifier>atotal</Identifier></LValue>
