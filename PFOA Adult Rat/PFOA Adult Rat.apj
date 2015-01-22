@@ -11,6 +11,8 @@
   <mscript name="Kudo IV low dose 2h.m" location="." />
   <mscript name="Kudo IV high dose 2h.m" location="." />
   <mscript name="Kemper IV Exp 6.m" location="." />
+  <mscript name="Optimization.m" location="." />
   <exe name="PFOA Adutl Rat.dll" location="." />
   <resultsfolder name="" location="." />
+  <optstats name="PFOA Adult Rat Optimization.ape" location="." />
 </project>
