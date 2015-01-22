@@ -92,11 +92,11 @@ CONSTANT tstart = 0.0
 
 	DYNAMIC
 
-		ALGORITHM IALG = 5
+		ALGORITHM IALG = 2
 		NSTEPS    NSTP = 10
 		MAXTERVAL MAXT = 1.0e9
 		MINTERVAL MINT = 1.0e-9
-		CINTERVAL CINT = 0.01
+		CINTERVAL CINT = 0.1
 
  		DERIVATIVE
  	!Scaled Parameters
@@ -232,8 +232,6 @@ CONSTANT tstart = 0.0
 		
 		!Plasma compartment
 		RPlas_free = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + RAefflux  !rate of change in the plasma (mg/h) OLD VERSION
-		!RPlas_free = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR*Free + RAefflux  !rate of change in the plasma (mg/h) NEW VERSION
-		!RPlas_free = (QR*CVR) + (QK*CVK) + (QL*CVL) - (QC*CA_free) + IVR + RAefflux !JEFF'S SUGGESTION
 		Aplas_free = integ(RPlas_free, 0.0)	!amount in the plasma (mg)
 		CA_free = APlas_free/VPlas		!concentration in plasma (mg)
 		CA = CA_free/Free	!concentration of total PFOA in plasma (mg/L)

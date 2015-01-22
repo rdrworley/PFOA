@@ -92,11 +92,11 @@ end
 
 dynamic 
 
-algorithm ialg = 5 
+algorithm ialg = 2 
 nsteps nstp = 10 
 maxterval maxt = 1.0e9 
 minterval mint = 1.0e-9 
-cinterval cint = 0.01 
+cinterval cint = 0.1 
 
 derivative 
 
@@ -330,13 +330,11 @@ cltotal = altotal / vl
 
 # line 234 
 rplas_free = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr + raefflux 
-
-
-# line 245 
+# line 243 
 z99963 = rplas_free 
-# line 245 
+# line 243 
 z99962 = 0.0 
-# line 245 
+# line 243 
 integral aplas_free = z99963 , z99962 
 ca_free = aplas_free / vplas 
 ca = ca_free / free 
@@ -355,11 +353,11 @@ end
 
 
 constant tstop = 24.0 
-# line 263 
+# line 261 
 if ( t .ge. tstop ) then 
-# line 263 
+# line 261 
 call zztrmt ( 'checked on communication interval: REACHED TSTOP' ) 
-# line 263 
+# line 261 
 endif 
 
 end 
