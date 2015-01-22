@@ -14,7 +14,7 @@ prepare @clear @all
 
 %kidney parameters
 !! s keffluxc = 10
-!! s kurinec = 1.3
+!! s kurinec = 1.6
 
 %Experiment 1: 1 mg/kg administered via single oral dose. percent of dose in urine and feces reported from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 
 %and at 24-hour intervals through 192 hours.

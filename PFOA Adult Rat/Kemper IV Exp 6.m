@@ -15,7 +15,8 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 %kidney parameters
 !! s keffluxc = 10
-!! s kurinec = 1.3
+!! s kurinec = 1.6
+
 %Experiment: 0.041 mg/kg BW administered to male wistar rats in single bolus IV, serum and liver concentrations measured 2h post-dose serum collected at time points from 0-300 minutes.
 
 !! s TSTOP = 550	
