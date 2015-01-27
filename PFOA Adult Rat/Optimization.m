@@ -1,7 +1,7 @@
-!! s kbilec = 0.004
-!! s kabs = 3.0
-!! s kunabs = 0.0001
-!! s k0c = 1.0
-!! s GEC = 0.54
-!! s keffluxc = 10
-!! s kurinec = 1.6
+!! s K0C = 2.865397e+01
+!! s KABS = 6.328985e+00
+!! s KUNABS = 2.685718e-19
+
+!! s kbilec = 3.770521e-03
+!! s keffluxc =  2.776032e+01
+!! s kurinec =  1.981351e+00

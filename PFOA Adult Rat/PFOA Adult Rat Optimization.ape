@@ -1,12 +1,9 @@
 <optstats type="param estim object">
   <runoptions mscriptpre="optimization.m" plotresults="True" />
   <parameters>
-    <parameter name="k0c" usestartval="True" startval="1" isfixed="False" uselowerbound="False" lowerbound="0" useupperbound="False" upperbound="2" />
-    <parameter name="kabs" usestartval="True" startval="3" isfixed="False" uselowerbound="False" lowerbound="0" useupperbound="False" upperbound="6" />
-    <parameter name="kunabs" usestartval="True" startval="0.0001" isfixed="False" uselowerbound="False" lowerbound="0" useupperbound="False" upperbound="0.0002" />
-    <parameter name="kbilec" usestartval="True" startval="0.004" isfixed="False" uselowerbound="False" lowerbound="0" useupperbound="False" upperbound="0.008" />
-    <parameter name="keffluxc" usestartval="True" startval="10" isfixed="False" uselowerbound="False" lowerbound="0" useupperbound="False" upperbound="20" />
-    <parameter name="kurinec" usestartval="True" startval="1.6" isfixed="False" uselowerbound="False" lowerbound="0" useupperbound="False" upperbound="3.2" />
+    <parameter name="k0c" usestartval="True" startval="60" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="57.30794" />
+    <parameter name="kabs" usestartval="True" startval="12.5" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="12.65797" />
+    <parameter name="kunabs" usestartval="True" startval="5.2E-19" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="5.371436E-19" />
   </parameters>
   <algorithm maxiterations="10000" optalgorithm="Nelder-Mead" paramstoptol="1E-05" objfunstoptol="1E-05" startstep="0.2" coefreflect="1" coefexpand="2" coefcontract="0.5" coefshrink="0.5" />
   <variables>
@@ -18,7 +15,7 @@
     <descriptor name="ivdosec" type="System.Double" />
   </descriptors>
   <datasets>
-    <dataset name="Kemper Exp 5.csv" includeinrun="True" filepath="..\..\..\..\..\users\rachel\documents\pfoa adult rat datasets\kemper exp 5.csv">
+    <dataset name="kemper_exp_5m.csv" includeinrun="True" filepath="kemper_exp_5m.csv">
       <columns>
         <column name="1" />
         <column name="2" />
@@ -28,12 +25,12 @@
         <colbinding colname="2" varname="ca" />
       </colbindings>
       <descriptors>
-        <descriptor name="ivdosec" value="0.1" type="System.Double" />
-        <descriptor name="odosec" value="1E-33" type="System.Double" />
+        <descriptor name="ivdosec" value="0" type="System.Double" />
+        <descriptor name="odosec" value="0.1" type="System.Double" />
         <descriptor name="bw" value="0.216" type="System.Double" />
       </descriptors>
     </dataset>
-    <dataset name="Kemper Exp 6.csv" includeinrun="True" filepath="..\..\..\..\..\users\rachel\documents\pfoa adult rat datasets\kemper exp 6.csv">
+    <dataset name="kemper_exp_6m.csv" includeinrun="True" filepath="kemper_exp_6m.csv">
       <columns>
         <column name="1" />
         <column name="2" />
@@ -43,12 +40,12 @@
         <colbinding colname="2" varname="ca" />
       </colbindings>
       <descriptors>
-        <descriptor name="ivdosec" value="1" type="System.Double" />
-        <descriptor name="odosec" value="1E-33" type="System.Double" />
+        <descriptor name="ivdosec" value="0" type="System.Double" />
+        <descriptor name="odosec" value="1" type="System.Double" />
         <descriptor name="bw" value="0.249" type="System.Double" />
       </descriptors>
     </dataset>
-    <dataset name="Kemper Exp 7.csv" includeinrun="True" filepath="..\..\..\..\..\users\rachel\documents\pfoa adult rat datasets\kemper exp 7.csv">
+    <dataset name="kemper_exp_7m.csv" includeinrun="True" filepath="kemper_exp_7m.csv">
       <columns>
         <column name="1" />
         <column name="2" />
@@ -58,12 +55,12 @@
         <colbinding colname="2" varname="ca" />
       </colbindings>
       <descriptors>
-        <descriptor name="ivdosec" value="5" type="System.Double" />
-        <descriptor name="odosec" value="1E-33" type="System.Double" />
+        <descriptor name="ivdosec" value="0" type="System.Double" />
+        <descriptor name="odosec" value="5" type="System.Double" />
         <descriptor name="bw" value="0.218" type="System.Double" />
       </descriptors>
     </dataset>
-    <dataset name="Kemper Exp 8.csv" includeinrun="True" filepath="..\..\..\..\..\users\rachel\documents\pfoa adult rat datasets\kemper exp 8.csv">
+    <dataset name="kemper_exp_8m.csv" includeinrun="True" filepath="kemper_exp_8m.csv">
       <columns>
         <column name="1" />
         <column name="2" />
@@ -73,9 +70,39 @@
         <colbinding colname="2" varname="ca" />
       </colbindings>
       <descriptors>
-        <descriptor name="ivdosec" value="25" type="System.Double" />
-        <descriptor name="odosec" value="1E-33" type="System.Double" />
+        <descriptor name="ivdosec" value="0" type="System.Double" />
+        <descriptor name="odosec" value="25" type="System.Double" />
         <descriptor name="bw" value="0.225" type="System.Double" />
+      </descriptors>
+    </dataset>
+    <dataset name="kudo_iv__low_dosem.csv" includeinrun="True" filepath="kudo_iv__low_dosem.csv">
+      <columns>
+        <column name="1" />
+        <column name="2" />
+      </columns>
+      <colbindings>
+        <colbinding colname="1" varname="t" />
+        <colbinding colname="2" varname="ca" />
+      </colbindings>
+      <descriptors>
+        <descriptor name="ivdosec" value="0.041" type="System.Double" />
+        <descriptor name="odosec" value="1E-33" type="System.Double" />
+        <descriptor name="bw" value="0.3" type="System.Double" />
+      </descriptors>
+    </dataset>
+    <dataset name="Kudo IV, high dose.csv" includeinrun="True" filepath="..\..\..\..\..\users\rachel\documents\pfoa adult rat datasets\kudo iv, high dose.csv">
+      <columns>
+        <column name="1" />
+        <column name="2" />
+      </columns>
+      <colbindings>
+        <colbinding colname="1" varname="t" />
+        <colbinding colname="2" varname="ca" />
+      </colbindings>
+      <descriptors>
+        <descriptor name="ivdosec" value="16.56" type="System.Double" />
+        <descriptor name="odosec" value="1E-33" type="System.Double" />
+        <descriptor name="bw" value="0.3" type="System.Double" />
       </descriptors>
     </dataset>
     <dataset name="Kemper Exp 6,IV.csv" includeinrun="True" filepath="..\..\..\..\..\users\rachel\documents\pfoa adult rat datasets\kemper exp 6,iv.csv">
@@ -88,39 +115,9 @@
         <colbinding colname="2" varname="ca" />
       </colbindings>
       <descriptors>
-        <descriptor name="ivdosec" value="0" type="System.Double" />
-        <descriptor name="odosec" value="1" type="System.Double" />
+        <descriptor name="ivdosec" value="1" type="System.Double" />
+        <descriptor name="odosec" value="1E-33" type="System.Double" />
         <descriptor name="bw" value="0.248" type="System.Double" />
-      </descriptors>
-    </dataset>
-    <dataset name="Kudo IV, low dose.csv" includeinrun="True" filepath="..\..\..\..\..\users\rachel\documents\pfoa adult rat datasets\kudo iv, low dose.csv">
-      <columns>
-        <column name="1" />
-        <column name="2" />
-      </columns>
-      <colbindings>
-        <colbinding colname="1" varname="t" />
-        <colbinding colname="2" varname="ca" />
-      </colbindings>
-      <descriptors>
-        <descriptor name="ivdosec" value="0" type="System.Double" />
-        <descriptor name="odosec" value="16.56" type="System.Double" />
-        <descriptor name="bw" value="0.3" type="System.Double" />
-      </descriptors>
-    </dataset>
-    <dataset name="Kudo IV, low dose.csv" includeinrun="True" filepath="..\..\..\..\..\users\rachel\documents\pfoa adult rat datasets\kudo iv, low dose.csv">
-      <columns>
-        <column name="1" />
-        <column name="2" />
-      </columns>
-      <colbindings>
-        <colbinding colname="1" varname="t" />
-        <colbinding colname="2" varname="ca" />
-      </colbindings>
-      <descriptors>
-        <descriptor name="ivdosec" value="0" type="System.Double" />
-        <descriptor name="odosec" value="0.041" type="System.Double" />
-        <descriptor name="bw" value="0.3" type="System.Double" />
       </descriptors>
     </dataset>
   </datasets>
