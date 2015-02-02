@@ -1,12 +1,12 @@
 <optstats type="param estim object">
   <runoptions mscriptpre="optimization.m" plotresults="True" />
   <parameters>
-    <parameter name="k0c" usestartval="True" startval="8.613062" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="18.8410345742562" />
-    <parameter name="kabs" usestartval="True" startval="5.617023" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="11.6775708231553" />
-    <parameter name="kunabs" usestartval="True" startval="9.246606E-07" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.0002" />
-    <parameter name="kbilec" usestartval="True" startval="0.003245876" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.015" />
-    <parameter name="keffluxc" usestartval="True" startval="34.06927" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="20" />
-    <parameter name="kurinec" usestartval="True" startval="2.31792" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.2" />
+    <parameter name="k0c" usestartval="True" startval="9.412838" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="18.8410345742562" />
+    <parameter name="kabs" usestartval="True" startval="217.2143" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="11.6775708231553" />
+    <parameter name="kunabs" usestartval="True" startval="0.0001034375" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.0002" />
+    <parameter name="kbilec" usestartval="True" startval="0.003699245" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.015" />
+    <parameter name="keffluxc" usestartval="True" startval="10" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="20" />
+    <parameter name="kurinec" usestartval="True" startval="1.649999" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.2" />
   </parameters>
   <algorithm maxiterations="10000" optalgorithm="Nelder-Mead" paramstoptol="1E-05" objfunstoptol="1E-05" startstep="0.2" coefreflect="1" coefexpand="2" coefcontract="0.5" coefshrink="0.5" />
   <variables>
@@ -33,7 +33,7 @@
         <descriptor name="bw" value="0.216" type="System.Double" />
       </descriptors>
     </dataset>
-    <dataset name="kemper_exp_6m.csv" includeinrun="True" filepath="kemper_exp_6m.csv">
+    <dataset name="kemper_exp_6m.csv" includeinrun="False" filepath="kemper_exp_6m.csv">
       <columns>
         <column name="1" />
         <column name="2" />
@@ -48,7 +48,7 @@
         <descriptor name="bw" value="0.249" type="System.Double" />
       </descriptors>
     </dataset>
-    <dataset name="kemper_exp_7m.csv" includeinrun="True" filepath="kemper_exp_7m.csv">
+    <dataset name="kemper_exp_7m.csv" includeinrun="False" filepath="kemper_exp_7m.csv">
       <columns>
         <column name="1" />
         <column name="2" />
@@ -63,7 +63,7 @@
         <descriptor name="bw" value="0.218" type="System.Double" />
       </descriptors>
     </dataset>
-    <dataset name="kemper_exp_8m.csv" includeinrun="True" filepath="kemper_exp_8m.csv">
+    <dataset name="kemper_exp_8m.csv" includeinrun="False" filepath="kemper_exp_8m.csv">
       <columns>
         <column name="1" />
         <column name="2" />
@@ -78,7 +78,7 @@
         <descriptor name="bw" value="0.225" type="System.Double" />
       </descriptors>
     </dataset>
-    <dataset name="kudo_iv__low_dosem.csv" includeinrun="True" filepath="kudo_iv__low_dosem.csv">
+    <dataset name="kudo_iv__low_dosem.csv" includeinrun="False" filepath="kudo_iv__low_dosem.csv">
       <columns>
         <column name="1" />
         <column name="2" />
@@ -93,7 +93,7 @@
         <descriptor name="bw" value="0.3" type="System.Double" />
       </descriptors>
     </dataset>
-    <dataset name="kudo_iv__high_dosem.csv" includeinrun="True" filepath="kudo_iv__high_dosem.csv">
+    <dataset name="kudo_iv__high_dosem.csv" includeinrun="False" filepath="kudo_iv__high_dosem.csv">
       <columns>
         <column name="1" />
         <column name="2" />
@@ -108,7 +108,7 @@
         <descriptor name="bw" value="0.3" type="System.Double" />
       </descriptors>
     </dataset>
-    <dataset name="kemper_exp_6_ivm.csv" includeinrun="True" filepath="kemper_exp_6_ivm.csv">
+    <dataset name="kemper_exp_6_ivm.csv" includeinrun="False" filepath="kemper_exp_6_ivm.csv">
       <columns>
         <column name="1" />
         <column name="2" />
