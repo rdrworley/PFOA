@@ -1,7 +1,8 @@
-!! s kabs = 3.0
-!! s kunabs = 0.0001
-!! s k0c = 1.0
+!! s K0C = 1.0
+!! s KABS = 3.0
+!! s KUNABS = 0.0001
 
-!! s kbilec = 0.004
-!! s keffluxc = 10
-!! s kurinec = 1.6
+!! s KBILEC = 0.004
+!! s KEFFLUXC = 10
+!! s KURINEC = 1.6
+

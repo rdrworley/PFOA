@@ -1,8 +1,8 @@
 % Automatically generated through parameter estimation script 'PFOA Adult Rat Optimization.m'
 
-K0C = 1.194562e+01;
-KABS = 1.566506e+01;
-KUNABS = 3.041923e-20;
-KBILEC = 4.000000e-03;
-KEFFLUXC = 1.000000e+01;
-KURINEC = 1.600000e+00;
+K0C = 8.613062e+00;
+KABS = 6.740428e+00;
+KUNABS = 9.246606e-07;
+KBILEC = 3.245876e-03;
+KEFFLUXC = 3.406927e+01;
+KURINEC = 2.317920e+00;
