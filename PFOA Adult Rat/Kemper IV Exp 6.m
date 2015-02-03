@@ -4,18 +4,13 @@ output @clear
 prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
-%liver binding parameters (Values from Loccisano PFOS model, Bmax is female values)
-!! s Bmax = 0
-!! s koff = 0
-!! s kbilec = 3.245876e-03
-!! s kabs = 5.617023
-!! s kunabs = 9.246606e-7
-!! s k0c = 8.613062
-!! s GEC = 0.54
+!! s K0C = 1.0
+!! s KABS = 3.0
+!! s KUNABS = 0.0001
 
-%kidney parameters
-!! s keffluxc = 3.406927e+01
-!! s kurinec = 2.317920
+!! s KBILEC = 0.004
+!! s KEFFLUXC = 10
+!! s KURINEC = 1.6
 
 %Experiment: 0.041 mg/kg BW administered to male wistar rats in single bolus IV, serum and liver concentrations measured 2h post-dose serum collected at time points from 0-300 minutes.
 

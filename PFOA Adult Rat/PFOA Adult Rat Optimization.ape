@@ -1,12 +1,12 @@
 <optstats type="param estim object">
   <runoptions mscriptpre="optimization.m" plotresults="True" />
   <parameters>
-    <parameter name="k0c" usestartval="True" startval="9.412838" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="18.8410345742562" />
-    <parameter name="kabs" usestartval="True" startval="217.2143" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="11.6775708231553" />
-    <parameter name="kunabs" usestartval="True" startval="0.0001034375" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.0002" />
-    <parameter name="kbilec" usestartval="True" startval="0.003699245" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.015" />
-    <parameter name="keffluxc" usestartval="True" startval="10" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="20" />
-    <parameter name="kurinec" usestartval="True" startval="1.649999" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.2" />
+    <parameter name="k0c" usestartval="True" startval="11.7" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="18.8410345742562" />
+    <parameter name="kabs" usestartval="True" startval="128.7688" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="11.6775708231553" />
+    <parameter name="kunabs" usestartval="True" startval="0.005549494" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.0002" />
+    <parameter name="kbilec" usestartval="True" startval="0.0038" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.015" />
+    <parameter name="keffluxc" usestartval="True" startval="10" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="20" />
+    <parameter name="kurinec" usestartval="True" startval="1.6" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.2" />
   </parameters>
   <algorithm maxiterations="10000" optalgorithm="Nelder-Mead" paramstoptol="1E-05" objfunstoptol="1E-05" startstep="0.2" coefreflect="1" coefexpand="2" coefcontract="0.5" coefshrink="0.5" />
   <variables>
