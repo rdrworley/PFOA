@@ -16,4 +16,5 @@
   <exe name="PFOA Adutl Rat.dll" location="." />
   <resultsfolder name="" location="." />
   <optstats name="PFOA Adult Rat Optimization.ape" location="." />
+  <optstats name="PFOA Adult Parameter Estimation.ape" location="." />
 </project>

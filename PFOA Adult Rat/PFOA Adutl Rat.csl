@@ -249,7 +249,7 @@ CONSTANT tstart = 0.0
 
 		! code that is executed once at each communication interval goes here
 
-		CONSTANT TSTOP = 24.0 !hours
+		CONSTANT TSTOP = 530.0 !hours
 		TERMT (T .GE. TSTOP, 'checked on communication interval: REACHED TSTOP')
 
 	END ! DYNAMIC

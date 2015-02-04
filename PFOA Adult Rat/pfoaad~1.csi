@@ -1,0 +1,370 @@
+program 
+
+
+
+
+
+initial 
+
+constant tstart = 0.0 
+
+
+constant bw = 0.3 
+constant mkc = 0.0084 
+constant mlc = 0.034 
+
+
+constant qcc = 14.0 
+constant qlc = 0.183 
+constant qkc = 0.141 
+constant htc = 0.46 
+
+
+constant vplasc = 0.0312 
+constant vlc = 0.035 
+constant vkc = 0.0084 
+constant vfilc = 8.4e-4 
+constant vptcc = 1.35e-4 
+
+
+constant mw = 414.07 
+
+constant free = 0.006 
+
+
+
+constant vmax_baso_invitro = 393.45 
+constant km_baso = 37.7 
+constant vmax_apical_invitro = 18861.8 
+constant km_apical = 141 
+constant rafbaso = 0.01356 
+constant rafapi = 0.01356 
+constant protein = 2.0e-6 
+
+constant gfrc = 62.1 
+
+
+
+constant pl = 2.2 
+constant pk = 1.05 
+constant pr = 0.11 
+
+
+constant kb = 1 
+constant bmax = 1 
+constant koff = 1 
+
+
+constant kdif = 0.001 
+constant kabs = 0.3 
+constant kunabs = 0.0001 
+constant gec = 0.54 
+constant k0c = 1.0e-33 
+
+constant keffluxc = 10 
+constant kbilec = 0.0075 
+
+constant kurinec = 0.1 
+
+
+
+
+
+
+
+
+
+
+constant odosec = 1.0e-33 
+constant ogtime = 0.01 
+
+
+
+
+
+
+
+constant ivdosec = 1.0 
+constant ivtime = 0.01 
+
+end 
+
+
+dynamic 
+
+algorithm ialg = 2 
+nsteps nstp = 10 
+maxterval maxt = 1.0e9 
+minterval mint = 1.0e-9 
+cinterval cint = 0.1 
+
+derivative 
+
+
+# line 104 
+qc = qcc * ( bw ** 0.75 ) * ( 1 - htc ) 
+qk = ( qkc * qc ) 
+ql = ( qlc * qc ) 
+qr = qc - qk - ql 
+qbal = qc - ( qk + ql + qr ) 
+
+
+vplas = vplasc * bw 
+vk = vkc * bw 
+vkb = vk * 0.16 
+vfil = vfilc * bw 
+vl = vlc * bw 
+vr = ( 0.84 * bw ) - vplas - vkb - vptc - vfil - vl - vk 
+# line 117 
+vbal = ( 0.84 * bw ) - ( vr + vl + vkb + vptc + vfil + vplas + vk ) 
+ml = mlc * bw * 1000 
+
+
+mk = mkc * bw * 1000 
+ptc = mk * 6e7 
+vptc = mk * vptcc 
+mptc = vptc * 1000 
+# line 125 
+vmax_basoc = ( vmax_baso_invitro * rafbaso * ptc * protein * 60 * ( mw / 1e12 ) * 1000 ) 
+# line 126 
+vmax_apicalc = ( vmax_apical_invitro * rafapi * ptc * protein * 60 * ( mw / 1e12 ) * 1000 ) 
+vmax_baso = vmax_basoc * bw ** 0.75 
+vmax_apical = vmax_apicalc * bw ** 0.75 
+kbile = kbilec * bw ** ( - 0.25 ) 
+kurine = kurinec * bw ** ( - 0.25 ) 
+kefflux = keffluxc * bw ** ( 0.75 ) 
+gfr = gfrc * ( mk / 1000 ) 
+
+
+ge = gec / bw ** 0.25 
+k0 = k0c / bw ** 0.25 
+
+
+
+ivdose = ivdosec * bw 
+ivr = ivon * ivdose / ivtime 
+# line 146 
+z99999 = ivr 
+# line 146 
+z99998 = 0.0 
+# line 146 
+integral aiv = z99999 , z99998 
+
+ivon = rsw ( t .ge. ivtime , 0. , 1. ) 
+
+
+odose = odosec * bw 
+ogr = ogon * odose / ogtime 
+# line 153 
+z99997 = ogr 
+# line 153 
+z99996 = 0.0 
+# line 153 
+integral aog = z99997 , z99996 
+ogon = rsw ( t .ge. ogtime , 0. , 1. ) 
+
+
+
+rr = qr * ( ca - cvr ) * free 
+# line 159 
+z99995 = rr 
+# line 159 
+z99994 = 0.0 
+# line 159 
+integral ar = z99995 , z99994 
+cr = ar / vr 
+cvr = cr / pr 
+
+
+
+rkb = qk * ( ca - cvk ) * free - ca * gfr * free - rdif - ra_baso 
+# line 166 
+z99993 = rkb 
+# line 166 
+z99992 = 0.0 
+# line 166 
+integral akb = z99993 , z99992 
+ckb = akb / vkb 
+cvk = ckb 
+
+rdif = kdif * ( ckb - cptc ) 
+# line 171 
+z99991 = rdif 
+# line 171 
+z99990 = 0. 
+# line 171 
+integral adif = z99991 , z99990 
+
+# line 169 
+ra_baso = ( vmax_baso * ckb ) / ( km_baso + ckb ) 
+# line 175 
+z99989 = ra_baso 
+# line 175 
+z99988 = 0. 
+# line 175 
+integral a_baso = z99989 , z99988 
+
+
+rptc = rdif + ra_apical + ra_baso - raefflux 
+# line 179 
+z99987 = rptc 
+# line 179 
+z99986 = 0.0 
+# line 179 
+integral aptc = z99987 , z99986 
+cptc = aptc / vptc 
+
+# line 177 
+ra_apical = ( vmax_apical * cfil ) / ( km_apical + cfil ) 
+# line 184 
+z99985 = ra_apical 
+# line 184 
+z99984 = 0. 
+# line 184 
+integral a_apical = z99985 , z99984 
+
+raefflux = kefflux * aptc 
+# line 187 
+z99983 = raefflux 
+# line 187 
+z99982 = 0. 
+# line 187 
+integral aefflux = z99983 , z99982 
+
+
+rfil = ca * gfr * free - ra_apical - afil * kurine 
+# line 191 
+z99981 = rfil 
+# line 191 
+z99980 = 0.0 
+# line 191 
+integral afil = z99981 , z99980 
+cfil = afil / vfil 
+
+
+rurine = kurine * afil 
+# line 196 
+z99979 = rurine 
+# line 196 
+z99978 = 0.0 
+# line 196 
+integral aurine = z99979 , z99978 
+
+percentod_in_urine = ( aurine / odose ) * 100 
+
+
+
+rst = ogr - k0 * ast - ge * ast 
+# line 203 
+z99977 = rst 
+# line 203 
+z99976 = 0. 
+# line 203 
+integral ast = z99977 , z99976 
+
+rabsst = k0 * ast 
+# line 206 
+z99975 = rabsst 
+# line 206 
+z99974 = 0. 
+# line 206 
+integral aabsst = z99975 , z99974 
+
+
+rsi = ge * ast - kabs * asi - kunabs * asi 
+# line 210 
+z99973 = rsi 
+# line 210 
+z99972 = 0. 
+# line 210 
+integral asi = z99973 , z99972 
+
+rabssi = kabs * asi 
+# line 213 
+z99971 = rabssi 
+# line 213 
+z99970 = 0. 
+# line 213 
+integral aabssi = z99971 , z99970 
+
+total_oral_uptake = aabssi + aabsst 
+
+
+rfeces = kbile * al + kunabs * asi 
+# line 219 
+z99969 = rfeces 
+# line 219 
+z99968 = 0.0 
+# line 219 
+integral afeces = z99969 , z99968 
+percentod_in_feces = ( afeces / odose ) * 100 
+
+
+rl = ql * ( ca - cvl ) * free - kbile * al + kabs * asi + k0 * ast 
+# line 224 
+z99967 = rl 
+# line 224 
+z99966 = 0.0 
+# line 224 
+integral al = z99967 , z99966 
+cl = al / vl 
+cvl = cl / pl 
+
+abile = kbile * al 
+amount_per_gram_liver = ( al / ml ) * 1000 
+
+
+# line 226 
+rbound = ( ( bmax * cl ) / ( kb + cl ) ) - koff * abound 
+# line 234 
+z99965 = rbound 
+# line 234 
+z99964 = 0.0 
+# line 234 
+integral abound = z99965 , z99964 
+
+
+altotal = al + abound 
+cltotal = altotal / vl 
+
+
+# line 234 
+rplas_free = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr + raefflux 
+# line 243 
+z99963 = rplas_free 
+# line 243 
+z99962 = 0.0 
+# line 243 
+integral aplas_free = z99963 , z99962 
+ca_free = aplas_free / vplas 
+ca = ca_free / free 
+
+
+atissue = aplas_free + ar + akb + afil + aptc + al + ast + asi 
+aloss = aurine + afeces 
+atotal = atissue + aloss 
+
+end 
+
+
+
+
+
+
+
+constant tstop = 530.0 
+# line 261 
+if ( t .ge. tstop ) then 
+# line 261 
+call zztrmt ( 'checked on communication interval: REACHED TSTOP' ) 
+# line 261 
+endif 
+
+end 
+
+
+terminal 
+
+end 
+
+end 

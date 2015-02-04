@@ -1,0 +1,37 @@
+<optstats type="param estim object">
+  <runoptions mscriptpre="optimization.m" plotresults="True" />
+  <parameters>
+    <parameter name="k0c" usestartval="True" startval="1" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="53.4133722285796" />
+    <parameter name="kabs" usestartval="True" startval="3" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="6" />
+    <parameter name="kunabs" usestartval="True" startval="0.0001" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.0002" />
+    <parameter name="kbilec" usestartval="True" startval="0.004" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.0336282709431987" />
+    <parameter name="kurinec" usestartval="True" startval="1.6" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="3.19968" />
+    <parameter name="keffluxc" usestartval="True" startval="10" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="19.998" />
+  </parameters>
+  <algorithm maxiterations="10000" optalgorithm="Nelder-Mead" paramstoptol="1E-05" objfunstoptol="1E-05" startstep="0.2" coefreflect="1" coefexpand="2" coefcontract="0.5" coefshrink="0.5" />
+  <variables>
+    <variable name="ca" type="System.Double" hetscetvalue="1" varyhetscet="False" />
+  </variables>
+  <descriptors>
+    <descriptor name="bw" type="System.Double" />
+    <descriptor name="odosec" type="System.Double" />
+    <descriptor name="ivdosec" type="System.Double" />
+  </descriptors>
+  <datasets>
+    <dataset name="kemper_exp_5m.csv" includeinrun="True" filepath="kemper_exp_5m.csv">
+      <columns>
+        <column name="1" />
+        <column name="2" />
+      </columns>
+      <colbindings>
+        <colbinding colname="1" varname="t" />
+        <colbinding colname="2" varname="ca" />
+      </colbindings>
+      <descriptors>
+        <descriptor name="ivdosec" value="0" type="System.Double" />
+        <descriptor name="odosec" value="0.1" type="System.Double" />
+        <descriptor name="bw" value="0.216" type="System.Double" />
+      </descriptors>
+    </dataset>
+  </datasets>
+</optstats>
