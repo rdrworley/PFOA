@@ -1,12 +1,12 @@
 <optstats type="param estim object">
   <runoptions plotresults="True" />
   <parameters>
-    <parameter name="k0c" usestartval="True" startval="1" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="18.8410345742562" />
-    <parameter name="kabs" usestartval="True" startval="1.9" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="11.6775708231553" />
+    <parameter name="k0c" usestartval="True" startval="1" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="18.8410345742562" />
+    <parameter name="kabs" usestartval="True" startval="3" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="11.6775708231553" />
     <parameter name="kunabs" usestartval="True" startval="0.001" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.0002" />
-    <parameter name="kbilec" usestartval="True" startval="0.0048" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.015" />
-    <parameter name="keffluxc" usestartval="True" startval="10" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="20" />
-    <parameter name="kurinec" usestartval="True" startval="1.56" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.2" />
+    <parameter name="kbilec" usestartval="True" startval="0.008" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.015" />
+    <parameter name="keffluxc" usestartval="True" startval="36" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="20" />
+    <parameter name="kurinec" usestartval="True" startval="0.0004" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.2" />
   </parameters>
   <algorithm maxiterations="10000" optalgorithm="Nelder-Mead" paramstoptol="1E-05" objfunstoptol="1E-05" startstep="0.2" coefreflect="1" coefexpand="2" coefcontract="0.5" coefshrink="0.5" />
   <variables>
