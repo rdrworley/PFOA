@@ -163,6 +163,9 @@ CONSTANT tstart = 0.0
 			CKb = AKb/VKb	!concentration in kidney blodd (mg/L) 
 			CVK = CKb !/PK	!concentration in venous blood leaving kidney (mg/L)
 
+			RCl = CA*GFR*Free	!rate of clearance via glormerular filtration (mg/h)
+			ACl = integ(RCl, 0.0)		!amount moved via glomarular filtration (mg)
+	
 			Rdif = Kdif*(CKb - CPTC)	!rate of diffusion from into the PTC (mg/hr)
 			Adif = integ(Rdif, 0.)	!amount diffused into the PTC (mg)
 
