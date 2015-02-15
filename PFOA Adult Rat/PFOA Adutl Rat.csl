@@ -56,15 +56,15 @@ CONSTANT tstart = 0.0
  
 		!rate constants (1/h)
 		constant kdif = 0.001	!diffusion rate from proximal tubule cells (UNITS?)
-		constant kabs = 0.3 !rate of absorption of chemical from small intestine to liver (/hr); fit to time-to-peak
+		constant kabs = 3.0 !rate of absorption of chemical from small intestine to liver (/hr); fit to time-to-peak
 		constant kunabs = 0.0001 !rate of unabsorbed dose (male) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
 		CONSTANT GEC = 0.54 !gastric emptying time (kg^0.25/h); from Yang, 2013
-		CONSTANT k0C = 1.0e-33	!rate of uptake from the stomach into the liver (1/h/BW^-0.25)
+		CONSTANT k0C = 1.0	!rate of uptake from the stomach into the liver (1/h/BW^-0.25)
 		
 		CONSTANT keffluxc = 10	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/kg^0.75) NEED VALUE, FIT
-		constant kbilec = 0.0075 !biliary elimination rate ((male); liver to feces storage (/h/kg^-0.25); fit to serum data
+		constant kbilec = 0.004 !biliary elimination rate ((male); liver to feces storage (/h/kg^-0.25); fit to serum data
 		!constant kbilec = 0.25 !biliary elimination rate (female); liver to feces storage (/h/kg^-0.25); from Locissano, 2012 (fit to feces and plasma data)
-		constant kurinec = 0.1 !rate of urine elimination from urine storage (male) (/h/kg^-0.25); from Locissano, 2012 (fit to urine data)
+		constant kurinec = 1.6 !rate of urine elimination from urine storage (male) (/h/kg^-0.25); from Locissano, 2012 (fit to urine data)
 		!constant kurinec = 0.32 !rate of urine elimination from urine storage (female) (/h/kg^-0.25); from Locissano, 2012 (fit to urine data)
 
 	!Simulation (dosing) Parameters
