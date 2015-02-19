@@ -243,7 +243,7 @@ CONSTANT tstart = 0.0
 		Atissue = APlas_free + AR + AKb + AFil + APTC + AL + AST + ASI 	!sum of mass in all compartments (mg)
 		Aloss = Aurine + Afeces 	!sum of mass lost through urinary and fecal excretion (mg)
 		Atotal = Atissue + Aloss 	!total mass; should equal total dose
-	
+
 		END ! DERIVATIVE
 
 		! Add discrete events here as needed
@@ -256,10 +256,11 @@ CONSTANT tstart = 0.0
 		TERMT (T .GE. TSTOP, 'checked on communication interval: REACHED TSTOP')
 
 	END ! DYNAMIC
-
-
+	
 	TERMINAL
 		! code that is executed once at the end of a simulation run goes here
+
+
 	END ! TERMINAL
 
 END ! PROGRAM
