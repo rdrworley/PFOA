@@ -5,8 +5,8 @@ prepare @clear @all  % !! prepare t, CA
 
 !! s TSTOP = 876000 % (100 years)
 !! s backgrounddw = 0.01
-%!! s exposeddw = 0.39	%this concentration predicts the AM measured in public water drinkers
-!! s exposeddw = 0.285	%this concentration predicts the GM measured in public water drinkers
+!! s exposeddw = 0.39	%this concentration predicts the AM measured in public water drinkers
+%!! s exposeddw = 0.285	%this concentration predicts the GM measured in public water drinkers
 !! s BW = 80 % EPA Factors Handbook 2011 (change made 9/13/2014)
 !! s kurinec = 3.3e-05
 !! s PF = 0.47 %value measured in human cadavers, from Fabrega et al, 2014
