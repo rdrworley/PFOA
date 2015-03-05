@@ -4446,7 +4446,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>1.0e-33</csl_sym_initializer>
+<csl_sym_initializer>25.0</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>
@@ -4536,7 +4536,7 @@
 <sym_dim_str></sym_dim_str>
 </sym_dim_str_list>
 <csl_sym_symboltype>ACSL_SYMBOLTYPE_ALGEBRAIC</csl_sym_symboltype>
-<csl_sym_initializer>1.0</csl_sym_initializer>
+<csl_sym_initializer>0</csl_sym_initializer>
 <csl_sym_string_length>0</csl_sym_string_length>
 <csl_sym_isconstant>TRUE</csl_sym_isconstant>
 <csl_sym_isdae>FALSE</csl_sym_isdae>

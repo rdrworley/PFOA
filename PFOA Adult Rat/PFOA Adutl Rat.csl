@@ -75,7 +75,7 @@ CONSTANT tstart = 0.0
 		!Perkins - Male rats administered APFO at 0,1,10,30, or 100 ppm in diet for 13 weeks. Serum samples collected at 4, 7, and 13 weeks, and 8 weeks after
 			!end of treatment. NEED DATA. 
 
-		constant OdoseC = 1.0e-33	!oral dose concentration(mg/kg BW)
+		constant OdoseC = 25.0	!oral dose concentration(mg/kg BW)
 		constant OGtime = 0.01	!length of oral gavage (hrs)
 		
 		!IV Dosing
@@ -84,7 +84,7 @@ CONSTANT tstart = 0.0
 		!Kemper - Male and female rats administered one IV dose of 1 mg/kg PFOA. Blood samples collected from males 9 times in first 24 hours, at 24 hour intervals up to 8 days, 
 			!and at 48 hour intervals up to 22 days. Blood samples collected from females 13 times over 4 days. 
 		
-		constant IVdoseC = 1.0	!IV dose concentration (mg/kg)
+		constant IVdoseC = 0	!IV dose concentration (mg/kg)
 		constant IVTime = 0.01	!length of IV infusion (hrs)
 	
 	END ! INITIAL
