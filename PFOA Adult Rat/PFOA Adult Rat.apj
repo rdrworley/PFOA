@@ -1,16 +1,24 @@
 <project>
   <csl name="PFOA Adutl Rat.csl" location="." />
   <mscript name="PFOA Adult Rat Test.m" location="." />
-  <mscript name="Kemper Oral Gavage EXP 1.m" location="." />
-  <mscript name="Kemper Oral Gavage EXP 2.m" location="." />
-  <mscript name="Kemper Oral Gavage EXP 3.m" location="." />
-  <mscript name="Kemper Oral Gavage EXP 5.m" location="." />
-  <mscript name="Kemper Oral Gavage EXP 6.m" location="." />
-  <mscript name="Kemper Oral Gavage EXP 7.m" location="." />
-  <mscript name="Kemper Oral Gavage EXP 8.m" location="." />
+  <mscript name="Kemper Oral Gavage EXP 1 male.m" location="." />
+  <mscript name="Kemper Oral Gavage EXP 1 female.m" location="." />
+  <mscript name="Kemper Oral Gavage EXP 2 male.m" location="." />
+  <mscript name="Kemper Oral Gavage EXP 2 female.m" location="." />
+  <mscript name="Kemper Oral Gavage EXP 3 male.m" location="." />
+  <mscript name="Kemper Oral Gavage EXP 3 female.m" location="." />
+  <mscript name="Kemper Oral Gavage EXP 5 male.m" location="." />
+  <mscript name="Kemper Oral Gavage EXP 5 female.m" location="." />
+  <mscript name="Kemper Oral Gavage EXP 6 male.m" location="." />
+  <mscript name="Kemper Oral Gavage EXP 6 female.m" location="." />
+  <mscript name="Kemper Oral Gavage EXP 7 male.m" location="." />
+  <mscript name="Kemper Oral Gavage EXP 7 female.m" location="." />
+  <mscript name="Kemper Oral Gavage EXP 8 male.m" location="." />
+  <mscript name="Kemper Oral Gavage EXP 8 female.m" location="." />
   <mscript name="Kudo IV low dose 2h.m" location="." />
   <mscript name="Kudo IV high dose 2h.m" location="." />
-  <mscript name="Kemper IV Exp 6.m" location="." />
+  <mscript name="Kemper IV Exp 6 male.m" location="." />
+  <mscript name="Kemper IV Exp 6 female.m" location="." />
   <mscript name="Optimization.m" location="." />
   <mscript name="PFOA Adult Rat Optimization-params.m" location="." />
   <exe name="PFOA Adutl Rat.dll" location="." />

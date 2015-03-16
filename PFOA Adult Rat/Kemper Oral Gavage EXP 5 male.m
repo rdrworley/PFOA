@@ -1,4 +1,4 @@
-	%This .m file runs the .csl file and overlays data from the Kemper, 2003 oral gavage Experiment 5.
+%This .m file runs the .csl file and overlays data from the Kemper, 2003 oral gavage Experiment 5.
 
 output @clear
 prepare @clear @all
@@ -12,21 +12,12 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s KEFFLUXC = 10
 !! s KURINEC = 1.6
 
-%Partition Coefficients (from A. Locissano, from rat tissue data, Kudo et al, 2007)
-!! s PL = 2.2 
-!! s PK = 1.05 
-!! s PR = 0.11 
-
-
 %Experiment 5: 0.1 mg/kg administered via single oral dose. Whole blood collected from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 
 %and at 24-hour intervals through 192 hours. Whole blood collected from females at pre-dose, and at 0.25, 0.5, 1, 2, 4, 8, 16, 24, 36, 48, 72, and 96 hours 
 %post dose.
 
 !! s TSTOP = 550	!MALE
 !! s BW = 0.216	!MALE
-
-%!! s TSTOP = 100	!FEMALE
-%!! s BW = 0.176	!FEMALE
 
 !! s OdoseC = 0.1	!mg/kg BW
 !! s IVdoseC = 0
@@ -59,13 +50,5 @@ five_male_blood = [0	0
 480.0	0.087
 528.0	0.063]	
 
-five_female_blood = [0.0	0
-0.25	0.603
-0.50	0.630
-1.0	0.539
-2.0	0.528
-4.0	0.381
-8.0	0.102
-16.0	0.050]
 
 plot(_t, _ca, five_male_blood(:,1), five_male_blood(:,2),'+')		%MALE

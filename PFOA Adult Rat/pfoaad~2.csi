@@ -75,7 +75,7 @@ constant kurinec = 1.6
 
 
 
-constant odosec = 1.0e-33 
+constant odosec = 25.0 
 constant ogtime = 0.01 
 
 
@@ -84,7 +84,7 @@ constant ogtime = 0.01
 
 
 
-constant ivdosec = 1.0 
+constant ivdosec = 0 
 constant ivtime = 0.01 
 
 end 
