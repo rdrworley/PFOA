@@ -12,7 +12,8 @@ prepare @clear @all
 !! s KEFFLUXC = 10
 !! s KURINEC = 1.6	%Locissano uses 0.32, fit to data
 
-!! s Free = 0.045	%Female value for FREE used in Locissano model (fit to data).
+!! s RAFapi = 0.001356	%relative activity factor, apical transporters (NEED VALUE - current value is copied from RAF for baso)
+!! s Free = 0.09	%Female value for FREE used in Locissano model (fit to data).
 !! s GFRC = 41.04	%glomerular filtration rate (L/hr/kg kidney) (female); Corley, 2005
 
 %Experiment 8: 25 mg/kg administered via single oral dose. Whole blood collected from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 
