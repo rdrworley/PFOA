@@ -1,0 +1,37 @@
+<optstats type="param estim object">
+  <runoptions mscriptpre="optimization - female.m" plotresults="True" />
+  <parameters>
+    <parameter name="keffluxc" usestartval="True" startval="10" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="20" />
+    <parameter name="kurinec" usestartval="True" startval="1.6" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="3.2" />
+    <parameter name="rafapi" usestartval="True" startval="0.014" isfixed="True" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.02712" />
+  </parameters>
+  <algorithm maxiterations="10000" optalgorithm="Nelder-Mead" paramstoptol="1E-05" objfunstoptol="1E-05" startstep="0.2" coefreflect="1" coefexpand="2" coefcontract="0.5" coefshrink="0.5" />
+  <variables>
+    <variable name="ca" type="System.Double" hetscetvalue="1" varyhetscet="False" />
+  </variables>
+  <descriptors />
+  <datasets>
+    <dataset name="Kemper 6 female.csv" includeinrun="True" filepath="..\..\..\..\..\users\rachel\documents\pfoa adult rat datasets\kemper 6 female.csv">
+      <columns>
+        <column name="1" />
+        <column name="2" />
+      </columns>
+      <colbindings>
+        <colbinding colname="1" varname="t" />
+        <colbinding colname="2" varname="ca" />
+      </colbindings>
+      <descriptors />
+    </dataset>
+    <dataset name="Kemper 6 IV female.csv" includeinrun="True" filepath="..\..\..\..\..\users\rachel\documents\pfoa adult rat datasets\kemper 6 iv female.csv">
+      <columns>
+        <column name="1" />
+        <column name="2" />
+      </columns>
+      <colbindings>
+        <colbinding colname="1" varname="t" />
+        <colbinding colname="2" varname="ca" />
+      </colbindings>
+      <descriptors />
+    </dataset>
+  </datasets>
+</optstats>
