@@ -28,26 +28,26 @@ prepare @clear @all
 
 %cumulative percent of dose in urine (Kemper Table 10)
 one_female_urine = [4	11.505
-8	30.930
-12	16.002	
-24	10.713
-48	3.119
-72	1.538
-96	0.826
-120	0.432
-144	0.329
-168	0.480
+8	42.435
+12	58.437
+24	69.15
+48	72.269
+72	73.807
+96	74.633
+120	75.065
+144	75.394
+168	75.874
 ]
 
 %cumulative percent of dose in feces (Kemper table 11)
 one_female_feces = [12	1.239
-24	0.580
-48	0.108
-72	0.028
-96	0.106
-120	0.046
-144	0.033
-168	0.030
+24	1.819
+48	1.927
+72	1.955
+96	2.061
+120	2.107
+144	2.14
+168	2.17
 ]
 
 plot(_t, _percentod_in_urine, one_female_urine(:,1), one_female_urine(:,2),'+')		%FEMALE
