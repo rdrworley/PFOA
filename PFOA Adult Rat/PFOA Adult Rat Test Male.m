@@ -27,7 +27,7 @@ RAFapi = 0.01356
 
 !! s TSTOP = 530.0
 
-!! s OdoseC = 9 !mg/kg BW
+!! s OdoseC = 0.1 !mg/kg BW
 !! s IVdoseC = 0.0
 
 !! st/nc
@@ -35,5 +35,5 @@ RAFapi = 0.01356
 max(_ca)
 %max(_ca)/2
 
-!! display  A_baso, A_apical
-%plot (_t, _ca)
+!! display  A_baso, A_apical, OdoseC
+
