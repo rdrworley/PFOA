@@ -1,5 +1,5 @@
 <optstats type="sensitiv anal object">
-  <runoptions mscriptpre="optimization.m" plotresults="True" />
+  <runoptions mscriptpre="sensitivity - initial.m" plotresults="True" />
   <coefficients>
     <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="bw" delta="0.003" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />
     <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="kurinec" delta="0.016" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />
@@ -13,15 +13,15 @@
     <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="pr" delta="0.0011" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />
     <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="pk" delta="0.0105" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />
     <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="pl" delta="0.022" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />
-    <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="gfrc" delta="0.621" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />
+    <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="gfrc" delta="0.4104" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />
     <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="protein" delta="2E-08" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />
-    <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="rafapi" delta="0.000135" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />
+    <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="rafapi" delta="1.35E-05" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />
     <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="rafbaso" delta="0.000135" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />
     <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="km_apical" delta="0.523" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />
     <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="km_baso" delta="0.272" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />
     <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="vmax_apical_invitro" delta="93" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />
     <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="vmax_baso_invitro" delta="3.9345" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />
-    <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="free" delta="6E-05" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />
+    <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="free" delta="0.0009" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />
     <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="mw" delta="4.1407" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />
     <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="vptcc" delta="1.35E-06" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />
     <coefficient algorithm="Forward Difference" include="True" responsevarname="ca" parametername="vfilc" delta="8.4E-06" normaltorespvar="True" normaltoparam="True" datacollectiontype="TimeSeries" />

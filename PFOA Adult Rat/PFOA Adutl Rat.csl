@@ -1,4 +1,4 @@
-PROGRAM PBPK Model for PFOA in Adult Male Rats. 
+PROGRAM PBPK Model for PFOA in Adult Rats. 
 ! Created by R. Worley based on previous model by A. Locissano
 ! Model includes compartments for GI Tract, Liver, Rest of Body(Tis), Kidney Blood, Proximal Tubule Cells, Filtrate, and Plasma.
 ! Exposure routes are oral (into gut compartment) and IV (into plasma compartment).
