@@ -28,9 +28,7 @@ CONSTANT tstart = 0.0
 	
 	! Chemical Specific Parameters
 		CONSTANT MW = 414.07	!PFOA molecular mass (g/mol)
-		!Free Fraction of Chemical in Plasma
-		CONSTANT Free = 0.006 !free fraction in plasma (male); from Locissano, 2012 (fit to plasma and urine data)
-		!CONSTANT Free = 0.045 !free fraction in plasma (female); from Locissano, 2012 (fit to plasma and urine data)
+		CONSTANT Free = 0.006 !free fraction in plasma
 		
 		!Kidney Transport Parameters
 		CONSTANT Vmax_baso_invitro = 393.45 !Vmax of basolateral transporter (pmol/mg protein/min); averaged in vitro value of OAT1 and OAT3 from Nakagawa, 2007
@@ -41,30 +39,27 @@ CONSTANT tstart = 0.0
 		CONSTANT RAFapi = 0.01356	!relative activity factor, apical transporters (NEED VALUE - current value is copied from RAF for baso)		
 		CONSTANT protein = 2.0e-6	!amount of protein in proximal tubule cells (mg protein/proximal tubule cell)
 
-		constant GFRC = 62.1	!glomerular filtration rate (L/hr/kg kidney) (male); Corley, 2005
-		!constant GFRC = 41.04	!glomerular filtration rate (L/hr/kg kidney) (female); Corley, 2005
+		CONSTANT GFRC = 62.1	!glomerular filtration rate (L/hr/kg kidney) (male); Corley, 2005
+		!CONSTANT GFRC = 41.04	!glomerular filtration rate (L/hr/kg kidney) (female); Corley, 2005
 
 		!Partition Coefficients (from A. Locissano, from rat tissue data, Kudo et al, 2007)
-		constant PL = 2.2 !liver:blood
-		constant PK = 1.05 !kidney:blood
-		constant PR = 0.11 !rest of body:blood
+		CONSTANT PL = 2.2 !liver:blood
+		CONSTANT PK = 1.05 !kidney:blood
+		CONSTANT PR = 0.11 !rest of body:blood
 		
-		!parameters for binding in liver (10/5/2014 - all set to zero per Locissano, 2012. Will need to reevaluate.)
-		constant Kb = 1 !binding affinity constant (ug/mL); 
-		constant Bmax = 1 !max. association rate constant (ug/h); 
-		constant koff= 1 !dissociation rate constant (/h); 
- 
 		!rate constants (1/h)
-		constant kdif = 0.001	!diffusion rate from proximal tubule cells 
-		constant kabs = 3.0 !rate of absorption of chemical from small intestine to liver (/hr); fit to time-to-peak
-		constant kunabs = 0.0001 !rate of unabsorbed dose (male) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
-		CONSTANT GEC = 0.54 !gastric emptying time (kg^0.25/h); from Yang, 2013
-		CONSTANT k0C = 1.0	!rate of uptake from the stomach into the liver (1/h/BW^-0.25)
+		CONSTANT kdif = 0.001	!diffusion rate from proximal tubule cells 
+		!CONSTANT kabs = 3.0 !rate of absorption of chemical from small intestine to liver (/hr); fit to time-to-peak
+		CONSTANT kabsc = 2.12	!rate of absorption of chemical from small intestine to liver (/hr/BW^0.25)
+		!CONSTANT kunabs = 0.0001 !rate of unabsorbed dose (male) to appear in feces (/h); from Locissano, 2012 (fit to feces data)
+		CONSTANT kunabsc = 7.06e-5	!rate of unabsorbed dose to appear in feces (/h/BW^0.25)
+		CONSTANT GEC = 0.54 !gastric emptying time (/h/BW^0.25); from Yang, 2013
+		CONSTANT k0C = 1.0	!rate of uptake from the stomach into the liver (1/h/BW^0.25)
 		
-		CONSTANT keffluxc = 10	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/kg^0.75) 
-		constant kbilec = 0.004 !biliary elimination rate ((male); liver to feces storage (/h/kg^-0.25); fit to serum data
-		constant kurinec = 1.6 !rate of urine elimination from urine storage (male) (/h/kg^-0.25); from Locissano, 2012 (fit to urine data)
-		
+		!CONSTANT keffluxc = 10	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/kg^0.75) 
+		CONSTANT keffluxc = 2.49	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/BW^-0.25)
+		CONSTANT kbilec = 0.004 !biliary elimination rate ((male); liver to feces storage (/h/kg^-0.25); fit to serum data
+		CONSTANT kurinec = 1.6 !rate of urine elimination from urine storage (male) (/h/kg^-0.25); from Locissano, 2012 (fit to urine data)
 
 	!Simulation (dosing) Parameters
 	!Simulation parameters designed to replicate IV exposure data (male only) from Kudo et.al, 2007 and IV and oral exposure data (male and female) from Kemper et.al,2003.  
@@ -74,8 +69,8 @@ CONSTANT tstart = 0.0
 		!Perkins - Male rats administered APFO at 0,1,10,30, or 100 ppm in diet for 13 weeks. Serum samples collected at 4, 7, and 13 weeks, and 8 weeks after
 			!end of treatment. NEED DATA. 
 
-		constant OdoseC = 25.0	!oral dose concentration(mg/kg BW)
-		constant OGtime = 0.01	!length of oral gavage (hrs)
+		CONSTANT OdoseC = 25.0	!oral dose concentration(mg/kg BW)
+		CONSTANT OGtime = 0.01	!length of oral gavage (hrs)
 		
 		!IV Dosing
 		!Kudo - Male rats administered one IV dose (jugular) of 0.041 or 16.56 mg/kg PFOA, blood  (vena cava) and tissue samples collected 2 h after dosing.
@@ -83,8 +78,8 @@ CONSTANT tstart = 0.0
 		!Kemper - Male and female rats administered one IV dose of 1 mg/kg PFOA. Blood samples collected from males 9 times in first 24 hours, at 24 hour intervals up to 8 days, 
 			!and at 48 hour intervals up to 22 days. Blood samples collected from females 13 times over 4 days. 
 		
-		constant IVdoseC = 0	!IV dose concentration (mg/kg)
-		constant IVTime = 0.01	!length of IV infusion (hrs)
+		CONSTANT IVdoseC = 0	!IV dose concentration (mg/kg)
+		CONSTANT IVTime = 0.01	!length of IV infusion (hrs)
 	
 	END ! INITIAL
 
@@ -126,10 +121,12 @@ CONSTANT tstart = 0.0
 		VMax_apical = Vmax_apicalC*BW**0.75	!(mg/h)
 		kbile = kbilec*BW**(-0.25)	!biliary elimination; liver to feces storage (/h)
 		kurine = kurinec*BW**(-0.25)	! urinary elimination, from filtrate (/h)
-		kefflux = keffluxc*BW**(0.75)	!efflux clearance rate, from PTC to blood (/h)
+		kefflux = keffluxc*BW**(-0.25)	!efflux clearance rate, from PTC to blood (/h)
 		GFR = GFRC*(MK/1000)	!glomerular filtration rate, scaled to mass of kidney(in kg)(L/h)
 
 		!GI Tract Parameters
+		kabs = kabsc*BW**(-0.25)	!rate of absorption of chemical from small intestine to liver (/h)
+		kunabs = kunabsc*BW**(-0.25)	!rate of unabsorbed dose to appear in feces (/h)
 		GE = GEC/BW**0.25	!gastric emptying time (/h)
 		k0 = K0C/BW**0.25 	!rate of uptake from the stomach into the liver (/h)
 
