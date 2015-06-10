@@ -2,17 +2,17 @@ output @clear
 prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
-%Female Specific Parameters
+%Potentially Sex-specific Parameters
 !! s K0C = 1.0
-!! s KABS = 3.0
-!! s KUNABS = 0.0001
+!! s KABSC = 2.12
+!! s KUNABSC = 7.06e-5
 
-!! s KBILEC = 0.004	%Locissano uses 0.25, fit to data
-!! s KEFFLUXC = 10
-!! s KURINEC = 1.6	%Locissano uses 0.32, fit to data
+!! s KBILEC = 0.004
+!! s KEFFLUXC = 2.49
+!! s KURINEC = 1.6
 
-!! s RAFapi = 0.001356	%relative activity factor, apical transporters (NEED VALUE - current value is copied from RAF for baso)
-!! s Free = 0.09	%Female value for FREE used in Locissano model (fit to data).
+!! s RAFapi = 0.001356	%relative activity factor, apical transporters, fit to data
+!! s Free = 0.09	%Female value for FREE. fit to data
 !! s GFRC = 41.04	%glomerular filtration rate (L/hr/kg kidney) (female); Corley, 2005
 
 %!! s Vmax_baso_invitro = 393.45	 %averaged in vitro value of OAT1 and OAT3 from Nakagawa, 2007 (initial)
@@ -35,7 +35,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! s TSTOP = 530.0
 
-!! s OdoseC = 2000.0 !mg/kg BW
+!! s OdoseC = 1000.0 !mg/kg BW
 !! s IVdoseC = 0.0
 
 !! st/nc

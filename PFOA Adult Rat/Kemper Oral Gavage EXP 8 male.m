@@ -4,11 +4,11 @@ output @clear
 prepare @clear @all
 
 !! s K0C = 1.0
-!! s KABS = 3.0
-!! s KUNABS = 0.0001
+!! s KABSC = 2.12
+!! s KUNABSC = 7.06e-5
 
 !! s KBILEC = 0.004
-!! s KEFFLUXC = 10
+!! s KEFFLUXC = 2.49
 !! s KURINEC = 1.6
 
 
