@@ -23,8 +23,8 @@ prepare @clear @all
 !! s MW = 414.07	
 
 %Free Fraction of Chemical in Plasma
-%!! s Free = 0.006 %male
-!! s Free = 0.09	%female 
+!! s Free = 0.006 %male
+%!! s Free = 0.09	%female 
 		
 %Kidney Transport Parameters
 !! s Vmax_baso_invitro = 393.45 
@@ -32,13 +32,13 @@ prepare @clear @all
 !! s Vmax_apical_invitro = 9300 
 !! s Km_apical = 52.3 
 !! s RAFbaso = 0.01356	
-%!! s RAFapi = 0.01356	%male
-!! s RAFapi = 0.001356	%female
+!! s RAFapi = 0.01356	%male
+%!! s RAFapi = 0.001356	%female
 
 !! s protein = 2.0e-6	
 
-%!! s GFRC = 62.1	%male
-!! s GFRC = 41.04	%female
+!! s GFRC = 62.1	%male
+%!! s GFRC = 41.04	%female
 
 %Partition Coefficients (from A. Locissano, from rat tissue data, Kudo et al, 2007)
 !! s PL = 2.2 
@@ -52,11 +52,11 @@ prepare @clear @all
  
 %rate constants (1/h)
 !! s kdif = 0.001	
-!! s kabs = 3.0 
-!! s kunabs = 0.0001 
+!! s kabsc = 2.12 
+!! s kunabsc = 7.06e-5
 !! s GEC = 0.54 
 !! s k0C = 1.0	
 		
-!! s keffluxc = 10	
+!! s keffluxc = 2.49	
 !! s kbilec = 0.004 
 !! s kurinec = 1.6 
