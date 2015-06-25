@@ -35,7 +35,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! s TSTOP = 530.0
 
-!! s OdoseC = 1000.0 !mg/kg BW
+!! s OdoseC = 1000 !mg/kg BW
 !! s IVdoseC = 0.0
 
 !! st/nc
