@@ -1,7 +1,8 @@
-PROGRAM PBPK Model for PFOA in Adult Rats. 
-! Created by R. Worley based on previous model by A. Locissano
+PROGRAM PBPK Model for PFOA in Adult Humans. 
+! Created by R. Worley scaled from PFOA Adult Rat Model
+! Started June 26, 2015
 ! Model includes compartments for GI Tract, Liver, Rest of Body(Tis), Kidney Blood, Proximal Tubule Cells, Filtrate, and Plasma.
-! Exposure routes are oral (into gut compartment) and IV (into plasma compartment).
+! Exposure route is oral ingestion (into gut compartment)
 ! Excretion pathways are feces and urine. 
 
 	INITIAL
@@ -9,67 +10,55 @@ PROGRAM PBPK Model for PFOA in Adult Rats.
 CONSTANT tstart = 0.0
 
 	! Physiological Parameters
-		CONSTANT BW = 0.3	!bodyweight (kg)
-		CONSTANT MKC = 0.0084	!fraction mass of kidney (percent of BW); Brown 1997
-		CONSTANT MLC = 0.034	!fraction mass of liver (percent of BW); Brown 1997
+		CONSTANT BW = 80.0	!bodyweight (kg); EPA Factors Handbook, 2011
+		CONSTANT MKC = 0.0044	!fraction mass of kidney (percent of BW); Brown 1997
+		CONSTANT MLC = 0.0257	!fraction mass of liver (percent of BW); Brown 1997
 
 		! Cardiac Output and Bloodflow (as fraction of cardiac output)
-		CONSTANT QCC = 14.0 !cardiac output in L/h/kg^0.75; Brown 1997		 
-		CONSTANT QLC = 0.183 !fraction blood flow to liver; Brown 1997	
-		CONSTANT QKC = 0.141 !fraction blood flow to kidney; Brown 1997.
-		CONSTANT Htc = 0.46 !hematocrit for the rat; Davies 1993
+		CONSTANT QCC = 12.5 !cardiac output in L/h/kg^0.75; Brown 1997, Forsyth 1968		 
+		CONSTANT QLC = 0.25 !fraction blood flow to liver; Brown 1997, Fisher 2000	
+		CONSTANT QKC = 0.175 !fraction blood flow to kidney; Brown 1997, Forsyth 1968
+		CONSTANT Htc = 0.44 !hematocrit for the rat; Davies and Morris 1993, Brown 1997
 		
 		! Tissue Volumes 
-		CONSTANT VplasC = 0.0312 !fraction vol. of plasma (L/kg BW); Davies 1993
-		CONSTANT VLC = 0.035 !fraction vol. of liver (L/kg BW); Brown 1997
-		CONSTANT VKC = 0.0084 !fraction vol. of kidney (L/kg BW); Brown 1997
-		CONSTANT VfilC = 8.4e-4	!fraction vol. of filtrate (L/kg BW)
-		CONSTANT VPTCC = 1.35e-4 !vol. of proximal tubule cells (L/g kidney) (60 million PTC cells/gram kidney, 1 PTC = 2250 um3)
+		CONSTANT VplasC = 0.0428 !fraction vol. of plasma (L/kg BW); Davies 1993
+		CONSTANT VLC = 0.026 !fraction vol. of liver (L/kg BW); Brown 1997
+		CONSTANT VKC = 0.004 !fraction vol. of kidney (L/kg BW); Brown 1997
+		CONSTANT VfilC = 0.0004	!fraction vol. of filtrate (L/kg BW)
+		CONSTANT VPTCC = 1.35e-4 !vol. of proximal tubule cells (L/g kidney) (60 million PTC cells/gram kidney, 1 PTC = 2250 um3) CHECK
 	
 	! Chemical Specific Parameters
 		CONSTANT MW = 414.07	!PFOA molecular mass (g/mol)
-		CONSTANT Free = 0.006 !free fraction in plasma (male)
-		!CONSTANT Free = 0.09 !free fraction in plasma (female)
+		CONSTANT Free = 0.02 !free fraction in plasma (initial value from Loccisano, 2011)
 
-		!Kidney Transport Parameters
-		CONSTANT Vmax_baso_invitro = 393.45 !Vmax of basolateral transporter (pmol/mg protein/min); averaged in vitro value of rOAT1 and rOAT3 from Nakagawa, 2007
-		CONSTANT Km_baso = 27.2 !Km of basolateral transporter (ug/mL) Average of rOAT1 and rOAT3 from Nakagawa et. al, 2007
+		!Kidney Transport Parameters BASO PARAMETERS UPDATED FOR HUMAN, STILL NEED APICAL, RAF data 
+		CONSTANT Vmax_baso_invitro = 439.2 !Vmax of basolateral transporter (pmol/mg protein/min); averaged in vitro value of OAT1 and OAT3 from Nakagawa, 2007
+		CONSTANT Km_baso = 20.1 !Km of basolateral transporter (ug/mL) Average of OAT1 and OAT3 from Nakagawa et. al, 2007
 		CONSTANT Vmax_apical_invitro = 9300 !Vmax of apical transporter (pmol/mg protein/min); invitro value for Oatp1a1 from Weaver, 2010
 		CONSTANT Km_apical = 52.3 !Km of apical transporter (ug/mL), in vitro value for Oatp1a1 from Weaver, 2010.
 		CONSTANT RAFbaso = 0.01356	!relative activity factor, basolateral transporters (averaged from OAT1 and OAT3 in Yamada, 2007)
-		CONSTANT RAFapi = 0.01356	!relative activity factor, apical transporters (male) (fit to data)	
-		!CONSTANT RAFapi = 0.001356	!relative activity factor, apical transporters (female) (fit to data)
+		CONSTANT RAFapi = 0.01356	!relative activity factor, apical transporters (fit to data)	
 		CONSTANT protein = 2.0e-6	!amount of protein in proximal tubule cells (mg protein/proximal tubule cell)
 
-		CONSTANT GFRC = 62.1	!glomerular filtration rate (L/hr/kg kidney) (male); Corley, 2005
-		!CONSTANT GFRC = 41.04	!glomerular filtration rate (L/hr/kg kidney) (female); Corley, 2005
+		CONSTANT GFRC = 24.19	!glomerular filtration rate (L/hr/kg kidney) (male); Corley, 2005
+		!CONSTANT GFRC = 27.28	!glomerular filtration rate (L/hr/kg kidney) (female); Corley, 2005
 
-		!Partition Coefficients (from rat tissue data, Kudo et al, 2007)
-		CONSTANT PL = 2.2 !liver:blood
-		CONSTANT PK = 1.05 !kidney:blood
-		CONSTANT PR = 0.11 !rest of body:blood
+		!Partition Coefficients 
+		CONSTANT PL = 1.03 !liver:blood (from human cadaver data, Fabrega, 2014)
+		CONSTANT PK = 1.17 !kidney:blood (from human cadaver data, Fabrega, 2014)
+		CONSTANT PR = 0.11 !rest of body:blood (from rat tissue data, Kudo, 2007)
 		
 		!rate constants (1/h)
 		CONSTANT kdif = 0.001	!diffusion rate from proximal tubule cells 
 		CONSTANT kabsc = 2.12	!rate of absorption of chemical from small intestine to liver (/hr/BW^0.25) (fit to data)
 		CONSTANT kunabsc = 7.06e-5	!rate of unabsorbed dose to appear in feces (/h/BW^0.25) (fit to data)
-		CONSTANT GEC = 0.54 !gastric emptying time (/h/BW^0.25); from Yang, 2013
+		CONSTANT GEC = 3.5 !gastric emptying time (/h/BW^0.25); from Yang, 2014
 		CONSTANT k0C = 1.0	!rate of uptake from the stomach into the liver (1/h/BW^0.25)
 		
-		CONSTANT keffluxc = 2.49	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/BW^0.25)
+		CONSTANT keffluxc = 2.49	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/BW^0.25); fit to data
 		CONSTANT kbilec = 0.004 !biliary elimination rate ((male); liver to feces storage (/h/kg^0.25); fit to data
 		CONSTANT kurinec = 1.6 !rate of urine elimination from urine storage (male) (/h/kg^0.25)(fit to data)
 
-	!Simulation (dosing) Parameters
-	!Simulation parameters designed to replicate IV exposure data (male only) from Kudo et.al, 2007 and IV and oral exposure data (male and female) from Kemper et.al,2003.  
-		!Oral Gavage Dosing
-		CONSTANT OdoseC = 25.0	!oral dose concentration(mg/kg BW)
-		CONSTANT OGtime = 0.01	!length of oral gavage (hrs)
-		
-		!IV Dosing
-		CONSTANT IVdoseC = 0	!IV dose concentration (mg/kg)
-		CONSTANT IVTime = 0.01	!length of IV infusion (hrs)
-	
 	END ! INITIAL
 
 	DYNAMIC
@@ -119,20 +108,66 @@ CONSTANT tstart = 0.0
 		GE = GEC/BW**0.25	!gastric emptying time (/h)
 		k0 = K0C/BW**0.25 	!rate of uptake from the stomach into the liver (/h)
 
-	 !Dosing Equations
-		!IV Dosing
-		IVdose = IVdoseC*BW	!mg
-		IVR = IVon*IVdose/IVTime	!IV dose rate (mg/hr)
-		AIV = integ(IVR, 0.0)	!amount administered in IV (?) (mg)
-		IVon = RSW(T.GE.IVTime, 0.,1.)	!RSW switch to turn IV dose on. As written, will only work with a single, non-repeating IV dose. 
+! Exposure Parameters
+	countdw = 0.0
+	hourofday = 0.0
+	dayofweek = 0.0 
+
+	!Drinking Water
+	CONSTANT backgrounddw = 0.01 ! Drinking water concentration (ug/L or ppb)
+	CONSTANT exposeddw = 2.2
+	CONSTANT dwtotal = 1.2 ! daily drinking water consumption (L), from the EPA Factors Handbook (2011)
+	CONSTANT drinks = 4 !Total drinks per day (drink)
+	CONSTANT tlendw = 0.25 !Length of time spent drinking each drinking event (hrs/drink)
+
+!Drinking water exposure
+DISCRETE Drinkint
+SCHEDULE DrinkON .AT. tstart
+END
+
+DISCRETE DrinkON
+IF (T.LT.332880) THEN !if time is less than 38 years, 
+INTERVAL C2 = 4.0 !simulate drinking exposure every four hours
+IF (hourofday .LT. 16.0) THEN !if hour of day is less than 16 (8pm)
+drinkdose = ((backgrounddw/tlendw)*(dwtotal/drinks)) !simulate drinking water (background concentration)exposure at set interval(ug/hr)
+countdw = countdw + 1 !increase drinking episode count by 1 following exposure
+SCHEDULE DrinkOFF .AT. T+tlendw !turn off drinking water exposure after 15 minutes (tlen)
+ENDIF
+
+hourofday = hourofday + 4 !increase hour of day count by four hours following each exposure
+
+IF(hourofday .EQ. 24.0) dayofweek = dayofweek + 1.0 !when hour of day count reaches 24, increase day of week count by 1
+IF(hourofday .EQ. 24.0) hourofday = 0.0 !when hour of day count reaches 24, reset hour of day count to zero
+IF (dayofweek .EQ. 7.0) dayofweek = 0.0 !when day of week count reaches 7, reset day of week count to zero
+ENDIF
+
+END
+adrinkdose = integ(drinkdose, 0.)
+
+DISCRETE DrinkON
+IF (T.GT.332880) THEN !if time is greater than 38 years, 
+INTERVAL C2 = 4.0 !simulate drinking exposure every four hours
+IF (hourofday .LT. 16.0) THEN !if hour of day is less than 16 (8pm)
+drinkdose = ((exposeddw/tlendw)*(dwtotal/drinks)) !simulate drinking water (exposed concentration)exposure at set interval(ug/hr)
+countdw = countdw + 1 !increase drinking episode count by 1 following exposure
+SCHEDULE DrinkOFF .AT. T+tlendw !turn off drinking water exposure after 15 minutes (tlen)
+ENDIF
+
+hourofday = hourofday + 4 !increase hour of day count by four hours following each exposure
+
+IF(hourofday .EQ. 24.0) dayofweek = dayofweek + 1.0 !when hour of day count reaches 24, increase day of week count by 1
+IF(hourofday .EQ. 24.0) hourofday = 0.0 !when hour of day count reaches 24, reset hour of day count to zero
+IF (dayofweek .EQ. 7.0) dayofweek = 0.0 !when day of week count reaches 7, reset day of week count to zero
+ENDIF
+
+END
+adrinkdose2 = integ(drinkdose, 0.)
+
+DISCRETE DrinkOFF 
+Drinkdose = 0.0 !set drink dose to zero during non-exposure periods
+END	
 	
-		!Oral Gavage Dosing
-		Odose = OdoseC*BW	!oral dose (mg)
-		OGR = OGon*Odose/OGtime	!Oral gavage rate (mg/hr)
-		AOG = integ(OGR, 0.0)	!amount administered in oral gavage (mg)
-		OGon = RSW(T.GE.OGTime,0.,1.)	!RSW switch to turn on oral gavage. As written will only work with a single, non-repeating oral dose. 
-		
-		!Model Equations
+!Model Equations
 		!Rest of Body (Tis)
 		RR = QR*(CA-CVR)*Free	!rate of change in rest of body (mg/h)
 		AR = integ(RR, 0.0)	!amount in rest of body (mg)
@@ -179,7 +214,7 @@ CONSTANT tstart = 0.0
 
 		!GI Tract (Absorption site of oral dose)
 			!Stomach
-			RST= OGR - k0*AST - GE*AST	!rate of change in the stomach (mg/h)
+			RST= drinkdose - k0*AST - GE*AST	!rate of change in the stomach (mg/h)
 			AST = integ(RST, 0.)	!amount in the stomach (mg)
 
 			RabsST = k0*AST	!rate of absorption in the stomach (mg/h)
@@ -209,7 +244,7 @@ CONSTANT tstart = 0.0
 		amount_per_gram_liver = (AL/ML)*1000	!amount of PFOA in liver per gram liver (ug/g)
 
 		!Plasma compartment
-		RPlas_free = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + IVR + RAefflux  !rate of change in the plasma (mg/h) 
+		RPlas_free = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + RAefflux  !rate of change in the plasma (mg/h) 
 		Aplas_free = integ(RPlas_free, 0.0)	!amount in the plasma (mg)
 		CA_free = APlas_free/VPlas		!concentration in plasma (mg)
 		CA = CA_free/Free	!concentration of total PFOA in plasma (mg/L)
