@@ -4,11 +4,11 @@ All rights reserved.
 --------------------------------------------------------
 INFO: TRANSLATOR: Starting Translation...
 INFO: ANALYZER: Sorting sections using DFS algorithm.
-INFO: ANALYZER: Sorting performed in 0.001000 seconds.
-INFO:  Translator reported warnings 
-==================================
+INFO: ANALYZER: Sorting performed in 0.000000 seconds.
+INFO:  Translator completed successfully 
+===================================
 
 -----------------------------------------------------
 See the error log: "consoleError.log" for details of reported errors.
-Number of warnings: 3
+Number of warnings: 0
 Number of errors: 0
