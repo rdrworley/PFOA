@@ -1,4 +1,5 @@
 <project>
-  <csl name="PFOA Adult Human.csl" location="." />
-  <resultsfolder name="" location="" />
+  <csl name="PFOA Adult Human 06262015.csl" location="." />
+  <exe name="PFOA Adult Human 06262015.dll" location="." />
+  <resultsfolder name="" location="." />
 </project>
