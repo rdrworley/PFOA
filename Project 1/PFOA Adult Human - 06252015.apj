@@ -1,5 +1,6 @@
 <project>
   <csl name="PFOA Adult Human 06262015.csl" location="." />
+  <mscript name="test.m" location="." />
   <exe name="PFOA Adult Human 06262015.dll" location="." />
   <resultsfolder name="" location="." />
 </project>

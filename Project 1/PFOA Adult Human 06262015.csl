@@ -8,7 +8,7 @@ PROGRAM PBPK Model for PFOA in Adult Humans.
 	INITIAL
 
 CONSTANT tstart = 0.0
-
+		
 	! Physiological Parameters
 		CONSTANT BW = 80.0	!bodyweight (kg); EPA Factors Handbook, 2011
 		CONSTANT MKC = 0.0044	!fraction mass of kidney (percent of BW); Brown 1997
@@ -112,7 +112,9 @@ CONSTANT tstart = 0.0
 	countdw = 0.0
 	hourofday = 0.0
 	dayofweek = 0.0 
-
+	day = t/24
+	year = day/365
+	
 	!Drinking Water
 	CONSTANT backgrounddw = 0.01 ! Drinking water concentration (ug/L or ppb)
 	CONSTANT exposeddw = 2.2
@@ -120,13 +122,15 @@ CONSTANT tstart = 0.0
 	CONSTANT drinks = 4 !Total drinks per day (drink)
 	CONSTANT tlendw = 0.25 !Length of time spent drinking each drinking event (hrs/drink)
 
+	CONSTANT tbackground = 175200	!duration of exposure to background dw concentration (hrs)
+
 !Drinking water exposure
 DISCRETE Drinkint
 SCHEDULE DrinkON .AT. tstart
 END
 
 DISCRETE DrinkON
-IF (T.LT.332880) THEN !if time is less than 38 years, 
+IF (T.LT.tbackground) THEN !if time is less than 20 years, 
 INTERVAL C2 = 4.0 !simulate drinking exposure every four hours
 IF (hourofday .LT. 16.0) THEN !if hour of day is less than 16 (8pm)
 drinkdose = ((backgrounddw/tlendw)*(dwtotal/drinks)) !simulate drinking water (background concentration)exposure at set interval(ug/hr)
@@ -145,7 +149,7 @@ END
 adrinkdose = integ(drinkdose, 0.)
 
 DISCRETE DrinkON
-IF (T.GT.332880) THEN !if time is greater than 38 years, 
+IF (T.GT.tbackground) THEN !if time is greater than 20 years, 
 INTERVAL C2 = 4.0 !simulate drinking exposure every four hours
 IF (hourofday .LT. 16.0) THEN !if hour of day is less than 16 (8pm)
 drinkdose = ((exposeddw/tlendw)*(dwtotal/drinks)) !simulate drinking water (exposed concentration)exposure at set interval(ug/hr)
