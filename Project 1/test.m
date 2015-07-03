@@ -18,6 +18,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s KEFFLUXC = 2.49
 !! s KURINEC = 1.6
 !! s RAFapi = 0.0136
+!! s Km_apical = 128.5 %Value for OAT4 only (.csl has average of OAT4 and URAT1)
 
 %Data
 bartell = [30	91
