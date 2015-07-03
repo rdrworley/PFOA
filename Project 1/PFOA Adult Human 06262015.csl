@@ -130,7 +130,7 @@ SCHEDULE DrinkON .AT. tstart
 END
 
 DISCRETE DrinkON
-IF (T.LT.tbackground) THEN !if time is less than 20 years, 
+IF (T.LT.tbackground) THEN !if time is less than tbackground, 
 INTERVAL C2 = 4.0 !simulate drinking exposure every four hours
 IF (hourofday .LT. 16.0) THEN !if hour of day is less than 16 (8pm)
 drinkdose = ((backgrounddw/tlendw)*(dwtotal/drinks)) !simulate drinking water (background concentration)exposure at set interval(ug/hr)
@@ -149,7 +149,7 @@ END
 adrinkdose = integ(drinkdose, 0.)
 
 DISCRETE DrinkON
-IF (T.GT.tbackground) THEN !if time is greater than 20 years, 
+IF (T.GT.tbackground) THEN !if time is greater than tbackground, 
 INTERVAL C2 = 4.0 !simulate drinking exposure every four hours
 IF (hourofday .LT. 16.0) THEN !if hour of day is less than 16 (8pm)
 drinkdose = ((exposeddw/tlendw)*(dwtotal/drinks)) !simulate drinking water (exposed concentration)exposure at set interval(ug/hr)

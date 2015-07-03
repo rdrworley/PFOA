@@ -17,17 +17,17 @@ prepare @clear @all  % !! prepare t, CA
 !! st/nc
 
 bartell = [30	91
-30	425
-30	758]
+30	424
+30	757]
 
 steenland = [32	130
-32	225
+32	227
 32	318]
 
-emmett = [34	220
-34	373
-34	447
-34	575]
+emmett = [34	221
+34	374
+34	448
+34	576]
 % 373 is median, 447 is mean
 
 lhwa = [36	147
