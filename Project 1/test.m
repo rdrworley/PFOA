@@ -7,7 +7,8 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 % Exposure parameters
 !! s tbackground = 0
 !! s backgrounddw = 0.1
-!! s exposeddw = 3.55
+!! s exposeddw = 1500
+!! s tstop = 96360
 
 %Fit-to-data parameters
 !! s K0C = 1.0
@@ -17,27 +18,27 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s KBILEC = 0.004
 !! s KEFFLUXC = 2.49
 !! s KURINEC = 1.6
-!! s RAFapi = 0.0136
-!! s Km_apical = 128.5 %Value for OAT4 only (.csl has average of OAT4 and URAT1)
+!! s RAFapi = 0.136
+!! s Km_apical = 128500 %Value for OAT4 only (.csl has average of OAT4 and URAT1)
 
 %Data
-bartell = [30	91
-30	424
-30	757]
+bartell = [4	91
+4	424
+4	757]
 
-steenland = [32	130
-32	227
-32	318]
+steenland = [6	130
+6	227
+6	318]
 
-emmett = [34	221
-34	374
-34	448
-34	576]
+emmett = [8	221
+8	374
+8	448
+8	576]
 % 373 is median, 447 is mean
 
-lhwa = [36	147
-36	343
-36	540]
+lhwa = [10	147
+10	343
+10	540]
 
 !! st/nc
 

@@ -27,9 +27,9 @@ prepare @clear @all
 		
 %Kidney Transport Parameters
 !! s Vmax_baso_invitro = 439.2 
-!! s Km_baso = 20.1 
+!! s Km_baso = 20100
 !! s Vmax_apical_invitro = 9300 
-!! s Km_apical = 77.5 
+!! s Km_apical = 77500 
 !! s RAFbaso = 0.01356	
 !! s RAFapi = 0.01356
 
@@ -54,4 +54,4 @@ prepare @clear @all
 !! s kurinec = 1.6 
 
 %exposure parameters
-!! s exposeddw = 3.55
+!! s exposeddw = 1500

@@ -33,9 +33,9 @@ constant free = 0.02
 
 
 constant vmax_baso_invitro = 439.2 
-constant km_baso = 20.1 
+constant km_baso = 20100 
 constant vmax_apical_invitro = 37400 
-constant km_apical = 77.5 
+constant km_apical = 77500 
 constant rafbaso = 0.01356 
 constant rafapi = 0.01356 
 constant protein = 2.0e-6 
@@ -96,9 +96,9 @@ ptc = mk * 6e7
 vptc = mk * vptcc 
 mptc = vptc * 1000 
 # line 96 
-vmax_basoc = ( vmax_baso_invitro * rafbaso * ptc * protein * 60 * ( mw / 1e12 ) * 1000 ) 
+vmax_basoc = ( vmax_baso_invitro * rafbaso * ptc * protein * 60 * ( mw / 1e12 ) * 1000000 ) 
 # line 97 
-vmax_apicalc = ( vmax_apical_invitro * rafapi * ptc * protein * 60 * ( mw / 1e12 ) * 1000 ) 
+vmax_apicalc = ( vmax_apical_invitro * rafapi * ptc * protein * 60 * ( mw / 1e12 ) * 1000000 ) 
 vmax_baso = vmax_basoc * bw ** 0.75 
 vmax_apical = vmax_apicalc * bw ** 0.75 
 kbile = kbilec * bw ** ( - 0.25 ) 

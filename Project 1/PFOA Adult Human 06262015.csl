@@ -33,9 +33,9 @@ CONSTANT tstart = 0.0
 
 		!Kidney Transport Parameters BASO PARAMETERS UPDATED FOR HUMAN, STILL NEED APICAL Vmax (current is OAT4 only)
 		CONSTANT Vmax_baso_invitro = 439.2 !Vmax of basolateral transporter (pmol/mg protein/min); averaged in vitro value of OAT1 and OAT3 from Nakagawa, 2007
-		CONSTANT Km_baso = 20.1 !Km of basolateral transporter (ug/mL) Average of OAT1 and OAT3 from Nakagawa et. al, 2007
+		CONSTANT Km_baso = 20100 !Km of basolateral transporter (ug/L) Average of OAT1 and OAT3 from Nakagawa et. al, 2007
 		CONSTANT Vmax_apical_invitro = 37400 !Vmax of apical transporter (pmol/mg protein/min); invitro value for OAT4 from Yang, 2010. 
-		CONSTANT Km_apical = 77.5 !Km of apical transporter (ug/mL), averaged in vitro value for OAT4 and URAT1 from Yang, 2010. 
+		CONSTANT Km_apical = 77500 !Km of apical transporter (ug/L), averaged in vitro value for OAT4 and URAT1 from Yang, 2010. 
 		CONSTANT RAFbaso = 0.01356	!relative activity factor, basolateral transporters (averaged from OAT1 and OAT3 in Yamada, 2007)
 		CONSTANT RAFapi = 0.01356	!relative activity factor, apical transporters (fit to data)	
 		CONSTANT protein = 2.0e-6	!amount of protein in proximal tubule cells (mg protein/proximal tubule cell)
@@ -93,10 +93,10 @@ CONSTANT tstart = 0.0
 		PTC = MK*6e7	!number of PTC (60 million PTC/gram kidney)
 		VPTC = MK*VPTCC	!volume of proximal tubule cells (L)	
 		MPTC = VPTC*1000 !mass of the proximal tubule cells (g) (assuming density 1 kg/L)	
-		Vmax_basoC = (Vmax_baso_invitro*RAFbaso*PTC*protein*60*(MW/1e12)*1000)!Vmax of basolateral transporters (mg/h/kg BW ^0.75)
-		Vmax_apicalC = (Vmax_apical_invitro*RAFapi*PTC*protein*60*(MW/1e12)*1000) !Vmax of basolateral transporters (mg/h/kg BW ^0.75)
-		Vmax_baso = Vmax_basoC*BW**0.75	!(mg/h)
-		VMax_apical = Vmax_apicalC*BW**0.75	!(mg/h)
+		Vmax_basoC = (Vmax_baso_invitro*RAFbaso*PTC*protein*60*(MW/1e12)*1000000)!Vmax of basolateral transporters (ug/h/kg BW ^0.75)
+		Vmax_apicalC = (Vmax_apical_invitro*RAFapi*PTC*protein*60*(MW/1e12)*1000000) !Vmax of basolateral transporters (ug/h/kg BW ^0.75)
+		Vmax_baso = Vmax_basoC*BW**0.75	!(ug/h)
+		VMax_apical = Vmax_apicalC*BW**0.75	!(ug/h)
 		kbile = kbilec*BW**(-0.25)	!biliary elimination; liver to feces storage (/h)
 		kurine = kurinec*BW**(-0.25)	! urinary elimination, from filtrate (/h)
 		kefflux = keffluxc*BW**(-0.25)	!efflux clearance rate, from PTC to blood (/h)
@@ -117,7 +117,7 @@ CONSTANT tstart = 0.0
 	
 	!Drinking Water
 	CONSTANT backgrounddw = 0.01 ! Drinking water concentration (ug/L or ppb)
-	CONSTANT exposeddw = 2.2
+	CONSTANT exposeddw = 2.2 !Contaminated drinking water concentration (ug/L or ppb)
 	CONSTANT dwtotal = 1.2 ! daily drinking water consumption (L), from the EPA Factors Handbook (2011)
 	CONSTANT drinks = 4 !Total drinks per day (drink)
 	CONSTANT tlendw = 0.25 !Length of time spent drinking each drinking event (hrs/drink)
@@ -173,31 +173,31 @@ END
 	
 !Model Equations
 		!Rest of Body (Tis)
-		RR = QR*(CA-CVR)*Free	!rate of change in rest of body (mg/h)
-		AR = integ(RR, 0.0)	!amount in rest of body (mg)
-		CR = AR/VR !concentration in rest of body (mg/L)
-		CVR = CR/PR	!concentration in venous blood leaving the rest of the body (mg/L)
+		RR = QR*(CA-CVR)*Free	!rate of change in rest of body (ug/h)
+		AR = integ(RR, 0.0)	!amount in rest of body (ug)
+		CR = AR/VR !concentration in rest of body (ug/L)
+		CVR = CR/PR	!concentration in venous blood leaving the rest of the body (ug/L)
 		
 		!Kidney 
 			!Kidney Blood (Kb)
-			RKb = QK*(CA-CVK)*Free - CA*GFR*Free - Rdif - RA_baso   !rate of change in kidney blood (mg/h).
-			AKb = integ(RKb, 0.0) !amount in kidney blood (mg)
-			CKb = AKb/VKb	!concentration in kidney blodd (mg/L) 
-			CVK = CKb !/PK	!concentration in venous blood leaving kidney (mg/L)
+			RKb = QK*(CA-CVK)*Free - CA*GFR*Free - Rdif - RA_baso   !rate of change in kidney blood (ug/h).
+			AKb = integ(RKb, 0.0) !amount in kidney blood (ug)
+			CKb = AKb/VKb	!concentration in kidney blodd (ug/L) 
+			CVK = CKb !/PK	!concentration in venous blood leaving kidney (ug/L)
 
-			RCl = CA*GFR*Free	!rate of clearance via glormerular filtration (mg/h)
-			ACl = integ(RCl, 0.0)		!amount moved via glomarular filtration (mg)
+			RCl = CA*GFR*Free	!rate of clearance via glormerular filtration (ug/h)
+			ACl = integ(RCl, 0.0)		!amount moved via glomarular filtration (ug)
 	
-			Rdif = Kdif*(CKb - CPTC)	!rate of diffusion from into the PTC (mg/hr)
-			Adif = integ(Rdif, 0.)	!amount diffused into the PTC (mg)
+			Rdif = Kdif*(CKb - CPTC)	!rate of diffusion from into the PTC (ug/hr)
+			Adif = integ(Rdif, 0.)	!amount diffused into the PTC (ug)
 
 			RA_baso = (Vmax_baso*CKb)/(Km_baso + CKb)
 			A_baso = integ(RA_baso, 0.)
 
 			!Proximal Tubule Cells (PTC)
-			RPTC =  Rdif + RA_apical + RA_baso - RAefflux !rate of change in PTC(mg/h)
-			APTC = integ(RPTC, 0.0)	!amount in proximal tubule cells (mg)
-			CPTC = APTC/VPTC	!concentration in PTC (mg/L)
+			RPTC =  Rdif + RA_apical + RA_baso - RAefflux !rate of change in PTC(ug/h)
+			APTC = integ(RPTC, 0.0)	!amount in proximal tubule cells (ug)
+			CPTC = APTC/VPTC	!concentration in PTC (ug/L)
 
 			RA_apical = (Vmax_apical*Cfil)/(Km_apical + Cfil)
 			A_apical = integ(RA_apical, 0.)
@@ -206,56 +206,56 @@ END
 			Aefflux = integ(RAefflux, 0.)
 
 			!Filtrate (Fil)
-			Rfil = CA*GFR*Free - RA_apical - Afil*kurine	!rate of change in filtrate (mg/h)
-			Afil = integ(Rfil, 0.0)	!amount in filtrate (mg)
-			Cfil = Afil/Vfil	!concentration in filtrate (mg/L)
+			Rfil = CA*GFR*Free - RA_apical - Afil*kurine	!rate of change in filtrate (ug/h)
+			Afil = integ(Rfil, 0.0)	!amount in filtrate (ug)
+			Cfil = Afil/Vfil	!concentration in filtrate (ug/L)
 			
 			!Urinary elimination 
-			Rurine = kurine*Afil	!rate of change in urine (mg/h)
-			Aurine = integ(Rurine, 0.0)	!amount in urine (mg)
+			Rurine = kurine*Afil	!rate of change in urine (ug/h)
+			Aurine = integ(Rurine, 0.0)	!amount in urine (ug)
 
 			percentOD_in_urine = (Aurine/Odose)*100
 
 		!GI Tract (Absorption site of oral dose)
 			!Stomach
-			RST= drinkdose - k0*AST - GE*AST	!rate of change in the stomach (mg/h)
-			AST = integ(RST, 0.)	!amount in the stomach (mg)
+			RST= drinkdose - k0*AST - GE*AST	!rate of change in the stomach (ug/h)
+			AST = integ(RST, 0.)	!amount in the stomach (ug)
 
-			RabsST = k0*AST	!rate of absorption in the stomach (mg/h)
-			AabsST = integ(RabsST, 0.)	!amount absorbed in the stomach (mg)
+			RabsST = k0*AST	!rate of absorption in the stomach (ug/h)
+			AabsST = integ(RabsST, 0.)	!amount absorbed in the stomach (ug)
 
 			!Small Intestine
-			RSI = GE*AST - kabs*ASI - kunabs*ASI	!rate of change in the small intestine (mg/hr)
-			ASI = integ(RSI, 0.)	!amount in the small intestine (mg)
+			RSI = GE*AST - kabs*ASI - kunabs*ASI	!rate of change in the small intestine (ug/hr)
+			ASI = integ(RSI, 0.)	!amount in the small intestine (ug)
 
-			RabsSI = kabs*ASI	!rate of absorption inthe small intestine (mg/hr)
-			AabsSI = integ(RabsSI, 0.)	!amount absorbed in the small intestine (mg)
+			RabsSI = kabs*ASI	!rate of absorption inthe small intestine (ug/hr)
+			AabsSI = integ(RabsSI, 0.)	!amount absorbed in the small intestine (ug)
 
-			total_oral_uptake = AabsSI + AabsST	!total oral uptake in the GI tract (mg) 
+			total_oral_uptake = AabsSI + AabsST	!total oral uptake in the GI tract (ug) 
 
 			!Feces compartment
-			Rfeces = kbile*AL + kunabs*ASI !rate of change in the feces compartment (mg/h)
-			Afeces = integ(Rfeces, 0.0)	!amount in the feces compartment (mg)
+			Rfeces = kbile*AL + kunabs*ASI !rate of change in the feces compartment (ug/h)
+			Afeces = integ(Rfeces, 0.0)	!amount in the feces compartment (ug)
 			percentOD_in_feces = (Afeces/Odose)*100	!percent of the oral dose in the feces (%)
 
 		!Liver
-		RL = QL*(CA-CVL)*Free - kbile*AL + kabs*ASI + k0*AST !rate of change in the liver (mg/h)
-		AL = integ(RL, 0.0) !amount in liver (mg)
-		CL = AL/VL	!concentration in the liver (mg/L)
-		CVL = CL/PL	!concentration in the venous blood leaving the liver (mg/L)
+		RL = QL*(CA-CVL)*Free - kbile*AL + kabs*ASI + k0*AST !rate of change in the liver (ug/h)
+		AL = integ(RL, 0.0) !amount in liver (ug)
+		CL = AL/VL	!concentration in the liver (ug/L)
+		CVL = CL/PL	!concentration in the venous blood leaving the liver (ug/L)
 		
 		Abile = kbile*AL
 		amount_per_gram_liver = (AL/ML)*1000	!amount of PFOA in liver per gram liver (ug/g)
 
 		!Plasma compartment
-		RPlas_free = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + RAefflux  !rate of change in the plasma (mg/h) 
-		Aplas_free = integ(RPlas_free, 0.0)	!amount in the plasma (mg)
-		CA_free = APlas_free/VPlas		!concentration in plasma (mg)
-		CA = CA_free/Free	!concentration of total PFOA in plasma (mg/L)
+		RPlas_free = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + RAefflux  !rate of change in the plasma (ug/h) 
+		Aplas_free = integ(RPlas_free, 0.0)	!amount in the plasma (ug)
+		CA_free = APlas_free/VPlas		!concentration in plasma (ug)
+		CA = CA_free/Free	!concentration of total PFOA in plasma (ug/L)
 
 		!Mass Balance Check
-		Atissue = APlas_free + AR + AKb + AFil + APTC + AL + AST + ASI 	!sum of mass in all compartments (mg)
-		Aloss = Aurine + Afeces 	!sum of mass lost through urinary and fecal excretion (mg)
+		Atissue = APlas_free + AR + AKb + AFil + APTC + AL + AST + ASI 	!sum of mass in all compartments (ug)
+		Aloss = Aurine + Afeces 	!sum of mass lost through urinary and fecal excretion (ug)
 		Atotal = Atissue + Aloss 	!total mass; should equal total dose
 
 		END ! DERIVATIVE

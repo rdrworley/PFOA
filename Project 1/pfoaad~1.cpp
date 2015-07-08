@@ -308,9 +308,9 @@ SimImpl zzsim =
 414.07,
 0.02,
 439.2,
-20.1,
+20100,
 37400,
-77.5,
+77500,
 0.01356,
 0.01356,
 2.0e-6,
@@ -1528,7 +1528,7 @@ zzsim.rdif = (zzsim.kdif * (zzsim.ckb - zzsim.cptc));
 zzsim.ptc = (zzsim.mk * 6e7);
 
 
-zzsim.vmax_basoc = ((((((zzsim.vmax_baso_invitro * zzsim.rafbaso) * zzsim.ptc) * zzsim.protein) * 60) * (zzsim.mw / 1e12)) * 1000);
+zzsim.vmax_basoc = ((((((zzsim.vmax_baso_invitro * zzsim.rafbaso) * zzsim.ptc) * zzsim.protein) * 60) * (zzsim.mw / 1e12)) * 1000000);
 
 
 zzsim.vmax_baso = (zzsim.vmax_basoc * ( pow ( zzsim.bw , 0.75 ) ));
@@ -1555,7 +1555,7 @@ zzsim.z99989 = zzsim.rdif;
 zzsim.z99987 = zzsim.ra_baso;
 
 
-zzsim.vmax_apicalc = ((((((zzsim.vmax_apical_invitro * zzsim.rafapi) * zzsim.ptc) * zzsim.protein) * 60) * (zzsim.mw / 1e12)) * 1000);
+zzsim.vmax_apicalc = ((((((zzsim.vmax_apical_invitro * zzsim.rafapi) * zzsim.ptc) * zzsim.protein) * 60) * (zzsim.mw / 1e12)) * 1000000);
 
 
 zzsim.vmax_apical = (zzsim.vmax_apicalc * ( pow ( zzsim.bw , 0.75 ) ));
