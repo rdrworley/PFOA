@@ -7,7 +7,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 % Exposure parameters
 !! s tbackground = 0
 !! s backgrounddw = 0.1
-!! s exposeddw = 1500
+!! s exposeddw = 3.55
 !! s tstop = 96360
 
 %Fit-to-data parameters
@@ -18,7 +18,6 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s KBILEC = 0.004
 !! s KEFFLUXC = 2.49
 !! s KURINEC = 1.6
-!! s RAFapi = 0.136
 !! s Km_apical = 128500 %Value for OAT4 only (.csl has average of OAT4 and URAT1)
 
 %Data
