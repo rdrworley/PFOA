@@ -25,7 +25,7 @@ CONSTANT Htc = 0.44 ! hematocrit
 !Chemical specific parameters.
 CONSTANT Tmc = 10 ! Maximum resorption rate (ug/h/BW(kg)^0.75)(From Loccisano adult human model - 3.8 yr half life)
 CONSTANT Kt = 0.055 ! Resorption affinity 
-CONSTANT Free = 0.02 ! Free fraction of PFOA in plasma (From Locissano human gestation/lactation model)
+CONSTANT Free = 0.02 ! Free fraction of PFOA in plas80*0.000ma (From Locissano human gestation/lactation model)
 
 CONSTANT PL = 2.2 ! Liver/blood partition coefficient 
 CONSTANT PF = 0.04 ! Fat/blood partition coefficient
