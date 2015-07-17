@@ -1,0 +1,8 @@
+ACSL Translator
+Copyright (c) 2001, AEgis Technologies Group, Inc.
+All rights reserved.
+--------------------------------------------------------
+WARNING: PREPROCESSOR: Invocation of macro integ attempted with incorrect number of arguments.
+WARNING: SEMANTIC CHECKER: Symbol used but not defined....tstart
+Number of warnings: 2
+Number of errors: 0

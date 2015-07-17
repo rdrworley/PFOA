@@ -1,0 +1,298 @@
+
+
+
+program 
+
+initial 
+
+constant bw = 80.0 
+
+
+constant qcc = 12.5 
+constant qlc = 0.25 
+constant qkc = 0.175 
+constant qfc = 0.052 
+constant htc = 0.44 
+
+
+constant vlc = 0.0257 
+constant vkc = 0.0044 
+constant vfc = 0.2142 
+constant vplasc = 0.0428 
+constant vfilc = 0.0004 
+constant vptcc = 3.07e-5 
+
+
+constant mw = 414.07 
+constant free = 0.02 
+
+
+constant pl = 1.03 
+constant pk = 1.17 
+constant pf = 0.47 
+constant pr = 0.11 
+
+
+constant gfrc = 0.106436 
+
+constant ptc = 2.112e10 
+constant protein = 2.0e-6 
+
+constant vmax_baso_invitro = 439.2 
+constant km_baso = 20100 
+constant vmax_apical_invitro = 37400 
+constant km_apical = 128500 
+constant rafbaso = 0.01356 
+constant rafapical = 0.01356 
+
+constant kdif = 0.001 
+constant keffluxc = 2.49 
+constant kurinec = 1.6 
+
+end 
+
+dynamic 
+algorithm ialg = 2 
+nsteps nstp = 10 
+maxterval maxt = 1.0e9 
+minterval mint = 1.0e-9 
+cinterval cint = 1.0 
+
+derivative 
+
+
+# line 64 
+qc = qcc * ( bw ** 0.75 ) * ( 1 - htc ) 
+ql = qlc * qc 
+qk = qkc * qc 
+qf = qfc * qc 
+qr = qc - ql - qk - qf 
+qbal = qc - ( ql + qk + qf + qr ) 
+
+
+vl = vlc * bw 
+vk = vkc * bw 
+vkb = vk * 0.16 
+vf = vfc * bw 
+vr = ( 0.84 * bw ) - vplas - vkb - vptc - vfil - vl - vk - vf 
+vplas = vplasc * bw 
+vfil = vfilc * bw 
+vptc = vptcc * bw 
+
+
+vmax_basoc = ( vmax_baso_invitro * ptc * protein * mw * 6.0e-5 ) * rafbaso 
+vmax_baso = vmax_basoc * ( bw ** 0.75 ) 
+vmax_apicalc = ( vmax_apical_invitro * ptc * protein * mw * 6.0e-5 ) * rafapical 
+vmax_apical = vmax_apicalc * ( bw ** 0.75 ) 
+# line 86 
+kurine = kurinec * ( bw ** ( - 0.25 ) ) 
+# line 87 
+kefflux = kefflux * ( bw ** ( - 0.25 ) ) 
+gfr = gfrc * bw 
+
+
+countdw = 0.0 
+hourofday = 0.0 
+dayofweek = 0.0 
+day = t / 24 
+year = day / 365 
+
+
+constant tbackground = 175200 
+constant backgrounddw = 0.01 
+constant exposeddw = 2.2 
+constant dwtotal = 1.2 
+constant drinks = 4 
+constant tlendw = 0.25 
+
+
+discrete drinkint 
+schedule drinkon .at. tstart 
+end 
+
+discrete drinkon 
+if ( t .lt. tbackground ) then 
+interval c2 = 4.0 
+if ( hourofday .lt. 16.0 ) then 
+# line 114 
+drinkdose = ( ( backgrounddw / tlendw ) * ( dwtotal / drinks ) ) 
+countdw = countdw + 1 
+schedule drinkoff .at. t + tlendw 
+endif 
+
+hourofday = hourofday + 4 
+
+if ( hourofday .eq. 24.0 ) dayofweek = dayofweek + 1.0 
+if ( hourofday .eq. 24.0 ) hourofday = 0.0 
+if ( dayofweek .eq. 7.0 ) dayofweek = 0.0 
+endif 
+
+end 
+# line 131 
+z99999 = drinkdose 
+# line 131 
+z99998 = 0.0 
+# line 131 
+integral adrinkdosebackground = z99999 , z99998 
+
+discrete drinkon 
+if ( t .gt. tbackground ) then 
+interval c2 = 4.0 
+if ( hourofday .lt. 16.0 ) then 
+# line 133 
+drinkdose = ( ( exposeddw / tlendw ) * ( dwtotal / drinks ) ) 
+countdw = countdw + 1 
+schedule drinkoff .at. t + tlendw 
+endif 
+
+hourofday = hourofday + 4 
+
+if ( hourofday .eq. 24.0 ) dayofweek = dayofweek + 1.0 
+if ( hourofday .eq. 24.0 ) hourofday = 0.0 
+if ( dayofweek .eq. 7.0 ) dayofweek = 0.0 
+endif 
+
+end 
+# line 151 
+z99997 = drinkdose 
+# line 151 
+z99996 = 0.0 
+# line 151 
+integral adrinkdoseexposed = z99997 , z99996 
+
+discrete drinkoff 
+drinkdose = 0.0 
+end 
+
+totaldose = adrinkdosebackground + adrinkdoseexposed 
+
+
+
+rr = qr * ( ca - cvr ) * free 
+# line 162 
+z99995 = rr 
+# line 162 
+z99994 = 0.0 
+# line 162 
+integral ar = z99995 , z99994 
+cr = ar / vr 
+cvr = cr / pr 
+
+
+rl = ql * ( ca - cvl ) * free + drinkdose 
+# line 168 
+z99993 = rl 
+# line 168 
+z99992 = 0.0 
+# line 168 
+integral al = z99993 , z99992 
+cl = al / vl 
+cvl = cl / pl 
+
+
+rf = qf * ( ca - cvf ) * free 
+# line 174 
+z99991 = rf 
+# line 174 
+z99990 = 0.0 
+# line 174 
+integral af = z99991 , z99990 
+cf = af / vf 
+cvf = cf / pf 
+
+
+
+rkb = qk * ( ca - cvk ) * free - ca * gfr * free - rdif - ra_baso 
+# line 181 
+z99989 = rkb 
+# line 181 
+z99988 = 0.0 
+# line 181 
+integral akb = z99989 , z99988 
+ckb = akb / vkb 
+cvk = ckb / pk 
+
+rdif = kdif * ( ckb - cptc ) 
+# line 181 
+ra_baso = ( vmax_baso * ckb ) / ( km_baso + ckb ) 
+# line 188 
+z99987 = ra_baso 
+# line 188 
+z99986 = 0.0 
+# line 188 
+integral a_baso = z99987 , z99986 
+
+
+rptc = rdif + ra_apical + ra_baso - raefflux 
+# line 192 
+z99985 = rptc 
+# line 192 
+z99984 = 0.0 
+# line 192 
+integral aptc = z99985 , z99984 
+cptc = aptc / vptc 
+
+raefflux = kefflux * aptc 
+# line 196 
+z99983 = raefflux 
+# line 196 
+z99982 = 0.0 
+# line 196 
+integral aefflux = z99983 , z99982 
+
+# line 192 
+ra_apical = ( vmax_apical * cfil ) / ( km_apical + cfil ) 
+a_apical = integ ( ra_apical ) 
+
+
+rfil = gfr * ckb * free - ra_apical - rurine 
+# line 204 
+z99981 = rfil 
+# line 204 
+z99980 = 0.0 
+# line 204 
+integral afil = z99981 , z99980 
+cfil = afil / vfil 
+
+
+rurine = kurine * afil 
+# line 209 
+z99979 = rurine 
+# line 209 
+z99978 = 0.0 
+# line 209 
+integral aurine = z99979 , z99978 
+
+
+# line 205 
+rplas_free = ( qr * cvr * free ) + ( ql * cvl * free ) + ( qk * cvk * free ) + ( qf * cvf * free ) - ( qc * ca * free ) + raefflux 
+# line 214 
+z99977 = rplas_free 
+# line 214 
+z99976 = 0.0 
+# line 214 
+integral aplas_free = z99977 , z99976 
+ca_free = aplas_free / vplas 
+ca = ca_free / free 
+
+
+atissue = aplas_free + ar + al + akb + aptc + afil + af 
+atotal = atissue + aurine 
+
+end 
+
+constant tstop = 332889.0 
+# line 225 
+if ( t .ge. tstop ) then 
+# line 225 
+call zztrmt ( 'check on communication interval: REACHED TSTOP' ) 
+# line 225 
+endif 
+
+end 
+
+terminal 
+end 
+
+end 
+

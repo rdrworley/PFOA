@@ -1,0 +1,224 @@
+! Created by R. Worley on 7/16/2015.
+!PBPK model for PFOA exposure in the human with compartments for serum, liver, kidney serum, filtrate, proximal tubule cells, fat, and rest of body.
+!Code simulates drinking water exposures. 
+program
+
+initial
+!Physiological Parameters
+CONSTANT BW = 80.0	!body weight (kg); EPA Factors Handbook 2011
+
+!Cardiac Output and Blood Flow
+CONSTANT QCC = 12.5	!cardiac output (L/h/kg^0.75); Brown 1997, Forsyth 1968
+CONSTANT QLC = 0.25	!fraction blood flow to liver; Brown 1997, Fisher 2000
+CONSTANT QKC = 0.175	!fraction blood flow to kidneys; Brown 1997, Forsyth 1968
+CONSTANT QFC = 0.052	!fraction blood flow to fat; Brown 1997, Forsyth 1968
+CONSTANT Htc = 0.44	!hematocrit; Davies and Morris 1993, Brown 1997
+
+!Tissue Volumes
+CONSTANT VLC = 0.0257	!fraction liver volume (L/kg BW); Brown 1997
+CONSTANT VKC = 0.0044	!fraction kidney volume (L/kg BW); Brown 1997
+CONSTANT VFC = 0.2142	!fraction fat volume (L/kg BW); Brown 1997
+CONSTANT VplasC = 0.0428	!fraction volume of plasma (L/kg BW); Davies 1993
+CONSTANT VfilC = 0.0004	!fraction volume of filtrate (L/kg BW); REF?
+CONSTANT VPTCC = 3.07e-5	!fraction volume of proximal tubule cells (L/kg BW)
+
+!Chemical Specific Parameters
+CONSTANT MW = 414.07 !molecular weight of PFOA (g/mol)
+CONSTANT Free = 0.02	!free fraction in plasma; Loccisano 2011
+
+!Partition Coefficients
+CONSTANT PL = 1.03	!liver:blood partition coefficient; Fabrega 2014
+CONSTANT PK = 1.17	!kidney:blood partition coefficient; Fabrega 2014
+CONSTANT PF = 0.47	!fat:blood partition coefficient; Fabrega 2014
+CONSTANT PR = 0.11	!rest of body:blood partition coefficient; Kudo 2007
+
+!Kidney Parameters
+CONSTANT GFRC = 0.106436	!glomerular filtration rate, male (L/hr/kg BW); Corley 2005
+!CONSTANT GFRC = 0.120032	!glomerular filtration rate, female (L/hr/kg BW); Corley 2005
+CONSTANT PTC = 2.112e10	!nummber of proximal tubule cells (60 million PTC/g kidney)
+CONSTANT protein = 2.0e-6	!amount of protein in proximal tubule cells (mg protein/proximal tubule cell)
+
+CONSTANT Vmax_baso_invitro = 439.2	!Vmax of basolateral transporters (pmol/mg protein/min); average of in vitro measurements of OAT1 and OAT3; Nakagawa 2007
+CONSTANT Km_baso = 20100	!Km of basolateral transporters (ug/L); average of in vitro measurements of OAT1 and OAT3; Nakagawa 2007
+CONSTANT Vmax_apical_invitro = 37400	!Vmax of apical transporters (pmol/mg protein/min); in vitro measurement for OAT4; Yang 2010
+CONSTANT Km_apical = 128500	!Km of apical transporters (ug/L); in vitro measurement for OAT4; Yang 2010
+CONSTANT RAFbaso = 0.01356	!relative activity factor, basolateral transporters; average of measurements of OAT1 and OAT3; Yamada, 2007
+CONSTANT RAFapical = 0.01356	!relative activity factor, apical transporters; fit to data
+
+CONSTANT kdif = 0.001	!difusion rate from proximal tubule cells (/h)
+CONSTANT keffluxC = 2.49	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/kg BW^0.25); fit to data
+CONSTANT kurineC = 1.6	!rate of urinary elimination (/h/kg BW^0.25); fit to data
+
+end !initial
+
+dynamic
+		ALGORITHM IALG = 2
+		NSTEPS    NSTP = 10
+		MAXTERVAL MAXT = 1.0e9
+		MINTERVAL MINT = 1.0e-9
+		CINTERVAL CINT = 1.0
+
+  derivative
+	! Scaled Parameters
+		! Cardiac Output
+		QC = QCC*(BW**0.75)*(1-Htc)	!cardiac output (L/h), adjusted for plasma flow
+		QL = QLC*QC	!plasma flow to liver (L/h)
+		QK = QKC*QC	!plasma flow to kidney (L/h)
+		QF = QFC*QC	!plasma flow to fat (L/h)
+		QR = QC - QL - QK - QF	!plasma flow to rest of body (L/h)
+		Qbal = QC - (QL + QK + QF + QR)	!balance check of blood flows, should equal zero
+
+		!Tissue Volumes
+		VL = VLC*BW	!volume of liver (L)
+		VK = VKC*BW	!volume of kidney (L)
+		VKb = VK*0.16	!volume of blood in the kidney (L); fraction blood volume of kidney (0.16) Brown 1997
+		VF = VFC*BW	!volume of fat (L)
+		VR = (0.84*BW) - Vplas - VKb - VPTC - Vfil - VL - VK - VF	!volume of rest of body (L)
+		Vplas = VplasC*BW	!volume of plasma (L)
+		Vfil = VfilC*BW	!volume of filtrate (L)
+		VPTC = VPTCC*BW	!volume of proximal tubule cells (L)
+
+		!Kidney Parameters
+		Vmax_basoC = (Vmax_baso_invitro*PTC*protein*MW*6.0e-5)* RAFbaso	!Vmax of basolateral transporters (ug/h/kg BW^0.75)
+		Vmax_baso = Vmax_basoC*(BW**0.75)	!Vmax of basolateral transporters (ug/h)
+		Vmax_apicalC = (Vmax_apical_invitro*PTC*protein*MW*6.0e-5) * RAFapical	!Vmax of apical transporters (ug/h/kg BW^0.75)
+		Vmax_apical = Vmax_apicalC*(BW**0.75)	!Vmax of apical transporters (ug/h)
+		kurine = kurinec*(BW**(-0.25))	!urinary elimination rate (/h)
+		kefflux = kefflux*(BW**(-0.25))	!efflux clearance rate, from PTC to blood (/h)
+		GFR = GFRC*BW	!glomerular filtration rate (L/h)
+	
+	!Exposure Parameters
+	countdw = 0.0
+	hourofday = 0.0
+	dayofweek = 0.0
+	day = t/24
+	year = day/365
+
+	!Drinking water
+	CONSTANT tbackground = 175200	!duration of exposure to background drinking water concentration (hrs)
+	CONSTANT backgrounddw = 0.01	!background drinking water concentration (ug/L or ppb)
+	CONSTANT exposeddw = 2.2	!contaminated drinking water concentration (ug/L or ppb)
+	CONSTANT dwtotal = 1.2	!daily drinking water consumption (L); EPA Factors Handbook 2011
+	CONSTANT drinks = 4	!total number of drinks per day 
+	CONSTANT tlendw = 0.25	!length of time spent drinking at each drinking event (hrs/drink)
+
+!Drinking water exposure
+DISCRETE Drinkint
+SCHEDULE DrinkON .AT. tstart
+END
+
+DISCRETE DrinkON
+IF (T.LT.tbackground) THEN !if time is less than tbackground, 
+INTERVAL C2 = 4.0 !simulate drinking exposure every four hours
+IF (hourofday .LT. 16.0) THEN !if hour of day is less than 16 (8pm)
+drinkdose = ((backgrounddw/tlendw)*(dwtotal/drinks)) !simulate drinking water (background concentration)exposure at set interval(ug/hr)
+countdw = countdw + 1 !increase drinking episode count by 1 following exposure
+SCHEDULE DrinkOFF .AT. T+tlendw !turn off drinking water exposure after 15 minutes (tlen)
+ENDIF
+
+hourofday = hourofday + 4 !increase hour of day count by four hours following each exposure
+
+IF(hourofday .EQ. 24.0) dayofweek = dayofweek + 1.0 !when hour of day count reaches 24, increase day of week count by 1
+IF(hourofday .EQ. 24.0) hourofday = 0.0 !when hour of day count reaches 24, reset hour of day count to zero
+IF (dayofweek .EQ. 7.0) dayofweek = 0.0 !when day of week count reaches 7, reset day of week count to zero
+ENDIF
+
+END
+adrinkdosebackground = integ(drinkdose, 0.0)	!amount of PFOA consumed during background exposures (ug)
+
+DISCRETE DrinkON
+IF (T.GT.tbackground) THEN !if time is greater than tbackground, 
+INTERVAL C2 = 4.0 !simulate drinking exposure every four hours
+IF (hourofday .LT. 16.0) THEN !if hour of day is less than 16 (8pm)
+drinkdose = ((exposeddw/tlendw)*(dwtotal/drinks)) !simulate drinking water (exposed concentration)exposure at set interval(ug/hr)
+countdw = countdw + 1 !increase drinking episode count by 1 following exposure
+SCHEDULE DrinkOFF .AT. T+tlendw !turn off drinking water exposure after 15 minutes (tlen)
+ENDIF
+
+hourofday = hourofday + 4 !increase hour of day count by four hours following each exposure
+
+IF(hourofday .EQ. 24.0) dayofweek = dayofweek + 1.0 !when hour of day count reaches 24, increase day of week count by 1
+IF(hourofday .EQ. 24.0) hourofday = 0.0 !when hour of day count reaches 24, reset hour of day count to zero
+IF (dayofweek .EQ. 7.0) dayofweek = 0.0 !when day of week count reaches 7, reset day of week count to zero
+ENDIF
+
+END
+adrinkdoseexposed = integ(drinkdose, 0.0)	!amount of PFOA consumed durinng contaminated exposures (ug
+
+DISCRETE DrinkOFF 
+Drinkdose = 0.0 !set drink dose to zero during non-exposure periods
+  end
+
+totaldose = adrinkdosebackground + adrinkdoseexposed	!total dose (ug), for mass balance check
+
+!Model Equations
+!Rest of body
+RR = QR*(CA-CVR)*Free	!rate of change in the rest of body (ug/h)
+AR = integ(RR, 0.0)	!amount in the rest of body (ug)
+CR = AR/VR	!concentration in the rest of body (ug/L)
+CVR = CR/PR	!concentration in venous blood leaving the rest of body (ug/L)
+
+!Liver
+RL = QL*(CA-CVL)*Free + drinkdose	!rate of change in liver (ug/h)
+AL = integ(RL, 0.0)	!amount in the liver (ug)
+CL = AL/VL	!concentration in the liver (ug/L)
+CVL = CL/PL	!concentration in venous blood leaving the liver (ug/L)
+
+!Fat
+RF = QF*(CA-CVF)*Free	!rate of change in the fat (ug/L)
+AF = integ(RF, 0.0)	!amount in the fat (ug)
+CF = AF/VF	!concentration in the fat (ug/L)
+CVF = CF/PF	!concentration in the venous blood leaving the fat (ug/L)
+
+!Kidney
+	!Kidney Blood
+	RKb = QK*(CA-CVK)*Free - CA*GFR*Free - Rdif - RA_baso	!rate of change in the kidney blood (ug/h)
+	AKb = integ(RKb, 0.0)	!amount in the kidney blood (ug)
+	CKb = AKb/VKb	!concentration in the kidney blood (ug/L)
+	CVK = CKb/PK	!concentration in the venous blood leaving the kidney (ug/L)
+
+	Rdif = kdif*(CKb - CPTC)	!rate of diffusion from the blood in the kidney into the PTC (ug/h)
+	RA_baso = (Vmax_baso*CKb)/(Km_baso + CKb)	!rate of transport from the kidney blood into the PTC via the basolateral transporters (ug/h)
+	A_baso = integ(RA_baso, 0.0)	!amount transported by basolateral transporters (ug)
+
+	!Proximal Tubule Cells (PTC)
+	RPTC = Rdif + RA_apical + RA_baso - RAefflux	!rate of change in the proximal tubule cells (ug/h)
+	APTC = integ(RPTC, 0.0)	!amount in proximal tubule cells (ug)
+	CPTC = APTC/VPTC	!concentration in proximal tubule cells (ug/L)
+
+	RAefflux = kefflux*APTC	!rate of efflux from proximal tubule cells into systemic circulation (ug/h)
+	Aefflux = integ(RAefflux, 0.0)	!amount effluxed from proximal tubule cells into systemic circulation (ug/h)
+	
+	RA_apical = (Vmax_apical*Cfil)/(Km_apical + Cfil)	!rate of transport from the filtrate into the PTC via the apical transporters (ug/h)
+	A_apical = integ(RA_apical)	!amount transporter by apical transporters (ug)
+	
+	!Filtrate
+	Rfil = GFR*CKb*Free - RA_apical - Rurine	!rate of change in the filtrate (ug/h)
+	Afil = integ(Rfil, 0.0)	!amount in the filtrate (ug)
+	Cfil = Afil/Vfil	!concentration in the filtrate (ug/L)
+	
+	!Urinary Elimination 
+	Rurine = kurine*Afil	!rate of change in the urine (ug/L)
+	Aurine = integ(Rurine, 0.0)	!amount in the urine
+
+!Plasma compartment
+RPlas_free = (QR*CVR*Free) + (QL*CVL*Free) + (QK*CVK*Free) + (QF*CVF*Free) - (QC*CA*Free) + RAefflux	!rate of change in the plasma (ug/h)
+APlas_free = integ(RPlas_free, 0.0)	!amount (free) in the plasma (ug)
+CA_free = APlas_free/VPlas	!concentration (free) in plasma (ug/L)
+CA = CA_free/Free	!concentration of total PFOA in the plasma (ug/L)
+
+!Mass Balance
+Atissue = APlas_free + AR + AL + AKb + APTC + Afil + AF	!sum of mass in all compartments (ug)
+Atotal = Atissue + Aurine	!total mass, should equal total dose
+
+end	!derivative
+
+CONSTANT TSTOP = 332889.0	!hours
+TERMT (T .GE. TSTOP, 'check on communication interval: REACHED TSTOP')
+
+end	!dynamic
+
+terminal
+end	!terminal
+
+end	!program
