@@ -99,7 +99,7 @@ day = t / 24
 year = day / 365 
 
 
-constant tbackground = 175200 
+constant tbackground = 0 
 constant backgrounddw = 0.01 
 constant exposeddw = 2.2 
 constant dwtotal = 1.2 
@@ -287,7 +287,7 @@ atotal = atissue + aurine
 
 end 
 
-constant tstop = 332889.0 
+constant tstop = 96360 
 # line 226 
 if ( t .ge. tstop ) then 
 # line 226 

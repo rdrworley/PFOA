@@ -1,10 +1,6 @@
 <optstats type="param estim object">
   <runoptions mscriptpre="pfoa adult human - initial parameter values.m" plotresults="True" />
   <parameters>
-    <parameter name="k0c" usestartval="True" startval="1" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="2" />
-    <parameter name="kabsc" usestartval="True" startval="2.12" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="4.24" />
-    <parameter name="kunabsc" usestartval="True" startval="7.06E-05" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.0001412" />
-    <parameter name="kbilec" usestartval="True" startval="0.004" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.008" />
     <parameter name="keffluxc" usestartval="True" startval="2.49" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="4.98" />
     <parameter name="kurinec" usestartval="True" startval="1.6" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="3.2" />
     <parameter name="rafapi" usestartval="True" startval="0.01356" isfixed="False" uselowerbound="True" lowerbound="0" useupperbound="False" upperbound="0.02712" />
@@ -16,7 +12,7 @@
   </variables>
   <descriptors />
   <datasets>
-    <dataset name="Bartell Data, for optimization.csv" includeinrun="True" filepath="e:\pfoa adult human manuscript\bartell data, for optimization.csv">
+    <dataset name="Little Hocking Data.csv" includeinrun="True" filepath="e:\pfoa adult human manuscript\little hocking data.csv">
       <columns>
         <column name="1" />
         <column name="2" />

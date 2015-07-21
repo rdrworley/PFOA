@@ -96,7 +96,7 @@ end !initial
 	year = day/365
 
 	!Drinking water
-	CONSTANT tbackground = 175200	!duration of exposure to background drinking water concentration (hrs)
+	CONSTANT tbackground = 0	!duration of exposure to background drinking water concentration (hrs)
 	CONSTANT backgrounddw = 0.01	!background drinking water concentration (ug/L or ppb)
 	CONSTANT exposeddw = 2.2	!contaminated drinking water concentration (ug/L or ppb)
 	CONSTANT dwtotal = 1.2	!daily drinking water consumption (L); EPA Factors Handbook 2011
@@ -214,7 +214,7 @@ Atotal = Atissue + Aurine	!total mass, should equal total dose
 
 	end	!derivative
 
-CONSTANT TSTOP = 332889.0	!hours
+CONSTANT TSTOP = 96360	!hours
 TERMT (T .GE. TSTOP, 'check on communication interval: REACHED TSTOP')
 
 end	!dynamic
