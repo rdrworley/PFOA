@@ -12,10 +12,10 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Fit-to-data parameters
 !! s KEFFLUXC = 2.49
-!! s KURINEC = 15.0e5
+!! s KURINEC = 1.6
 
-!! s RAFbaso = .04
-!! s RAFapical = 3.0	
+!! s RAFbaso = 0.01356
+!! s RAFapical = 0.0135	
 
 %Data
 bartell = [4	91

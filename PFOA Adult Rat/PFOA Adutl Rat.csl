@@ -33,9 +33,9 @@ CONSTANT tstart = 0.0
 
 		!Kidney Transport Parameters
 		CONSTANT Vmax_baso_invitro = 393.45 !Vmax of basolateral transporter (pmol/mg protein/min); averaged in vitro value of rOAT1 and rOAT3 from Nakagawa, 2007
-		CONSTANT Km_baso = 27.2 !Km of basolateral transporter (ug/mL) Average of rOAT1 and rOAT3 from Nakagawa et. al, 2007
+		CONSTANT Km_baso = 27.2 !Km of basolateral transporter (mg/L) Average of rOAT1 and rOAT3 from Nakagawa et. al, 2007
 		CONSTANT Vmax_apical_invitro = 9300 !Vmax of apical transporter (pmol/mg protein/min); invitro value for Oatp1a1 from Weaver, 2010
-		CONSTANT Km_apical = 52.3 !Km of apical transporter (ug/mL), in vitro value for Oatp1a1 from Weaver, 2010.
+		CONSTANT Km_apical = 52.3 !Km of apical transporter (mg/L), in vitro value for Oatp1a1 from Weaver, 2010.
 		CONSTANT RAFbaso = 0.01356	!relative activity factor, basolateral transporters (averaged from OAT1 and OAT3 in Yamada, 2007)
 		CONSTANT RAFapi = 0.01356	!relative activity factor, apical transporters (male) (fit to data)	
 		!CONSTANT RAFapi = 0.001356	!relative activity factor, apical transporters (female) (fit to data)
