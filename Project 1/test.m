@@ -8,14 +8,17 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s tbackground = 0
 !! s backgrounddw = 0.1
 !! s exposeddw = 3.55
-!! s tstop = 96360
+!! s tstop = 219000
 
 %Fit-to-data parameters
 !! s KEFFLUXC = 2.49
 !! s KURINEC = 1.6
 
-!! s RAFbaso = 0.01356
-!! s RAFapical = 0.0135	
+!! s RAFbaso = 0.0135
+!! s RAFapical = 0.135
+
+!! s Km_baso = 20.100
+!! s Km_apical = 12.8500	
 
 %Data
 bartell = [4	91

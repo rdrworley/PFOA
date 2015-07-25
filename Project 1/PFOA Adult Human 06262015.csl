@@ -35,7 +35,7 @@ CONSTANT PR = 0.11	!rest of body:blood partition coefficient; Kudo 2007
 !Kidney Parameters
 CONSTANT GFRC = 0.106436	!glomerular filtration rate, male (L/hr/kg BW); Corley 2005
 !CONSTANT GFRC = 0.120032	!glomerular filtration rate, female (L/hr/kg BW); Corley 2005
-CONSTANT PTC = 2.112e10	!nummber of proximal tubule cells (60 million PTC/g kidney)
+CONSTANT PTC = 2.112e10	!nummber of proximal tubule cells (cells, 60 million PTC/g kidney)
 CONSTANT protein = 2.0e-6	!amount of protein in proximal tubule cells (mg protein/proximal tubule cell)
 
 CONSTANT Vmax_baso_invitro = 439.2	!Vmax of basolateral transporters (pmol/mg protein/min); average of in vitro measurements of OAT1 and OAT3; Nakagawa 2007
