@@ -122,7 +122,7 @@ CONSTANT tstart = 0.0
 	CONSTANT drinks = 4 !Total drinks per day (drink)
 	CONSTANT tlendw = 0.25 !Length of time spent drinking each drinking event (hrs/drink)
 
-	CONSTANT tbackground = 175200	!duration of exposure to background dw concentration (hrs)
+	CONSTANT tbackground = 0	!duration of exposure to background dw concentration (hrs)
 
 !Drinking water exposure
 DISCRETE Drinkint
