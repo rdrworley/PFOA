@@ -14,14 +14,14 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s tbackground = 0
 !! s backgrounddw = 0.01
 !! s exposeddw = 3.55
-!! s tstop = 105210
+!! s tstop = 26280
 
 % Parameters that are significantly different between rat and human
-%!! s Free = 0.006
-%!! s Km_baso = 27.2
-%!! s Vmax_apical_invitro = 9300
-%!! s Km_apical = 52.3
-%!! s GEC = 0.54
+!! s Free = 0.006
+!! s Km_baso = 27.2
+!! s Vmax_apical_invitro = 9300
+!! s Km_apical = 52.3
+!! s GEC = 0.54
 
 !! st/nc
 
@@ -45,4 +45,5 @@ lhwa = [10	147
 
 !! st/nc
 
-plot(_year, _ca, steenland(:,1),steenland(:,2),'+', bartell(:,1),bartell(:,2),'+', emmett(:,1),emmett(:,2),'+', lhwa(:,1), lhwa(:,2),'+')
+!plot(_year, _ca, steenland(:,1),steenland(:,2),'+', bartell(:,1),bartell(:,2),'+', emmett(:,1),emmett(:,2),'+', lhwa(:,1), lhwa(:,2),'+')
+plot(_year, _ca)

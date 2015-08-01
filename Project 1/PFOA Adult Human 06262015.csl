@@ -58,6 +58,15 @@ CONSTANT tstart = 0.0
 		CONSTANT kbilec = 0.004 !biliary elimination rate ((male); liver to feces storage (/h/kg^0.25); fit to data
 		CONSTANT kurinec = 1.6 !rate of urine elimination from urine storage (male) (/h/kg^0.25)(fit to data)
 
+	!Simulation (dosing) Parameters
+	!Simulation parameters designed to replicate IV exposure data (male only) from Kudo et.al, 2007 and IV and oral exposure data (male and female) from Kemper et.al,2003.  
+		!Oral Gavage Dosing
+		CONSTANT OdoseC = 25.0	!oral dose concentration(mg/kg BW)
+		CONSTANT OGtime = 0.01	!length of oral gavage (hrs)
+		
+		!IV Dosing
+		CONSTANT IVdoseC = 0	!IV dose concentration (mg/kg)
+		CONSTANT IVTime = 0.01	!length of IV infusion (hrs)
 	
 	END ! INITIAL
 
@@ -108,69 +117,83 @@ CONSTANT tstart = 0.0
 		GE = GEC/BW**0.25	!gastric emptying time (/h)
 		k0 = K0C/BW**0.25 	!rate of uptake from the stomach into the liver (/h)
 
-	 ! Exposure Parameters
-	countdw = 0.0
-	hourofday = 0.0
-	dayofweek = 0.0 
+	! ! Exposure Parameters
+	!countdw = 0.0
+	!hourofday = 0.0
+	!dayofweek = 0.0 
 	day = t/24
 	year = day/365
-	
-	!Drinking Water
-	CONSTANT backgrounddw = 0.01 ! Drinking water concentration (ug/L or ppb)
-	CONSTANT exposeddw = 2.2 !Contaminated drinking water concentration (ug/L or ppb)
-	CONSTANT dwtotal = 1.2 ! daily drinking water consumption (L), from the EPA Factors Handbook (2011)
-	CONSTANT drinks = 4 !Total drinks per day (drink)
-	CONSTANT tlendw = 0.25 !Length of time spent drinking each drinking event (hrs/drink)
-
-	CONSTANT tbackground = 0	!duration of exposure to background dw concentration (hrs)
+!	
+!	!Drinking Water
+!	CONSTANT backgrounddw = 0.01 ! Drinking water concentration (ug/L or ppb)
+!	CONSTANT exposeddw = 2.2 !Contaminated drinking water concentration (ug/L or ppb)
+!	CONSTANT dwtotal = 1.2 ! daily drinking water consumption (L), from the EPA Factors Handbook (2011)
+!	CONSTANT drinks = 4 !Total drinks per day (drink)
+!	CONSTANT tlendw = 0.25 !Length of time spent drinking each drinking event (hrs/drink)
+!
+!	CONSTANT tbackground = 0	!duration of exposure to background dw concentration (hrs)
 
 !Drinking water exposure
-DISCRETE Drinkint
-SCHEDULE DrinkON .AT. tstart
-END
+!DISCRETE Drinkint
+!SCHEDULE DrinkON .AT. tstart
+!END
 
-DISCRETE DrinkON
-IF (T.LT.tbackground) THEN !if time is less than tbackground, 
-INTERVAL C2 = 4.0 !simulate drinking exposure every four hours
-IF (hourofday .LT. 16.0) THEN !if hour of day is less than 16 (8pm)
-drinkdose = ((backgrounddw/tlendw)*(dwtotal/drinks)) !simulate drinking water (background concentration)exposure at set interval(ug/hr)
-countdw = countdw + 1 !increase drinking episode count by 1 following exposure
-SCHEDULE DrinkOFF .AT. T+tlendw !turn off drinking water exposure after 15 minutes (tlen)
-ENDIF
+!DISCRETE DrinkON
+!IF (T.LT.tbackground) THEN !if time is less than tbackground, 
+!INTERVAL C2 = 4.0 !simulate drinking exposure every four hours
+!IF (hourofday .LT. 16.0) THEN !if hour of day is less than 16 (8pm)
+!drinkdose = ((backgrounddw/tlendw)*(dwtotal/drinks)) !simulate drinking water (background concentration)exposure at set interval(ug/hr)
+!countdw = countdw + 1 !increase drinking episode count by 1 following exposure
+!SCHEDULE DrinkOFF .AT. T+tlendw !turn off drinking water exposure after 15 minutes (tlen)
+!ENDIF
 
-hourofday = hourofday + 4 !increase hour of day count by four hours following each exposure
+!hourofday = hourofday + 4 !increase hour of day count by four hours following each exposure
 
-IF(hourofday .EQ. 24.0) dayofweek = dayofweek + 1.0 !when hour of day count reaches 24, increase day of week count by 1
-IF(hourofday .EQ. 24.0) hourofday = 0.0 !when hour of day count reaches 24, reset hour of day count to zero
-IF (dayofweek .EQ. 7.0) dayofweek = 0.0 !when day of week count reaches 7, reset day of week count to zero
-ENDIF
+!IF(hourofday .EQ. 24.0) dayofweek = dayofweek + 1.0 !when hour of day count reaches 24, increase day of week count by 1
+!IF(hourofday .EQ. 24.0) hourofday = 0.0 !when hour of day count reaches 24, reset hour of day count to zero
+!IF (dayofweek .EQ. 7.0) dayofweek = 0.0 !when day of week count reaches 7, reset day of week count to zero
+!ENDIF
 
-END
-adrinkdose = integ(drinkdose, 0.)
+!END
+!adrinkdose = integ(drinkdose, 0.)
+!
+!DISCRETE DrinkON
+!IF (T.GT.tbackground) THEN !if time is greater than tbackground, 
+!INTERVAL C2 = 4.0 !simulate drinking exposure every four hours
+!IF (hourofday .LT. 16.0) THEN !if hour of day is less than 16 (8pm)
+!drinkdose = ((exposeddw/tlendw)*(dwtotal/drinks)) !simulate drinking water (exposed concentration)exposure at set interval(ug/hr)
+!countdw = countdw + 1 !increase drinking episode count by 1 following exposure
+!SCHEDULE DrinkOFF .AT. T+tlendw !turn off drinking water exposure after 15 minutes (tlen)
+!ENDIF
 
-DISCRETE DrinkON
-IF (T.GT.tbackground) THEN !if time is greater than tbackground, 
-INTERVAL C2 = 4.0 !simulate drinking exposure every four hours
-IF (hourofday .LT. 16.0) THEN !if hour of day is less than 16 (8pm)
-drinkdose = ((exposeddw/tlendw)*(dwtotal/drinks)) !simulate drinking water (exposed concentration)exposure at set interval(ug/hr)
-countdw = countdw + 1 !increase drinking episode count by 1 following exposure
-SCHEDULE DrinkOFF .AT. T+tlendw !turn off drinking water exposure after 15 minutes (tlen)
-ENDIF
+!hourofday = hourofday + 4 !increase hour of day count by four hours following each exposure
 
-hourofday = hourofday + 4 !increase hour of day count by four hours following each exposure
+!IF(hourofday .EQ. 24.0) dayofweek = dayofweek + 1.0 !when hour of day count reaches 24, increase day of week count by 1
+!IF(hourofday .EQ. 24.0) hourofday = 0.0 !when hour of day count reaches 24, reset hour of day count to zero
+!IF (dayofweek .EQ. 7.0) dayofweek = 0.0 !when day of week count reaches 7, reset day of week count to zero
+!ENDIF
 
-IF(hourofday .EQ. 24.0) dayofweek = dayofweek + 1.0 !when hour of day count reaches 24, increase day of week count by 1
-IF(hourofday .EQ. 24.0) hourofday = 0.0 !when hour of day count reaches 24, reset hour of day count to zero
-IF (dayofweek .EQ. 7.0) dayofweek = 0.0 !when day of week count reaches 7, reset day of week count to zero
-ENDIF
+!END
+!adrinkdose2 = integ(drinkdose, 0.)
 
-END
-adrinkdose2 = integ(drinkdose, 0.)
+!DISCRETE DrinkOFF 
+!Drinkdose = 0.0 !set drink dose to zero during non-exposure periods
+!END	
 
-DISCRETE DrinkOFF 
-Drinkdose = 0.0 !set drink dose to zero during non-exposure periods
-END	
+!Dosing Equations
+		!IV Dosing
+		IVdose = IVdoseC*BW	!mg
+		IVR = IVon*IVdose/IVTime	!IV dose rate (mg/hr)
+		AIV = integ(IVR, 0.0)	!amount administered in IV (?) (mg)
+		IVon = RSW(T.GE.IVTime, 0.,1.)	!RSW switch to turn IV dose on. As written, will only work with a single, non-repeating IV dose. 
+	
+		!Oral Gavage Dosing
+		Odose = OdoseC*BW	!oral dose (mg)
+		OGR = OGon*Odose/OGtime	!Oral gavage rate (mg/hr)
+		AOG = integ(OGR, 0.0)	!amount administered in oral gavage (mg)
+		OGon = RSW(T.GE.OGTime,0.,1.)	!RSW switch to turn on oral gavage. As written will only work with a single, non-repeating oral dose. 
 		
+	
 !Model Equations
 		!Rest of Body (Tis)
 		RR = QR*(CA-CVR)*Free	!rate of change in rest of body (ug/h)
@@ -218,7 +241,8 @@ END
 
 		!GI Tract (Absorption site of oral dose)
 			!Stomach
-			RST= drinkdose - k0*AST - GE*AST	!rate of change in the stomach (ug/h)
+			!RST= drinkdose - k0*AST - GE*AST	!rate of change in the stomach (ug/h)
+			RST= OGR - k0*AST - GE*AST	!rate of change in the stomach (ug/h)
 			AST = integ(RST, 0.)	!amount in the stomach (ug)
 
 			RabsST = k0*AST	!rate of absorption in the stomach (ug/h)
