@@ -6,6 +6,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
 !! s exposeddw = 3.55
+!! s tstop = 240
 
 %Parameters that can be fit to data
 !! s K0C = 1.0
@@ -37,4 +38,5 @@ lhwa = [10	147
 
 !! st/nc
 
-plot(_year, _ca, steenland(:,1),steenland(:,2),'+', bartell(:,1),bartell(:,2),'+', emmett(:,1),emmett(:,2),'+', lhwa(:,1), lhwa(:,2),'+')
+%plot(_year, _ca, steenland(:,1),steenland(:,2),'+', bartell(:,1),bartell(:,2),'+', emmett(:,1),emmett(:,2),'+', lhwa(:,1), lhwa(:,2),'+')
+plot(_t, _ca)

@@ -9880,7 +9880,7 @@
 <Assignment>
 <LValue>
 <Identifier>ptc</Identifier></LValue>
-<ArithMultiplication><Identifier>mk</Identifier><RealLiteral>6e7</RealLiteral></ArithMultiplication></Assignment>
+<ArithMultiplication><Identifier>mkc</Identifier><RealLiteral>6e7</RealLiteral></ArithMultiplication></Assignment>
 </Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PFOAAD~3\\pfoaad~2.csl" blockname="" linenumber="107">
 <Assignment>

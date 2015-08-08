@@ -48,8 +48,8 @@ CONSTANT tstart = 0.0
 		CONSTANT PK = 1.17 !kidney:blood (from human cadaver data, Fabrega, 2014)
 		CONSTANT PR = 0.11 !rest of body:blood (from rat tissue data, Kudo, 2007)
 		
-		!rate constants (1/h)
-		CONSTANT kdif = 0.001	!diffusion rate from proximal tubule cells 
+		!rate constants 
+		CONSTANT kdif = 0.001	!diffusion rate from proximal tubule cells (L/h)
 		CONSTANT kabsc = 2.12	!rate of absorption of chemical from small intestine to liver (1/(h*BW^0.25))(fit to data)
 		CONSTANT kunabsc = 7.06e-5	!rate of unabsorbed dose to appear in feces (1/(h*BW^0.25)) (fit to data)
 		CONSTANT GEC = 3.5 !gastric emptying time (1/(h*BW^0.25)); from Yang, 2014
@@ -58,6 +58,11 @@ CONSTANT tstart = 0.0
 		CONSTANT keffluxc = 2.49	!rate of clearance of PFOA from proximal tubule cells into blood (1/(h*BW^0.25))); fit to data
 		CONSTANT kbilec = 0.004 !biliary elimination rate ((male); liver to feces storage (1/(h*BW^0.25)); fit to data
 		CONSTANT kurinec = 1.6 !rate of urine elimination from urine storage (male) (1/(h*BW^0.25))(fit to data)
+
+		! Exposure Parameters
+		countdw = 0.0
+		hourofday = 0.0
+		dayofweek = 0.0 
 
 	END ! INITIAL
 
@@ -90,7 +95,7 @@ CONSTANT tstart = 0.0
 
 		!Kidney Parameters
 		!MK = MKC*BW*1000	!mass of the kidney (g)
-		PTC =VK*1000*6e7	!number of PTC (60 million PTC/gram kidney)
+		PTC =VKC*1000*6e7	!number of PTC (cells/kg BW) (based on 60 million PTC/gram kidney)
 		VPTC = VK*1000*VPTCC	!volume of proximal tubule cells (L)	
 		MPTC = VPTC*1000 !mass of the proximal tubule cells (g) (assuming density 1 kg/L)	
 		Vmax_basoC = (Vmax_baso_invitro*RAFbaso*PTC*protein*60*(MW/1e12)*1000000)!Vmax of basolateral transporters (ug/h/kg BW ^0.75)
@@ -109,9 +114,6 @@ CONSTANT tstart = 0.0
 		k0 = K0C/BW**0.25 	!rate of uptake from the stomach into the liver (/h)
 
 ! Exposure Parameters
-	countdw = 0.0
-	hourofday = 0.0
-	dayofweek = 0.0 
 	day = t/24
 	year = day/365
 	
@@ -189,7 +191,7 @@ END
 			ACl = integ(RCl, 0.0)		!amount moved via glomarular filtration (ug)
 	
 			Rdif = Kdif*(CKb - CPTC)	!rate of diffusion from into the PTC (ug/hr)
-			Adif = integ(Rdif, 0.)	!amount diffused into the PTC (ug)
+			Adif = integ(Rdif, 0.)	!amount diffused into the PTC (ug/L)
 
 			RA_baso = (Vmax_baso*CKb)/(Km_baso + CKb)
 			A_baso = integ(RA_baso, 0.)
@@ -214,8 +216,6 @@ END
 			Rurine = kurine*Afil	!rate of change in urine (ug/h)
 			Aurine = integ(Rurine, 0.0)	!amount in urine (ug)
 
-			percentOD_in_urine = (Aurine/Odose)*100
-
 		!GI Tract (Absorption site of oral dose)
 			!Stomach
 			RST= drinkdose - k0*AST - GE*AST	!rate of change in the stomach (ug/h)
@@ -236,7 +236,6 @@ END
 			!Feces compartment
 			Rfeces = kbile*AL + kunabs*ASI !rate of change in the feces compartment (ug/h)
 			Afeces = integ(Rfeces, 0.0)	!amount in the feces compartment (ug)
-			percentOD_in_feces = (Afeces/Odose)*100	!percent of the oral dose in the feces (%)
 
 		!Liver
 		RL = QL*(CA-CVL)*Free - kbile*AL + kabs*ASI + k0*AST !rate of change in the liver (ug/h)
@@ -245,7 +244,6 @@ END
 		CVL = CL/PL	!concentration in the venous blood leaving the liver (ug/L)
 		
 		Abile = kbile*AL
-		amount_per_gram_liver = (AL/ML)*1000	!amount of PFOA in liver per gram liver (ug/g)
 
 		!Plasma compartment
 		RPlas_free = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + RAefflux  !rate of change in the plasma (ug/h) 

@@ -1515,7 +1515,7 @@ zzsim.cptc = (zzsim.aptc / zzsim.vptc);
 zzsim.rdif = (zzsim.kdif * (zzsim.ckb - zzsim.cptc));
 
 
-zzsim.ptc = (zzsim.mk * 6e7);
+zzsim.ptc = (zzsim.mkc * 6e7);
 
 
 zzsim.vmax_basoc = ((((((zzsim.vmax_baso_invitro * zzsim.rafbaso) * zzsim.ptc) * zzsim.protein) * 60) * (zzsim.mw / 1e12)) * 1000);

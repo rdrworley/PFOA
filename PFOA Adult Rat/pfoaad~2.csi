@@ -103,7 +103,7 @@ ml = mlc * bw * 1000
 
 
 mk = mkc * bw * 1000 
-ptc = mk * 6e7 
+ptc = mkc * 6e7 
 vptc = mk * vptcc 
 mptc = vptc * 1000 
 # line 107 
