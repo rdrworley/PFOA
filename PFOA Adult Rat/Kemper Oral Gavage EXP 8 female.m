@@ -13,6 +13,7 @@ prepare @clear @all
 !! s KURINEC = 1.6
 
 !! s RAFapi = 0.001356	%relative activity factor, apical transporters, fit to data
+!! s RAFbaso = 0.01356	%relative activity factor, apical transporters, fit to data
 !! s Free = 0.09	%Female value for FREE. fit to data
 !! s GFRC = 41.04	%glomerular filtration rate (L/hr/kg kidney) (female); Corley, 2005
 

@@ -88,9 +88,9 @@ vk = vkc * bw
 vkb = vk * 0.16 
 vfil = vfilc * bw 
 vl = vlc * bw 
-vr = ( 0.84 * bw ) - vplas - vkb - vptc - vfil - vl - vk 
+vr = ( 0.93 * bw ) - vplas - vptc - vfil - vl 
 # line 91 
-vbal = ( 0.84 * bw ) - ( vr + vl + vkb + vptc + vfil + vplas + vk ) 
+vbal = ( 0.93 * bw ) - ( vr + vl + vptc + vfil + vplas ) 
 
 
 ptc = vkc * 1000 * 6e7 

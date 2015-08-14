@@ -307,8 +307,8 @@ SimImpl zzsim =
 27.2,
 9300,
 52.3,
-0.01356,
-0.01356,
+4.0,
+4.07,
 2.0e-6,
 62.1,
 2.2,
@@ -1467,12 +1467,6 @@ zzsim.ca_free = (zzsim.aplas_free / zzsim.vplas);
 zzsim.ca = (zzsim.ca_free / zzsim.free);
 
 
-zzsim.vk = (zzsim.vkc * zzsim.bw);
-
-
-zzsim.vkb = (zzsim.vk * 0.16);
-
-
 zzsim.vfil = (zzsim.vfilc * zzsim.bw);
 
 
@@ -1485,7 +1479,7 @@ zzsim.mk = ((zzsim.mkc * zzsim.bw) * 1000);
 zzsim.vptc = (zzsim.mk * zzsim.vptcc);
 
 
-zzsim.vr = (((((((0.84 * zzsim.bw) - zzsim.vplas) - zzsim.vkb) - zzsim.vptc) - zzsim.vfil) - zzsim.vl) - zzsim.vk);
+zzsim.vr = (((((0.93 * zzsim.bw) - zzsim.vplas) - zzsim.vptc) - zzsim.vfil) - zzsim.vl);
 
 
 zzsim.cr = (zzsim.ar / zzsim.vr);
@@ -1501,6 +1495,12 @@ zzsim.z99995 = zzsim.rr;
 
 
 zzsim.gfr = (zzsim.gfrc * (zzsim.mk / 1000));
+
+
+zzsim.vk = (zzsim.vkc * zzsim.bw);
+
+
+zzsim.vkb = (zzsim.vk * 0.16);
 
 
 zzsim.ckb = (zzsim.akb / zzsim.vkb);
@@ -1713,7 +1713,7 @@ zzsim.z99962 = 0.0;
 zzsim.qbal = (zzsim.qc - ((zzsim.qk + zzsim.ql) + zzsim.qr));
 
 
-zzsim.vbal = ((0.84 * zzsim.bw) - ((((((zzsim.vr + zzsim.vl) + zzsim.vkb) + zzsim.vptc) + zzsim.vfil) + zzsim.vplas) + zzsim.vk));
+zzsim.vbal = ((0.93 * zzsim.bw) - ((((zzsim.vr + zzsim.vl) + zzsim.vptc) + zzsim.vfil) + zzsim.vplas));
 
 
 zzsim.ml = ((zzsim.mlc * zzsim.bw) * 1000);

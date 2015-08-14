@@ -9580,18 +9580,6 @@
 <Identifier>ca</Identifier></LValue>
 <ArithDivision><Identifier>ca_free</Identifier><Identifier>free</Identifier></ArithDivision></Assignment>
 </Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PROJEC~1\\pfoaad~1.csl" blockname="" linenumber="86">
-<Assignment>
-<LValue>
-<Identifier>vk</Identifier></LValue>
-<ArithMultiplication><Identifier>vkc</Identifier><Identifier>bw</Identifier></ArithMultiplication></Assignment>
-</Statement>
-<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PROJEC~1\\pfoaad~1.csl" blockname="" linenumber="87">
-<Assignment>
-<LValue>
-<Identifier>vkb</Identifier></LValue>
-<ArithMultiplication><Identifier>vk</Identifier><RealLiteral>0.16</RealLiteral></ArithMultiplication></Assignment>
-</Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PROJEC~1\\pfoaad~1.csl" blockname="" linenumber="88">
 <Assignment>
 <LValue>
@@ -9604,6 +9592,12 @@
 <Identifier>vl</Identifier></LValue>
 <ArithMultiplication><Identifier>vlc</Identifier><Identifier>bw</Identifier></ArithMultiplication></Assignment>
 </Statement>
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PROJEC~1\\pfoaad~1.csl" blockname="" linenumber="86">
+<Assignment>
+<LValue>
+<Identifier>vk</Identifier></LValue>
+<ArithMultiplication><Identifier>vkc</Identifier><Identifier>bw</Identifier></ArithMultiplication></Assignment>
+</Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PROJEC~1\\pfoaad~1.csl" blockname="" linenumber="95">
 <Assignment>
 <LValue>
@@ -9614,7 +9608,7 @@
 <Assignment>
 <LValue>
 <Identifier>vr</Identifier></LValue>
-<ArithSubtraction><ArithSubtraction><ArithSubtraction><ArithSubtraction><ArithSubtraction><ArithSubtraction><ArithMultiplication><RealLiteral>0.84</RealLiteral><Identifier>bw</Identifier></ArithMultiplication><Identifier>vplas</Identifier></ArithSubtraction><Identifier>vkb</Identifier></ArithSubtraction><Identifier>vptc</Identifier></ArithSubtraction><Identifier>vfil</Identifier></ArithSubtraction><Identifier>vl</Identifier></ArithSubtraction><Identifier>vk</Identifier></ArithSubtraction></Assignment>
+<ArithSubtraction><ArithSubtraction><ArithSubtraction><ArithSubtraction><ArithMultiplication><RealLiteral>0.93</RealLiteral><Identifier>bw</Identifier></ArithMultiplication><Identifier>vplas</Identifier></ArithSubtraction><Identifier>vptc</Identifier></ArithSubtraction><Identifier>vfil</Identifier></ArithSubtraction><Identifier>vl</Identifier></ArithSubtraction></Assignment>
 </Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PROJEC~1\\pfoaad~1.csl" blockname="" linenumber="182">
 <Assignment>
@@ -9645,6 +9639,12 @@
 <LValue>
 <Identifier>gfr</Identifier></LValue>
 <ArithMultiplication><Identifier>gfrc</Identifier><Identifier>vk</Identifier></ArithMultiplication></Assignment>
+</Statement>
+<Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PROJEC~1\\pfoaad~1.csl" blockname="" linenumber="87">
+<Assignment>
+<LValue>
+<Identifier>vkb</Identifier></LValue>
+<ArithMultiplication><Identifier>vk</Identifier><RealLiteral>0.16</RealLiteral></ArithMultiplication></Assignment>
 </Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PROJEC~1\\pfoaad~1.csl" blockname="" linenumber="189">
 <Assignment>
@@ -10070,7 +10070,7 @@
 <Assignment>
 <LValue>
 <Identifier>vbal</Identifier></LValue>
-<ArithSubtraction><ArithMultiplication><RealLiteral>0.84</RealLiteral><Identifier>bw</Identifier></ArithMultiplication><ArithAddition><ArithAddition><ArithAddition><ArithAddition><ArithAddition><ArithAddition><Identifier>vr</Identifier><Identifier>vl</Identifier></ArithAddition><Identifier>vkb</Identifier></ArithAddition><Identifier>vptc</Identifier></ArithAddition><Identifier>vfil</Identifier></ArithAddition><Identifier>vplas</Identifier></ArithAddition><Identifier>vk</Identifier></ArithAddition></ArithSubtraction></Assignment>
+<ArithSubtraction><ArithMultiplication><RealLiteral>0.93</RealLiteral><Identifier>bw</Identifier></ArithMultiplication><ArithAddition><ArithAddition><ArithAddition><ArithAddition><Identifier>vr</Identifier><Identifier>vl</Identifier></ArithAddition><Identifier>vptc</Identifier></ArithAddition><Identifier>vfil</Identifier></ArithAddition><Identifier>vplas</Identifier></ArithAddition></ArithSubtraction></Assignment>
 </Statement>
 <Statement sourcefile="C:\\PROGRA~2\\AEGIST~1\\acslX\\PFOA\\PROJEC~1\\pfoaad~1.csl" blockname="" linenumber="96">
 <Assignment>

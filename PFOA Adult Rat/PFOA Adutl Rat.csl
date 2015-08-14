@@ -36,9 +36,10 @@ CONSTANT tstart = 0.0
 		CONSTANT Km_baso = 27.2 !Km of basolateral transporter (mg/L) Average of rOAT1 and rOAT3 from Nakagawa et. al, 2007
 		CONSTANT Vmax_apical_invitro = 9300 !Vmax of apical transporter (pmol/mg protein/min); invitro value for Oatp1a1 from Weaver, 2010
 		CONSTANT Km_apical = 52.3 !Km of apical transporter (mg/L), in vitro value for Oatp1a1 from Weaver, 2010.
-		CONSTANT RAFbaso = 0.01356	!relative activity factor, basolateral transporters (averaged from OAT1 and OAT3 in Yamada, 2007)
-		CONSTANT RAFapi = 0.01356	!relative activity factor, apical transporters (male) (fit to data)	
+		CONSTANT RAFbaso = 3.99	!relative activity factor, basolateral transporters (male) (fit to data)	
+		CONSTANT RAFapi = 4.07	!relative activity factor, apical transporters (male) (fit to data)	
 		!CONSTANT RAFapi = 0.001356	!relative activity factor, apical transporters (female) (fit to data)
+		!CONSTANT RAFbaso = 0.01356	!relative activity factor, basolateral transporters (female) (fit to data)
 		CONSTANT protein = 2.0e-6	!amount of protein in proximal tubule cells (mg protein/proximal tubule cell)
 
 		CONSTANT GFRC = 62.1	!glomerular filtration rate (L/hr/kg kidney) (male); Corley, 2005
@@ -49,16 +50,16 @@ CONSTANT tstart = 0.0
 		CONSTANT PK = 1.05 !kidney:blood
 		CONSTANT PR = 0.11 !rest of body:blood
 		
-		!rate constants (1/h)
-		CONSTANT kdif = 0.001	!diffusion rate from proximal tubule cells 
-		CONSTANT kabsc = 2.12	!rate of absorption of chemical from small intestine to liver (/hr/BW^0.25) (fit to data)
-		CONSTANT kunabsc = 7.06e-5	!rate of unabsorbed dose to appear in feces (/h/BW^0.25) (fit to data)
-		CONSTANT GEC = 0.54 !gastric emptying time (/h/BW^0.25); from Yang, 2013
-		CONSTANT k0C = 1.0	!rate of uptake from the stomach into the liver (1/h/BW^0.25)
+		!rate constants
+		CONSTANT kdif = 0.001	!diffusion rate from proximal tubule cells (L/h)
+		CONSTANT kabsc = 2.12	!rate of absorption of chemical from small intestine to liver (1/(h*BW^0.25))(fit to data)
+		CONSTANT kunabsc = 7.06e-5	!rate of unabsorbed dose to appear in feces (1/(h*BW^0.25))(fit to data)
+		CONSTANT GEC = 0.54 !gastric emptying time (1/(h*BW^0.25)); from Yang, 2013
+		CONSTANT k0C = 1.0	!rate of uptake from the stomach into the liver (1/(h*BW^0.25)) (fit to data)
 		
-		CONSTANT keffluxc = 2.49	!rate of clearance of PFOA from proximal tubule cells into blood (/hr/BW^0.25)
-		CONSTANT kbilec = 0.004 !biliary elimination rate ((male); liver to feces storage (/h/kg^0.25); fit to data
-		CONSTANT kurinec = 1.6 !rate of urine elimination from urine storage (male) (/h/kg^0.25)(fit to data)
+		CONSTANT keffluxc = 2.49	!rate of clearance of PFOA from proximal tubule cells into blood (1/(h*BW^0.25))
+		CONSTANT kbilec = 0.004 !biliary elimination rate ((male); liver to feces storage (1/(h*BW^0.25)) (fit to data)
+		CONSTANT kurinec = 1.6 !rate of urine elimination from urine storage (male) (1/(h*BW^0.25))(fit to data)
 
 	!Simulation (dosing) Parameters
 	!Simulation parameters designed to replicate IV exposure data (male only) from Kudo et.al, 2007 and IV and oral exposure data (male and female) from Kemper et.al,2003.  
@@ -95,17 +96,17 @@ CONSTANT tstart = 0.0
 		VKb = VK*0.16	!volume of blood in the kidney (L); fraction blood volume of kidney (0.16) from Brown, 1997
 		Vfil = VfilC*BW	!volume of filtrate (L)
 		VL = VLC*BW	!volume of liver (L)
-		VR = (0.84*BW) - VPlas - VKb - VPTC - Vfil - VL - VK	!volume of remaining tissue (L); 
-		VBal = (0.84*BW) - (VR + VL + VKb + VPTC + VFil + VPlas + VK)	!Balance check of tissue volumes; should equal zero 
+		VR = (0.93*BW) - VPlas - VPTC - Vfil - VL	!volume of remaining tissue (L); 
+		VBal = (0.93*BW) - (VR + VL + VPTC + VFil + VPlas)	!Balance check of tissue volumes; should equal zero 
 		ML = MLC*BW*1000	!mass of the liver (g)
 
 		!Kidney Parameters
 		MK = MKC*BW*1000	!mass of the kidney (g)
-		PTC = MKC*6e7	!number of PTC (60 million PTC/gram kidney)
+		PTC = MKC*6e7	!number of PTC (cells/kg BW) (based on 60 million PTC/gram kidney)
 		VPTC = MK*VPTCC	!volume of proximal tubule cells (L)	
 		MPTC = VPTC*1000 !mass of the proximal tubule cells (g) (assuming density 1 kg/L)	
-		Vmax_basoC = (Vmax_baso_invitro*RAFbaso*PTC*protein*60*(MW/1e12)*1000)!Vmax of basolateral transporters (mg/h/kg BW ^0.75)
-		Vmax_apicalC = (Vmax_apical_invitro*RAFapi*PTC*protein*60*(MW/1e12)*1000) !Vmax of basolateral transporters (mg/h/kg BW ^0.75)
+		Vmax_basoC = (Vmax_baso_invitro*RAFbaso*PTC*protein*60*(MW/1e12)*1000)!Vmax of basolateral transporters (mg/h/kg BW)
+		Vmax_apicalC = (Vmax_apical_invitro*RAFapi*PTC*protein*60*(MW/1e12)*1000) !Vmax of basolateral transporters (mg/h/kg BW)
 		Vmax_baso = Vmax_basoC*BW**0.75	!(mg/h)
 		VMax_apical = Vmax_apicalC*BW**0.75	!(mg/h)
 		kbile = kbilec*BW**(-0.25)	!biliary elimination; liver to feces storage (/h)
@@ -152,7 +153,7 @@ CONSTANT tstart = 0.0
 			Rdif = Kdif*(CKb - CPTC)	!rate of diffusion from into the PTC (mg/hr)
 			Adif = integ(Rdif, 0.)	!amount diffused into the PTC (mg)
 
-			RA_baso = (Vmax_baso*CKb)/(Km_baso + CKb)
+			RA_baso = (Vmax_baso*CKb)/(Km_baso + CKb)	
 			A_baso = integ(RA_baso, 0.)
 
 			!Proximal Tubule Cells (PTC)

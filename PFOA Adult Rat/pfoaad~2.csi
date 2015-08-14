@@ -36,8 +36,8 @@ constant vmax_baso_invitro = 393.45
 constant km_baso = 27.2 
 constant vmax_apical_invitro = 9300 
 constant km_apical = 52.3 
-constant rafbaso = 0.01356 
-constant rafapi = 0.01356 
+constant rafbaso = 4.0 
+constant rafapi = 4.07 
 
 constant protein = 2.0e-6 
 
@@ -96,9 +96,9 @@ vk = vkc * bw
 vkb = vk * 0.16 
 vfil = vfilc * bw 
 vl = vlc * bw 
-vr = ( 0.84 * bw ) - vplas - vkb - vptc - vfil - vl - vk 
+vr = ( 0.93 * bw ) - vplas - vptc - vfil - vl 
 # line 99 
-vbal = ( 0.84 * bw ) - ( vr + vl + vkb + vptc + vfil + vplas + vk ) 
+vbal = ( 0.93 * bw ) - ( vr + vl + vptc + vfil + vplas ) 
 ml = mlc * bw * 1000 
 
 

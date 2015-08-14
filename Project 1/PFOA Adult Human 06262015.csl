@@ -87,8 +87,8 @@ CONSTANT tstart = 0.0
 		VKb = VK*0.16	!volume of blood in the kidney (L); fraction blood volume of kidney (0.16) from Brown, 1997
 		Vfil = VfilC*BW	!volume of filtrate (L)
 		VL = VLC*BW	!volume of liver (L)
-		VR = (0.84*BW) - VPlas - VKb - VPTC - Vfil - VL - VK	!volume of remaining tissue (L); 
-		VBal = (0.84*BW) - (VR + VL + VKb + VPTC + VFil + VPlas + VK)	!Balance check of tissue volumes; should equal zero 
+		VR = (0.93*BW) - VPlas - VPTC - Vfil - VL	!volume of remaining tissue (L)[Note: VKb not included as already accounted for in VPlas]; 
+		VBal = (0.93*BW) - (VR + VL + VPTC + VFil + VPlas)	!Balance check of tissue volumes; should equal zero 
 
 		!Kidney Parameters
 		PTC =VKC*1000*6e7	!number of PTC (cells/kg BW) (based on 60 million PTC/gram kidney)
