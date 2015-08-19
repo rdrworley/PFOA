@@ -17,6 +17,9 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s KEFFLUXC = 2.49
 !! s KURINEC = 1.6
 
+!! s Km_baso = 20.1
+!! s Km_apical = 77.5
+
 %Data (serum concentrations reported in ug/L)
 bartell = [4	91
 4	424
