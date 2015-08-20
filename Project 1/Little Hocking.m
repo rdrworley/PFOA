@@ -5,7 +5,7 @@ prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
-!! s exposeddw = 23
+!! s exposeddw = 3.5
 !! s tstop = 87600
 
 %Parameters that can be fit to data
@@ -20,8 +20,10 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 %!! s Km_baso = 20.1
 %!! s Km_apical = 77.5
 
-!! s RAFapi =  1.356
+!! s RAFapi =  0.1356
 !! s RAFbaso = 0.01356
+
+!! s Free = 0.02
 
 !! s PL = 0.1
 !! s PR = 0.1
