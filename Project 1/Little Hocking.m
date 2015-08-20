@@ -5,7 +5,7 @@ prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
-!! s exposeddw = 3.55
+!! s exposeddw = 23
 !! s tstop = 87600
 
 %Parameters that can be fit to data
@@ -17,8 +17,15 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s KEFFLUXC = 2.49
 !! s KURINEC = 1.6
 
-!! s Km_baso = 20.1
-!! s Km_apical = 77.5
+%!! s Km_baso = 20.1
+%!! s Km_apical = 77.5
+
+!! s RAFapi =  1.356
+!! s RAFbaso = 0.01356
+
+!! s PL = 0.1
+!! s PR = 0.1
+!! s PK = 0.1
 
 %Data (serum concentrations reported in ug/L)
 bartell = [4	91
