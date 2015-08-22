@@ -57,6 +57,7 @@ CONSTANT tstart = 0.0
 		CONSTANT keffluxc = 2.49	!rate of clearance of PFOA from proximal tubule cells into blood (1/(h*BW^0.25))); fit to data
 		CONSTANT kbilec = 0.004 !biliary elimination rate ((male); liver to feces storage (1/(h*BW^0.25)); fit to data
 		CONSTANT kurinec = 1.6 !rate of urine elimination from urine storage (male) (1/(h*BW^0.25))(fit to data)
+		CONSTANT kvoid = 0.075	!daily urine volume rate (L/hr); Clark, 2011
 
 		! Exposure Parameters
 		countdw = 0.0
@@ -212,7 +213,8 @@ END
 			!Urinary elimination 
 			Rurine = kurine*Afil	!rate of change in urine (ug/h)
 			Aurine = integ(Rurine, 0.0)	!amount in urine (ug)
-
+			Curine = Rurine/kvoid	!concentration in urine (ug/L)
+		
 		!GI Tract (Absorption site of oral dose)
 			!Stomach
 			RST= drinkdose - k0*AST - GE*AST	!rate of change in the stomach (ug/h)
