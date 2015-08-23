@@ -57,7 +57,7 @@ constant k0c = 1.0
 constant keffluxc = 2.49 
 constant kbilec = 0.004 
 constant kurinec = 1.6 
-constant kvoid = 0.075 
+constant kvoid = 0.06974 
 
 
 countdw = 0.0 
@@ -90,17 +90,18 @@ vk = vkc * bw
 vkb = vk * 0.16 
 vfil = vfilc * bw 
 vl = vlc * bw 
+ml = vl * 1.05 * 1000 
 vr = ( 0.93 * bw ) - vplas - vptc - vfil - vl 
-# line 93 
+# line 94 
 vbal = ( 0.93 * bw ) - ( vr + vl + vptc + vfil + vplas ) 
 
 
 ptc = vkc * 1000 * 6e7 
 vptc = vk * 1000 * vptcc 
 mptc = vptc * 1000 
-# line 99 
-vmax_basoc = ( vmax_baso_invitro * rafbaso * ptc * protein * 60 * ( mw / 1e12 ) * 1000000 ) 
 # line 100 
+vmax_basoc = ( vmax_baso_invitro * rafbaso * ptc * protein * 60 * ( mw / 1e12 ) * 1000000 ) 
+# line 101 
 vmax_apicalc = ( vmax_apical_invitro * rafapi * ptc * protein * 60 * ( mw / 1e12 ) * 1000000 ) 
 vmax_baso = vmax_basoc * bw ** 0.75 
 vmax_apical = vmax_apicalc * bw ** 0.75 
@@ -137,7 +138,7 @@ discrete drinkon
 if ( t .lt. tbackground ) then 
 interval c2 = 4.0 
 if ( hourofday .lt. 16.0 ) then 
-# line 136 
+# line 137 
 drinkdose = ( ( backgrounddw / tlendw ) * ( dwtotal / drinks ) ) 
 countdw = countdw + 1 
 schedule drinkoff .at. t + tlendw 
@@ -151,18 +152,18 @@ if ( dayofweek .eq. 7.0 ) dayofweek = 0.0
 endif 
 
 end 
-# line 154 
+# line 155 
 z99999 = drinkdose 
-# line 154 
+# line 155 
 z99998 = 0. 
-# line 154 
+# line 155 
 integral adrinkdose = z99999 , z99998 
 
 discrete drinkon 
 if ( t .gt. tbackground ) then 
 interval c2 = 4.0 
 if ( hourofday .lt. 16.0 ) then 
-# line 155 
+# line 156 
 drinkdose = ( ( exposeddw / tlendw ) * ( dwtotal / drinks ) ) 
 countdw = countdw + 1 
 schedule drinkoff .at. t + tlendw 
@@ -176,11 +177,11 @@ if ( dayofweek .eq. 7.0 ) dayofweek = 0.0
 endif 
 
 end 
-# line 174 
+# line 175 
 z99997 = drinkdose 
-# line 174 
+# line 175 
 z99996 = 0. 
-# line 174 
+# line 175 
 integral adrinkdose2 = z99997 , z99996 
 
 discrete drinkoff 
@@ -190,11 +191,11 @@ end
 
 
 rr = qr * ( ca - cvr ) * free 
-# line 183 
+# line 184 
 z99995 = rr 
-# line 183 
+# line 184 
 z99994 = 0.0 
-# line 183 
+# line 184 
 integral ar = z99995 , z99994 
 cr = ar / vr 
 cvr = cr / pr 
@@ -202,154 +203,156 @@ cvr = cr / pr
 
 
 rkb = qk * ( ca - cvk ) * free - ca * gfr * free - rdif - ra_baso 
-# line 190 
+# line 191 
 z99993 = rkb 
-# line 190 
+# line 191 
 z99992 = 0.0 
-# line 190 
+# line 191 
 integral akb = z99993 , z99992 
 ckb = akb / vkb 
 cvk = ckb 
 
 rcl = ca * gfr * free 
-# line 195 
+# line 196 
 z99991 = rcl 
-# line 195 
+# line 196 
 z99990 = 0.0 
-# line 195 
+# line 196 
 integral acl = z99991 , z99990 
 
 rdif = kdif * ( ckb - cptc ) 
-# line 198 
+# line 199 
 z99989 = rdif 
-# line 198 
+# line 199 
 z99988 = 0. 
-# line 198 
+# line 199 
 integral adif = z99989 , z99988 
 
-# line 194 
+# line 195 
 ra_baso = ( vmax_baso * ckb ) / ( km_baso + ckb ) 
-# line 202 
+# line 203 
 z99987 = ra_baso 
-# line 202 
+# line 203 
 z99986 = 0. 
-# line 202 
+# line 203 
 integral a_baso = z99987 , z99986 
 
 
 rptc = rdif + ra_apical + ra_baso - raefflux 
-# line 206 
+# line 207 
 z99985 = rptc 
-# line 206 
+# line 207 
 z99984 = 0.0 
-# line 206 
+# line 207 
 integral aptc = z99985 , z99984 
 cptc = aptc / vptc 
 
-# line 202 
+# line 203 
 ra_apical = ( vmax_apical * cfil ) / ( km_apical + cfil ) 
-# line 211 
+# line 212 
 z99983 = ra_apical 
-# line 211 
+# line 212 
 z99982 = 0. 
-# line 211 
+# line 212 
 integral a_apical = z99983 , z99982 
 
 raefflux = kefflux * aptc 
-# line 214 
+# line 215 
 z99981 = raefflux 
-# line 214 
+# line 215 
 z99980 = 0. 
-# line 214 
+# line 215 
 integral aefflux = z99981 , z99980 
 
 
 rfil = ca * gfr * free - ra_apical - afil * kurine 
-# line 218 
+# line 219 
 z99979 = rfil 
-# line 218 
+# line 219 
 z99978 = 0.0 
-# line 218 
+# line 219 
 integral afil = z99979 , z99978 
 cfil = afil / vfil 
 
 
 rurine = kurine * afil 
-# line 223 
+# line 224 
 z99977 = rurine 
-# line 223 
+# line 224 
 z99976 = 0.0 
-# line 223 
+# line 224 
 integral aurine = z99977 , z99976 
 curine = rurine / kvoid 
 
 
 
 rst = drinkdose - k0 * ast - ge * ast 
-# line 229 
+# line 230 
 z99975 = rst 
-# line 229 
+# line 230 
 z99974 = 0. 
-# line 229 
+# line 230 
 integral ast = z99975 , z99974 
 
 rabsst = k0 * ast 
-# line 232 
+# line 233 
 z99973 = rabsst 
-# line 232 
+# line 233 
 z99972 = 0. 
-# line 232 
+# line 233 
 integral aabsst = z99973 , z99972 
 
 
 rsi = ge * ast - kabs * asi - kunabs * asi 
-# line 236 
+# line 237 
 z99971 = rsi 
-# line 236 
+# line 237 
 z99970 = 0. 
-# line 236 
+# line 237 
 integral asi = z99971 , z99970 
 
 rabssi = kabs * asi 
-# line 239 
+# line 240 
 z99969 = rabssi 
-# line 239 
+# line 240 
 z99968 = 0. 
-# line 239 
+# line 240 
 integral aabssi = z99969 , z99968 
 
 total_oral_uptake = aabssi + aabsst 
 
 
 rfeces = kbile * al + kunabs * asi 
-# line 245 
+# line 246 
 z99967 = rfeces 
-# line 245 
+# line 246 
 z99966 = 0.0 
-# line 245 
+# line 246 
 integral afeces = z99967 , z99966 
 
 
 rl = ql * ( ca - cvl ) * free - kbile * al + kabs * asi + k0 * ast 
-# line 249 
+# line 250 
 z99965 = rl 
-# line 249 
+# line 250 
 z99964 = 0.0 
-# line 249 
+# line 250 
 integral al = z99965 , z99964 
 cl = al / vl 
 cvl = cl / pl 
 
+cliver = al / ml 
+
 abile = kbile * al 
 
 
-# line 248 
+# line 251 
 rplas_free = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + raefflux 
-# line 258 
+# line 261 
 z99963 = rplas_free 
-# line 258 
+# line 261 
 z99962 = 0.0 
-# line 258 
+# line 261 
 integral aplas_free = z99963 , z99962 
 ca_free = aplas_free / vplas 
 ca = ca_free / free 
@@ -362,11 +365,11 @@ atotal = atissue + aloss
 end 
 
 constant tstop = 219000.0 
-# line 270 
+# line 273 
 if ( t .ge. tstop ) then 
-# line 270 
+# line 273 
 call zztrmt ( 'checked on communication interval: REACHED TSTOP' ) 
-# line 270 
+# line 273 
 endif 
 
 end 

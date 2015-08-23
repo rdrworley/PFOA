@@ -20,6 +20,8 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s RAFapi =  0.0335
 !! s RAFbaso = 0.01356
 
+!! s kvoid = 0.0694
+
 !! s Free = 0.02
 
 %Data (paired blood and urine data from Zhang, 2013; all units in ug/L)

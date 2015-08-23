@@ -57,7 +57,7 @@ CONSTANT tstart = 0.0
 		CONSTANT keffluxc = 2.49	!rate of clearance of PFOA from proximal tubule cells into blood (1/(h*BW^0.25))); fit to data
 		CONSTANT kbilec = 0.004 !biliary elimination rate ((male); liver to feces storage (1/(h*BW^0.25)); fit to data
 		CONSTANT kurinec = 1.6 !rate of urine elimination from urine storage (male) (1/(h*BW^0.25))(fit to data)
-		CONSTANT kvoid = 0.075	!daily urine volume rate (L/hr); Clark, 2011
+		CONSTANT kvoid = 0.06974	!daily urine volume rate (L/hr); Van Haarst, 2004
 
 		! Exposure Parameters
 		countdw = 0.0
@@ -86,9 +86,11 @@ CONSTANT tstart = 0.0
 		!Tissue Volumes
 		VPlas = VplasC*BW 	!volume of plasma (L) 
 		VK = VKC*BW 	!volume of kidney (L)
+		MK = VK*1.0*1000	!mass of kidney (g); based on density of kidney = 1.0 g/mL
 		VKb = VK*0.16	!volume of blood in the kidney (L); fraction blood volume of kidney (0.16) from Brown, 1997
 		Vfil = VfilC*BW	!volume of filtrate (L)
 		VL = VLC*BW	!volume of liver (L)
+		ML = VL*1.05*1000	!mass of liver (g); based on density of liver = 1.05 g/mL, Overmeyer 1987
 		VR = (0.93*BW) - VPlas - VPTC - Vfil - VL	!volume of remaining tissue (L)[Note: VKb not included as already accounted for in VPlas]; 
 		VBal = (0.93*BW) - (VR + VL + VPTC + VFil + VPlas)	!Balance check of tissue volumes; should equal zero 
 
@@ -241,6 +243,8 @@ END
 		AL = integ(RL, 0.0) !amount in liver (ug)
 		CL = AL/VL	!concentration in the liver (ug/L)
 		CVL = CL/PL	!concentration in the venous blood leaving the liver (ug/L)
+
+		CLiver = AL/ML	!concentration in liver (ug/g)
 		
 		Abile = kbile*AL
 
