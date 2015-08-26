@@ -23,7 +23,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 %!! s RAFapi =  0.0335
 %!! s RAFbaso = 0.01356
 
-!! s RAFapi = .007
+!! s RAFapi = .02
 !! s RAFbaso = 1.0
 
 !! s Free = 0.02

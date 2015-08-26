@@ -17,7 +17,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s KEFFLUXC = 2.49
 !! s KURINEC = 1.2
 
-!! s RAFapi = .007
+!! s RAFapi = .02
 !! s RAFbaso = 1.0
 
 !! s kvoid = 0.0694
