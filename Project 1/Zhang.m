@@ -5,7 +5,7 @@ prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
-!! s exposeddw = .113
+!! s exposeddw = .08
 !! s tstop = 175200
 
 %Parameters that can be fit to data
