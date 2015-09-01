@@ -5,7 +5,7 @@ prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
-!! s exposeddw = .08
+!! s exposeddw = .113
 !! s tstop = 175200
 
 %Parameters that can be fit to data
@@ -17,7 +17,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s KEFFLUXC = 2.49
 !! s KURINEC = 1.2
 
-!! s RAFapi = .02
+!! s RAFapi = .007
 !! s RAFbaso = 1.0
 
 !! s kvoid = 0.0694
