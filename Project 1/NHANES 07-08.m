@@ -1,13 +1,13 @@
-%This .m file runs the .csl file and overlays data from Zhang, 2013
+%This .m file runs the .csl file and overlays data from NHANES 2007-2008
 
 output @clear
 prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
-!! s ingest = 0.0056	
+!! s ingest = 0.0075
 !! s exposeddw = 0
-!! s tstop = 175200
+!! s tstop = 61320
 
 %Parameters that can be fit to data
 !! s K0C = 1.0
@@ -26,11 +26,8 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s Free = 0.02
 
 %Data (paired blood and urine data from Zhang, 2013; all units in ug/L)
-Zhang_blood = [15	3.1]
-
-Zhang_urine = [15	0.081]
+NHANES_blood = [6	4.12]
 
 !! st/nc
 
-plot(_year, _ca, Zhang_blood(:,1), Zhang_blood(:, 2), '+')
-plot(_year, _curine, Zhang_urine(:,1), Zhang_urine(:, 2), '+')
+plot(_year, _ca, NHANES_blood(:,1), NHANES_blood(:, 2), '+')

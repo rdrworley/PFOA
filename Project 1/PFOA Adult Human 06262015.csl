@@ -123,8 +123,10 @@ CONSTANT tstart = 0.0
 	CONSTANT dwtotal = 1.2 ! daily drinking water consumption (L), from the EPA Factors Handbook (2011)
 	CONSTANT drinks = 4 !Total drinks per day (drink)
 	CONSTANT tlendw = 0.25 !Length of time spent drinking each drinking event (hrs/drink)
-
 	CONSTANT tbackground = 0	!duration of exposure to background dw concentration (hrs)
+
+	!Incidental Ingestion
+	CONSTANT ingest = 0.01 	!incidental ingestion rate (ug/hr)
 
 !Drinking water exposure
 DISCRETE Drinkint
@@ -219,7 +221,7 @@ END
 		
 		!GI Tract (Absorption site of oral dose)
 			!Stomach
-			RST= drinkdose - k0*AST - GE*AST	!rate of change in the stomach (ug/h)
+			RST= ingest + drinkdose - k0*AST - GE*AST	!rate of change in the stomach (ug/h)
 			AST = integ(RST, 0.)	!amount in the stomach (ug)
 
 			RabsST = k0*AST	!rate of absorption in the stomach (ug/h)
@@ -250,7 +252,7 @@ END
 
 		!Plasma compartment
 		RPlas_free = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + RAefflux  !rate of change in the plasma (ug/h) 
-		Aplas_free = integ(RPlas_free, 0.0)	!amount in the plasma (ug)
+		Aplas_free = integ(RPlas_free, 0)	!amount in the plasma (ug)
 		CA_free = APlas_free/VPlas		!concentration in plasma (ug)
 		CA = CA_free/Free	!concentration of total PFOA in plasma (ug/L)
 
