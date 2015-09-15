@@ -9,6 +9,7 @@
   <mscript name="Fabrega.m" location="." />
   <mscript name="Decatur, 2010 - Public.m" location="." />
   <mscript name="NHANES.m" location="." />
+  <mscript name="half-life.m" location="." />
   <resultsfolder name="" location="." />
   <optstats name="PFOA Adult Human - Sensitivity Analysis.asn" location="." />
   <optstats name="PFOA Adult Human - Optimization.ape" location="." />

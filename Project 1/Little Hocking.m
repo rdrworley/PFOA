@@ -8,7 +8,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
 !! s ingest = 0.0075
-!! s exposeddw = 7.2
+!! s exposeddw = 12
 !! s tstop = 175200
 
 %Parameters that can be fit to data
