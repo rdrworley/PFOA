@@ -15,14 +15,10 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! s KBILEC = 0
 !! s KEFFLUXC = 2.49
-!! s KURINEC = 1.6
+!! s KURINEC = 1.2
 
-!! s RAFapi =  0.0335
-!! s RAFbaso = 0.01356
-
-!! s kvoid = 0.0694
-
-!! s Free = 0.02
+!! s RAFapi = .007
+!! s RAFbaso = 1.0
 
 %Data (ug/g)
 Fabrega_liver = [15	0.0136]

@@ -1,11 +1,14 @@
-%This .m file runs the .csl file and overlays data reported in Zhang, 2013
+%This .m file runs the .csl file and overlays data reported in Little Hocking community. 
+%Steenland samples collected in 07-08.
+
 
 output @clear
 prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
-!! s exposeddw = 0
+!! s ingest = 0.0075
+!! s exposeddw = 7.2
 !! s tstop = 175200
 
 %Parameters that can be fit to data
@@ -19,12 +22,6 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! s RAFapi = .007
 !! s RAFbaso = 1.0
-
-!! s kvoid = 0.0694
-
-!! s Free = 0.02
-
-!! s ingest = 0.01
 
 %Data (serum concentrations reported in ug/L)
 bartell = [15	91

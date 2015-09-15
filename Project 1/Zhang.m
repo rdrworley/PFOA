@@ -5,7 +5,7 @@ prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
-!! s ingest = 0.0056	
+!! s ingest = 0.00565	
 !! s exposeddw = 0
 !! s tstop = 175200
 
@@ -20,10 +20,6 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! s RAFapi = .007
 !! s RAFbaso = 1.0
-
-!! s kvoid = 0.0694
-
-!! s Free = 0.02
 
 %Data (paired blood and urine data from Zhang, 2013; all units in ug/L)
 Zhang_blood = [15	3.1]

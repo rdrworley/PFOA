@@ -1,8 +1,13 @@
+%This .m file runs the .csl file and overlays data from public water drinkers in the 2010 ATSDR Decatur EI. Samples collected in 2010. 
+%GM of public water drinkers in Decatur, from 2010 study = 17.59 ug/L
+%AM of public water drinkers in Decatur, from 2010 study = 23.93 ug/L
+
 output @clear
 prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
+!! s ingest = 0.0056
 !! s exposeddw = 0.4
 !! s tstop = 219000
 
@@ -17,8 +22,6 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! s RAFapi = .007
 !! s RAFbaso = 1.0
-
-!! s Free = 0.02
 
 %Data - Data from 2010 Decatur EI, Public Water Drinkers
 public = [6	16.87599

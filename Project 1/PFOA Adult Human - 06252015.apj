@@ -8,7 +8,7 @@
   <mscript name="Zhang.m" location="." />
   <mscript name="Fabrega.m" location="." />
   <mscript name="Decatur, 2010 - Public.m" location="." />
-  <mscript name="NHANES 07-08.m" location="." />
+  <mscript name="NHANES.m" location="." />
   <resultsfolder name="" location="." />
   <optstats name="PFOA Adult Human - Sensitivity Analysis.asn" location="." />
   <optstats name="PFOA Adult Human - Optimization.ape" location="." />
