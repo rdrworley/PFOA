@@ -25,11 +25,11 @@ prepare @clear @all
 		
 %Kidney Transport Parameters
 !! s Vmax_baso_invitro = 439.2 
-!! s Km_baso = 20100
-!! s Vmax_apical_invitro = 9300 
-!! s Km_apical = 77500 
-!! s RAFbaso = 0.01356	
-!! s RAFapical = 0.01356
+!! s Km_baso = 20100.0
+!! s Vmax_apical_invitro = 37400.0
+!! s Km_apical = 77500.0 
+!! s RAFbaso = 1.0
+!! s RAFapi = 0.007
 
 !! s protein = 2.0e-6	
 
@@ -42,8 +42,21 @@ prepare @clear @all
 		
 %rate constants (1/h)
 !! s kdif = 0.001	
-!! s keffluxc = 2.49	
-!! s kurinec = 1.6 
+!! s kabsc = 2.12	
+!! s kunabsc = 7.06e-5	
+!! s GEC = 3.5 
+!! s k0C = 1.0			
+!! s kbilec = 0.004 
+!! s kvoid = 0.06974
+!! s keffluxc = 0.03	
+!! s kurinec = 1.2 
 
 %exposure parameters
 !! s exposeddw = 1500
+!! s backgrounddw = 0.0 
+!! s exposeddw = 3.55 
+!! s dwtotal = 1.2 
+!! s drinks = 4.0 
+!! s tlendw = 0.25 
+!! s tbackground = 0.0	
+!! s ingest = 0.0

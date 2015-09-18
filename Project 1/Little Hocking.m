@@ -1,7 +1,6 @@
 %This .m file runs the .csl file and overlays data reported in Little Hocking community. 
 %Steenland samples collected in 07-08.
 
-
 output @clear
 prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;

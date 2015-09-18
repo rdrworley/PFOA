@@ -7,8 +7,8 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s ingest = 0.0
 !! s exposeddw = 0.0
 !! s backgrounddw = 0.5
-!! s tbackground = 175200.0
-!! s tstop = 219000.0
+!! s tbackground = 280320.0
+!! s tstop = 350400.0
 
 %Parameters that can be fit to data
 !! s K0C = 1.0

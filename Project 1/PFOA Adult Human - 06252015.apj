@@ -11,6 +11,6 @@
   <mscript name="NHANES.m" location="." />
   <mscript name="half-life.m" location="." />
   <resultsfolder name="" location="." />
-  <optstats name="PFOA Adult Human - Sensitivity Analysis.asn" location="." />
   <optstats name="PFOA Adult Human - Optimization.ape" location="." />
+  <optstats name="PFOA Adult Human.asn" location="." />
 </project>
