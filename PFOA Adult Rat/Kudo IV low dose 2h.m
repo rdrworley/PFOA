@@ -12,6 +12,11 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s KEFFLUXC = 2.49
 !! s KURINEC = 1.6
 
+!! s RAFapi = 35	%relative activity factor, apical transporters, fit to data
+!! s RAFbaso = 4.07	%relative activity factor, apical transporters, fit to data
+!! s Free = 0.09	%FREE. fit to data
+!! s GFRC = 62.1	%glomerular filtration rate (L/hr/kg kidney); Corley, 2005
+
 %Experiment: 0.041 mg/kg BW administered to male wistar rats in single bolus IV, serum and liver concentrations measured 2h post-dose serum collected at time points from 0-300 minutes.
 
 !! s TSTOP = 5.5	

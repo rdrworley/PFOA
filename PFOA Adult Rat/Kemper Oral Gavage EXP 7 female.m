@@ -17,7 +17,6 @@ prepare @clear @all
 !! s Free = 0.09	%Female value for FREE. fit to data
 !! s GFRC = 41.04	%glomerular filtration rate (L/hr/kg kidney) (female); Corley, 2005
 
-
 %Experiment 7: 5 mg/kg administered via single oral dose. Whole blood collected from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 
 %and at 24-hour intervals through 192 hours. Whole blood collected from females at pre-dose, and at 0.25, 0.5, 1, 2, 4, 8, 16, 24, 36, 48, 72, and 96 hours 
 %post dose.

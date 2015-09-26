@@ -11,6 +11,11 @@ prepare @clear @all
 !! s KEFFLUXC = 2.49
 !! s KURINEC = 1.6
 
+!! s RAFapi = 35	%relative activity factor, apical transporters, fit to data
+!! s RAFbaso = 4.07	%relative activity factor, apical transporters, fit to data
+!! s Free = 0.09	%FREE. fit to data
+!! s GFRC = 62.1	%glomerular filtration rate (L/hr/kg kidney); Corley, 2005
+
 %Experiment 1: 1 mg/kg administered via single oral dose. percent of dose in urine and feces reported from males at pre-dose, and 0.25, 0.5, 1,2,4,8, 12,16, 24 hours post-dose, 
 %and at 24-hour intervals through 192 hours.
 
