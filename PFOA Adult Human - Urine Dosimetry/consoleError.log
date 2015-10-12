@@ -1,0 +1,11 @@
+ACSL Translator
+Copyright (c) 2001, AEgis Technologies Group, Inc.
+All rights reserved.
+--------------------------------------------------------
+ERROR: TRANSLATOR: The translator is unable to obtain a valid product license.
+(Reason: Cannot find license file
+ The license files (or server network addresses) attempted are 
+ listed below.  Use LM_LICENSE_FILE to use a different license file,
+ or contact your software provider for a license file.
+Feature:       Translation
+Filename:      *.lic)
