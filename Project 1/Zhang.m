@@ -7,7 +7,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 %Exposure Parameters
 !! s ingest = 0.00565	
 !! s exposeddw = 0
-!! s tstop = 219000
+!! s tstop = 262800
 
 %Parameters that can be fit to data
 !! s K0C = 1.0
@@ -22,9 +22,9 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s RAFbaso = 1.0
 
 %Data (paired blood and urine data from Zhang, 2013; all units in ug/L)
-Zhang_blood = [20	3.1]
+Zhang_blood = [28	3.1]
 
-Zhang_urine = [20	0.081]
+Zhang_urine = [28	0.081]
 
 !! st/nc
 
