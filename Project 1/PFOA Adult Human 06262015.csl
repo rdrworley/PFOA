@@ -178,14 +178,14 @@ END
 !Model Equations
 		!Rest of Body (Tis)
 		RR = QR*(CA-CVR)*Free	!rate of change in rest of body (ug/h)
-		AR = integ(RR, 23.4534)	!amount in rest of body (ug)
+		AR = integ(RR, 0.0)	!amount in rest of body (ug)
 		CR = AR/VR !concentration in rest of body (ug/L)
 		CVR = CR/PR	!concentration in venous blood leaving the rest of the body (ug/L)
 		
 		!Kidney 
 			!Kidney Blood (Kb)
 			RKb = QK*(CA-CVK)*Free - CA*GFR*Free - Rdif - RA_baso   !rate of change in kidney blood (ug/h).
-			AKb = integ(RKb, 0.0348650) !amount in kidney blood (ug)
+			AKb = integ(RKb, 0.0) !amount in kidney blood (ug)
 			CKb = AKb/VKb	!concentration in kidney blodd (ug/L) 
 			CVK = CKb !/PK	!concentration in venous blood leaving kidney (ug/L)
 
@@ -200,7 +200,7 @@ END
 
 			!Proximal Tubule Cells (PTC)
 			RPTC =  Rdif + RA_apical + RA_baso - RAefflux !rate of change in PTC(ug/h)
-			APTC = integ(RPTC, 157.356)	!amount in proximal tubule cells (ug)
+			APTC = integ(RPTC, 0.0)	!amount in proximal tubule cells (ug)
 			CPTC = APTC/VPTC	!concentration in PTC (ug/L)
 
 			RA_apical = (Vmax_apical*Cfil)/(Km_apical + Cfil)
@@ -211,7 +211,7 @@ END
 
 			!Filtrate (Fil)
 			Rfil = CA*GFR*Free - RA_apical - Afil*kurine	!rate of change in filtrate (ug/h)
-			Afil = integ(Rfil, 0.0140756)	!amount in filtrate (ug)
+			Afil = integ(Rfil, 0.0)	!amount in filtrate (ug)
 			Cfil = Afil/Vfil	!concentration in filtrate (ug/L)
 			
 			!Urinary elimination 
@@ -222,14 +222,14 @@ END
 		!GI Tract (Absorption site of oral dose)
 			!Stomach
 			RST= ingest + drinkdose - k0*AST - GE*AST	!rate of change in the stomach (ug/h)
-			AST = integ(RST, 0.00375499)	!amount in the stomach (ug)
+			AST = integ(RST, 0.0)	!amount in the stomach (ug)
 
 			RabsST = k0*AST	!rate of absorption in the stomach (ug/h)
 			AabsST = integ(RabsST, 0.0)	!amount absorbed in the stomach (ug)
 
 			!Small Intestine
 			RSI = GE*AST - kabs*ASI - kunabs*ASI	!rate of change in the small intestine (ug/hr)
-			ASI = integ(RSI, 0.00619906)	!amount in the small intestine (ug)
+			ASI = integ(RSI, 0.0)	!amount in the small intestine (ug)
 
 			RabsSI = kabs*ASI	!rate of absorption inthe small intestine (ug/hr)
 			AabsSI = integ(RabsSI, 0.0)	!amount absorbed in the small intestine (ug)
@@ -242,7 +242,7 @@ END
 
 		!Liver
 		RL = QL*(CA-CVL)*Free - kbile*AL + kabs*ASI + k0*AST !rate of change in the liver (ug/h)
-		AL = integ(RL, 6.65027) !amount in liver (ug)
+		AL = integ(RL, 0.0) !amount in liver (ug)
 		CL = AL/VL	!concentration in the liver (ug/L)
 		CVL = CL/PL	!concentration in the venous blood leaving the liver (ug/L)
 
@@ -252,7 +252,7 @@ END
 
 		!Plasma compartment
 		RPlas_free = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + RAefflux  !rate of change in the plasma (ug/h) 
-		Aplas_free = integ(RPlas_free, 0.212157)	!amount in the plasma (ug)
+		Aplas_free = integ(RPlas_free, 0.0)	!amount in the plasma (ug)
 		CA_free = APlas_free/VPlas		!concentration in plasma (ug)
 		CA = CA_free/Free	!concentration of total PFOA in plasma (ug/L)
 
