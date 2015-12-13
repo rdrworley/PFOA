@@ -15,10 +15,10 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s KUNABSC = 7.06e-5
 
 !! s KBILEC = 0.000002
-!! s KEFFLUXC = 1.0
+!! s KEFFLUXC = 0.1
 !! s KURINEC = 1.2
 
-!! s RAFapi = .003
+!! s RAFapi = .0039
 !! s RAFbaso = 1.0
 
 !! s Free = 0.005
