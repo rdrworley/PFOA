@@ -14,7 +14,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s KABSC = 2.12
 !! s KUNABSC = 7.06e-5
 
-!! s KBILEC = 0.000002
+!! s KBILEC = 0.00001
 !! s KEFFLUXC = 0.1
 !! s KURINEC = 1.2
 
