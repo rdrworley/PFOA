@@ -18,7 +18,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s KURINEC = 1.2
 
 !! s RAFapi = .0039
-!! s RAFbaso = 10.0
+!! s RAFbaso = 1000.0
 
 !! s Free = 0.005
 
