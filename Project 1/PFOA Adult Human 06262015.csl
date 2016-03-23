@@ -120,7 +120,7 @@ CONSTANT tstart = 0.0
 	!Drinking Water
 	CONSTANT backgrounddw = 0.01 ! Drinking water concentration (ug/L or ppb)
 	CONSTANT exposeddw = 3.55 !Contaminated drinking water concentration (ug/L or ppb)
-	CONSTANT dwtotal = 1.2 ! daily drinking water consumption (L), from the EPA Factors Handbook (2011)
+	CONSTANT dwtotal = 1.3 ! daily drinking water consumption (L), from the EPA Factors Handbook (2011)
 	CONSTANT drinks = 4.0 !Total drinks per day (drink)
 	CONSTANT tlendw = 0.25 !Length of time spent drinking each drinking event (hrs/drink)
 	CONSTANT tbackground = 0.0	!duration of exposure to background dw concentration (hrs)

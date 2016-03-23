@@ -5,7 +5,7 @@ prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
-!! s ingest = 0.0025
+!! s ingest = 0.0028
 !! s exposeddw = 0
 !! s tstop = 262800
 

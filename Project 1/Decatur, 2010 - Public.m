@@ -6,7 +6,9 @@ output @clear
 prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
+
 %Exposure Parameters
+!! s BW = 89
 !! s ingest = 0.0056
 !! s exposeddw = 0.4
 !! s tstop = 307000
@@ -20,7 +22,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s KEFFLUXC = 0.03
 !! s KURINEC = 1.2
 
-!! s RAFapi = .007
+!! s RAFapi = .008
 !! s RAFbaso = 1.0
 
 %Data - Data from 2010 Decatur EI, Public Water Drinkers
