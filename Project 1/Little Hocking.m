@@ -15,11 +15,11 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s KABSC = 2.12
 !! s KUNABSC = 7.06e-5
 
-!! s KBILEC = 0.0002
-!! s KEFFLUXC = 1.0
-!! s KURINEC = 1.2
+!! s KBILEC = 0
+!! s KEFFLUXC = 0.1
+!! s KURINEC = 0.12
 
-!! s RAFapi = .0017
+!! s RAFapi = .0004
 !! s RAFbaso = 1.0
 
 !! s Free = 0.005
@@ -33,15 +33,14 @@ steenland = [21	130
 21	227
 21	318]
 
-emmett = [22	221
-22	374
-22	448
-22	576]
-% 373 is median, 447 is mean
+emmett = [22	181
+22	354
+22	571]
+% 354 is median, 447 is mean
 
-lhwa = [23	147
-23	343
-23	540]
+%lhwa = [23	147
+%23	343
+%23	540]
 
 !! st/nc
 
