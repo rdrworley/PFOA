@@ -23,9 +23,9 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s KURINEC = 0.12
 
 !! s RAFapi = .0004
-!! s RAFbaso = 1.0
+!! s RAFbaso = 1.1
 
-!! s Free = 0.005
+!! s Free = 0.02
 
 %Data - Data from 2010 Decatur EI, Public Water Drinkers
 public = [35	16.87599

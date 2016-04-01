@@ -7,7 +7,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
 !! s ingest = 0.0075
-!! s exposeddw = 3.5
+!! s exposeddw = 3.55
 !! s tstop = 219000
 
 %Parameters that can be fit to data
@@ -44,7 +44,7 @@ emmett = [22	181
 
 !! st/nc
 
-plot(_year, _ca, steenland(:,1),steenland(:,2),'+', bartell(:,1),bartell(:,2),'+', emmett(:,1),emmett(:,2),'+', lhwa(:,1), lhwa(:,2),'+')
+plot(_year, _ca, steenland(:,1),steenland(:,2),'+', bartell(:,1),bartell(:,2),'+', emmett(:,1),emmett(:,2),'+') %, lhwa(:,1), lhwa(:,2),'+')
 
 %plot(_year, _ca)
 %plot(_year, _curine)
