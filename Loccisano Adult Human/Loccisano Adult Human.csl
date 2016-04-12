@@ -1,0 +1,330 @@
+PROGRAM human_general_population_exposure
+
+!PBPK model for PFAAs in adult human
+
+   INITIAL
+		
+   !Physiological parameters (Brown, 1997)
+   !blood flows
+   constant QCC = 12.5		 !Cardiac blood output (L/h/kg^0.75)
+   constant QFC = 0.052		!Fraction cardiac output going to fat
+   constant QLC = 0.25		 !Fraction cardiac output going to liver
+   constant QKC = 0.175		!Fraction cardiac output going to kidney
+   !constant QfilC = 0.035!0.0875	!Fraction cardiac output to the filtrate compartment (12% of kidney blood flow) ;(20% of kidney blood flow)
+   constant QSkC = 0.058		!Fraction cardiac output going to skin
+   constant QGC = 0.181		 !Fraction cardiac output going to gut
+
+   constant BW = 58!70			   !Body weight (kg; male) ;58 kg (female)
+   constant Htc = 0.40!0.44      !hematocrit
+
+   !tissue volumes
+   constant VLC = 0.026		 !Fraction liver volume
+   constant VFC = 0.214		 !Fraction fat volume
+   constant VKC = 0.004		 !Fraction kidney volume
+   constant VfilC = 0.0004	!Fraction filtrate compartment volume (10% of kidney volume)
+   constant VGC = 0.0171		 !Fraction gut volume
+   constant VPlasC = 0.0428 !Fraction plasma volume 
+
+   !Chemical-specific parameters
+   !tissue:plasma partition coefficients (from rat)
+   constant PL = 2.2			!Liver/blood partition coefficient
+   constant PF = 0.04		  !Fat/blood partition coefficient
+   constant PK = 1.05			!Kidney/blood partition coefficient
+   constant PSk = 0.1			!Skin/blood partition coefficient
+   constant PR = 0.12			!Rest of the body/blood partition coefficient
+   constant PG = 0.05      !Gut/blood partition coeff. 
+ 
+   constant Tmc = 8000.      !resorption maximum (??/h/kg^0.75) (3.8 yr half-life)
+                              !6.0 (2.3 yr half-life)
+   constant Kt = 55.0		 !affinity constant 
+   constant Free = 0.02		!Free fraction of PFOA in plasma
+
+   constant kurinec = 0.1	!urinary elimination rate (1/h)
+
+
+  !simulation parameters
+  CONSTANT TSTOP = 10950      !simulation time in days (30 yrs)
+  constant maxt = 1
+  constant cintc = 10!50000!0.1
+  cint = cintc
+  Tsim = Tstop*24.            !simulation time in hours
+
+  
+  odx = 0.  
+  DWx = 0. 
+  ivx = 0.
+
+  
+	END ! INITIAL
+
+
+	DYNAMIC
+
+		ALGORITHM IALG = 2
+
+  !oral dose
+  constant PDose = 0.0         !oral dose (ug/kg)
+
+  !drinking water
+  constant Drinkconc = 0.0        !conc'n of chemical in drinking H2O (ug/L)
+  constant DrinkRate = 13         !drinking H2O rate; mL/kg/day
+ 
+  constant DrinkconcHC = 0.0        !conc'n of chemical in drinking H2O for HC (ug/L)
+  CONSTANT DRINKRATEHC = 1.5				!drining water consumption for HC (l/day)
+
+  !DrinkDose = ((Drinkconc*DrinkRate)/1000)*BW  !ug
+
+  !IV dose 
+  constant IVconc = 0.0           !ug/kg
+  
+  !dosing parameters
+  constant tlast = 10950          !last day of exposure 
+  torald = tlast*24.+tinf         !time for next exposure (hr)
+  constant tstart = 0.0       !time to start exposure (hr); set to 0.0 for single exposure
+                              !when set to 0, dosing starts immediately; must be 0 for single dose
+                              !set to 24. for multiple in this study
+  constant tzero = 0.0 
+  constant tinf = 0.6            !length of exposure (hr)
+  numdose = (torald+24.-tstart)/24  !number of exposures; can be used to check if number of doses is correct
+  
+
+
+
+  !dosing--oral
+  Discrete ODint
+    interval c1 = 24.0       !set to 24 to repeat each day
+    if ((t .ge. tstart) .and. (t .le. TLAST*24)) then
+    schedule ODon .at. t + tzero
+    end if
+  END
+
+ Discrete ODon
+    if (pdose .gt. 0.0) then !cint = 1.0
+    ODx = pdose
+    end if
+    schedule ODoff .at. t + tinf
+ end 
+ 
+ Discrete ODoff
+    Odx = 0.0
+    !cint = cintc
+ end
+
+!dosing--drinking water
+Discrete DWint
+  interval c2 = 24.0      !repeat daily
+  if ((t .ge. tstart) .and. (t .le. torald)) then
+  schedule DWon .at. t + tzero
+  end if
+END
+
+Discrete DWon
+   if (DrinkConc .gt. 0.0) THEN
+     DWx = DrinkConc
+     DWHCx = DrinkConcHC
+   ELSE IF (DrinkConcHC.gt.0.0) THEN
+     DWx = 0.
+     DWHCx = DrinkConcHC
+   END IF
+   schedule DWoff .at. t + tinf
+end
+
+Discrete DWoff
+   DWx = 0.0
+   cint = cintc
+end
+
+
+!dosing--iv
+!Discrete IVint
+!   interval c3 = 24.0!1e9            !dosing interval
+!   if (IVR .gt. 0) cint = 10!0.1
+!   schedule IVon .at. t+tstart
+!end
+
+!Discrete IVon
+!    IVx = ivconc
+!    schedule IVoff .at. t+tinf
+!end
+
+!Discrete IVoff
+!    IVx = 0.
+!end
+
+Discrete IVint
+  interval c3 = 24.0      !repeat daily
+  if ((t .ge. tstart) .and. (t .le. torald)) then
+  schedule IVon .at. t + tzero
+  end if
+END
+
+Discrete IVon
+   if (IVConc .gt. 0.0.and.t .le. TLAST*24) IVx = IVConc
+   schedule IVoff .at. t + tinf
+end
+
+Discrete IVoff
+   IVx = 0.0
+   cint = cintc
+end
+
+
+
+ DERIVATIVE
+
+ DD = T/24.     !days of exposure
+ YR = T/24/365  !years of exposure
+ 
+
+ 
+ !tissue volumes (L)
+ VL = VLC*BW			!Liver volume 
+ VF = VFC*BW			!Fat volume 
+ VK = VKC*BW			!Kidney volume 
+ Vfil = VfilC*BW			!Fitrate compartment volume 
+ VG = VGC*BW			    !Gut volume 
+ VPlas = VPlasC*BW		 !Plasma volume 
+
+ SkinTarea = 9.1*((BW*1000)**0.666)	!Total area of skin (cm^2)
+ constant Skinthickness = 0.1	               !Skin thickness (cm)
+ constant SkinArea = 972                      !exposed area on skin (cm^2)
+
+ VSk = (Skinarea*Skinthickness)/1000	!Skin volume 
+ VR = (0.84*BW)-VL-VF-VK-VG-VPlas-VSk		!Rest of the body volume 
+ Vbal = (0.84*BW)-(VL+VF+VK+VG+Vplas+VSk+VR)   !Balance check--better be 0
+
+ !blood flows (L/hr)
+ QC = QCC*BW**0.75		 !Cardiac output 
+ QCP = QC*(1-Htc)			!cardiac output adjusted for plasma flow
+ QL = QLC*QCP			    !Plasma flow to liver 
+ QF = QFC*QCP			    !Plasma flow to fat 
+ QK = QKC*QCP			    !Plasma flow to kidney 
+ QG = QGC*QCP		      !Plasma flow to gut 
+ QSk = QSkC*QCP*(Skinarea/SkinTarea) !Plasma flow to skin (L/h)--this may need revision...
+
+ QR = QCP - QL - QF - QK - QG - QSk !- Qfil         	!Plasma flow to rest of the body (L/h)
+ Qbal = QCP - QL - QF - QK - QG - QSk - QR !- QFil    !balance check--better be 0
+
+ Qfil = 0.2*QK   			!Filtration clearance from plasma 
+ kurine = kurinec*(BW**(-0.25)) !urine elimination from urine storage
+ Tm = Tmc*BW**0.75              !transporter maximum
+
+ !free fraction of chemical in tissues
+ FreeL = Free/PL       !liver
+ FreeK = Free/PK       !kidney
+ FreeR = Free/PR       !rest of body
+ FreeG = Free/PG       !gut
+ FreeF = Free/PF       !fat
+ FreeSk = Free/PSk      !skin
+ 
+ 
+!oral dose
+OD = ODx*BW/tinf           !oral dose rate (ug/h)
+ODose = ODx*BW             !ug
+AODose = integ(OD,0.)   !amount dosed orally
+
+!drinking water
+PDrink = (((DWx*DrinkRate)/1000)*BW)/tinf + (DWHCx*DrinkRateHC)/tinf   !rate of receiving chemical in drinking H2O; ug/h
+
+!iv dose
+IV = IVx*BW/tinf           !iv dose rate (ug/h)
+IVdose = IVx*BW         !ug
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Model Equations!!!!!!!!!!!!!!!!!!!
+     
+!plasma  
+RPlas = (QF*CF*FreeF)+((QL+QG)*CL*FreeL)+(QR*CR*FreeR)+(QSk*CSk*FreeSk)+(QK*CK*FreeK)& 
+          -(QCP*CA*Free) - QFil*CA*Free + IV
+APlas = integ(RPlas,0.0)
+CAFree = APlas/VPlas         !free concentration in plasma
+CA = CAFree/Free             !total concentration in plasma (ug/L)
+CAmug = CA/1000								!ug/ml
+APlastot = CA*VPlas
+AUCPlas = integ(CA,0.0)
+IVR = integ(IV,0.0)
+
+
+!Gut 
+RG = QG*(CA*Free-CG*FreeG) + PDrink + OD
+AG = integ(RG,0.0)
+CG = AG/VG					  !Concentration in gut (ug/L)
+CVG = CG/PG					 !Concentration leaving gut (ug/L)
+
+
+Drinktotal = integ(PDrink,0.0) !total amount from drinking water
+Oraltotal = integ(OD,0.0)      !total oral dose amount
+
+!Liver 
+RL = (QL*(CA*Free))+(QG*CG*FreeG) - ((QL+QG)*CL*FreeL)
+AL = integ(RL,0.0)		
+CL = AL/VL					       !Concentration in liver (ug/L)
+CVL = CL/PL					      !Concentration leaving liver (ug/L)
+
+!Fat 
+RF = QF*(CA*Free-CF*FreeF)
+AF = integ(RF,0.0)		
+CF = AF/VF					        !Concentration in fat (ug/L)
+CVF = CF/PF					       !Concentration leaving fat (ug/L)
+
+!Kidney 
+RK = QK*(CA*Free-CK*FreeK) + (Tm*Cfil)/(Kt+Cfil)
+AK = integ(RK,0.0)
+CK = AK/VK					                !Concentration in kidneys (ug/L)
+CVK = CK/PK 					              !Concentration leaving kidneys (ug/L)
+
+!Filtrate 
+RFil = Qfil*(CA*Free-Cfil) - (Tm*Cfil)/(Kt+Cfil)	  !Rate of change in filtrate compartment (ug/h)
+AFil = integ(RFil,0.0)
+Cfil = Afil/Vfil					                          !Concentration in filtrate compartment (ug/L)
+
+!Storage compartment for urine
+Rdelay = Qfil*Cfil-kurine*Adelay		
+Adelay = integ(Rdelay,0.)
+
+!Urine
+RUrine = kurine*Adelay
+Aurine = integ(Rurine,0.0)
+
+!Skin compartment
+RSk = QSk*(CA*Free-CSk*FreeSk)              !Rate of change in skin(ug/h)
+ASk = integ(RSk,0.0)
+CSk = ASk/(VSk+1.0e-23)                     !Concentration in skin compartment (ug/L)
+CVSk = CSk/PSk			                        !Concentration leaving skin compartment (ug/L) 
+
+!Rest of the body
+RR = QR*(CA*Free-CR*FreeR)			!Rate of change in rest of the body (ug/h)
+AR = integ(RR,0.0)                                         
+CR = AR/VR					       !Concentration in rest of the body (ug/L)
+CVR = CR/PR					      !Concentration leaving rest of the body (ug/L)
+
+ 
+!Mass Balance check
+  Atissue = APlas+AG+AL+AF+AK+AFil+Adelay+ASk+AR  !tissue mass    
+  ALoss = Aurine                                  !amt. lost to elimination
+
+  Atotal = Atissue+ALoss                          !total amount
+
+  if (drinktotal .gt. 0.0) then
+  drinkbal = (drinktotal-(Atotal))/(drinktotal*100+1.0e-7)
+  else
+  drinkbal = 0.0
+  end if
+
+  if (IVR .gt. 0.0) then 
+  ivbal = (IVR-(atotal))/(IVR*100+1.0e-7)
+  else
+  ivbal = 0.0
+  end if
+
+
+!Oral Dose Mass Balance
+	OBal = AODose - Atotal
+  
+
+END !derivative
+TERMT (T .GE. (TSTOP*24.0))
+END ! DYNAMIC
+END ! PROGRAM
+	
