@@ -1,0 +1,56 @@
+PROGRAM
+
+	INITIAL
+	
+	CONSTANT TSTART = 0.0
+	
+	CONSTANT RintakeC = 0.525			!intake rate (ng/kg BW/hour); estimated from Fromme et al., 2009 (estimated daily PFOA exposure in Western Pops = 2.9 ng/kg BW/day)
+	CONSTANT Ke = 0.1			!urinary excretion rate (/hour)
+
+	CONSTANT BW = 80.0			!body weight (kg)
+	CONSTANT VdC = 170			!volume of distribution for PFOA (ml/kg)
+	
+	END ! INITIAL
+
+
+	DYNAMIC
+
+		ALGORITHM IALG = 5
+		NSTEPS    NSTP = 10
+		MAXTERVAL MAXT = 1.0e9
+		MINTERVAL MINT = 1.0e-9
+		CINTERVAL CINT = 1.0
+
+ 		DERIVATIVE
+!Scaled parameters
+	Vd = VdC*BW			!volume of distribution (ml)
+	Rintake = RintakeC*BW	!rate of intake (ng/hr)
+
+!Model Equations
+	RVd = Rintake - Rexcretion			!rate of change (ng/hour)
+	AVd = integ(RVd, 0.0)			!amount in compartment (ng)
+	CVd = Avd/Vd			!concentration in compartment (ng/ml), comparable to concentration in serum
+
+	Rexcretion = AVd*Ke			!rate of excretion (ng/hour)
+ 
+		
+		END ! DERIVATIVE
+
+	
+		! Add discrete events here as needed
+		!  DISCRETE
+		!  END
+
+		! code that is executed once at each communication interval goes here
+
+		CONSTANT TSTOP = 8760.0
+		TERMT (T .GE. TSTOP, 'checked on communication interval: REACHED TSTOP')
+
+	END ! DYNAMIC
+
+
+	TERMINAL
+		! code that is executed once at the end of a simulation run goes here
+	END ! TERMINAL
+
+END ! PROGRAM

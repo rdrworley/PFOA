@@ -1,0 +1,17 @@
+<project>
+  <csl name="PFOA One-compartment.csl" location="." />
+  <mscript name="6.m" location="." />
+  <mscript name="8.m" location="." />
+  <mscript name="11.m" location="." />
+  <mscript name="14.m" location="." />
+  <mscript name="31.m" location="." />
+  <mscript name="32.m" location="." />
+  <mscript name="37.m" location="." />
+  <mscript name="41.m" location="." />
+  <mscript name="42.m" location="." />
+  <mscript name="47.m" location="." />
+  <mscript name="59.m" location="." />
+  <mscript name="57.m" location="." />
+  <mscript name="61.m" location="." />
+  <resultsfolder name="" location="." />
+</project>
