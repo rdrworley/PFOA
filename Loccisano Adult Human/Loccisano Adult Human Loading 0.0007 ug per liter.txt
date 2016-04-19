@@ -1,0 +1,29 @@
+DrinkConc = 0.0007 ug/L
+
+From Adult Human:
+APLAS0 = 
+    5.8590e-003
+AG0 = 
+    5.8521e-003
+AL0 = 
+      0.3915
+AF0 = 
+      0.0586
+AK0 = 
+      0.0345
+AFIL0 = 
+    9.8641e-008
+ADELAY0 = 
+    6.4748e-004
+ASK0 = 
+    9.5044e-004
+AURINE0 = 
+      4.4529
+AR0 = 
+      0.4392
+
+From Gestational: 
+ aplas 0.219992                ag 0.192826                al 12.8851     
+        afat 2.68258                 ak 1.13892               afil 2.91074e-006
+      adelay 0.0248588             amam 0.355754               ask 0.0323248   
+      aurine 7.97202                 ar 13.4075  

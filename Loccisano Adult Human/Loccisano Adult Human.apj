@@ -1,4 +1,6 @@
 <project>
   <csl name="Loccisano Adult Human.csl" location="." />
-  <resultsfolder name="" location="" />
+  <mscript name="Little_Hocking.m" location="c:\users\rachel\downloads" />
+  <exe name="Loccisano Adult Human.dll" location="." />
+  <resultsfolder name="" location="." />
 </project>

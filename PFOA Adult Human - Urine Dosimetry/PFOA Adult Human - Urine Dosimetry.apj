@@ -1,6 +1,5 @@
 <project>
   <csl name="PFOA Adult Human - Urine Dosimetry.csl" location="." />
   <mscript name="urine.m" location="." />
-  <exe name="PFOA Adult Human - Urine Dosimetry.dll" location="." />
   <resultsfolder name="" location="." />
 </project>

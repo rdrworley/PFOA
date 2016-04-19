@@ -1,0 +1,23 @@
+DrinkConc = 0.007 ug/L
+
+From Adult Human: 
+APLAS0 = 
+      0.0586
+AG0 = 
+      0.0585
+AL0 = 
+      3.9154
+AF0 = 
+      0.5859
+AK0 = 
+      0.3449
+AFIL0 = 
+    9.8641e-007
+ADELAY0 = 
+    6.4748e-003
+ASK0 = 
+    9.5044e-003
+AURINE0 = 
+     44.5285
+AR0 = 
+      4.3922
