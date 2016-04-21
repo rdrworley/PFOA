@@ -21,3 +21,9 @@ AURINE0 =
      44.5285
 AR0 = 
       4.3922
+
+From Gestational Model:
+ aplas 0.266183                ag 0.233253                al 15.5899     
+        afat 3.24610                 ak 1.37809               afil 3.52331e-006
+      adelay 0.0301189             amam 0.430466               ask 0.0391135   
+      aurine 49.5191                 ar 16.2240
