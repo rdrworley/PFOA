@@ -1,5 +1,4 @@
 <project>
   <csl name="Loccisano Adult Human.csl" location="." />
-  <mscript name="Little_Hocking.m" location="c:\users\rachel\downloads" />
   <resultsfolder name="" location="." />
 </project>
