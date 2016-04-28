@@ -1,4 +1,5 @@
 %This .m file runs PFOA one-compartment.csl file with data from 2016 Decatur EI participant #32.  
+% PFOS NOT INCLUDED BECAUSE URINE CONC = ND
 
 output @clear
 prepare @clear @all

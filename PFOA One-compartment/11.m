@@ -9,16 +9,29 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Intake Parameters
 %!! s RintakeC = 0.525			%intake rate (ng/kg BW/hour); estimated from Fromme et al., 2009 (upper estimate of daily PFOA exposure in Western Pops = 12.6 ng/kg BW/day)
-!! s RintakeC = 0.121			%intake rate (ng/kg BW/hour); estimated from Fromme et al., 2009 (average estimate of daily PFOA exposure in Western Pops = 2.9 ng/kg BW/day)
+%!! s RintakeC = 0.121			%intake rate (ng/kg BW/hour); estimated from Fromme et al., 2009 (average estimate of daily PFOA exposure in Western Pops = 2.9 ng/kg BW/day)
+
+%!! s RintakeC = 0.367			%PFOS intake rate (ng/kg BW/hour); estimated from Fromme et al., 2009 (upper estimate of daily PFOS exposure in Western Pops = 8.8 ng/kg BW/day)
+!! s RintakeC = 0.067			%PFOS intake rate (ng/kg BW/hour); estimated from Fromme et al., 2009 (average estimate of daily PFOS exposure in Western Pops = 1.6 ng/kg BW/day)
 
 % Ke (/hour) - Fit to individual data
 %!! s Ke = 0.000116		%fits upper estimate of exposure
-!! s Ke = 0.0000267		%fits average estimate of exposure (not a good fit)
+%!! s Ke = 0.0000267		%fits average estimate of exposure (not a good fit)
 
-!! s TSTOP = 350400
+%!! s Ke = 0.0000602		%fits upper estimate of PFOS exposure
+!! s Ke = 0.0000115		%fits average estimate of PFOS exposure
 
-%Data for participant #11
-serum = [262800, 26.6]
+%Volume of Distribution
+%!! s VdC = 170 	%PFOA, ml/kg, Thomspon, 2009
+!! s VdC = 230		%PFOS, ml/kg, Thompson, 2009
+
+!! s TSTOP = 525600
+
+%PFOA Data for participant #11
+%serum = [500000, 26.6]
+
+%PFOS Data for participant #11
+serum = [500000, 26.5]
 
 !! st/nc
 

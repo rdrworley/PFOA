@@ -1,5 +1,5 @@
 <project>
-  <csl name="PFOA One-compartment.csl" location="." />
+  <csl name="PFAS One-compartment.csl" location="." />
   <mscript name="6.m" location="." />
   <mscript name="8.m" location="." />
   <mscript name="11.m" location="." />
@@ -13,5 +13,6 @@
   <mscript name="59.m" location="." />
   <mscript name="57.m" location="." />
   <mscript name="61.m" location="." />
+  <exe name="PFAS One-compartment.dll" location="." />
   <resultsfolder name="" location="." />
 </project>
