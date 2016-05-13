@@ -1,11 +1,11 @@
-%This .m file runs PFOA one-compartment.csl file with data from 2016 Decatur EI participant #57.  
+%This .m file runs PFOA one-compartment.csl file with data from 2016 Decatur EI participant #46.  
 
 output @clear
 prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Physiological Parameters
-!! s BW = 51.98
+!! s BW = 72.0
 
 %Intake Parameters
 %!! s RintakeC = 0.525			%intake rate (ng/kg BW/hour); estimated from Fromme et al., 2009 (upper estimate of daily PFOA exposure in Western Pops = 12.6 ng/kg BW/day)
@@ -15,11 +15,11 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s RintakeC = 0.067			%PFOS intake rate (ng/kg BW/hour); estimated from Fromme et al., 2009 (average estimate of daily PFOS exposure in Western Pops = 1.6 ng/kg BW/day)
 
 % Ke (/hour) - Fit to individual data
-%!! s Ke = 0.000445	%fits upper estimate of exposure
-%!! s Ke = 0.000103		%fits average estimate of exposure
+%!! s Ke = 0.000364	%fits upper estimate of exposure
+%!! s Ke = 0.0000833		%fits average estimate of exposure
 
-%!! s Ke = 0.000135		%fits upper estimate of PFOS exposure
-!! s Ke = 0.0000247		%fits average estimate of PFOS exposure
+%!! s Ke = 0.000119		%fits upper estimate of PFOS exposure
+!! s Ke = 0.0000217		%fits average estimate of PFOS exposure
 
 %Volume of Distribution
 %!! s VdC = 170 	%PFOA, ml/kg, Thomspon, 2009
@@ -27,11 +27,11 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! s TSTOP = 438000
 
-%Data for participant #57
-%serum = [394200, 6.9]
+%PFOA Data for participant #46
+%serum = [394200, 8.5]
 
-%PFOS Data for participant #57
-serum = [400000, 11.8]
+%PFOS Data for participant #46
+serum = [437050, 13.4]
 
 !! st/nc
 

@@ -30,9 +30,16 @@
   <mscript name="42.m" location="." />
   <mscript name="43.m" location="." />
   <mscript name="44.m" location="." />
+  <mscript name="45.m" location="." />
+  <mscript name="46.m" location="." />
   <mscript name="47.m" location="." />
-  <mscript name="59.m" location="." />
+  <mscript name="55.m" location="." />
+  <mscript name="56.m" location="." />
   <mscript name="57.m" location="." />
+  <mscript name="59.m" location="." />
   <mscript name="61.m" location="." />
+  <mscript name="64.m" location="." />
+  <mscript name="66.m" location="." />
+  <mscript name="67.m" location="." />
   <resultsfolder name="" location="." />
 </project>
