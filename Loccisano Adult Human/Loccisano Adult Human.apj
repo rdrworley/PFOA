@@ -1,4 +1,6 @@
 <project>
   <csl name="Loccisano Adult Human.csl" location="." />
+  <mscript name="PFOA_Human.m" location="." />
+  <mscript name="Little_Hocking.m" location="." />
   <resultsfolder name="" location="." />
 </project>
