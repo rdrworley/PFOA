@@ -10,7 +10,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 %Exposure Parameters
 %!! s ingest = 0.0075	%background ingestion to acheive serum from 07-08
 %!! s ingest = 0.0056	%background ingestion to acheive serum from 09-10
-!! s ingest = 0.0043	%background ingestion to acheive serum from 09-10
+!! s ingest = 0.00185	%background ingestion to acheive serum from 11-12
 !! s exposeddw = 0.0
 !! s tstop = 262800.0
 
@@ -19,12 +19,14 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s KABSC = 2.12
 !! s KUNABSC = 7.06e-5
 
-!! s KBILEC = 0.0
-!! s KEFFLUXC = 0.03
-!! s KURINEC = 1.2
+!! s KBILEC = 0
+!! s KEFFLUXC = 0.1
+!! s KURINEC = 0.12
 
-!! s RAFapi = .007
+!! s RAFapi = .0004
 !! s RAFbaso = 1.0
+
+!! s Free = 0.005
 
 %Data (paired blood and urine data from Zhang, 2013; all units in ug/L)
 NHANES_0708_blood = [28	4.12]

@@ -93,6 +93,7 @@ PROGRAM
 		CONSTANT dwtotal = 1.2	!daily drinking water consumption (L); EPA Factors Handbook 2011
 		CONSTANT drinks = 4	!total number of drinking episodes per day (drinks/day)
 		CONSTANT drinktime = 0.25	!time spent drinking per episode (hours/drink)
+		CONSTANT tbackground = 0	!time before drinking water contamination (hrs)
 
 		countdw = 0.0
 		hourofday = 0.0
@@ -100,15 +101,16 @@ PROGRAM
 		day = t/24
 		year = day/365
 
-		DISCRETE Drinkint
-		SCHEDULE DrinkON .AT. tstart
-		END
+!DISCRETE Drinkint
+!SCHEDULE DrinkON .AT. tstart
+!END
 		
 		DISCRETE DrinkON
-
+		IF (T.LT.tbackground) THEN	!if time is less that tbackground
 		INTERVAL C1 = 4.0 	!simulate drinking exposure every 4 hours
 		If (hourofday .LT. 16.0) THEN
 		drinkdose = (dwconc*dwtotal)/(drinktime*drinks)	!dose during each drinking water episode (ug/hour)
+		countdw = countdw + 1
 		SCHEDULE DrinkOFF .AT. T+drinktime	!turn off drinking water exposure after 15 minutes (drinktime)
 		ENDIF
 
@@ -117,11 +119,14 @@ PROGRAM
 		IF(hourofday .EQ. 24.0) dayofweek = dayofweek + 1.0	!when hour of day count reaches 24, increase day of week count by 1
 		IF(hourofday .EQ. 24.0) hourofday = 0.0 !when hour of day count reaches 24, reset hour of day count to zero
 		IF (dayofweek .EQ. 7.0) dayofweek = 0.0 !when day of week count reaches 7, reset day of week count to zero
+		ENDIF
 		END
 
 		DISCRETE DrinkOFF
 		drinkdose = 0.0	!set drinkdose to zero in between drinking water episodes
 		END
+
+		totaldose = integ(drinkdose, 0.0)	!total dose (ug)
 
 		!MODEL EQUATIONS
 		
@@ -161,6 +166,26 @@ PROGRAM
 			
 			RA_apical = (Vmax_apical*Cfil)/(Km_apical + Cfil)	!rate of transport from the filtrate to the proximal tubule cells via the apical transporters (ug/h)
 			RAefflux = kefflux*APTC	!rate of efflux from proximal tubule cells to systemic circulation
+
+			!Filtrate
+			RFil = GFR*CKb*Free - RA_apical - Rurine	!rate of change in the filtrate (ug/h)
+			AFil = integ(Rfil, 0.0)	!amount in the filtrate (ug)
+			CFil = AFil/Vfil	!concentration in the filtrate (ug/L)
+			
+			!Urinary Elimination
+			Rurine = kurine*AFil	!rate of change in the urine (ug/h)
+			Aurine = integ(Rurine, 0.0)	!amount in the urine (ug)
+
+		!Plasma 
+		RPlas_free = (QR*CVR*Free) + (QL*CVL*Free) + (QK*CVK*Free) + (QF*CVF*Free) - (QC*CA*Free) + RAefflux	!rate of change in the plasma (ug/h)
+		APlas_free = integ(RPlas_free, 0.0)	!amount in the plasma (ug)
+		CA_free = APlas_free/VPlas	!concentration int he plasma ug/L)
+		CA = CA_free/Free	!concentration of total PFOA in the plasma (ug/L)
+
+		!Mass Balance	
+		Atissue = APlas_free + AR + AL + AKb + APTC + AFil + AF	!sum of mass in all compartments (ug)
+		Atotal = Atissue + Aurine	!total mass, should equal total dose
+		mass_balance = Atotal - totaldose	!should equal zero
 
 		END ! DERIVATIVE
 

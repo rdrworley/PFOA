@@ -72,7 +72,7 @@ CONSTANT tstart = 0.0
 		NSTEPS    NSTP = 10
 		MAXTERVAL MAXT = 1.0e9
 		MINTERVAL MINT = 1.0e-9
-		CINTERVAL CINT = 1.0
+		CINTERVAL CINT = 10.0
 
  		DERIVATIVE
  	!Scaled Parameters
@@ -229,7 +229,7 @@ END
 
 			!Small Intestine
 			RSI = GE*AST - kabs*ASI - kunabs*ASI	!rate of change in the small intestine (ug/hr)
-			ASI = integ(RSI, 0.0)	!amount in the small intestine (ug)
+			ASI = integ(RSI,0.0)	!amount in the small intestine (ug)
 
 			RabsSI = kabs*ASI	!rate of absorption inthe small intestine (ug/hr)
 			AabsSI = integ(RabsSI, 0.0)	!amount absorbed in the small intestine (ug)

@@ -6,9 +6,11 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
 !! s BW = 89
-!! s ingest = 0.0043
-!! s exposeddw = 0.1
+!! s ingest = 0.00185
+!! s exposeddw = 0.033
 !! s tstop = 307000
+
+!! s kvoid = 0.039	%urinary excretion rate calculated from EI data
 
 %Parameters that can be fit to data
 !! s K0C = 1.0
@@ -16,14 +18,17 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s KUNABSC = 7.06e-5
 
 !! s KBILEC = 0
-!! s KEFFLUXC = 0.03
-!! s KURINEC = 1.2
+!! s KEFFLUXC = 0.1
+!! s KURINEC = 0.12
 
-!! s RAFapi = .008
+!! s RAFapi = .0004
 !! s RAFbaso = 1.0
 
+!! s Free = 0.005
+
 %Data - Data from 2016 Decatur EI, Public Water Drinkers
-public = [25	15.4
+public = [15	11.7
+25	15.4
 25.1	2.7
 25.2	4.4
 25.3	10.9
