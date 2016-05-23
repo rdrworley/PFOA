@@ -7,7 +7,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s BW = 89
 !! s ingest = 0.00185
 !! s backgrounddw = 0.19
-!! s tbackground = 175200
+!! s tbackground = 0
 !! s exposeddw = 0.033
 !! s tstop = 262800
 
@@ -28,8 +28,8 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s Free = 0.005
 
 %Data - Data from 2016 Decatur EI, Public Water Drinkers
-public = [20	16.1
-25.75	11.7
+public = [0	16.1
+5.75	11.7
 ]
 
 
