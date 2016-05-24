@@ -10,7 +10,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 %Exposure Parameters
 !! s BW = 89
 !! s ingest = 0.0056
-!! s exposeddw = 0.1
+!! s exposeddw = 0.125
 !! s tstop = 307000
 
 !! s kvoid = 0.039	% L/hour; urinary excretion rate calculated from EI data

@@ -20,7 +20,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! s KBILEC = 0
 !! s KEFFLUXC = 0.1
-!! s KURINEC = 0.12
+!! s KURINEC = 0.062
 
 !! s RAFapi = .0005
 !! s RAFbaso = 1.0
