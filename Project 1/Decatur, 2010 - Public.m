@@ -10,8 +10,10 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 %Exposure Parameters
 !! s BW = 89
 !! s ingest = 0.0056
-!! s exposeddw = 0.4
+!! s exposeddw = 0.1
 !! s tstop = 307000
+
+!! s kvoid = 0.039	% L/hour; urinary excretion rate calculated from EI data
 
 %Parameters that can be fit to data
 !! s K0C = 1.0
@@ -22,10 +24,10 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s KEFFLUXC = 0.1
 !! s KURINEC = 0.12
 
-!! s RAFapi = .0004
-!! s RAFbaso = 1.1
+!! s RAFapi = .0005
+!! s RAFbaso = 1.0
 
-!! s Free = 0.02
+!! s Free = 0.005
 
 %Data - Data from 2010 Decatur EI, Public Water Drinkers
 public = [35	16.87599
