@@ -6,8 +6,8 @@ prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
-!! s ingest = 0.0075
-!! s exposeddw = 3.55
+!! s ingest = 0.0096
+!! s exposeddw = 2.5
 !! s tstop = 219000
 
 %Parameters that can be fit to data
@@ -15,11 +15,11 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s KABSC = 2.12
 !! s KUNABSC = 7.06e-5
 
-!! s KBILEC = 0
+!! s KBILEC = 0.0001
 !! s KEFFLUXC = 0.1
-!! s KURINEC = 0.12
+!! s KURINEC = 0.077
 
-!! s RAFapi = .0004
+!! s RAFapi = .0007
 !! s RAFbaso = 1.0
 
 !! s Free = 0.005

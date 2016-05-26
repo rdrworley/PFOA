@@ -1,0 +1,6 @@
+<project>
+  <csl name="PFOA Adult Human 06262015_LOADED.csl" location="c:\acslx\pfoa\project 1" />
+  <mscript name="Decatur Timecourse.m" location="c:\acslx\pfoa\project 1" />
+  <exe name="PFOA Adult Human 06262015_LOADED.dll" location="." />
+  <resultsfolder name="" location="." />
+</project>

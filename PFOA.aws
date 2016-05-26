@@ -1,9 +1,7 @@
 <workspace>
-  <project name="PFOA Adult Human - Urine Dosimetry.apj" location=".\pfoa adult human - urine dosimetry" />
   <project name="PFOA Adult Rat.apj" location=".\pfoa adult rat" />
   <project name="PFOA Adult Human - 06252015.apj" location=".\project 1" />
-  <project name="PFOA Adult Human 12152015.apj" location=".\pfoa adult human 12152015" />
   <project name="PFAS One-compartment.apj" location=".\pfoa one-compartment" />
   <project name="Loccisano Adult Human.apj" location=".\loccisano adult human" />
-  <project name="PFOA Adult Human - 05222016.apj" location=".\pfoa adult human - 05222016" />
+  <project name="PFOA Adult Human - 06252015 LOADED.apj" location=".\pfoa adult human - 06252015 loaded" />
 </workspace>
