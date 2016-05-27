@@ -8,9 +8,9 @@ prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
-!! s ingest = 0.0096	%background ingestion to acheive serum from 07-08
-%!! s ingest = 0.0056	%background ingestion to acheive serum from 09-10
-%!! s ingest = 0.00185	%background ingestion to acheive serum from 11-12
+%!! s ingest = 0.0096	%background ingestion to acheive serum from 07-08
+%!! s ingest = 0.0056	%background ingestion to acheive serum from 09-10 (has not been adjusted based on new parameter values 5/27/2016)
+!! s ingest = 0.00151	%background ingestion to acheive serum from 11-12
 !! s exposeddw = 0.0
 !! s tstop = 262800.0
 

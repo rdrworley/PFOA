@@ -7,8 +7,8 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
 !! s ingest = 0.0096
-!! s exposeddw = 2.5
-!! s tstop = 219000
+!! s exposeddw = 2.52
+!! s tstop = 306600
 
 %Parameters that can be fit to data
 !! s K0C = 1.0
@@ -17,7 +17,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! s KBILEC = 0.0001
 !! s KEFFLUXC = 0.1
-!! s KURINEC = 0.077
+!! s KURINEC = 0.0715
 
 !! s RAFapi = .0007
 !! s RAFbaso = 1.0
@@ -25,17 +25,17 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s Free = 0.005
 
 %Data (serum concentrations reported in ug/L)
-bartell = [20	91
-20	424
-20	757]
+bartell = [30	91
+30	424
+30	757]
 
-steenland = [21	130
-21	227
-21	318]
+steenland = [20	130
+20	224
+20	318]
 
-emmett = [22	181
-22	354
-22	571]
+emmett = [25	181
+25	354
+25	571]
 % 354 is median, 447 is mean
 
 %lhwa = [23	147

@@ -5,7 +5,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
 !! s BW = 89
-!! s ingest = 0.00185
+!! s ingest = 0.00151
 !! s backgrounddw = 0
 !! s tbackground = 0
 !! s exposeddw = 0.04	%average of all samples in ADEM efile data base from 2010 - present
@@ -20,7 +20,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! s KBILEC = 0.0001
 !! s KEFFLUXC = 0.1
-!! s KURINEC = 0.077
+!! s KURINEC = 0.0715
 
 !! s RAFapi = .0007
 !! s RAFbaso = 1.0
