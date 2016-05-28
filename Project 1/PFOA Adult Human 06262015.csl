@@ -263,7 +263,7 @@ END
 
 		END ! DERIVATIVE
 
-		CONSTANT TSTOP = 219000.0 !hours
+		CONSTANT TSTOP = 120000.0 !hours
 		TERMT (T .GE. TSTOP, 'checked on communication interval: REACHED TSTOP')
 
 	END ! DYNAMIC
