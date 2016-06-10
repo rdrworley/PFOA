@@ -11,7 +11,7 @@ PROGRAM PBPK Model for PFOA in Adult Humans.
 CONSTANT tstart = 0.0
 		
 	! Physiological Parameters
-		CONSTANT BW = 80.0	!bodyweight (kg); EPA Factors Handbook, 2011
+		CONSTANT BW = 82.3	!bodyweight (kg); EPA Factors Handbook, 2011
 		
 		! Cardiac Output and Bloodflow (as fraction of cardiac output)
 		CONSTANT QCC = 12.5 !cardiac output in L/h/kg^0.75; Brown 1997, Forsyth 1968		 
@@ -28,7 +28,7 @@ CONSTANT tstart = 0.0
 	
 	! Chemical Specific Parameters
 		CONSTANT MW = 414.07	!PFOA molecular mass (g/mol)
-		CONSTANT Free = 0.02 !free fraction in plasma (initial value from Loccisano, 2011)
+		CONSTANT Free = 0.005 !free fraction in plasma (initial value from Loccisano, 2011)
 
 		!Kidney Transport Parameters BASO PARAMETERS UPDATED FOR HUMAN, STILL NEED APICAL Vmax (current is OAT4 only)
 		CONSTANT Vmax_baso_invitro = 439.2 !Vmax of basolateral transporter (pmol/mg protein/min); averaged in vitro value of OAT1 and OAT3 from Nakagawa, 2007
@@ -36,7 +36,7 @@ CONSTANT tstart = 0.0
 		CONSTANT Vmax_apical_invitro = 37400.0 !Vmax of apical transporter (pmol/mg protein/min); invitro value for OAT4 from Yang, 2010. 
 		CONSTANT Km_apical = 77500.0 !Km of apical transporter (ug/L), averaged in vitro value for OAT4 and URAT1 from Yang, 2010. 
 		CONSTANT RAFbaso = 1.0	!relative activity factor, basolateral transporters (averaged from OAT1 and OAT3 in Yamada, 2007)
-		CONSTANT RAFapi = 0.007	!relative activity factor, apical transporters (fit to data)	
+		CONSTANT RAFapi = 0.0007	!relative activity factor, apical transporters (fit to data)	
 		CONSTANT protein = 2.0e-6	!amount of protein in proximal tubule cells (mg protein/proximal tubule cell)
 
 		CONSTANT GFRC = 24.19	!glomerular filtration rate (L/hr/kg kidney) (male); Corley, 2005
@@ -54,9 +54,9 @@ CONSTANT tstart = 0.0
 		CONSTANT GEC = 3.5 !gastric emptying time (1/(h*BW^0.25)); from Yang, 2014
 		CONSTANT k0C = 1.0	!rate of uptake from the stomach into the liver (1/(h*BW^0.25))
 		
-		CONSTANT keffluxc = 0.03	!rate of clearance of PFOA from proximal tubule cells into blood (1/(h*BW^0.25))); fit to data
-		CONSTANT kbilec = 0.004 !biliary elimination rate ((male); liver to feces storage (1/(h*BW^0.25)); fit to data
-		CONSTANT kurinec = 1.2 !rate of urine elimination from urine storage (male) (1/(h*BW^0.25))(fit to data)
+		CONSTANT keffluxc = 0.1	!rate of clearance of PFOA from proximal tubule cells into blood (1/(h*BW^0.25))); fit to data
+		CONSTANT kbilec = 0.0001 !biliary elimination rate ((male); liver to feces storage (1/(h*BW^0.25)); fit to data
+		CONSTANT kurinec = 0.0715 !rate of urine elimination from urine storage (male) (1/(h*BW^0.25))(fit to data)
 		CONSTANT kvoid = 0.06974	!daily urine volume rate (L/hr); Van Haarst, 2004
 
 		! Exposure Parameters
@@ -120,13 +120,13 @@ CONSTANT tstart = 0.0
 	!Drinking Water
 	CONSTANT backgrounddw = 0.01 ! Drinking water concentration (ug/L or ppb)
 	CONSTANT exposeddw = 3.55 !Contaminated drinking water concentration (ug/L or ppb)
-	CONSTANT dwtotal = 1.3 ! daily drinking water consumption (L), from the EPA Factors Handbook (2011)
+	CONSTANT dwtotal = 1.36 ! daily drinking water consumption (L), from the EPA Factors Handbook (2011)
 	CONSTANT drinks = 4.0 !Total drinks per day (drink)
 	CONSTANT tlendw = 0.25 !Length of time spent drinking each drinking event (hrs/drink)
 	CONSTANT tbackground = 0.0	!duration of exposure to background dw concentration (hrs)
 
 	!Incidental Ingestion
-	CONSTANT ingest = 0.01 	!incidental ingestion rate (ug/hr)
+	CONSTANT ingest = 0.0096 	!incidental ingestion rate (ug/hr)
 
 !Drinking water exposure
 DISCRETE Drinkint
