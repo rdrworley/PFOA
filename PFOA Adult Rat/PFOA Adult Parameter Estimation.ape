@@ -29,8 +29,8 @@
       </colbindings>
       <descriptors>
         <descriptor name="ivdosec" value="0" type="System.Double" />
-        <descriptor name="bw" value="0.216" type="System.Double" />
         <descriptor name="odosec" value="0.1" type="System.Double" />
+        <descriptor name="bw" value="0.216" type="System.Double" />
       </descriptors>
     </dataset>
   </datasets>
