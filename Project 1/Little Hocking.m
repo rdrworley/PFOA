@@ -2,12 +2,13 @@
 %Steenland samples collected in 07-08.
 
 output @clear
-prepare @clear @all
+%prepare @clear @all
+prepare @clear t ca 
 WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
 !! s ingest = 0.0096
-!! s exposeddw = 2.52
+!! s exposeddw = 3.55
 !! s tstop = 306600
 
 %Parameters that can be fit to data

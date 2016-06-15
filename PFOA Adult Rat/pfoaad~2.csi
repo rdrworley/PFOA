@@ -1,0 +1,350 @@
+program 
+
+
+
+
+
+initial 
+
+constant tstart = 0.0 
+
+
+constant bw = 0.3 
+constant mkc = 0.0084 
+constant mlc = 0.034 
+
+
+constant qcc = 14.0 
+constant qlc = 0.183 
+constant qkc = 0.141 
+constant htc = 0.46 
+
+
+constant vplasc = 0.0312 
+constant vlc = 0.035 
+constant vkc = 0.0084 
+constant vfilc = 8.4e-4 
+constant vptcc = 1.35e-4 
+
+
+constant mw = 414.07 
+constant free = 0.006 
+
+
+
+constant vmax_baso_invitro = 393.45 
+constant km_baso = 27.2 
+constant vmax_apical_invitro = 9300 
+constant km_apical = 52.3 
+constant rafbaso = 3.99 
+constant rafapi = 4.07 
+
+
+constant protein = 2.0e-6 
+
+constant gfrc = 62.1 
+
+
+
+constant pl = 2.2 
+constant pk = 1.05 
+constant pr = 0.11 
+
+
+constant kdif = 0.001 
+constant kabsc = 2.12 
+constant kunabsc = 7.06e-5 
+constant gec = 0.54 
+constant k0c = 1.0 
+
+constant keffluxc = 2.49 
+constant kbilec = 0.004 
+constant kurinec = 1.6 
+
+
+
+
+constant odosec = 25.0 
+constant ogtime = 0.01 
+
+
+constant ivdosec = 0 
+constant ivtime = 0.01 
+
+end 
+
+dynamic 
+
+algorithm ialg = 2 
+nsteps nstp = 10 
+maxterval maxt = 1.0e9 
+minterval mint = 1.0e-9 
+cinterval cint = 0.1 
+
+derivative 
+
+
+# line 87 
+qc = qcc * ( bw ** 0.75 ) * ( 1 - htc ) 
+qk = ( qkc * qc ) 
+ql = ( qlc * qc ) 
+qr = qc - qk - ql 
+qbal = qc - ( qk + ql + qr ) 
+
+
+vplas = vplasc * bw 
+vk = vkc * bw 
+vkb = vk * 0.16 
+vfil = vfilc * bw 
+vl = vlc * bw 
+vr = ( 0.93 * bw ) - vplas - vptc - vfil - vl 
+# line 100 
+vbal = ( 0.93 * bw ) - ( vr + vl + vptc + vfil + vplas ) 
+ml = mlc * bw * 1000 
+
+
+mk = mkc * bw * 1000 
+ptc = mkc * 6e7 
+vptc = mk * vptcc 
+mptc = vptc * 1000 
+# line 108 
+vmax_basoc = ( vmax_baso_invitro * rafbaso * ptc * protein * 60 * ( mw / 1e12 ) * 1000 ) 
+# line 109 
+vmax_apicalc = ( vmax_apical_invitro * rafapi * ptc * protein * 60 * ( mw / 1e12 ) * 1000 ) 
+vmax_baso = vmax_basoc * bw ** 0.75 
+vmax_apical = vmax_apicalc * bw ** 0.75 
+kbile = kbilec * bw ** ( - 0.25 ) 
+kurine = kurinec * bw ** ( - 0.25 ) 
+kefflux = keffluxc * bw ** ( - 0.25 ) 
+gfr = gfrc * ( mk / 1000 ) 
+
+
+kabs = kabsc * bw ** ( - 0.25 ) 
+kunabs = kunabsc * bw ** ( - 0.25 ) 
+ge = gec / bw ** 0.25 
+k0 = k0c / bw ** 0.25 
+
+
+
+ivdose = ivdosec * bw 
+ivr = ivon * ivdose / ivtime 
+# line 131 
+z99999 = ivr 
+# line 131 
+z99998 = 0.0 
+# line 131 
+integral aiv = z99999 , z99998 
+ivon = rsw ( t .ge. ivtime , 0. , 1. ) 
+
+
+odose = odosec * bw 
+ogr = ogon * odose / ogtime 
+# line 137 
+z99997 = ogr 
+# line 137 
+z99996 = 0.0 
+# line 137 
+integral aog = z99997 , z99996 
+ogon = rsw ( t .ge. ogtime , 0. , 1. ) 
+
+
+
+rr = qr * ( ca - cvr ) * free 
+# line 143 
+z99995 = rr 
+# line 143 
+z99994 = 0.0 
+# line 143 
+integral ar = z99995 , z99994 
+cr = ar / vr 
+cvr = cr / pr 
+
+
+
+rkb = qk * ( ca - cvk ) * free - ca * gfr * free - rdif - ra_baso 
+# line 150 
+z99993 = rkb 
+# line 150 
+z99992 = 0.0 
+# line 150 
+integral akb = z99993 , z99992 
+ckb = akb / vkb 
+cvk = ckb 
+
+rcl = ca * gfr * free 
+# line 155 
+z99991 = rcl 
+# line 155 
+z99990 = 0.0 
+# line 155 
+integral acl = z99991 , z99990 
+
+rdif = kdif * ( ckb - cptc ) 
+# line 158 
+z99989 = rdif 
+# line 158 
+z99988 = 0. 
+# line 158 
+integral adif = z99989 , z99988 
+
+# line 156 
+ra_baso = ( vmax_baso * ckb ) / ( km_baso + ckb ) 
+# line 162 
+z99987 = ra_baso 
+# line 162 
+z99986 = 0. 
+# line 162 
+integral a_baso = z99987 , z99986 
+
+
+rptc = rdif + ra_apical + ra_baso - raefflux 
+# line 166 
+z99985 = rptc 
+# line 166 
+z99984 = 0.0 
+# line 166 
+integral aptc = z99985 , z99984 
+cptc = aptc / vptc 
+
+# line 164 
+ra_apical = ( vmax_apical * cfil ) / ( km_apical + cfil ) 
+# line 171 
+z99983 = ra_apical 
+# line 171 
+z99982 = 0. 
+# line 171 
+integral a_apical = z99983 , z99982 
+
+raefflux = kefflux * aptc 
+# line 174 
+z99981 = raefflux 
+# line 174 
+z99980 = 0. 
+# line 174 
+integral aefflux = z99981 , z99980 
+
+
+rfil = ca * gfr * free - ra_apical - afil * kurine 
+# line 178 
+z99979 = rfil 
+# line 178 
+z99978 = 0.0 
+# line 178 
+integral afil = z99979 , z99978 
+cfil = afil / vfil 
+
+
+rurine = kurine * afil 
+# line 183 
+z99977 = rurine 
+# line 183 
+z99976 = 0.0 
+# line 183 
+integral aurine = z99977 , z99976 
+
+percentod_in_urine = ( aurine / odose ) * 100 
+
+
+
+rst = ogr - k0 * ast - ge * ast 
+# line 190 
+z99975 = rst 
+# line 190 
+z99974 = 0. 
+# line 190 
+integral ast = z99975 , z99974 
+
+rabsst = k0 * ast 
+# line 193 
+z99973 = rabsst 
+# line 193 
+z99972 = 0. 
+# line 193 
+integral aabsst = z99973 , z99972 
+
+
+rsi = ge * ast - kabs * asi - kunabs * asi 
+# line 197 
+z99971 = rsi 
+# line 197 
+z99970 = 0. 
+# line 197 
+integral asi = z99971 , z99970 
+
+rabssi = kabs * asi 
+# line 200 
+z99969 = rabssi 
+# line 200 
+z99968 = 0. 
+# line 200 
+integral aabssi = z99969 , z99968 
+
+total_oral_uptake = aabssi + aabsst 
+
+
+rfeces = kbile * al + kunabs * asi 
+# line 206 
+z99967 = rfeces 
+# line 206 
+z99966 = 0.0 
+# line 206 
+integral afeces = z99967 , z99966 
+percentod_in_feces = ( afeces / odose ) * 100 
+
+
+rl = ql * ( ca - cvl ) * free - kbile * al + kabs * asi + k0 * ast 
+# line 211 
+z99965 = rl 
+# line 211 
+z99964 = 0.0 
+# line 211 
+integral al = z99965 , z99964 
+cl = al / vl 
+cvl = cl / pl 
+
+abile = kbile * al 
+amount_per_gram_liver = ( al / ml ) * 1000 
+
+
+# line 213 
+rplas_free = ( qr * cvr * free ) + ( qk * cvk * free ) + ( ql * cvl * free ) - ( qc * ca * free ) + ivr + raefflux 
+# line 221 
+z99963 = rplas_free 
+# line 221 
+z99962 = 0.0 
+# line 221 
+integral aplas_free = z99963 , z99962 
+ca_free = aplas_free / vplas 
+ca = ca_free / free 
+
+
+atissue = aplas_free + ar + akb + afil + aptc + al + ast + asi 
+aloss = aurine + afeces 
+atotal = atissue + aloss 
+
+end 
+
+
+
+
+
+
+
+constant tstop = 530.0 
+# line 239 
+if ( t .ge. tstop ) then 
+# line 239 
+call zztrmt ( 'checked on communication interval: REACHED TSTOP' ) 
+# line 239 
+endif 
+
+end 
+
+terminal 
+
+
+
+end 
+
+end 
+

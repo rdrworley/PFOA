@@ -1,8 +1,12 @@
 %Monte Carlo on sensitive parameters and plot results
 %Exposure parameters calibrated for Little Hocking exposure scenario 
 
-prepare @clear @all
+%!! prepare clear t, bw, gfrc, protein, pl, rafapi, kbile, kurinec, exposeddw, dwtotal 
+prepare @clear t ca 
 output @clear
+
+CINT = 1.0
+TSTOP = 1000.0 
 
 %Turn off Jacobian error writing and write out functions (saves computational time)
 WEDIGT = 0.0 ;
@@ -38,14 +42,14 @@ KBILE	=	lognrnd(	-9.253	,	0.294	,	0.0000412	,	0.0001588	);
 KURINEC	=	lognrnd(	-2.681	,	0.294	,	0.029458	,	0.113542	);
 										
 %Little Hocking Exposure Parameters										
-EXPOSEDDW	=	lognrnd(	1.224	,	0.294	,	1.5	,	7.2	);
-DRINKTOTAL	=	lognrnd(	0.182	,	0.502	,	0.148	,	3.78	);
+%EXPOSEDDW	=	lognrnd(	1.224	,	0.294	,	1.5	,	7.2	);
+%DWTOTAL	=	lognrnd(	0.182	,	0.502	,	0.148	,	3.78	);
 
 start @nocallback
 
 %%%%% Make sure _cv is the same as your model output %%%%% CHANGED TO CA TO CORRESPOND TO .CSL
-_t1 = [_t1;_t];
-_ca1 = [_ca1;_ca];
+_t1 = [_t1,_t];
+_ca1 = [_ca1,_ca];
 end
 
 %%%%% we don't need the following; so I crossed them out %%%%%%
