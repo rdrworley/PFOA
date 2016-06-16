@@ -42,8 +42,12 @@ KBILE	=	lognrnd(	-9.253	,	0.294	,	0.0000412	,	0.0001588	);
 KURINEC	=	lognrnd(	-2.681	,	0.294	,	0.029458	,	0.113542	);
 										
 %Little Hocking Exposure Parameters										
-%EXPOSEDDW	=	lognrnd(	1.224	,	0.294	,	1.5	,	7.2	);
-%DWTOTAL	=	lognrnd(	0.182	,	0.502	,	0.148	,	3.78	);
+%EXPOSEDDW	=	lognrnd(	1.224	,	0.294	,	1.5	,	7.2	);	%mean = 3.55, lower = 1.5, upper = 7.2 (Bartell, 2006)
+%EXPOSEDDW	=	lognrnd(	1.224	,	0.294	,	1.4626	,	5.6374	); %mean = 3.55, lower = 1.4626, upper = 5.6374, based on CV = 0.3
+EXPOSEDDW	=	lognrnd(	0.650	,	0.294	,	0.824	,	3.176	);	%mean = 2.0, bounds calculated based on CV = 0.3
+%EXPOSEDDW	=	lognrnd(	0.674	,	0.198	,	1.216	,	2.784	);	%mean = 2.0, bounds calculated based on CV = 0.2
+
+DWTOTAL	=	lognrnd(	0.182	,	0.502	,	0.148	,	3.78	);
 
 start @nocallback
 

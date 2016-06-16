@@ -2,13 +2,13 @@
 %Steenland samples collected in 07-08.
 
 output @clear
-%prepare @clear @all
-prepare @clear t ca 
+prepare @clear @all
+%prepare @clear t ca 
 WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
 !! s ingest = 0.0096
-!! s exposeddw = 3.55
+!! s exposeddw = 2.0
 !! s tstop = 306600
 
 %Parameters that can be fit to data
@@ -26,14 +26,17 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s Free = 0.005
 
 %Data (serum concentrations reported in ug/L)
+% Bartell is mean +/-SD
 bartell = [30	91
 30	424
 30	757]
 
+%Steenland, 224 is median for LH district, 
 steenland = [20	130
 20	224
 20	318]
 
+%Emmet, 354 is median, IQR is 181 - 571.
 emmett = [25	181
 25	354
 25	571]
