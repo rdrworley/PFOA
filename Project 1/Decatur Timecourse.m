@@ -5,7 +5,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
 !! s BW = 89
-!! s ingest = 0.00151
+!! s ingest = 0.0027
 !! s backgrounddw = 0
 !! s tbackground = 0
 !! s exposeddw = 0.04	%average of all samples in ADEM efile data base from 2010 - present
@@ -20,12 +20,12 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! s KBILEC = 0.0001
 !! s KEFFLUXC = 0.1
-!! s KURINEC = 0.0715
+!! s KURINEC = 0.0275
 
 !! s RAFapi = .0007
 !! s RAFbaso = 1.0
 
-!! s Free = 0.005
+!! s Free = 0.02
 
 %Data - Data from 2016 Decatur EI, Public Water Drinkers
 public = [0	16.3

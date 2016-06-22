@@ -8,9 +8,9 @@ prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
-%!! s ingest = 0.0096	%background ingestion to acheive serum from 07-08
-%!! s ingest = 0.0056	%background ingestion to acheive serum from 09-10 (has not been adjusted based on new parameter values 5/27/2016)
-!! s ingest = 0.00151	%background ingestion to acheive serum from 11-12
+%!! s ingest = 0.0053	%background ingestion to acheive serum from 07-08
+%!! s ingest = 0.00395	%background ingestion to acheive serum from 09-10 (has not been adjusted based on new parameter values 5/27/2016)
+!! s ingest = 0.0027	%background ingestion to acheive serum from 11-12
 !! s exposeddw = 0.0
 !! s tstop = 262800.0
 
@@ -26,7 +26,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s RAFapi = .0007
 !! s RAFbaso = 1.0
 
-!! s Free = 0.005
+!! s Free = 0.02
 
 %Data (paired blood and urine data from Zhang, 2013; all units in ug/L)
 NHANES_0708_blood = [28	4.12]
@@ -35,6 +35,6 @@ NHANES_1112_blood = [28	2.1]
 
 !! st/nc
 
-plot(_year, _ca, NHANES_0708_blood(:,1), NHANES_0708_blood(:, 2), '+')
+%plot(_year, _ca, NHANES_0708_blood(:,1), NHANES_0708_blood(:, 2), '+')
 %plot(_year, _ca, NHANES_0910_blood(:,1), NHANES_0910_blood(:, 2), '+')
-%plot(_year, _ca, NHANES_1112_blood(:,1), NHANES_1112_blood(:, 2), '+')
+plot(_year, _ca, NHANES_1112_blood(:,1), NHANES_1112_blood(:, 2), '+')

@@ -6,7 +6,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
 !! s BW = 89
-!! s ingest = 0.0025
+!! s ingest = 0.0027
 !! s exposeddw = 0.057
 !! s tstop = 351000
 
@@ -24,7 +24,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s RAFapi = .0007
 !! s RAFbaso = 1.0
 
-!! s Free = 0.005
+!! s Free = 0.02
 
 %Data - Data from 2016 Decatur EI, Public Water Drinkers
 public = [25	15.4

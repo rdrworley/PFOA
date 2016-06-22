@@ -7,9 +7,9 @@ prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
-!! s ingest = 0.0096
-!! s exposeddw = 7.2
-!! s tstop = 306600
+!! s ingest = 0.0053
+!! s exposeddw = 3.55
+!! s tstop = 438000
 
 %Parameters that can be fit to data
 !! s K0C = 1.0
@@ -18,12 +18,12 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! s KBILEC = 0.0001
 !! s KEFFLUXC = 0.1
-!! s KURINEC = 0.0715
+!! s KURINEC = 0.0275
 
 !! s RAFapi = .0007
 !! s RAFbaso = 1.0
 
-!! s Free = 0.005
+!! s Free = 0.02
 
 %Data (serum concentrations reported in ug/L)
 % Bartell is mean +/-SD

@@ -178,71 +178,71 @@ END
 !Model Equations
 		!Rest of Body (Tis)
 		RR = QR*(CA-CVR)*Free	!rate of change in rest of body (ug/h)
-		AR = integ(RR, 137.464)	!amount in rest of body (ug)
+		AR = integ(RR, 134.447)	!amount in rest of body (ug)
 		CR = AR/VR !concentration in rest of body (ug/L)
 		CVR = CR/PR	!concentration in venous blood leaving the rest of the body (ug/L)
 		
 		!Kidney 
 			!Kidney Blood (Kb)
 			RKb = QK*(CA-CVK)*Free - CA*GFR*Free - Rdif - RA_baso   !rate of change in kidney blood (ug/h).
-			AKb = integ(RKb, 0.0294) !amount in kidney blood (ug)
+			AKb = integ(RKb, 0.103344 ) !amount in kidney blood (ug)
 			CKb = AKb/VKb	!concentration in kidney blodd (ug/L) 
 			CVK = CKb !/PK	!concentration in venous blood leaving kidney (ug/L)
 
 			RCl = CA*GFR*Free	!rate of clearance via glomerular filtration (ug/h)
-			ACl = integ(RCl, 1.725e6)		!amount moved via glomerular filtration (ug)
+			ACl = integ(RCl, 788877.0)		!amount moved via glomerular filtration (ug)
 	
 			Rdif = Kdif*(CKb - CPTC)	!rate of diffusion from into the PTC (ug/hr)
-			Adif = integ(Rdif, -461498.0)	!amount diffused into the PTC (ug/L)
+			Adif = integ(Rdif, -1.83679e+006)	!amount diffused into the PTC (ug/L)
 
 			RA_baso = (Vmax_baso*CKb)/(Km_baso + CKb)
-			A_baso = integ(RA_baso, 9.346e6)
+			A_baso = integ(RA_baso, 3.93001e+006)
 
 			!Proximal Tubule Cells (PTC)
 			RPTC =  Rdif + RA_apical + RA_baso - RAefflux !rate of change in PTC(ug/h)
-			APTC = integ(RPTC, 85.982)	!amount in proximal tubule cells (ug)
+			APTC = integ(RPTC, 307.759)	!amount in proximal tubule cells (ug)
 			CPTC = APTC/VPTC	!concentration in PTC (ug/L)
 
 			RA_apical = (Vmax_apical*Cfil)/(Km_apical + Cfil)
-			A_apical = integ(RA_apical, 1.699e6)
+			A_apical = integ(RA_apical, 781970.0)
 
 			RAefflux = kefflux*APTC
-			Aefflux = integ(RAefflux, 6.740e6)
+			Aefflux = integ(RAefflux, 2.87488e+006)
 
 			!Filtrate (Fil)
 			Rfil = CA*GFR*Free - RA_apical - Afil*kurine	!rate of change in filtrate (ug/h)
-			Afil = integ(Rfil,0.298)	!amount in filtrate (ug)
+			Afil = integ(Rfil,1.16428)	!amount in filtrate (ug)
 			Cfil = Afil/Vfil	!concentration in filtrate (ug/L)
 			
 			!Urinary elimination 
 			Rurine = kurine*Afil	!rate of change in urine (ug/h)
-			Aurine = integ(Rurine, 26493.9)	!amount in urine (ug)
+			Aurine = integ(Rurine, 6905.49)	!amount in urine (ug)
 			Curine = Rurine/kvoid	!concentration in urine (ug/L)
 		
 		!GI Tract (Absorption site of oral dose)
 			!Stomach
 			RST= ingest + drinkdose - k0*AST - GE*AST	!rate of change in the stomach (ug/h)
-			AST = integ(RST, 0.00383)	!amount in the stomach (ug)
+			AST = integ(RST, 0.00311232)	!amount in the stomach (ug)
 
 			RabsST = k0*AST	!rate of absorption in the stomach (ug/h)
-			AabsST = integ(RabsST, 5402.60)	!amount absorbed in the stomach (ug)
+			AabsST = integ(RabsST, 1641.89)	!amount absorbed in the stomach (ug)
 
 			!Small Intestine
 			RSI = GE*AST - kabs*ASI - kunabs*ASI	!rate of change in the small intestine (ug/hr)
-			ASI = integ(RSI, 0.00658)	!amount in the small intestine (ug)
+			ASI = integ(RSI, 0.0169123)	!amount in the small intestine (ug)
 
 			RabsSI = kabs*ASI	!rate of absorption inthe small intestine (ug/hr)
-			AabsSI = integ(RabsSI, 20810.6)	!amount absorbed in the small intestine (ug)
+			AabsSI = integ(RabsSI, 5746.41)	!amount absorbed in the small intestine (ug)
 
 			total_oral_uptake = AabsSI + AabsST	!total oral uptake in the GI tract (ug) 
 
 			!Feces compartment
 			Rfeces = kbile*AL + kunabs*ASI !rate of change in the feces compartment (ug/h)
-			Afeces = integ(Rfeces,0.693036)	!amount in the feces compartment (ug)
+			Afeces = integ(Rfeces,0.191366)	!amount in the feces compartment (ug)
 
 		!Liver
 		RL = QL*(CA-CVL)*Free - kbile*AL + kabs*ASI + k0*AST !rate of change in the liver (ug/h)
-		AL = integ(RL, 38.9596) !amount in liver (ug)
+		AL = integ(RL, 38.1156) !amount in liver (ug)
 		CL = AL/VL	!concentration in the liver (ug/L)
 		CVL = CL/PL	!concentration in the venous blood leaving the liver (ug/L)
 
@@ -252,7 +252,7 @@ END
 
 		!Plasma compartment
 		RPlas_free = (QR*CVR*Free) + (QK*CVK*Free) + (QL*CVL*Free) - (QC*CA*Free) + RAefflux  !rate of change in the plasma (ug/h) 
-		Aplas_free = integ(RPlas_free, 0.310872)	!amount in the plasma (ug)
+		Aplas_free = integ(RPlas_free, 1.21626)	!amount in the plasma (ug)
 		CA_free = APlas_free/VPlas		!concentration in plasma (ug)
 		CA = CA_free/Free	!concentration of total PFOA in plasma (ug/L)
 
