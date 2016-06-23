@@ -33,24 +33,23 @@ for x = 1:NUMIT
 % Physiological parameters       										
 BW 	=	normrnd(	82.3	,	26.400	,	30.6	,	134	);
 GFRC	=	normrnd(	24.19	,	7.257	,	9.96628	,	38.41372	);
-PROTEIN	=	normrnd(	2.00E-06	,	0.000001	,	0.000000824	,	0.000003176	);
+PROTEIN	=	normrnd(	0.000002	,	0.000001	,	0.0000008	,	0.000003176	);
+VLC 	=	normrnd(	0.000002	,	0.007800	,	0.010712	,	0.041288	);
+VFILC	=	normrnd(	0.000002	,	0.000120	,	0.0001648	,	0.0006352	);
 										
 %Chemical-specific parameters for PFOA										
 PL	=	lognrnd(	0.010	,	0.198	,	0.62624	,	1.43376	);
+VMAX_APICAL_INVITRO	=	lognrnd(	10.476	,	0.325	,	12900	,	61900	);
+KM_APICAL	=	lognrnd(	11.245	,	0.161	,	52882.53598	,	102145.272	);
 RAFAPI	=	lognrnd(	-7.308	,	0.294	,	0.000288	,	0.0011116	);
-KBILE	=	lognrnd(	-9.253	,	0.294	,	0.0000412	,	0.0001588	);
+KBILEC	=	lognrnd(	-9.253	,	0.294	,	0.0000412	,	0.0001588	);
 KURINEC	=	lognrnd(	-2.681	,	0.294	,	0.029458	,	0.113542	);
+FREE	=	lognrnd(	-3.955	,	0.294	,	0.00824	,	0.03176	);
 										
 %Little Hocking Exposure Parameters										
-%EXPOSEDDW	=	lognrnd(	1.224	,	0.294	,	1.5	,	7.2	);	%mean = 3.55, lower = 1.5, upper = 7.2 (Bartell, 2006)
-%EXPOSEDDW	=	lognrnd(	1.224	,	0.294	,	1.4626	,	5.6374	); %mean = 3.55, lower = 1.4626, upper = 5.6374, based on CV = 0.3
-%EXPOSEDDW	=	lognrnd(	0.650	,	0.294	,	0.824	,	3.176	);	%mean = 2.0, bounds calculated based on CV = 0.3
-%EXPOSEDDW	=	lognrnd(	0.674	,	0.198	,	1.216	,	2.784	);	%mean = 2.0, bounds calculated based on CV = 0.2
-%EXPOSEDDW	=	lognrnd(	0.362	,	0.294	,	0.618	,	2.382	);	%mean = 1.5, bounds calculated based on CV = 0.3
-EXPOSEDDW	=	lognrnd(	1.931	,	0.294	,	2.9664	,	11.4336	);	%mean = 7.2, bounds calculated based on CV = 0.3
-
-
+EXPOSEDDW	=	lognrnd(	1.931	,	0.294	,	2.9664	,	11.4336	);
 DWTOTAL	=	lognrnd(	0.182	,	0.502	,	0.148	,	3.78	);
+
 
 start @nocallback
 
