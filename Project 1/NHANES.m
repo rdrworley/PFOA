@@ -8,11 +8,11 @@ prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
-%!! s ingest = 0.0053	%background ingestion to acheive serum from 07-08
-%!! s ingest = 0.00395	%background ingestion to acheive serum from 09-10 (has not been adjusted based on new parameter values 5/27/2016)
-!! s ingest = 0.0027	%background ingestion to acheive serum from 11-12
+%!! s ingest = 0.00214	%background ingestion to acheive serum from 07-08
+%!! s ingest = 0.00159	%background ingestion to acheive serum from 09-10 
+!! s ingest = 0.00109	%background ingestion to acheive serum from 11-12
 !! s exposeddw = 0.0
-!! s tstop = 262800.0
+!! s tstop = 462800.0
 
 %Parameters that can be fit to data
 !! s K0C = 1.0
@@ -21,7 +21,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! s KBILEC = 0.0001
 !! s KEFFLUXC = 0.1
-!! s KURINEC = 0.077
+!! s KURINEC = 0.0282
 
 !! s RAFapi = .0007
 !! s RAFbaso = 1.0
@@ -29,9 +29,9 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s Free = 0.02
 
 %Data (paired blood and urine data from Zhang, 2013; all units in ug/L)
-NHANES_0708_blood = [28	4.12]
-NHANES_0910_blood = [28	3.07]
-NHANES_1112_blood = [28	2.1]
+NHANES_0708_blood = [45	4.12]
+NHANES_0910_blood = [45	3.07]
+NHANES_1112_blood = [45	2.1]
 
 !! st/nc
 
