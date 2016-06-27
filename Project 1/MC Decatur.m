@@ -5,8 +5,8 @@
 prepare @clear t ca 
 output @clear
 
-CINT = 100.0
-TSTOP = 10000.0 
+CINT = 1000.0
+TSTOP = 1000.0 
 
 %Turn off Jacobian error writing and write out functions (saves computational time)
 WEDIGT = 0.0 ;
@@ -26,7 +26,7 @@ _ca1 = [];
 
 %For loop to iterate run multiple times 
 
-NUMIT =10;			%number of iterations
+NUMIT = 1000;			%number of iterations
 
 for x = 1:NUMIT
 
