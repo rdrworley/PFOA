@@ -2,5 +2,6 @@
   <csl name="PFOA Adult Human 06262015_LOADED.csl" location="c:\acslx\pfoa\project 1" />
   <mscript name="Decatur Timecourse.m" location="c:\acslx\pfoa\project 1" />
   <mscript name="MC Decatur.m" location="c:\acslx\pfoa\project 1" />
+  <mscript name="MC Decatur-two time points.m" location="c:\acslx\pfoa\project 1" />
   <resultsfolder name="" location="." />
 </project>

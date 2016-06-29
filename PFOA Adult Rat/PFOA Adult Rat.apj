@@ -23,7 +23,6 @@
   <mscript name="PFOA Adult Rat Optimization-params.m" location="." />
   <mscript name="Optimization - female.m" location="." />
   <mscript name="PFOA Adult Rat Test Female.m" location="." />
-  <exe name="PFOA Adutl Rat.dll" location="." />
   <resultsfolder name="" location="." />
   <optstats name="PFOA Adult Rat Optimization.ape" location="." />
   <optstats name="PFOA Adult Parameter Estimation.ape" location="." />
