@@ -14,6 +14,7 @@
   <mscript name="Decatur, 2016 - All Men.m" location="." />
   <mscript name="MC Little Hocking.m" location="." />
   <mscript name="MC Little Hocking_XY.m" location="." />
+  <mscript name="Decatur Timecourse.m" location="." />
   <resultsfolder name="" location="." />
   <optstats name="PFOA Adult Human - Optimization.ape" location="." />
   <optstats name="PFOA Adult Human.asn" location="." />
