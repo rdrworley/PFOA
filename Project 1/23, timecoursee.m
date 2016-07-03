@@ -4,17 +4,15 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 
 %Exposure Parameters
-!! s BW = 89
-!! s ingest_past = 0.0053
+!! s BW = 87.0			%PARTICIPANT SPECIFIC
+!! s ingest_past = 0.00001
 !! s ingest_current = 0.00133
-%!! s ingest = 0.00133
 !! s backgrounddw = 0.04
-%!! s tbackground = 0
 !! s tbackground = 438800
 !! s exposeddw = 0.04	%average of all samples in ADEM efile data base from 2010 - present
 !! s tstop = 525600
 
-!! s kvoid = 0.039	% L/hour; urinary excretion rate calculated from EI data
+!! s kvoid = 0.05556	% L/hour; urinary excretion rate calculated from EI data PARTICIPANT SPECIFIC
 
 %Parameters that can be fit to data
 !! s K0C = 1.0
@@ -31,12 +29,12 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 !! s Free = 0.02
 
 %Data - Data from 2016 Decatur EI, Public Water Drinkers
-public = [50	16.3
-55.75	11.7
+public = [50	2.8
+55.75	1.4
 ]
 
 
 !! st/nc
 
 plot(_year, _ca, public(:,1), public(:,2),'+')
-plot (_year, _ingest, '+')
+%plot (_year, _ingest, '+')
