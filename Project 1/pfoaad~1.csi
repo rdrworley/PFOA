@@ -122,8 +122,8 @@ day = t / 24
 year = day / 365 
 
 
-constant backgrounddw = 0.01 
-constant exposeddw = 3.55 
+constant backgrounddw = 0.04 
+constant exposeddw = 0.04 
 constant dwtotal = 1.36 
 constant drinks = 4.0 
 constant tlendw = 0.25 
@@ -131,7 +131,7 @@ constant tbackground = 0.0
 
 
 
-constant ingest_past = 0.0 
+constant ingest_past = 0.0053 
 constant ingest_current = 0.00133 
 
 
