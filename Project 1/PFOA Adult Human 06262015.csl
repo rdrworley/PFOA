@@ -28,7 +28,7 @@ CONSTANT tstart = 0.0
   
   ! Chemical Specific Parameters
     CONSTANT MW = 414.07  !PFOA molecular mass (g/mol)
-    CONSTANT Free = 0.005 !free fraction in plasma (initial value from Loccisano, 2011)
+    CONSTANT Free = 0.02 !free fraction in plasma (initial value from Loccisano, 2011)
 
     !Kidney Transport Parameters BASO PARAMETERS UPDATED FOR HUMAN, STILL NEED APICAL Vmax (current is OAT4 only)
     CONSTANT Vmax_baso_invitro = 439.2 !Vmax of basolateral transporter (pmol/mg protein/min); averaged in vitro value of OAT1 and OAT3 from Nakagawa, 2007
