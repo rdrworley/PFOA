@@ -62,7 +62,7 @@ start @nocallback
 
 casim = [_t, _ca];
 time1 = 438000
-time2 = 488370
+time2 = 488400
 
 aa = find(casim(:,1) == time1);
 con1 = casim(aa, 2);
