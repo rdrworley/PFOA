@@ -8,9 +8,10 @@ prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
-%!! s ingest = 0.00177	%background ingestion to acheive serum from 07-08
-%!! s ingest = 0.00133	%background ingestion to acheive serum from 09-10 
-!! s ingest = 0.00091	%background ingestion to acheive serum from 11-12
+%!! s ingest_current = 0.00177	%background ingestion to acheive serum from 07-08
+!! s ingest_current = 0.00133	%background ingestion to acheive serum from 09-10 
+%!! s ingest_current = 0.00091	%background ingestion to acheive serum from 11-12
+!! s tbackground = 0
 !! s exposeddw = 0.0
 !! s tstop = 462800.0
 
@@ -21,7 +22,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! s KBILEC = 0.0001
 !! s KEFFLUXC = 0.1
-!! s KURINEC = 0.0226
+!! s KURINEC = 0.0305
 
 !! s RAFapi = .0007
 !! s RAFbaso = 1.0
@@ -36,5 +37,5 @@ NHANES_1112_blood = [45	2.1]
 !! st/nc
 
 %plot(_year, _ca, NHANES_0708_blood(:,1), NHANES_0708_blood(:, 2), '+')
-%plot(_year, _ca, NHANES_0910_blood(:,1), NHANES_0910_blood(:, 2), '+')
-plot(_year, _ca, NHANES_1112_blood(:,1), NHANES_1112_blood(:, 2), '+')
+plot(_year, _ca, NHANES_0910_blood(:,1), NHANES_0910_blood(:, 2), '+')
+%plot(_year, _ca, NHANES_1112_blood(:,1), NHANES_1112_blood(:, 2), '+')
