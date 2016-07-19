@@ -8,7 +8,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
 !! s ingest_current = 0.01
-!! s exposeddw = 3.55
+!! s exposeddw = 7.2
 !! s tbackground = 0.0
 !! s tstop = 438000
 
