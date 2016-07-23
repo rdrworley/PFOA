@@ -5,7 +5,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
 !! s BW = 69.3			%PARTICIPANT SPECIFIC
-!! s ingest_past = 0.0002
+!! s ingest_past = 0.01
 !! s ingest_current = 0.00133
 !! s backgrounddw = 0.04
 !! s tbackground = 438800
@@ -21,7 +21,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! s KBILEC = 0.0001
 !! s KEFFLUXC = 0.1
-!! s KURINEC = 0.0226
+!! s KURINEC = 0.063
 
 !! s RAFapi = .0007
 !! s RAFbaso = 1.0

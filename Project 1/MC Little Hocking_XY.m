@@ -43,13 +43,13 @@ VMAX_APICAL_INVITRO	=	lognrnd(	10.476	,	0.325	,	12900	,	61900	);
 KM_APICAL	=	lognrnd(	11.245	,	0.161	,	52882.53598	,	102145.272	);
 RAFAPI	=	lognrnd(	-7.308	,	0.294	,	0.000288	,	0.0011116	);
 KBILEC	=	lognrnd(	-9.253	,	0.294	,	0.0000412	,	0.0001588	);
-KURINEC	=	lognrnd(	-2.681	,	0.294	,	0.029458	,	0.113542	);
+KURINEC	=	lognrnd(	-2.808	,	0.294	,	0.025956	,	0.100044	);
 FREE	=	lognrnd(	-3.955	,	0.294	,	0.00824	,	0.03176	);
 										
 %Little Hocking Exposure Parameters										
-EXPOSEDDW	=	lognrnd(	1.931	,	0.294	,	2.9664	,	11.4336	);
+EXPOSEDDW	=	lognrnd(	1.224	,	0.294	,	1.4626	,	5.6374	);
 DWTOTAL	=	lognrnd(	0.182	,	0.502	,	0.148	,	3.78	);
-
+INGEST_PAST	=	lognrnd(	-4.648	,	0.294	,	0.00412	,	0.01588	);
 
 start @nocallback
 

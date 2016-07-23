@@ -127,8 +127,8 @@ CONSTANT tstart = 0.0
 
   !Incidental Ingestion
   !CONSTANT ingest = 0.002   !incidental ingestion rate (ug/hr)
-	CONSTANT ingest_past = 0.0053	
-	CONSTANT ingest_current = 0.00133
+  CONSTANT ingest_past = 0.0053  
+  CONSTANT ingest_current = 0.00133
 
 !!Ingestion Exposure
 !DISCRETE IngestON
