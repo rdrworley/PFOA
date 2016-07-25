@@ -1,3 +1,5 @@
+%Participant #67 had the highest serum concentraiton in 2010 (of participants of both EIs)
+
 output @clear
 prepare @clear @all
 WESTIG=0;WEDITG=0;CJVITG=0;

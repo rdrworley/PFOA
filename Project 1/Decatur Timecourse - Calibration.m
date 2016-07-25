@@ -27,7 +27,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! s Free = 0.02
 
-%Data - Data from 2016 Decatur EI, Public Water Drinkers
+%Data - Data from Decatur EIs. Only people who participated in 2010 and 2016, no #65
 public = [0	24.3
 5.75	12.7
 ]

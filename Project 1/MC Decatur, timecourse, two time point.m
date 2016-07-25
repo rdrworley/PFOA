@@ -37,8 +37,9 @@ for x = 1:NUMIT
 BW 	=	normrnd(	89.0	,	26.400	,	51	,	137	);
 GFRC	=	normrnd(	24.19	,	7.257	,	9.96628	,	38.41372	);
 PROTEIN	=	normrnd(	0.000002	,	0.000001	,	0.0000008	,	0.000003176	);
-VLC 	=	normrnd(	0.000002	,	0.007800	,	0.010712	,	0.041288	);
-VFILC	=	normrnd(	0.000002	,	0.000120	,	0.0001648	,	0.0006352	);
+VLC 	=	normrnd(	0.026	,	0.007800	,	0.010712	,	0.041288	);
+VFILC	=	normrnd(	0.0004	,	0.000120	,	0.0001648	,	0.0006352	);
+
 										
 %Chemical-specific parameters for PFOA										
 PL	=	lognrnd(	0.010	,	0.198	,	0.62624	,	1.43376	);
@@ -46,13 +47,15 @@ VMAX_APICAL_INVITRO	=	lognrnd(	10.476	,	0.325	,	12900	,	61900	);
 KM_APICAL	=	lognrnd(	11.245	,	0.161	,	52882.53598	,	102145.272	);
 RAFAPI	=	lognrnd(	-7.308	,	0.294	,	0.000288	,	0.0011116	);
 KBILEC	=	lognrnd(	-9.253	,	0.294	,	0.0000412	,	0.0001588	);
-KURINEC	=	lognrnd(	-2.681	,	0.294	,	0.029458	,	0.113542	);
+KURINEC	=	lognrnd(	-2.808	,	0.294	,	0.025956	,	0.100044	);
 FREE	=	lognrnd(	-3.955	,	0.294	,	0.00824	,	0.03176	);
 										
 %Decatur Exposure Parameters										
 EXPOSEDDW	=	lognrnd(	-3.262	,	0.294	,	1E-34	,	0.16	);
 DWTOTAL	=	lognrnd(	0.182	,	0.502	,	0.148	,	3.78	);
-INGEST_PAST	=	lognrnd(	-5.283	,	0.294	,	0.0002	,	0.014	);
+INGEST_PAST	=	lognrnd(	-3.704	,	0.294	,	0.00375	,	0.038	);
+INGEST_CURRENT	=	lognrnd(	-4.648	,	0.294	,	0.00412	,	0.01588	);
+
 
 start @nocallback
 

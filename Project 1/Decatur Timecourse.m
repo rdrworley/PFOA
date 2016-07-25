@@ -5,13 +5,13 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
 !! s BW = 89
-!! s ingest_past = 0.0053
+!! s ingest_past = 0.0257
 !! s ingest_current = 0.00133
 %!! s ingest = 0.00133
 !! s backgrounddw = 0.04
-!! s tbackground = 0
-%!! s tbackground = 438800
-!! s exposeddw = 0.175	%dw concentration necessary to acheive 2010 GM for WM/EL drinkers (no #65)
+%!! s tbackground = 0
+!! s tbackground = 438800
+!! s exposeddw = 0.04	
 !! s tstop = 525600
 
 !! s kvoid = 0.039	% L/hour; urinary excretion rate calculated from EI data
@@ -23,7 +23,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 !! s KBILEC = 0.0001
 !! s KEFFLUXC = 0.1
-!! s KURINEC = 0.0226
+!! s KURINEC = 0.063
 
 !! s RAFapi = .0007
 !! s RAFbaso = 1.0

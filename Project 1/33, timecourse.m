@@ -5,7 +5,7 @@ WESTIG=0;WEDITG=0;CJVITG=0;
 
 %Exposure Parameters
 !! s BW = 69.3			%PARTICIPANT SPECIFIC
-!! s ingest_past = 0.01
+!! s ingest_past = 0.00375
 !! s ingest_current = 0.00133
 !! s backgrounddw = 0.04
 !! s tbackground = 438800
