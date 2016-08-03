@@ -29,8 +29,8 @@
       </colbindings>
       <descriptors>
         <descriptor name="ivdosec" value="0" type="System.Double" />
-        <descriptor name="bw" value="0.216" type="System.Double" />
         <descriptor name="odosec" value="0.1" type="System.Double" />
+        <descriptor name="bw" value="0.216" type="System.Double" />
       </descriptors>
     </dataset>
     <dataset name="kemper_exp_6m.csv" includeinrun="False" filepath="kemper_exp_6m.csv">
@@ -44,8 +44,8 @@
       </colbindings>
       <descriptors>
         <descriptor name="ivdosec" value="0" type="System.Double" />
-        <descriptor name="bw" value="0.249" type="System.Double" />
         <descriptor name="odosec" value="1" type="System.Double" />
+        <descriptor name="bw" value="0.249" type="System.Double" />
       </descriptors>
     </dataset>
     <dataset name="kemper_exp_7m.csv" includeinrun="False" filepath="kemper_exp_7m.csv">
@@ -59,8 +59,8 @@
       </colbindings>
       <descriptors>
         <descriptor name="ivdosec" value="0" type="System.Double" />
-        <descriptor name="bw" value="0.218" type="System.Double" />
         <descriptor name="odosec" value="5" type="System.Double" />
+        <descriptor name="bw" value="0.218" type="System.Double" />
       </descriptors>
     </dataset>
     <dataset name="kemper_exp_8m.csv" includeinrun="False" filepath="kemper_exp_8m.csv">
@@ -74,8 +74,8 @@
       </colbindings>
       <descriptors>
         <descriptor name="ivdosec" value="0" type="System.Double" />
-        <descriptor name="bw" value="0.225" type="System.Double" />
         <descriptor name="odosec" value="25" type="System.Double" />
+        <descriptor name="bw" value="0.225" type="System.Double" />
       </descriptors>
     </dataset>
     <dataset name="kudo_iv__low_dosem.csv" includeinrun="False" filepath="kudo_iv__low_dosem.csv">
@@ -89,8 +89,8 @@
       </colbindings>
       <descriptors>
         <descriptor name="ivdosec" value="0.041" type="System.Double" />
-        <descriptor name="bw" value="0.3" type="System.Double" />
         <descriptor name="odosec" value="1E-33" type="System.Double" />
+        <descriptor name="bw" value="0.3" type="System.Double" />
       </descriptors>
     </dataset>
     <dataset name="kudo_iv__high_dosem.csv" includeinrun="False" filepath="kudo_iv__high_dosem.csv">
@@ -104,8 +104,8 @@
       </colbindings>
       <descriptors>
         <descriptor name="ivdosec" value="16.56" type="System.Double" />
-        <descriptor name="bw" value="0.3" type="System.Double" />
         <descriptor name="odosec" value="1E-33" type="System.Double" />
+        <descriptor name="bw" value="0.3" type="System.Double" />
       </descriptors>
     </dataset>
     <dataset name="kemper_exp_6_ivm.csv" includeinrun="True" filepath="kemper_exp_6_ivm.csv">
@@ -119,8 +119,8 @@
       </colbindings>
       <descriptors>
         <descriptor name="ivdosec" value="1" type="System.Double" />
-        <descriptor name="bw" value="0.248" type="System.Double" />
         <descriptor name="odosec" value="1E-33" type="System.Double" />
+        <descriptor name="bw" value="0.248" type="System.Double" />
       </descriptors>
     </dataset>
   </datasets>
