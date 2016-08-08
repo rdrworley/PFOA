@@ -50,7 +50,7 @@ CONSTANT tstart = 0.0
     CONSTANT kdif = 0.001  !diffusion rate from proximal tubule cells (L/h)
     CONSTANT kabsc = 2.12  !rate of absorption of chemical from small intestine to liver (1/(h*BW^-0.25))(fit to data)
     CONSTANT kunabsc = 7.06e-5  !rate of unabsorbed dose to appear in feces (1/(h*BW^-0.25)) (fit to data)
-    CONSTANT GEC = 3.5 !gastric emptying time (1/(h*BW^0.25)); from Yang, 2014
+    CONSTANT GEC = 3.5 !gastric emptying time (1/(h*BW^-0.25)); from Yang, 2014
     CONSTANT k0C = 1.0  !rate of uptake from the stomach into the liver (1/(h*BW^-0.25))
     
     CONSTANT keffluxc = 0.1  !rate of clearance of PFOA from proximal tubule cells into blood (1/(h*BW^-0.25))); fit to data
@@ -109,7 +109,7 @@ CONSTANT tstart = 0.0
     !GI Tract Parameters
     kabs = kabsc*BW**(-0.25)  !rate of absorption of chemical from small intestine to liver (/h)
     kunabs = kunabsc*BW**(-0.25)  !rate of unabsorbed dose to appear in feces (/h)
-    GE = GEC/BW**0.25  !gastric emptying time (/h)
+    GE = GEC/BW**(-0.25)  !gastric emptying time (/h)
     k0 = K0C/BW**(-0.25)   !rate of uptake from the stomach into the liver (/h)
 
 ! Exposure Parameters
@@ -136,6 +136,7 @@ ingest = ingest_past  !ingestion exposure equals ingest_past
 else !if time is less that tbackground,
 ingest = ingest_current  !ingestion exposure equals ingest_past
 ENDIF
+aingestdose = integ(ingest, 0.)
 
 !Drinking water exposure
 DISCRETE Drinkint
@@ -268,7 +269,8 @@ END
     !Mass Balance Check
     Atissue = APlas_free + AR + AKb + AFil + APTC + AL + AST + ASI   !sum of mass in all compartments (ug)
     Aloss = Aurine + Afeces   !sum of mass lost through urinary and fecal excretion (ug)
-    Atotal = Atissue + Aloss   !total mass; should equal total dose
+    totaldose = Adrinkdose + Aingestdose
+		Atotal = Atissue + Aloss   !total mass; should equal total dose
 
     END ! DERIVATIVE
 
